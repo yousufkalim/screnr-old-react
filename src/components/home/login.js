@@ -16,6 +16,8 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { toast } from "react-toastify";
 import Api from "../../api/index";
+import logo from "../../assets/images/Logo.svg";
+import LoginVector from "../../assets/images/loginimg.svg";
 
 // Copyright component at the bottom
 function Copyright(props) {
@@ -98,30 +100,17 @@ export default function SignInSide() {
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         {/* left side panal */}
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage:
-              "url(https://www.sky-futures.com/wp-content/uploads/2018/03/Artificial-Intelligence-AI-in-the-Drone-led-Industrial-Inspection-World-1080x675.png)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+        <Grid item xs={false} sm={4} md={7}>
+          <img className="Login_img" src={logo} alt="" />
+          <img className="Login_img" src={LoginVector} alt="" />
+        </Grid>
         {/* Right side panel */}
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5} elevation={6} square>
           {islogin ? (
             // Login form
             <Box
               sx={{
-                my: 8,
+                my: 20,
                 mx: 4,
                 display: "flex",
                 flexDirection: "column",
