@@ -2,6 +2,7 @@
 @import url("./home/index.css");
 @import url("./Doctor/index.css");
 @import url("./components/index.css");
+@import url("./container/index.css");
 
 /* Defaults */
 * {

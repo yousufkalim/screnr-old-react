@@ -7,9 +7,12 @@ import PatientLayout from "./layouts/patient";
 import DoctorLayout from "./layouts/doctor";
 import LandingLayout from "./layouts/landing";
 import { StoreProvider } from "./StoreContext";
+import Login from "./components/home/login";
+import PatientLogin from "./components/home/patientLogin";
 
 // Files
 import "./css/index.css";
+import patientLogin from "./components/home/patientLogin";
 
 // Component
 
@@ -38,9 +41,14 @@ function App() {
               path="/doctor"
               render={(props) => <DoctorLayout {...props} />}
             />
+
             <Route
               path="/home"
               render={(props) => <LandingLayout {...props} />}
+            />
+            <Route
+              path="/login/patient"
+              render={(props) => <PatientLogin {...props} />}
             />
 
             <Redirect from="/" to="/home" />

@@ -1,8 +1,8 @@
 import Dashboard from "../containers/Dashboard/index";
 import Patients from "../containers/Doctor/patients";
 import PatientSurveys from "../containers/Doctor/survey";
-import Survey from "../containers/Patient/survey";
-
+import PatientDashboard from "../containers/Doctor/patientDashboard";
+import TherapyExercises from "../containers/Patient/TherapyExercises";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
@@ -30,15 +30,22 @@ var DoctorRoutes = [
     component: PatientSurveys,
     layout: "/doctor",
   },
+  {
+    path: "/dashboard",
+    name: "PatientDashboard",
+    icon: <PollIcon />,
+    component: PatientDashboard,
+    layout: "/doctor",
+  },
 ];
 
 // Routes for patient
 var PatientRoutes = [
   {
-    path: "/survey",
-    name: "Surveys",
+    path: "/dashboard",
+    name: "TherapyExercises",
     icon: <PollIcon />,
-    component: Survey,
+    component: TherapyExercises,
     layout: "/patient",
   },
 ];
