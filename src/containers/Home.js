@@ -1,6 +1,6 @@
 // Init
 import React from "react";
-
+import Splash from "../containers/Splash";
 // Importing Components
 import Login from "../components/home/login";
 
@@ -9,7 +9,9 @@ export default function Home() {
   return (
     <div>
       {/* Show login page */}
-      <Login />
+      <Splash></Splash>
+      {/* <PatientDashboard></PatientDashboard> */}
+      {/* <Login /> */}
     </div>
   );
 }
