@@ -1,0 +1,15 @@
+.Splashimg {
+  width: 100% !important;
+  margin-top: 15% !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  align-content: center !important;
+}
+@media only screen and (max-width: 600px) {
+  .img {
+    width: 50% !important;
+    margin-top: 80% !important;
+  }
+}
