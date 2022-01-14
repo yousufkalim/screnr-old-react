@@ -1,0 +1,125 @@
+.Patient_login_maindiv {
+  overflow: hidden !important;
+}
+.Login_img {
+  width: 70% !important;
+  margin: 20% 0 0 20%;
+}
+.Login_img1 {
+  width: 60% !important;
+  margin: 24% 0 0 10%;
+}
+.inputlabel {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+  font-size: 25px !important;
+  color: #454238;
+}
+.Login_Box {
+  margin: 20% 5% 1% 5% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.inputfield {
+  border-radius: 20px !important;
+  width: 70% !important;
+  /* margin-right: 50px !important;
+  margin-bottom: 20px !important; */
+}
+.register_input_field {
+  border-radius: 20px !important;
+  width: 90% !important;
+  margin-right: 50px !important;
+  margin-bottom: 20px !important;
+}
+
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  width: 90% !important;
+}
+
+.login_button {
+  padding: 15px 25px 15px 25px !important;
+  text-decoration: none !important;
+}
+.helpertext {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 20px !important;
+  margin-top: 20px !important;
+
+  /* Light Grey - Screnr */
+
+  color: #919b9b;
+}
+.MuiInputBase-root {
+  border-radius: 20px !important;
+}
+.swtich_FormBtn {
+  font-family: Inter !important;
+  font-weight: normal !important;
+  text-decoration: none !important;
+  margin-top: 0px !important;
+  font-size: 20px !important;
+  color: #136773 !important;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  color: #919b9b !important;
+}
+
+@media only screen and (max-width: 1920px) {
+  .mobileviewpic {
+    display: none !important;
+    margin-top: 30% !important;
+    overflow: hidden !important;
+    width: 70% !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .Login_img1 {
+    display: none !important;
+  }
+  .register_input_field {
+    width: 100% !important ;
+  }
+  .Login_Box {
+    margin-top: 150px !important;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 100% !important;
+  }
+  .mobileviewpic {
+    display: flex !important;
+    overflow: hidden !important;
+    margin: 126px 0px 0px -54px !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .Login_img1 {
+    display: none !important;
+  }
+  .Login_Box {
+    margin-left: 15% !important;
+    margin-top: 5% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .mobileviewpic {
+    display: flex !important;
+    overflow: hidden !important;
+    margin: 126px 0px 0px -54px !important;
+  }
+  .inputfield {
+    width: 100% !important;
+  }
+  .Login_img {
+    width: 50% !important;
+    margin: 10% 0% 0% 10%;
+  }
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 100% !important;
+  }
+}
