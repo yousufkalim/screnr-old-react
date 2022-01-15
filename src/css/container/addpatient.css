@@ -1,0 +1,215 @@
+.flex-form {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 95%;
+  margin-bottom: 5% !important;
+  margin: 1% 5%;
+}
+.flexform {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 95%;
+  margin: 0 5% 0 5%;
+}
+.flexforminput {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 95%;
+  margin-bottom: 5% !important;
+
+  margin: 0 5% 2% 5%;
+}
+.flexform > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+}
+.flexforminput > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+}
+.flex-form > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+}
+.flex-form input[type="input"] {
+  flex-basis: 90% !important;
+  width: 90% !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+::placeholder {
+  font-family: Inter !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+
+  color: #454238;
+}
+/* .flex-form::placeholder {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 17px;
+  /* identical to box height */
+
+/* display: flex;
+  align-items: center; */
+
+/* Black - Screnr */
+
+/* color: #454238; */
+/* } */
+
+.flex-form input[type="text"] {
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 20%;
+  font-size: 13px;
+}
+.flexform input[type="input"] {
+  flex-basis: 90% !important;
+  width: 90% !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+
+.flexform input[type="text"] {
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom-left-radius: none;
+  border-top-left-radius: 10px;
+
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 20%;
+  font-size: 13px;
+}
+.flexforminput input[type="input"] {
+  flex-basis: 90% !important;
+  width: 90% !important;
+  border-top-right-radius: none;
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+
+.flexforminput input[type="text"] {
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: none;
+
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 20%;
+  font-size: 13px;
+}
+.uploadimg {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer !important;
+}
+.box {
+  border-radius: 20px !important;
+}
+@media only screen and (max-width: 1366px) {
+  .box {
+    width: 100% !important;
+  }
+  .flex-form input[type="text"] {
+    width: 40% !important;
+  }
+  .flexform input[type="text"] {
+    width: 40% !important;
+  }
+  .flexforminput input[type="text"] {
+    width: 40% !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .box {
+    width: 100% !important;
+  }
+  .flex-form input[type="text"] {
+    width: 50% !important;
+  }
+  .flexform input[type="text"] {
+    width: 50% !important;
+  }
+  .flexforminput input[type="text"] {
+    width: 50% !important;
+  }
+  ::placeholder {
+    font-family: Inter !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+
+    color: #454238;
+  }
+}
+/* @media only screen and (max-width: 500px) {
+  .box {
+    width: 100% !important;
+  }
+  .flex-form input[type="text"] {
+    width: 70% !important;
+  }
+  .flexform input[type="text"] {
+    width: 70% !important;
+  }
+  .flexforminput input[type="text"] {
+    width: 70% !important;
+  }
+  .flex-form {
+    display: -webkit-box;
+    display: flex;
+    z-index: 10;
+    position: relative;
+    width: 100% !important;
+    margin-bottom: 5% !important;
+    margin: 1% 5%;
+  }
+} */
