@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid";
 import Notificationicon from "../../assets/images/circle_notifications.svg";
 import Settingicon from "../../assets/images/settings.svg";
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = (props) => {
   return (
     <AppBar
       position="relative"
@@ -29,7 +29,7 @@ const ResponsiveAppBar = () => {
       >
         <Grid className="Headerlogo_div">
           <img className="Headerlogo" src={Headerlogo} alt="" />
-          <Typography className="HeaderHeading">Dashboard</Typography>
+          <Typography className="HeaderHeading">{props.heading}</Typography>
         </Grid>
         <Box className="Headerlogodiv">
           <Tooltip title="Open settings">
