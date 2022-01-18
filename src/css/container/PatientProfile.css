@@ -1,0 +1,670 @@
+.profileimg {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.Profile-Icons {
+  margin-right: 10px !important;
+  margin-top: 2px;
+}
+.PatientInfo {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+
+  text-align: center !important;
+
+  color: #454238 !important;
+}
+.eidtprofile {
+  display: flex;
+  justify-content: flex-end;
+}
+.editbutton {
+  width: 10%;
+}
+.profilediv {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 4% !important;
+}
+.Profilediv2 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 4% !important;
+}
+.Profileinfo {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 550 !important;
+  font-size: 22px !important;
+  margin-top: 9% !important;
+  margin-bottom: 4% !important;
+
+  color: #25c8b4 !important;
+}
+.profiles-input {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80%;
+  /* margin-bottom: 5% !important;
+    margin: 1% 5%; */
+}
+.profiles-input > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-bottom-left-radius: none;
+  border-top-left-radius: 10px;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+  background-image: url("../../assets/images/profilecall.svg");
+  background-repeat: no-repeat !important;
+  background-position: left;
+  background-position-x: 5%;
+}
+.profiles-input1 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80% !important;
+}
+
+.profiles-input1 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input1 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input1 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+  background-image: url("../../assets/images/Balloons.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 5%;
+}
+.profiles-input2 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80% !important;
+}
+
+.profiles-input2 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input2 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input2 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+  background-image: url("../../assets/images/Chrome.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 5%;
+}
+.profiles-input3 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80% !important;
+}
+
+.profiles-input3 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input3 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input3 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+  background-image: url("../../assets/images/Profileemail.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 5%;
+}
+.profiles-input4 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80% !important;
+}
+
+.profiles-input4 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input4 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input4 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+  background-image: url("../../assets/images/home.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 5%;
+}
+.profiles-div {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80%;
+  /* margin-bottom: 5% !important;
+    margin: 1% 5%; */
+}
+.profiles-div > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+}
+.profiles-div input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-div input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-bottom-left-radius: none;
+  border-top-left-radius: 10px;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+.profiles-div2 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80%;
+  /* margin-bottom: 5% !important;
+      margin: 1% 5%; */
+}
+.profiles-div2 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+}
+.profiles-div2 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-div2 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+.profiles-div3 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 80%;
+  /* margin-bottom: 5% !important;
+        margin: 1% 5%; */
+}
+.profiles-div3 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+}
+.profiles-div3 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-div3 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+.profileinput1 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 60%;
+  /* margin-bottom: 5% !important;
+  margin: 1% 5%; */
+}
+.profileinput1 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+}
+.profileinput1 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profileinput1 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-bottom-left-radius: none;
+  border-top-left-radius: 10px;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+
+.profileinput2 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 60%;
+  /* margin-bottom: 5% !important;
+    margin: 1% 5%; */
+}
+.profileinput2 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+}
+.profileinput2 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profileinput2 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+.profileinput3 {
+  display: -webkit-box;
+  display: flex;
+  justify-content: center !important;
+  z-index: 10;
+  position: relative;
+  width: 60%;
+  /* margin-bottom: 5% !important;
+      margin: 1% 5%; */
+}
+.profileinput3 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: #fba622 !important;
+}
+.profileinput3 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #fba622;
+  border-left: none;
+}
+.profileinput3 input[type="text"] {
+  color: #fff;
+
+  display: flex;
+  justify-content: center !important;
+  text-align: center !important;
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #fba622;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+
+#profileinput::placeholder {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  line-height: 17px !important;
+
+  color: #f6fafb !important;
+}
+
+.profile_input {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 60%;
+  /* margin-bottom: 5% !important;
+    margin: 1% 5%; */
+}
+.profile_input > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: #fc3232;
+}
+.profile_input input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #fc3232;
+
+  border-left: none;
+}
+.profile_input input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: none;
+  border: 1px solid #fc3232;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+
+.profileinput {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 60%;
+  /* margin-bottom: 5% !important;
+      margin: 1% 5%; */
+}
+.profileinput > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: #25c8b4;
+}
+.profileinput input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #25c8b4;
+
+  border-left: none;
+}
+.profileinput input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: none;
+  border: 1px solid #25c8b4;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+}
+
+#inputplaceholder1::placeholder {
+  font-family: Inter !;
+  font-style: normal !;
+  font-weight: 500 !;
+  font-size: 14px !important;
+  line-height: 17px !;
+  /* identical to box height */
+
+  display: flex !important;
+  align-items: center !;
+
+  /* Black - Screnr */
+
+  color: #454238 !;
+}
+@media only screen and (max-width: 900px) {
+  .profilecontainer {
+    height: 90% !important;
+  }
+  .Profilediv2 {
+    margin-bottom: 20px !important;
+  }
+  .Exercise_detail {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .Profileinfo {
+    margin-top: 1% !important;
+    margin-bottom: 4% !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .profilecontainer {
+    height: 90% !important;
+  }
+  .Profilediv2 {
+    margin-bottom: 20px !important;
+  }
+  .Exercise_detail {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .profilefield {
+    font-size: 10px !important;
+    font-weight: 200 !important;
+    color: black;
+  }
+  .Patient_button {
+    font-size: 14px !important;
+  }
+}
