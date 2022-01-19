@@ -47,7 +47,7 @@ function App() {
               render={(props) => <LandingLayout {...props} />}
             />
             <Route
-              path="/login/patient"
+              path="/login"
               render={(props) => <PatientLogin {...props} />}
             />
 
