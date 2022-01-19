@@ -1,14 +1,17 @@
 // Init
 import React from "react";
-
+import Splash from "../containers/Splash";
 // Importing Components
-import Header from "../components/Header";
+import Login from "../components/home/login";
 
 // Home Component
 export default function Home() {
   return (
     <div>
-      <Header />
+      {/* Show login page */}
+      <Splash></Splash>
+      {/* <PatientDashboard></PatientDashboard> */}
+      {/* <Login /> */}
     </div>
   );
 }

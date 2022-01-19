@@ -1,13 +1,23 @@
 // Init
 import React from "react";
 import { ToastContainer, Flip } from "react-toastify";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import PatientLayout from "./layouts/patient";
+import DoctorLayout from "./layouts/doctor";
+import LandingLayout from "./layouts/landing";
+import { StoreProvider } from "./StoreContext";
+import Login from "./components/home/login";
+import LoginForm from "./components/home/LoginForm";
+import RegisterForm from "./components/home/RegisterForm";
+import ProteectedRoute from "./routes/ProtectedRoutes";
 
 // Files
-import Index from "./routes/index";
 import "./css/index.css";
+import patientLogin from "./components/home/LoginForm";
 
 // Component
+
 function App() {
   return (
     <div className="App">
@@ -17,10 +27,39 @@ function App() {
         autoClose={3000}
         hideProgressBar={true}
         transition={Flip}
+        limit={3}
       />
 
-      {/* Routes */}
-      <Index />
+      {/* setting up main routing container and store container */}
+      <BrowserRouter>
+        <StoreProvider>
+          <Switch>
+            {/* main routes */}
+            {/* <Route
+              path="/patient"
+              render={(props) => <PatientLayout {...props} />}
+            /> */}
+            {/* <Route
+              path="/doctor"
+              render={(props) => <DoctorLayout {...props} />}
+            /> */}
+
+            <Route
+              path="/home"
+              render={(props) => <LandingLayout {...props} />}
+            />
+            <Route path="/login" render={(props) => <LoginForm {...props} />} />
+            <Route
+              path="/register"
+              render={(props) => <RegisterForm {...props} />}
+            />
+
+            <Route exact path="/*" render={() => <ProteectedRoute />} />
+
+            {/* <Redirect from="/" to="/home" /> */}
+          </Switch>
+        </StoreProvider>
+      </BrowserRouter>
     </div>
   );
 }
