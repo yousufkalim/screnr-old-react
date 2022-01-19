@@ -47,6 +47,7 @@ const Patient = (props) => {
   return (
     <>
       <div className="main-container">
+        <h1>patient</h1>
         {/* go to the default or selected route*/}
         <Switch>{getRoutes(Routes.PatientRoutes)}</Switch>
       </div>
