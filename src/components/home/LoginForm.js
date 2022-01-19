@@ -13,6 +13,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { InputAdornment } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+import Api from "../../api/index";
 
 import { Link } from "react-router-dom";
 
@@ -42,6 +43,37 @@ const LoginForm = () => {
     });
   };
 
+  // Calling login api with login data
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    if (data.get("email") === "") {
+      toast.error("email not found");
+      return;
+    } else if (data.get("password") === "") {
+      toast.error("password not found");
+      return;
+    }
+
+    await Api("post", "/auth/login", {
+      email: data.get("email"),
+      password: data.get("password"),
+    }).then((response) => {
+      toast.success("Login Successful!");
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.data));
+      if (response.data.data.role === "patient") {
+        window.location = "/patient/dashboard";
+      } else if (response.data.data.role === "therapist") {
+        window.location = "/doctor/dashboard";
+      } else {
+        toast.error("Invalid user role");
+        return;
+      }
+    });
+  };
+
   return (
     <Grid container spacing={1} className="Patient_login_maindiv">
       <Grid item xs={false} sm={4} md={6}>
@@ -54,7 +86,7 @@ const LoginForm = () => {
           <Box
             component="form"
             noValidate
-            // onSubmit={handleLoginSubmit}
+            onSubmit={handleLoginSubmit}
             sx={{ mt: 1 }}
           >
             <Grid container spacing={2}>

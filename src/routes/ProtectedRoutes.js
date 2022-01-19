@@ -25,17 +25,21 @@ const Admin = () => {
 
   return (
     <>
+      {console.log(localStorage.user)}
       {localStorage.token ? (
         <>
           <Switch>
-            <Route
-              path="/doctor"
-              render={(props) => <DoctorLayout {...props} />}
-            />
-            <Route
-              path="/patient"
-              render={(props) => <PatientLayout {...props} />}
-            />
+            {JSON.parse(localStorage.user.role == "patient") ? (
+              <Route
+                path="/patient"
+                render={(props) => <PatientLayout {...props} />}
+              />
+            ) : (
+              <Route
+                path="/doctor"
+                render={(props) => <DoctorLayout {...props} />}
+              />
+            )}
 
             {/* <Route exact path="/doctor" component={DoctorLayout} /> */}
           </Switch>

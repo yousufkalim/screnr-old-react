@@ -126,7 +126,7 @@ const PatientDashboard = () => {
   ];
   return (
     <>
-      <AppBar></AppBar>
+      <AppBar heading={"Dashboard"}></AppBar>
       <Grid className="Bottom_header">
         <Typography className="Patient_heading">Patients</Typography>
         <Button
@@ -142,7 +142,6 @@ const PatientDashboard = () => {
         {data.map((item) => (
           <>
             <Grid
-              className="Patient_details"
               xs={10}
               sm={10}
               md={2}
