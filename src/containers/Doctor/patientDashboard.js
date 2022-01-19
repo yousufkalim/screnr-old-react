@@ -142,7 +142,6 @@ const PatientDashboard = () => {
         {data.map((item) => (
           <>
             <Grid
-              className="Patient_details"
               xs={10}
               sm={10}
               md={2}

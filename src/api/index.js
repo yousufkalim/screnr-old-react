@@ -17,10 +17,9 @@ const api = async (method = "get", uri, body) => {
           window.location = "/home";
         } else {
           console.log("API Error --------> ", err.response?.data?.message);
+
           toast.error(
-            err?.message ||
-              err.response.data.message.msg ||
-              err?.message.data.message
+            err.response?.data?.message ?? "Something went wrong."
           );
 
           reject(err);
