@@ -17,8 +17,6 @@ import Api from "../../api/index";
 
 import { Link } from "react-router-dom";
 
-import api from "../../api/index";
-
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
@@ -161,17 +159,15 @@ const LoginForm = () => {
                 </Typography>
               </Grid>
               <Grid sm={12} xs={12} md={12}>
-                <Link to="register">
+                <Link to="/register">
                   <Button
                     variant="text"
                     className="swtich_FormBtn"
-                    // onClick={(e) => setStep(2)}
                   >
                     Register Now
                   </Button>
                 </Link>
               </Grid>
-
               <img className="mobileviewpic" src={LoginVector} alt="" />
             </Grid>
           </Box>

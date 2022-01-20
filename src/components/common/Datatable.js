@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Modal from "./Modal";
 
@@ -19,7 +19,7 @@ export default function StickyHeadTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [openModal, setOpenModal] = React.useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -38,7 +38,7 @@ export default function StickyHeadTable(props) {
     setOpenModal(false);
   };
 
-  const handleAdd = () => history.push("/doctor/survey");
+  const handleAdd = () => navigate("/doctor/survey");
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
