@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AppBar from "../../components/common/AppBar";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -7,30 +7,40 @@ import Typography from "@mui/material/Typography";
 import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import UploadImage from "../../assets/images/AddImage.svg";
+import { makeStyles } from "@mui/styles";
+// import "react-datepicker/dist/react-datepicker.css";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-
-import TextField from '@mui/material/TextField';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import TextField from "@mui/material/TextField";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
-import { Validators, formValidator } from "../../utils/Validate"
+import { Validators, formValidator } from "../../utils/Validate";
+import { borderRadius } from "@mui/system";
+
+const useFormFieldStyles = makeStyles((theme) => ({
+  input: {
+    "& .MuiInputBase-root:focused": {
+      borderColor: "green",
+    },
+  },
+}));
 
 const AddPatient = () => {
-
+  const classess = useFormFieldStyles();
   const navigate = useNavigate();
-
+  const [startDate, setStartDate] = useState(new Date());
   let [dateOfBirth, setDateOfBirth] = useState(null);
 
   const vaildateInput = (data) => {
-
     const validationArr = [
       {
         name: "Patient ID",
-        validationFunction: () => Validators.lengthValidator("Patient ID", data.get("Patient ID"), 6)
+        validationFunction: () =>
+          Validators.lengthValidator("Patient ID", data.get("Patient ID"), 6),
       },
       {
         name: "First Name",
@@ -46,36 +56,46 @@ const AddPatient = () => {
       },
       {
         name: "Mobile Number",
-        validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
+        validationFunction: () =>
+          Validators.phoneNoValidator(
+            "Mobile Number",
+            data.get("Mobile Number")
+          ),
       },
       {
         name: "Email Address",
-        validationFunction: () => Validators.emailValidator("Email Address", data.get("Email Address"))
+        validationFunction: () =>
+          Validators.emailValidator("Email Address", data.get("Email Address")),
       },
       {
-        name: "Address"
+        name: "Address",
       },
       {
-        name: "Problem Name"
+        name: "Problem Name",
       },
       {
-        name: "Problem Description"
+        name: "Problem Description",
       },
       {
         name: "Password",
-        validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
+        validationFunction: () =>
+          Validators.lengthValidator("Password", data.get("Password"), 8),
       },
       {
         name: "Confirm Password",
-        validationFunction: () => Validators.lengthValidator("Confirm Password", data.get("Confirm Password"), 8)
+        validationFunction: () =>
+          Validators.lengthValidator(
+            "Confirm Password",
+            data.get("Confirm Password"),
+            8
+          ),
       },
     ];
 
     const validated = formValidator(data, validationArr);
 
     return validated;
-
-  }
+  };
 
   // Calling create patient
   const handleSubmit = async (event) => {
@@ -84,15 +104,15 @@ const AddPatient = () => {
 
     const isValidated = vaildateInput(data);
 
-    if(!isValidated){
-      return
-    };
+    if (!isValidated) {
+      return;
+    }
 
-    if(dateOfBirth == null){
+    if (dateOfBirth == null) {
       toast.error("Date of Birth can't be empty");
     }
 
-    if (data.get("Password") != data.get("Confirm Password")){
+    if (data.get("Password") != data.get("Confirm Password")) {
       toast.error("Password is not the same as Confirm Password.");
     }
 
@@ -119,15 +139,12 @@ const AddPatient = () => {
 
   const navToDashboard = async () => {
     navigate("/doctor/dashboard");
-  }
+  };
 
   return (
     <>
       <AppBar heading={"Add to list"}></AppBar>
-      <form
-        noValidate
-        onSubmit={handleSubmit}
-      >
+      <form noValidate onSubmit={handleSubmit}>
         <Grid className="Bottom_header">
           <Typography className="Patient_heading"></Typography>
           <Button
@@ -147,13 +164,12 @@ const AddPatient = () => {
             flexWrap: "wrap",
             "& > :not(style)": {
               m: 10,
-              width: "50%",
+              width: "80%",
               height: "100%",
             },
             borderRadius: "20px",
           }}
         >
-          
           <Paper elevation={3} sx={{ borderRadius: "20px" }}>
             <Grid className="uploadimg">
               <label>
@@ -175,59 +191,138 @@ const AddPatient = () => {
                 //   margin: 10,
               }}
             >
-              <div className="flex-form">
+              <div className="flex-form" style={{ marginBottom: "3%" }}>
                 <input type="text" placeholder="Patient ID" disabled />
-                <input type="number" name="Patient ID" placeholder="12345" />
+                <input
+                  type="number"
+                  name="Patient ID"
+                  placeholder="12345"
+                  id="placeholder"
+                />
               </div>
+
               <div className="flexform">
                 <input type="text" placeholder="First Name" disabled />
-                <input type="input" name="First Name" placeholder="Type here" />
+                <input
+                  type="input"
+                  name="First Name"
+                  id="placeholder"
+                  placeholder="Type here"
+                />
               </div>
               <div className="flexforminput">
                 <input type="text" placeholder="Middle Name" disabled />
-                <input type="input" name="Middle Name" placeholder="Type here" />
+                <input
+                  type="input"
+                  name="Middle Name"
+                  placeholder="Type here"
+                  id="placeholder"
+                />
               </div>
-              <div className="flexforminput">
-                <input type="text" placeholder="Last Name" disabled />
-                <input type="input" name="Last Name" placeholder="Type here" />
+              <div className="flex_forminput">
+                <input type="text" placeholder="last Name" disabled />
+                <input
+                  type="input"
+                  name="Middle Name"
+                  id="placeholder"
+                  placeholder="Type here"
+                />
               </div>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <div className="selectform">
+                <input type="text" placeholder="Gender" disabled />
+                <select name="cars" id="cars" id="placeholder" type="input">
+                  <option value="">Male</option>
+                  <option value="">Female</option>
+                  <option value="">Others</option>
+                </select>
+              </div>
+              <div className="addform">
+                <input type="text" placeholder="Address" disabled />
+
+                <input
+                  type="input"
+                  name="Address"
+                  id="placeholder"
+                  placeholder="12345"
+                />
+              </div>
+
+              <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker
-                  label="Date of Birth"
+                  fulWidth
+                  className={classess.input}
+                  // label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}
-                  onChange={ (_) => setDateOfBirth(_) }
+                  onChange={(_) => setDateOfBirth(_)}
                   renderInput={(params) => <TextField {...params} />}
                   maxDate={new Date()}
                 />
               </LocalizationProvider>
-              <div className="flexforminput" style={{ marginTop: "30px" }}>
+
+              <div className="flexform" style={{ marginTop: "3%" }}>
                 <input type="text" placeholder="Mobile Number" disabled />
-                <input type="number" name="Mobile Number" placeholder="Type here" />
+                <input
+                  type="number"
+                  name="Mobile Number"
+                  placeholder="Type here"
+                  id="placeholder"
+                />
               </div>
-              <div className="flexforminput">
+              <div className="addform">
                 <input type="text" placeholder="Email Address" disabled />
-                <input type="input" name="Email Address" placeholder="Type here" />
+                <input
+                  type="input"
+                  name="Email Address"
+                  placeholder="Type here"
+                  id="placeholder"
+                />
               </div>
               <div className="flex-form">
                 <input type="text" placeholder="Address" disabled />
-                <input type="input" name="Address" placeholder="12345" />
+                <input
+                  type="input"
+                  name="Address"
+                  id="placeholder"
+                  placeholder="12345"
+                />
               </div>
-              <div className="flexform">
+              <div className="selectform">
                 <input type="text" placeholder="Problem Name" disabled />
-                <input type="input" name="Problem Name" placeholder="Type here" />
+                <input
+                  id="placeholder"
+                  type="input"
+                  name="Problem Name"
+                  placeholder="Type here"
+                />
               </div>
-              <div className="flexforminput">
+              <div className="addform">
                 <input type="text" placeholder="Problem Description" disabled />
-                <input type="input" name="Problem Description" placeholder="Type here" />
+                <input
+                  id="placeholder"
+                  type="input"
+                  name="Problem Description"
+                  placeholder="Type here"
+                />
               </div>
               <div className="flexform">
                 <input type="text" placeholder="Password" disabled />
-                <input type="password" name="Password" placeholder="Type here" />
+                <input
+                  id="placeholder"
+                  type="password"
+                  name="Password"
+                  placeholder="Type here"
+                />
               </div>
-              <div className="flexforminput">
+              <div className="flexforminput" style={{ marginBottom: "3%" }}>
                 <input type="text" placeholder="Confirm Password" disabled />
-                <input type="password" name="Confirm Password" placeholder="Type here" />
+                <input
+                  id="placeholder"
+                  type="password"
+                  name="Confirm Password"
+                  placeholder="Type here"
+                  style={{ marginBottomRightRadisu: "10px" }}
+                />
               </div>
             </Grid>
           </Paper>

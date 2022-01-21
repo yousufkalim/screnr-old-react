@@ -34,7 +34,7 @@ const PatientProfile = (props) => {
           item
           sx={12}
           sm={12}
-          md={6}
+          md={7}
           className="profilecontainer"
           sx={{
             display: "flex",
@@ -55,7 +55,7 @@ const PatientProfile = (props) => {
           item
           sx={12}
           sm={12}
-          md={6}
+          md={5}
           className="Exercise_detaill"
           xs={{ width: "100%" }}
         >
