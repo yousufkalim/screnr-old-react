@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Headerlogo from "../../assets/images/Headerlogo.svg";
 import Grid from "@mui/material/Grid";
@@ -14,8 +13,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
+
+import { useNavigate } from "react-router-dom";
+import { handleLogout } from "../../utils/Auth";
+
 const ResponsiveAppBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,6 +27,9 @@ const ResponsiveAppBar = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleSubmitLogout = () => {
+    handleLogout(navigate);
+  }
   return (
     <AppBar
       position="relative"
@@ -45,10 +52,9 @@ const ResponsiveAppBar = (props) => {
         <Box className="Headerlogodiv">
           <Tooltip title="Open settings">
             <IconButton
-              sx={{ p: 0 }}
+              sx={{ p: 0, ml: 2 }}
               onClick={handleClick}
               size="small"
-              sx={{ ml: 2 }}
               aria-controls={open ? "account-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
@@ -63,11 +69,10 @@ const ResponsiveAppBar = (props) => {
           id="account-menu"
           open={open}
           onClose={handleClose}
-          onClick={handleClose}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem>
+          <MenuItem onClick={handleSubmitLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>

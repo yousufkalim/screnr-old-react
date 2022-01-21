@@ -13,14 +13,13 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 import TextField from '@mui/material/TextField';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
-import { Validators, formValidator } from "../../utils/Validate"
+import * as FormValidations from "../../validations";
 
 const AddPatient = () => {
 
@@ -33,64 +32,12 @@ const AddPatient = () => {
     setGender(event.target.value);
   };
 
-  const vaildateInput = (data) => {
-
-    const validationArr = [
-      {
-        name: "Patient ID",
-        validationFunction: () => Validators.lengthValidator("Patient ID", data.get("Patient ID"), 6)
-      },
-      {
-        name: "First Name",
-        // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
-      },
-      {
-        name: "Middle Name",
-        // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
-      },
-      {
-        name: "Last Name",
-        // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
-      },
-      {
-        name: "Mobile Number",
-        validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
-      },
-      {
-        name: "Email Address",
-        validationFunction: () => Validators.emailValidator("Email Address", data.get("Email Address"))
-      },
-      {
-        name: "Address"
-      },
-      {
-        name: "Problem Name"
-      },
-      {
-        name: "Problem Description"
-      },
-      {
-        name: "Password",
-        validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
-      },
-      {
-        name: "Confirm Password",
-        validationFunction: () => Validators.lengthValidator("Confirm Password", data.get("Confirm Password"), 8)
-      },
-    ];
-
-    const validated = formValidator(data, validationArr);
-
-    return validated;
-
-  }
-
   // Calling create patient
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const isValidated = vaildateInput(data);
+    const isValidated = FormValidations.addPatient(data);
 
     if(!isValidated){
       return
@@ -229,6 +176,7 @@ const AddPatient = () => {
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
+                  fullWidth
                   label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}

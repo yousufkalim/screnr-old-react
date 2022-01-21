@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import { toast } from "react-toastify";
 import LoginVector from "../../assets/images/loginimg.svg";
 import logo from "../../assets/images/Logo.svg";
-import FormControl, { useFormControl } from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
@@ -16,15 +14,23 @@ import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import DateAdapter from "@mui/lab/AdapterMoment";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "@mui/lab/DatePicker";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import api from "../../api/index";
+
+import { handleLogin } from "../../utils/Auth";
+import Api from "../../api/index";
+
+import * as FormValidations from "../../validations";
 
 const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
-  const [values, setValues] = React.useState({
+  const [passwordValue, setPasswordValue] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+  const [confirmPasswordValue, setConfirmPasswordValue] = React.useState({
     password: "",
     showPassword: false,
   });
@@ -32,66 +38,43 @@ const RegisterForm = () => {
     first_name: "",
     last_name: "",
     email: "",
-    phone: "",
     doc_specailization: "",
+    phone: "",
   });
-  const { first_name, last_name, email, phone, doc_specailization } = formData;
-  const [Confirmvalues, setConfirmValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
-  const [Confirmloginvalues, setConfirmloginValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
+  const { first_name, last_name, email, doc_specailization, phone } = formData;
   const [gender, setGender] = React.useState("");
-  const [step, setStep] = React.useState(1);
   const [date, setDate] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleGenderSelect = (event) => {
     setGender(event.target.value);
   };
 
-  const handleClickShowloginPassword = () => {
-    setConfirmloginValues({
-      ...Confirmloginvalues,
-      showPassword: !Confirmloginvalues.showPassword,
-    });
-  };
-  const handleMouseDownloginPassword = (event) => {
-    event.preventDefault();
-  };
-  const handleChangelogin = (prop) => (event) => {
-    setConfirmloginValues({
-      ...Confirmloginvalues,
-      [prop]: event.target.value,
-    });
-  };
-
   const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
+    setPasswordValue({
+      ...passwordValue,
+      showPassword: !passwordValue.showPassword,
+    });
+  };
+  const handleClickShowconfirmPassword = () => {
+    setConfirmPasswordValue({
+      ...confirmPasswordValue,
+      showPassword: !confirmPasswordValue.showPassword,
     });
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
   const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    setPasswordValue({ ...passwordValue, [prop]: event.target.value });
   };
 
-  const handleClickShowconfirmPassword = () => {
-    setConfirmValues({
-      ...Confirmvalues,
-      showPassword: !Confirmvalues.showPassword,
-    });
-  };
   const handleMouseDownconfrimPassword = (event) => {
     event.preventDefault();
   };
   const handleChangepassword = (prop) => (event) => {
-    setConfirmValues({ ...Confirmvalues, [prop]: event.target.value });
+    setConfirmPasswordValue({ ...confirmPasswordValue, [prop]: event.target.value });
   };
 
   // onChange Function for Input Field
@@ -102,15 +85,60 @@ const RegisterForm = () => {
     });
   };
 
+  const navToSignIn = async () => {
+    navigate("/login");
+  };
+
   const handleSignUp = async () => {
-    setLoading(true);
-    let newData = { ...formData, dob: date, password: values.password, gender };
-    console.log("newdaat", newData);
-    let res = await api("post", `/therapists`, newData);
-    if (res.data) {
-      setLoading(false);
-      toast.success("User Register Successfully");
+
+    if(loading){
+      return;
     }
+
+    setLoading(true);
+
+    let newData = {
+      ...formData,
+      dob: date,
+      password: passwordValue.password,
+      confirm_password: confirmPasswordValue.password,
+      gender
+    };
+
+    const isValidated = FormValidations.register(newData);
+
+    if(!isValidated){
+      return
+    };
+
+    let response;
+
+    try{
+      response = await Api("post", `/therapists`, newData);
+
+      if (response.data) {
+        toast.success("User registered successfully");
+
+        handleLogin(
+          response.data.token,
+          response.data.data
+        );
+  
+        if (response.data.data.role === "patient") {
+          window.location = "/patient/dashboard";
+        } else if (response.data.data.role === "therapist") {
+          window.location = "/doctor/dashboard";
+        } else {
+          toast.error("Invalid user role");
+          return;
+        }
+      }
+    } catch(e){
+      // Do nothing
+    }
+
+    setLoading(false);
+
   };
 
   return (
@@ -124,7 +152,6 @@ const RegisterForm = () => {
           <Box
             component="form"
             noValidate
-            // onSubmit={handleLoginSubmit}
             sx={{ mt: 1 }}
           >
             <Grid container spacing={2}>
@@ -193,8 +220,8 @@ const RegisterForm = () => {
                   className="register_input_field"
                   id="password"
                   name="password"
-                  type={values.showPassword ? "text" : "password"}
-                  value={values.password}
+                  type={passwordValue.showPassword ? "text" : "password"}
+                  value={passwordValue.password}
                   placeholder="Password"
                   onChange={handleChange("password")}
                   endAdornment={
@@ -205,7 +232,7 @@ const RegisterForm = () => {
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {values.showPassword ? (
+                        {passwordValue.showPassword ? (
                           <VisibilityOff />
                         ) : (
                           <Visibility />
@@ -229,8 +256,8 @@ const RegisterForm = () => {
                   className="register_input_field"
                   id="confirmPassword"
                   name="confirmPassword"
-                  type={Confirmvalues.showPassword ? "text" : "password"}
-                  value={Confirmvalues.password}
+                  type={confirmPasswordValue.showPassword ? "text" : "password"}
+                  value={confirmPasswordValue.password}
                   placeholder="Confirm Password"
                   onChange={handleChangepassword("password")}
                   endAdornment={
@@ -241,7 +268,7 @@ const RegisterForm = () => {
                         onMouseDown={handleMouseDownconfrimPassword}
                         edge="end"
                       >
-                        {Confirmvalues.showPassword ? (
+                        {confirmPasswordValue.showPassword ? (
                           <VisibilityOff />
                         ) : (
                           <Visibility />
@@ -331,6 +358,7 @@ const RegisterForm = () => {
                   onChange={onChange}
                   placeholder="Enter phone no"
                   className="register_input_field"
+                  type="number"
                 />
               </Grid>
             </Grid>
@@ -349,7 +377,20 @@ const RegisterForm = () => {
               Sign up
             </Button>
 
-            <Link to="/login">Login</Link>
+            <Button
+              variant="contained"
+              className="login_button"
+              sx={{
+                mt: 3,
+                mb: 2,
+                ml: 2,
+                background: "#454238",
+                boxShadow: "0px 15px 45px rgba(49, 36, 36, 0.29)",
+              }}
+              onClick={navToSignIn}
+            >
+              Back To Login
+            </Button>
 
             <Grid container spacing={1}>
               <img className="mobileviewpic" src={LoginVector} alt="" />

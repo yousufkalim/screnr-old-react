@@ -86,8 +86,8 @@ function formValidator(data, objsArr){
   for( let i = 0; i < objsArr.length; i++ ){
 
     const name = objsArr[i].name;
-
     const objData = data.get(name);
+
     const objDataValidationError =
     objsArr[i].validationFunction
     ? objsArr[i].validationFunction()

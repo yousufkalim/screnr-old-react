@@ -87,11 +87,10 @@ var DoctorRoutes = [
     element: PatientProfile,
   },
   {
-    path: "/dashboard/PrescribingTherapy",
+    path: "/doctor/dashboard/PrescribingTherapy",
     name: "PrescribingTherapy",
     icon: <PollIcon />,
-    component: PrescribingTherapy,
-    layout: "/doctor",
+    element: PrescribingTherapy,
   },
   {
     path: "/dashboard/ReviewPatientResponse",
