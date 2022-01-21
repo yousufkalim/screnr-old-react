@@ -10,8 +10,19 @@ import Headerlogo from "../../assets/images/Headerlogo.svg";
 import Grid from "@mui/material/Grid";
 import Notificationicon from "../../assets/images/circle_notifications.svg";
 import Settingicon from "../../assets/images/settings.svg";
-
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
 const ResponsiveAppBar = (props) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <AppBar
       position="relative"
@@ -33,12 +44,36 @@ const ResponsiveAppBar = (props) => {
         </Grid>
         <Box className="Headerlogodiv">
           <Tooltip title="Open settings">
-            <IconButton sx={{ p: 0 }}>
+            <IconButton
+              sx={{ p: 0 }}
+              onClick={handleClick}
+              size="small"
+              sx={{ ml: 2 }}
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            >
               <img src={Notificationicon} alt="" />
               <img src={Settingicon} alt="" />
             </IconButton>
           </Tooltip>
         </Box>
+        <Menu
+          anchorEl={anchorEl}
+          id="account-menu"
+          open={open}
+          onClose={handleClose}
+          onClick={handleClose}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <MenuItem>
+            <ListItemIcon>
+              <Logout fontSize="small" />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </Menu>
       </Toolbar>
     </AppBar>
   );
