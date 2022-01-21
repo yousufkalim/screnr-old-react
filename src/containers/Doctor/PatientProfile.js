@@ -1,13 +1,8 @@
 import React from "react";
 import AppBar from "../../components/common/AppBar";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Profileimg from "../../assets/images/Profileimg.svg";
-import EditButton from "../../assets/images/EditButton.svg";
-import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
 import Profile from "../../components/common/PatientProfileComponent";
 
 const PatientProfile = (props) => {
@@ -32,9 +27,9 @@ const PatientProfile = (props) => {
       <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
         <Grid
           item
-          sx={12}
+          xs={12}
           sm={12}
-          md={6}
+          md={7}
           className="profilecontainer"
           sx={{
             display: "flex",
@@ -55,7 +50,7 @@ const PatientProfile = (props) => {
           item
           sx={12}
           sm={12}
-          md={6}
+          md={5}
           className="Exercise_detaill"
           xs={{ width: "100%" }}
         >
