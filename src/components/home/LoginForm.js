@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import { toast } from "react-toastify";
 import LoginVector from "../../assets/images/loginimg.svg";
 import logo from "../../assets/images/Logo.svg";
-import FormControl, { useFormControl } from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
@@ -13,9 +12,13 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { InputAdornment } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
+
 import Api from "../../api/index";
+import { handleLogin } from "../../utils/Auth";
 
 import { Link } from "react-router-dom";
+
+import * as FormValidations from "../../validations";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
@@ -43,33 +46,56 @@ const LoginForm = () => {
 
   // Calling login api with login data
   const handleLoginSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
-    if (data.get("email") === "") {
-      toast.error("email not found");
-      return;
-    } else if (data.get("password") === "") {
-      toast.error("password not found");
+    event.preventDefault();
+
+    if(loading){
       return;
     }
 
-    await Api("post", "/auth/login", {
-      email: data.get("email"),
-      password: data.get("password"),
-    }).then((response) => {
-      toast.success("Login Successful!");
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.data));
-      if (response.data.data.role === "patient") {
-        window.location = "/patient/dashboard";
-      } else if (response.data.data.role === "therapist") {
-        window.location = "/doctor/dashboard";
-      } else {
-        toast.error("Invalid user role");
-        return;
+    setLoading(true);
+
+    const data = new FormData(event.currentTarget);
+
+    const isValidated = FormValidations.login(data);
+
+    if(!isValidated){
+      return
+    };
+
+    let response;
+
+    try{
+
+      response = await Api("post", "/auth/login", {
+        email: data.get("email"),
+        password: data.get("password"),
+      });
+
+      if(response.data){
+        toast.success("Login successful!");
+
+        handleLogin(
+          response.data.token,
+          response.data.data
+        );
+
+        if (response.data.data.role === "patient") {
+          window.location = "/patient/dashboard";
+        } else if (response.data.data.role === "therapist") {
+          window.location = "/doctor/dashboard";
+        } else {
+          toast.error("Invalid user role");
+          return;
+        }
       }
-    });
+
+    }catch(e){
+      // Do nothing
+    }
+
+    setLoading(false);
+
   };
 
   return (

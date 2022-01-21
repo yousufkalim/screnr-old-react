@@ -6,8 +6,9 @@ export const handleLogin = (token, user) => {
   return true;
 };
 
-export const handleLogout = () => {
+export const handleLogout = (navigate) => {
   localStorage.clear();
+  navigate("/login");
 };
 
 export const getUser = () => {
