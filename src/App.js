@@ -1,18 +1,11 @@
 // Init
 import React from "react";
 import { ToastContainer, Flip } from "react-toastify";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import PatientLayout from "./layouts/patient";
-import DoctorLayout from "./layouts/doctor";
-import LandingLayout from "./layouts/landing";
-import { StoreProvider } from "./StoreContext";
-import Login from "./components/home/login";
-import PatientLogin from "./components/home/patientLogin";
+import Main from "./routes/main";
 
 // Files
 import "./css/index.css";
-import patientLogin from "./components/home/patientLogin";
 
 // Component
 
@@ -29,32 +22,7 @@ function App() {
       />
 
       {/* setting up main routing container and store container */}
-      <BrowserRouter>
-        <StoreProvider>
-          <Switch>
-            {/* main routes */}
-            <Route
-              path="/patient"
-              render={(props) => <PatientLayout {...props} />}
-            />
-            <Route
-              path="/doctor"
-              render={(props) => <DoctorLayout {...props} />}
-            />
-
-            <Route
-              path="/home"
-              render={(props) => <LandingLayout {...props} />}
-            />
-            <Route
-              path="/login/patient"
-              render={(props) => <PatientLogin {...props} />}
-            />
-
-            <Redirect from="/" to="/home" />
-          </Switch>
-        </StoreProvider>
-      </BrowserRouter>
+      <Main />
     </div>
   );
 }
