@@ -260,7 +260,6 @@ const RegisterForm = () => {
                   Gender
                 </InputLabel>
                 <Select
-                  // labelId="genderLabel"
                   displayEmpty
                   id="gender"
                   name="gender"

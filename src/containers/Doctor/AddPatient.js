@@ -13,6 +13,9 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 import TextField from '@mui/material/TextField';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +26,12 @@ const AddPatient = () => {
 
   const navigate = useNavigate();
 
-  let [dateOfBirth, setDateOfBirth] = useState(null);
+  const [dateOfBirth, setDateOfBirth] = useState(null);
+  const [gender, setGender] = React.useState("");
+
+  const handleGenderSelect = (event) => {
+    setGender(event.target.value);
+  };
 
   const vaildateInput = (data) => {
 
@@ -88,6 +96,10 @@ const AddPatient = () => {
       return
     };
 
+    if(gender == null){
+      toast.error("Gender must be selected.");
+    }
+
     if(dateOfBirth == null){
       toast.error("Date of Birth can't be empty");
     }
@@ -104,7 +116,7 @@ const AddPatient = () => {
       email: data.get("Email Address"),
       password: data.get("Password"),
       confirmPassword: data.get("Confirm Password"),
-      gender: "male", // TODO: Fake
+      gender: gender,
       dob: dateOfBirth,
       national_id: "1234",
       patient_id: data.get("Patient ID"),
@@ -153,7 +165,6 @@ const AddPatient = () => {
             borderRadius: "20px",
           }}
         >
-          
           <Paper elevation={3} sx={{ borderRadius: "20px" }}>
             <Grid className="uploadimg">
               <label>
@@ -190,6 +201,31 @@ const AddPatient = () => {
               <div className="flexforminput">
                 <input type="text" placeholder="Last Name" disabled />
                 <input type="input" name="Last Name" placeholder="Type here" />
+              </div>
+              <div
+                sx={{
+                  marginRight: "50px",
+                  width: "90%"
+                }}
+              >
+                <Select
+                  displayEmpty
+                  id="gender"
+                  name="gender"
+                  value={gender}
+                  onChange={handleGenderSelect}
+                  className="register_input_field"
+                  sx={{
+                    width: "90%"
+                  }}
+                  renderValue={(value) =>
+                    value.length > 0 ? value : "Enter Gender"
+                  }
+                >
+                  <MenuItem value={"male"}>Male</MenuItem>
+                  <MenuItem value={"female"}>Female</MenuItem>
+                  <MenuItem value={"other"}>Other</MenuItem>
+                </Select>
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
