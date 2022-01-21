@@ -74,7 +74,7 @@ const addPatient = () => {
             </div>
             <div className="flexforminput">
               <input type="text" placeholder="ID" disabled />
-              <input type="input" name="refNum" placeholder="Type here" />
+              <input type="number" name="refNum" placeholder="Type here" />
             </div>
             <div className="flexform">
               <input type="text" placeholder="Mobile Number" disabled />
@@ -94,7 +94,7 @@ const addPatient = () => {
             </div>
             <div className="flexforminput">
               <input type="text" placeholder="Description" disabled />
-              <input type="input" placeholder="Type here" />
+              <input type="password" placeholder="Type here" />
             </div>
           </Grid>
         </Paper>
