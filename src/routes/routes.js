@@ -11,8 +11,12 @@ import PatientProfile from "../containers/Doctor/PatientProfile";
 import TherapyExercises from "../containers/Patient/TherapyExercises";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import PrescribingTherapy from "../containers/Doctor/PrescribingTherapy";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
+import ReviewPatientResponse from "../containers/Doctor/ReviewPatientResponse";
+import RespondedPatientReview from "../containers/Doctor/RespondedPatientReview";
+import UserProfile from "../containers/Doctor/UserProfile";
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterationIcon from "@mui/icons-material/AccountBox";
 
@@ -81,6 +85,34 @@ var DoctorRoutes = [
     name: "PatientProfile",
     icon: <PollIcon />,
     element: PatientProfile,
+  },
+  {
+    path: "/dashboard/PrescribingTherapy",
+    name: "PrescribingTherapy",
+    icon: <PollIcon />,
+    component: PrescribingTherapy,
+    layout: "/doctor",
+  },
+  {
+    path: "/dashboard/ReviewPatientResponse",
+    name: "ReviewPatientResponse",
+    icon: <PollIcon />,
+    component: ReviewPatientResponse,
+    layout: "/doctor",
+  },
+  {
+    path: "/dashboard/RespondedPatientReview",
+    name: "RespondedPatientReview",
+    icon: <PollIcon />,
+    component: RespondedPatientReview,
+    layout: "/doctor",
+  },
+  {
+    path: "/dashboard/UserProfile",
+    name: "UserProfile",
+    icon: <PollIcon />,
+    component: UserProfile,
+    layout: "/doctor",
   },
 ];
 
