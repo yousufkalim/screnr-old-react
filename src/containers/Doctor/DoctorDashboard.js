@@ -4,11 +4,8 @@ import AppBar from "../../components/common/AppBar";
 
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Eclipse1 from "../../assets/images/Eclipse1.svg";
-// import Eclipse2 from "../../assets/images/Eclipse2.svg";
-// import Eclipse3 from "../../assets/images/Eclipse3.svg";
-// import Eclipse4 from "../../assets/images/Eclipse4.svg";
-// import Eclipse5 from "../../assets/images/Eclipse5.svg";
+import Eclipse3 from "../../assets/images/Eclipse3.svg";
+import Eclipse4 from "../../assets/images/Eclipse4.svg";
 import { ReactComponent as Calendar } from "../../assets/images/Calendar.svg";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
 import { ReactComponent as Emailicon } from "../../assets/images/email.svg";
@@ -29,13 +26,22 @@ const DoctorDashboard = () => {
 
   // func to get current project
   const getPatients = async () => {
-    const result = await Api("get", `/patients/`);
-    const patientsData = result.data.data;
-    setPatients(patientsData);
+    let response;
+    try{
+      response = await Api("get", `/patients/`);
+      const patientsData = response.data.data;
+      setPatients(patientsData);
+    }catch(e){
+      // Do nothing
+    }
   };
 
   const navToAddPatient = async () => {
     navigate("/doctor/dashboard/add_patient");
+  }
+
+  const navToPatientProfile = async (id) => {
+    navigate(`/doctor/dashboard/patient_profile/${id}`);
   }
 
   return (
@@ -63,8 +69,9 @@ const DoctorDashboard = () => {
               className={`${
                 item.status == "nonActive" ? "nonActiveClas" : "Patient_details"
               }`}
+              onClick={() => navToPatientProfile(`${item._id}`)}
             >
-              <img className="Eclipse" src={Eclipse1} alt="" />
+              <img className="Eclipse" src={item.gender == "male" ? Eclipse3 : Eclipse4} alt="" />
               <Typography className="PatientName">{`${item.first_name} ${item.last_name}`}</Typography>
               <Typography className="Patientid">{`Patient ID: ${item.patient_id}`}</Typography>
               <Typography className="PatientAge">

@@ -6,6 +6,7 @@ import Patients from "../containers/Doctor/patients";
 import PatientSurveys from "../containers/Doctor/survey";
 import DoctorDashboard from "../containers/Doctor/DoctorDashboard";
 import AddPatient from "../containers/Doctor/AddPatient";
+import EditPatient from "../containers/Doctor/EditPatient";
 import PatientProfile from "../containers/Doctor/PatientProfile";
 
 import TherapyExercises from "../containers/Patient/TherapyExercises";
@@ -81,7 +82,13 @@ var DoctorRoutes = [
     element: AddPatient,
   },
   {
-    path: "/doctor/dashboard/PatientProfile",
+    path: "/doctor/dashboard/edit_patient/:id",
+    name: "EditPatient",
+    icon: <PollIcon />,
+    element: EditPatient,
+  },
+  {
+    path: "/doctor/dashboard/patient_profile/:id",
     name: "PatientProfile",
     icon: <PollIcon />,
     element: PatientProfile,

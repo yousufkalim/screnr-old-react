@@ -3,7 +3,7 @@ import AppBar from "../../components/common/AppBar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import Profile from "../../components/common/PatientProfileComponent";
+import Profile from "../../components/common/PatientProfile";
 import Paper from "@mui/material/Paper";
 
 const ReviewPatientResponse = () => {
@@ -28,7 +28,7 @@ const ReviewPatientResponse = () => {
       <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
         <Grid
           item
-          sx={12}
+          xs={12}
           sm={12}
           md={6}
           className="profilecontainer"
@@ -49,7 +49,7 @@ const ReviewPatientResponse = () => {
         </Grid>
         <Grid
           item
-          sx={12}
+          xs={12}
           sm={12}
           md={6}
           className="Exercise_detail"
@@ -80,8 +80,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -90,8 +90,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="3"
                 />
               </div>
@@ -100,8 +100,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="10"
                 />
               </div>
@@ -113,7 +113,7 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
+                  
                   id="details"
                   placeholder="To check all details expand this tab please"
                 />
@@ -123,8 +123,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="10:30 am"
                 />
               </div>
@@ -133,8 +133,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="45 minutes"
                 />
               </div>
@@ -148,7 +148,7 @@ const ReviewPatientResponse = () => {
                 <input
                   id="feed"
                   type="input"
-                  name="Type here"
+                  
                   placeholder="Write feedback to send to patient..."
                   disabled
                 />
@@ -158,8 +158,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder=""
                 />
               </div>
@@ -171,8 +171,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -181,8 +181,8 @@ const ReviewPatientResponse = () => {
                 <textarea
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />
               </div>
@@ -196,7 +196,7 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
+                  
                   id="feed"
                   placeholder="Write feedback to send to patient..."
                 />
@@ -208,8 +208,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -218,8 +218,8 @@ const ReviewPatientResponse = () => {
                 <textarea
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />
               </div>
@@ -233,7 +233,7 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
+                  
                   id="feed"
                   placeholder="Write feedback to send to patient..."
                 />
@@ -245,8 +245,8 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -255,8 +255,8 @@ const ReviewPatientResponse = () => {
                 <textarea
                   disabled
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />
               </div>
@@ -270,7 +270,7 @@ const ReviewPatientResponse = () => {
                 <input
                   disabled
                   type="input"
-                  name="Type here"
+                  
                   id="feed"
                   placeholder="Write feedback to send to patient..."
                 />
@@ -281,7 +281,7 @@ const ReviewPatientResponse = () => {
                 <input type="text" placeholder="Note" disabled />
                 <textarea
                   type="input"
-                  name="Type here"
+                  
                   id="feed"
                   placeholder="Write Note for Yourself....."
                 />
