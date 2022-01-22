@@ -33,6 +33,10 @@ const PatientProfile = (props) => {
     }
   };
 
+  const navToPrescribePatient = async (id) => {
+    navigate(`/doctor/dashboard/prescribe_therapy/${id}`);
+  }
+
   return (
     <>
       {isLoading
@@ -50,6 +54,7 @@ const PatientProfile = (props) => {
               variant="contained"
               sx={{ backgroundColor: " #25C8B4" }}
               className="Patient_button"
+              onClick={() => navToPrescribePatient(patient._id)}
             >
               Prescribe Exercise
             </Button>
@@ -92,8 +97,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -102,8 +105,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Completed"
                 />
               </div>
@@ -112,8 +113,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="17-jan-2022"
                 />
               </div>
@@ -122,8 +121,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="9:45 am"
                 />
               </div>
@@ -131,8 +128,6 @@ const PatientProfile = (props) => {
                 <input type="text" placeholder="Time spent" disabled />
                 <input
                   type="input"
-                  
-                  
                   placeholder="30 Minutes"
                 />
               </div>
@@ -141,7 +136,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
                   id="profileinput"
                   placeholder="Motion Details"
                 />
@@ -152,8 +146,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -162,8 +154,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Completed"
                 />
               </div>
@@ -172,8 +162,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="17-jan-2022"
                 />
               </div>
@@ -182,8 +170,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="9:45 am"
                 />
               </div>
@@ -191,8 +177,6 @@ const PatientProfile = (props) => {
                 <input type="text" placeholder="Time spent" disabled />
                 <input
                   type="input"
-                  
-                  
                   placeholder="30 Minutes"
                 />
               </div>
@@ -202,7 +186,6 @@ const PatientProfile = (props) => {
                   disabled
                   className="profilefield"
                   type="input"
-                  
                   id="profileinput"
                   placeholder="Motion Details"
                 />
@@ -213,8 +196,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Shoulder pain"
                 />
               </div>
@@ -223,8 +204,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Completed"
                 />
               </div>
@@ -233,8 +212,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="17-jan-2022"
                 />
               </div>
@@ -243,8 +220,6 @@ const PatientProfile = (props) => {
                 <input
                   disabled
                   type="input"
-                  
-                  
                   placeholder="9:45 am"
                 />
               </div>
@@ -252,8 +227,6 @@ const PatientProfile = (props) => {
                 <input type="text" placeholder="Time spent" disabled />
                 <input
                   type="input"
-                  
-                  
                   placeholder="30 Minutes"
                 />
               </div>
@@ -263,7 +236,6 @@ const PatientProfile = (props) => {
                   disabled
                   className="profilefield"
                   type="input"
-                  
                   id="profileinput"
                   placeholder="Motion Details"
                 />

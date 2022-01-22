@@ -9,10 +9,11 @@ import AddPatient from "../containers/Doctor/AddPatient";
 import EditPatient from "../containers/Doctor/EditPatient";
 import PatientProfile from "../containers/Doctor/PatientProfile";
 
-import TherapyExercises from "../containers/Patient/TherapyExercises";
+import PatientDashboard from "../containers/Patient/PatientDashboard";
+import PerformAssessment from "../containers/Patient/PerformAssessment";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import PrescribingTherapy from "../containers/Doctor/PrescribingTherapy";
+import PrescribeTherapy from "../containers/Doctor/PrescribeTherapy";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
 import ReviewPatientResponse from "../containers/Doctor/ReviewPatientResponse";
@@ -65,13 +66,13 @@ var DoctorRoutes = [
   },
   {
     path: "/doctor/survey",
-    name: "Surveys",
+    name: "PatientSurveys",
     icon: <PersonIcon />,
     element: PatientSurveys,
   },
   {
     path: "/doctor/dashboard",
-    name: "PatientDashboard",
+    name: "DoctorDashboard",
     icon: <PollIcon />,
     element: DoctorDashboard,
   },
@@ -94,10 +95,10 @@ var DoctorRoutes = [
     element: PatientProfile,
   },
   {
-    path: "/doctor/dashboard/PrescribingTherapy",
+    path: "/doctor/dashboard/prescribe_therapy/:id",
     name: "PrescribingTherapy",
     icon: <PollIcon />,
-    element: PrescribingTherapy,
+    element: PrescribeTherapy,
   },
   {
     path: "/doctor/dashboard/ReviewPatientResponse",
@@ -123,15 +124,21 @@ var DoctorRoutes = [
 var PatientRoutes = [
   {
     path: "*",
-    name: "TherapyExercises",
+    name: "PatientDashboard",
     icon: <PollIcon />,
-    element: TherapyExercises,
+    element: PatientDashboard,
   },
   {
     path: "/patient/dashboard",
+    name: "PatientDashboard",
+    icon: <PollIcon />,
+    element: PatientDashboard,
+  },
+  {
+    path: "/patient/assessment/:id",
     name: "TherapyExercises",
     icon: <PollIcon />,
-    element: TherapyExercises,
+    element: PerformAssessment,
   },
 ];
 

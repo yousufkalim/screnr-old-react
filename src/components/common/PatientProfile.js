@@ -28,9 +28,13 @@ const PatientProfile = (props) => {
           height: "92%",
         }}
       >
-        <Grid className="eidtprofile" onClick={() => navToPatientEdit(`${props._id}`)}>
-          <img className="editbutton" src={EditButton}></img>
-        </Grid>
+        {
+          props.noEdit
+          ? <></>
+          : <Grid className="eidtprofile" onClick={() => navToPatientEdit(`${props._id}`)}>
+              <img className="editbutton" src={EditButton}></img>
+            </Grid>
+        }
         <Grid className="profileimg">
           <img src={Profileimg}></img>
         </Grid>
