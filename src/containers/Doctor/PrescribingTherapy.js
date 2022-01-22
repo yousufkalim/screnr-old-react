@@ -3,7 +3,7 @@ import AppBar from "../../components/common/AppBar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import Profile from "../../components/common/PatientProfileComponent";
+import Profile from "../../components/common/PatientProfile";
 import Paper from "@mui/material/Paper";
 import EditIcon from "../../assets/images/mode.svg";
 import DeleteIcon from "../../assets/images/delete.svg";
@@ -31,7 +31,7 @@ const PrescribingTherapy = () => {
       <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
         <Grid
           item
-          sx={12}
+          xs={12}
           sm={12}
           md={6}
           className="profilecontainer"
@@ -52,7 +52,7 @@ const PrescribingTherapy = () => {
         </Grid>
         <Grid
           item
-          sx={12}
+          xs={12}
           sm={12}
           md={6}
           className="Exercise_detaill"
@@ -112,8 +112,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Question 1" disabled />
                 <input
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="What is the Lorem Ipsum?"
                 />
               </div>
@@ -121,8 +121,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Answer Type" disabled />
                 <input
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Short answer"
                 />
               </div>
@@ -130,8 +130,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Description" disabled />
                 <textarea
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="What is the Lorem Ipsum?"
                 />
               </div>
@@ -162,8 +162,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Question 1" disabled />
                 <input
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="What is the Lorem Ipsum?"
                 />
               </div>
@@ -171,8 +171,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Answer Type" disabled />
                 <input
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Short answer"
                 />
               </div>
@@ -180,8 +180,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Description" disabled />
                 <textarea
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="What is the Lorem Ipsum?"
                 />
               </div>
@@ -216,8 +216,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Question 1" disabled />
                 <input
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="What is the Lorem Ipsum?"
                 />
               </div>
@@ -225,8 +225,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Answer Type" disabled />
                 <input
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="Short answer"
                 />
               </div>
@@ -234,8 +234,8 @@ const PrescribingTherapy = () => {
                 <input type="text" placeholder="Description" disabled />
                 <textarea
                   type="input"
-                  name="Type here"
-                  id="inputplaceholder1"
+                  
+                  
                   placeholder="What is the Lorem Ipsum?"
                 />
               </div>

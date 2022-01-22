@@ -119,8 +119,53 @@ function addPatient(data){
 
 }
 
+function editPatient(data){
+
+  const valArr = [
+    {
+      name: "Patient ID",
+      validationFunction: () => Validators.lengthValidator("Patient ID", data.get("Patient ID"), 6)
+    },
+    {
+      name: "First Name",
+      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
+    },
+    {
+      name: "Middle Name",
+      // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
+    },
+    {
+      name: "Last Name",
+      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
+    },
+    {
+      name: "Mobile Number",
+      validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
+    },
+    {
+      name: "Email Address",
+      validationFunction: () => Validators.emailValidator("Email Address", data.get("Email Address"))
+    },
+    {
+      name: "Address"
+    },
+    {
+      name: "Problem Name"
+    },
+    {
+      name: "Problem Description"
+    }
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
 export {
   login,
   register,
-  addPatient
+  addPatient,
+  editPatient
 }

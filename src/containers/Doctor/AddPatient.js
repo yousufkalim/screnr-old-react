@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import UploadImage from "../../assets/images/AddImage.svg";
 import { makeStyles } from "@mui/styles";
-// import "react-datepicker/dist/react-datepicker.css";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
@@ -18,7 +17,7 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
-import { Validators, formValidator } from "../../utils/Validate";
+import * as FormValidations from "../../validations";
 
 const useFormFieldStyles = makeStyles((theme) => ({
   input: {
@@ -29,80 +28,27 @@ const useFormFieldStyles = makeStyles((theme) => ({
 }));
 
 const AddPatient = () => {
-  const classess = useFormFieldStyles();
-  const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   let [gender, setGender] = useState("");
   let [dateOfBirth, setDateOfBirth] = useState(null);
 
-  const vaildateInput = (data) => {
-    const validationArr = [
-      {
-        name: "Patient ID",
-        validationFunction: () =>
-          Validators.lengthValidator("Patient ID", data.get("Patient ID"), 6),
-      },
-      {
-        name: "First Name",
-        // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
-      },
-      {
-        name: "Middle Name",
-        // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
-      },
-      {
-        name: "Last Name",
-        // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
-      },
-      {
-        name: "Mobile Number",
-        validationFunction: () =>
-          Validators.phoneNoValidator(
-            "Mobile Number",
-            data.get("Mobile Number")
-          ),
-      },
-      {
-        name: "Email Address",
-        validationFunction: () =>
-          Validators.emailValidator("Email Address", data.get("Email Address")),
-      },
-      {
-        name: "Address",
-      },
-      {
-        name: "Problem Name",
-      },
-      {
-        name: "Problem Description",
-      },
-      {
-        name: "Password",
-        validationFunction: () =>
-          Validators.lengthValidator("Password", data.get("Password"), 8),
-      },
-      {
-        name: "Confirm Password",
-        validationFunction: () =>
-          Validators.lengthValidator(
-            "Confirm Password",
-            data.get("Confirm Password"),
-            8
-          ),
-      },
-    ];
-
-    const validated = formValidator(data, validationArr);
-
-    return validated;
-  };
+  const classes = useFormFieldStyles();
+  const navigate = useNavigate();
 
   // Calling create patient
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(loading){
+      return;
+    }
+
+    setLoading(true);
+
     const data = new FormData(event.currentTarget);
 
-    const isValidated = vaildateInput(data);
+    const isValidated = FormValidations.addPatient(data);
 
     if (!isValidated) {
       return;
@@ -110,31 +56,48 @@ const AddPatient = () => {
 
     if (dateOfBirth == null) {
       toast.error("Date of Birth can't be empty");
+      return;
     }
 
     if (data.get("Password") != data.get("Confirm Password")) {
       toast.error("Password is not the same as Confirm Password.");
+      return;
     }
 
-    await Api("post", "/patients", {
-      first_name: data.get("First Name"),
-      middle_name: data.get("Middle Name"),
-      last_name: data.get("Last Name"),
-      phone: data.get("Mobile Number"),
-      email: data.get("Email Address"),
-      password: data.get("Password"),
-      confirmPassword: data.get("Confirm Password"),
-      gender: gender,
-      dob: dateOfBirth,
-      national_id: "1234", // TODO: FAKE
-      patient_id: data.get("Patient ID"),
-      address: data.get("Address"),
-      problem_name: data.get("Problem Name"),
-      problem_description: data.get("Problem Description"),
-    }).then((response) => {
+    let response;
+
+    try{
+
+      const body = {
+        first_name: data.get("First Name"),
+        middle_name: data.get("Middle Name"),
+        last_name: data.get("Last Name"),
+        phone: data.get("Mobile Number"),
+        email: data.get("Email Address"),
+        password: data.get("Password"),
+        confirmPassword: data.get("Confirm Password"),
+        gender: gender,
+        dob: dateOfBirth,
+        national_id: "1234", // TODO: FAKE
+        patient_id: data.get("Patient ID"),
+        address: data.get("Address"),
+        problem_name: data.get("Problem Name"),
+        problem_description: data.get("Problem Description"),
+      };
+
+      response = await Api("post", "/patients", body);
+
+    }catch(e){
+      // Do nothing
+    }
+
+    setLoading(false);
+
+    if(response){
       toast.success("Patient created successfully!");
       navToDashboard();
-    });
+    }
+
   };
 
   const navToDashboard = async () => {
@@ -244,7 +207,7 @@ const AddPatient = () => {
               <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker
                   fulWidth
-                  className={classess.input}
+                  className={classes.input}
                   // label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}

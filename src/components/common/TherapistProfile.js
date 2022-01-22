@@ -39,8 +39,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="0315 1234567"
             />
           </div>
@@ -49,8 +49,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="farhanshakir"
             />
           </div>
@@ -59,8 +59,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="2002/11/23"
             />
           </div>
@@ -69,8 +69,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="33022-8328432-5"
             />
           </div>
@@ -79,8 +79,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="farhanshakir"
             />
           </div>
@@ -90,8 +90,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="Johar Town, Lahore"
             />
           </div>
@@ -102,8 +102,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="13-DEC-2021"
             />
           </div>
@@ -112,8 +112,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="**********"
             />
           </div>
@@ -123,8 +123,8 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
+              
+              
               placeholder="29-July-2021"
             />
           </div>

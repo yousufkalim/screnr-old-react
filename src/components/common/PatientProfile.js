@@ -1,15 +1,22 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Profileimg from "../../assets/images/Profileimg.svg";
 import EditButton from "../../assets/images/EditButton.svg";
 
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
 
-const PatientProfileComponent = (props) => {
+import { useNavigate, useParams } from "react-router-dom";
+
+const PatientProfile = (props) => {
+
+  const navigate = useNavigate();
+
+  const navToPatientEdit = async (id) => {
+    navigate(`/doctor/dashboard/edit_patient/${id}`);
+  }
+
   return (
     <>
       <Paper
@@ -21,19 +28,19 @@ const PatientProfileComponent = (props) => {
           height: "92%",
         }}
       >
-        <Grid className="eidtprofile">
+        <Grid className="eidtprofile" onClick={() => navToPatientEdit(`${props._id}`)}>
           <img className="editbutton" src={EditButton}></img>
         </Grid>
         <Grid className="profileimg">
           <img src={Profileimg}></img>
         </Grid>
-        <Typography className="PatientName">Farhan shakir</Typography>
+        <Typography className="PatientName">{`${props.first_name} ${props.last_name}`}</Typography>
         <Typography className="PatientInfo">
           <Hospitalicon
             sx={{ marginRight: "10px" }}
             className="Profile-Icons"
           ></Hospitalicon>
-          {props.issue}
+          {props.problem_name}
         </Typography>
         <div className="profilediv">
           <div className="profiles-input">
@@ -41,9 +48,8 @@ const PatientProfileComponent = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="0315 1234567"
+              
+              placeholder={props.phone}
             />
           </div>
           <div className="profiles-input1">
@@ -51,9 +57,7 @@ const PatientProfileComponent = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="2002/11/23"
+              placeholder={new Date(props.dob).toLocaleDateString("en-US")}
             />
           </div>
           <div className="profiles-input2">
@@ -61,9 +65,7 @@ const PatientProfileComponent = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="33022-8328432-5"
+              placeholder={props.national_id}
             />
           </div>
           <div className="profiles-input3">
@@ -71,9 +73,7 @@ const PatientProfileComponent = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="farhanshakir"
+              placeholder={props.email}
             />
           </div>
           <div className="profiles-input4">
@@ -81,31 +81,17 @@ const PatientProfileComponent = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="Johar Town, Lahore"
+              placeholder={props.address}
             />
           </div>
         </div>
         <div className="Profilediv2">
-          <div className="profiles-div">
-            <input type="text" placeholder="Date Joined" disabled />
-            <input
-              disabled
-              type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="13-DEC-2021"
-            />
-          </div>
           <div className="profiles-div2">
             <input type="text" placeholder="Check-ins" disabled />
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="13"
+              placeholder={props.check_ins}
             />
           </div>
           <div className="profiles-div3">
@@ -113,9 +99,7 @@ const PatientProfileComponent = (props) => {
             <input
               disabled
               type="input"
-              name="Type here"
-              id="inputplaceholder1"
-              placeholder="29-July-2021"
+              placeholder={new Date(props.createdAt).toLocaleDateString("en-US")}
             />
           </div>
         </div>
@@ -124,4 +108,4 @@ const PatientProfileComponent = (props) => {
   );
 };
 
-export default PatientProfileComponent;
+export default PatientProfile;
