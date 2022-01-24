@@ -32,7 +32,7 @@ const DoctorDashboard = () => {
       const patientsData = response.data.data;
       setPatients(patientsData);
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
   };
 
@@ -60,7 +60,12 @@ const DoctorDashboard = () => {
       </Grid>
 
       <Grid container spacing={1} className="patient_maindiv">
-        {patients.map((item) => (
+        {
+          patients.length == 0
+          ?
+          <Typography> No Patients </Typography>
+          :
+          patients.map((item) => (
           <>
             <Grid
               xs={10}

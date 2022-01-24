@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AppBar from "../../components/common/AppBar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,10 +17,34 @@ const PerformAssessment = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const [assessment, setAssessment] = useState(null);
+  const [questionReplies, setQuestionReplies] = useState([]);
 
   useEffect(() => {
     getAssessment();
   }, []);
+
+  const fillQuestionReplies = (assessmentData) => {
+    const questions = assessmentData.questions;
+    const questionRepliesArr = [];
+    for( let i = 0; i < questions.length; i++ ){
+      questionRepliesArr.push({
+        question_id: questions[i]._id,
+        value: ""
+      });
+    }
+    setQuestionReplies(questionRepliesArr);
+  }
+
+  function updateQuestionAnswer(index, text){
+    const obj = {
+      "question_id": questionReplies[index].question_id,
+      "value": text,
+    }
+
+    const questionsRepliesCopy = [...questionReplies];
+    questionsRepliesCopy[index] = obj;
+    setQuestionReplies(questionsRepliesCopy);
+  };
 
   // func to get current project
   const getAssessment = async () => {
@@ -31,9 +53,10 @@ const PerformAssessment = () => {
       response = await Api("get", `/assessments/getassessment/${params.id}`);
       const assessmentData = response.data.assessment;
       setAssessment(assessmentData);
+      fillQuestionReplies(assessmentData);
       setIsLoading(false);
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
   };
 
@@ -44,32 +67,27 @@ const PerformAssessment = () => {
       return;
     }
 
-    setIsProcessing(true);
-
     let response;
 
     try{
 
-      // const body = {
-      //   patient_id: params.id,
-      //   exercise: exercise,
-      //   sets: noOfSets,
-      //   reps: noOfReps,
-      //   due_date: "2022/01/19", // TODO: Fake
-      //   type: "simple", // TODO: Fake
-      //   questions_array: questions,
-      // };
+      const body = {
+        status:"submitted",
+        answer: questionReplies
+      };
 
-      // response = await Api("post", `/assessments`, body);
+      setIsProcessing(true);
+
+      response = await Api("put", `/assessments/endassessment/${params.id}`, body);
 
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
 
     setIsProcessing(false);
 
     if(response){
-      toast.success("Assessment created successfully!");
+      toast.success("Assessment submitted successfully!");
       navToDashboard();
     }
 
@@ -84,15 +102,22 @@ const PerformAssessment = () => {
       {isLoading
       ? <></>
       : <>
-          <AppBar heading={"Prescribing Therapy Exercise"}></AppBar>
+          <AppBar heading={assessment.exercise}></AppBar>
           <Grid className="Bottom_header">
             <Button
               variant="contained"
               sx={{ backgroundColor: " #25C8B4" }}
               className="Patient_button"
               onClick={() => handleSubmit()}
+              disabled={ (assessment.status == "submitted" || assessment.status == "reviewed")  ? true : false}
             >
-              Submit
+              {
+                assessment.status == "submitted"
+                ? "Already Submitted"
+                : assessment.status == "reviewed"
+                ? "Aleady Reviewed"
+                : "Send Assessment"
+              }
             </Button>
           </Grid>
           <Grid container spacing={10} sx={{ background: "#F6FAFB", marginTop: "100px" }}>
@@ -101,9 +126,11 @@ const PerformAssessment = () => {
                 (e, i) => 
                 <QuestionListTile
                   {...e}
+                  assessment={assessment}
                   index={i}
                   key={i}
                   style={{marginTop: "100px", color: "#f2f2f2"}}
+                  updateQuestionAnswer={updateQuestionAnswer}
                 />
               )
             }
@@ -115,6 +142,8 @@ const PerformAssessment = () => {
 };
 
 function QuestionListTile(props){
+
+  const { updateQuestionAnswer } = props;
 
   return (
     <>
@@ -158,10 +187,27 @@ function QuestionListTile(props){
           <div className="profiles-div3">
             <input type="text" placeholder={`Your Answer`} disabled />
             <input
+              disabled={ (props.assessment.status == "submitted" || props.assessment.status == "reviewed") ? true : false }
               type="input"
-              placeholder="Type your answer here..."
+              placeholder={ (props.assessment.status == "submitted" || props.assessment.status == "reviewed") ? props.value : "Type your answer here..." }
+              onChange={ (event) => updateQuestionAnswer(props.index, event.target.value) }
             />
           </div>
+          {
+            !props.feedback
+            ? <></>
+            : <>
+                <div className="profiles-div3">
+                  <input type="text" placeholder={`Feedback`} disabled />
+                  <input
+                    disabled={true}
+                    type="input"
+                    placeholder={ props.feedback ? props.feedback : "Feedback..." }
+                    onChange={ (event) => updateQuestionAnswer(props.index, event.target.value) }
+                  />
+                </div>
+              </>
+          }
         </div>
       </Grid>
     </>

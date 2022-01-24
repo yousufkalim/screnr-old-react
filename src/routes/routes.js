@@ -101,7 +101,7 @@ var DoctorRoutes = [
     element: PrescribeTherapy,
   },
   {
-    path: "/doctor/dashboard/ReviewPatientResponse",
+    path: "/doctor/dashboard/review_patient_response/:id",
     name: "ReviewPatientResponse",
     icon: <PollIcon />,
     element: ReviewPatientResponse,

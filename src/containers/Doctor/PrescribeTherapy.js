@@ -51,7 +51,7 @@ const PrescribeTherapy = () => {
       setPatient(patientData);
       setIsLoading(false);
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
   };
 
@@ -81,7 +81,7 @@ const PrescribeTherapy = () => {
       response = await Api("post", `/assessments`, body);
 
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
 
     setIsProcessing(false);

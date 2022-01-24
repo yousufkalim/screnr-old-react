@@ -30,7 +30,7 @@ const useFormFieldStyles = makeStyles((theme) => ({
 const AddPatient = () => {
 
   const [loading, setLoading] = useState(false);
-  let [gender, setGender] = useState("");
+  let [gender, setGender] = useState("male");
   let [dateOfBirth, setDateOfBirth] = useState(null);
 
   const classes = useFormFieldStyles();
@@ -43,8 +43,6 @@ const AddPatient = () => {
     if(loading){
       return;
     }
-
-    setLoading(true);
 
     const data = new FormData(event.currentTarget);
 
@@ -85,13 +83,17 @@ const AddPatient = () => {
         problem_description: data.get("Problem Description"),
       };
 
+      setLoading(true);
+
       response = await Api("post", "/patients", body);
 
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
 
     setLoading(false);
+
+    console.log(`THIS IS THE loading-END: ${loading}`);
 
     if(response){
       toast.success("Patient created successfully!");
@@ -203,12 +205,11 @@ const AddPatient = () => {
                   placeholder="12345"
                 />
               </div>
-
               <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker
                   fulWidth
-                  className={classes.input}
-                  // label="Date of Birth"
+                  className="date-picker"
+                  label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}
                   onChange={(_) => setDateOfBirth(_)}
@@ -216,7 +217,6 @@ const AddPatient = () => {
                   maxDate={new Date()}
                 />
               </LocalizationProvider>
-
               <div className="flexform" style={{ marginTop: "3%" }}>
                 <input type="text" placeholder="Mobile Number" disabled />
                 <input
