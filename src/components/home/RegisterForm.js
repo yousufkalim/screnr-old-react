@@ -12,10 +12,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { InputAdornment } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
-import DateAdapter from "@mui/lab/AdapterMoment";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { useNavigate } from "react-router-dom";
-import DatePicker from "@mui/lab/DatePicker";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -95,8 +95,6 @@ const RegisterForm = () => {
       return;
     }
 
-    setLoading(true);
-
     let newData = {
       ...formData,
       dob: date,
@@ -114,6 +112,9 @@ const RegisterForm = () => {
     let response;
 
     try{
+
+      setLoading(true);
+
       response = await Api("post", `/therapists`, newData);
 
       if (response.data) {
@@ -134,7 +135,7 @@ const RegisterForm = () => {
         }
       }
     } catch(e){
-      // Do nothing
+      console.trace(e);
     }
 
     setLoading(false);
@@ -312,17 +313,16 @@ const RegisterForm = () => {
                 >
                   Date of birth
                 </InputLabel>
-                <LocalizationProvider dateAdapter={DateAdapter}>
-                  <DatePicker
-                    id="dob"
-                    name="dob"
-                    value={date}
-                    onChange={(newValue) => {
-                      setDate(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                  label="Date of Birth"
+                  inputFormat="MM/dd/yyyy"
+                  value={date}
+                  onChange={(_) => setDate(_)}
+                  renderInput={(params) => <TextField {...params} />}
+                  maxDate={new Date()}
+                />
+              </LocalizationProvider>
               </Grid>
               <Grid item xs={12} sm={12} md={6}>
                 <InputLabel

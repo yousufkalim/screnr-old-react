@@ -29,7 +29,7 @@ const PatientDashboard = () => {
       const assessmentsData = response.data.Assessment;
       setAssessment(assessmentsData);
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
   };
 
@@ -75,7 +75,13 @@ const PatientDashboard = () => {
                     : "nonActive_testStatus "
                 }`}
               >
-                {item.status == "requested" ? "Virutal Physical Therapy" : "Completed"}
+                {
+                  item.status == "requested"
+                  ? "Virutal Physical Therapy"
+                  : item.status == "reviewed"
+                  ? "Reviewed"
+                  : "Completed"
+                }
               </Typography>
             </Grid>
           </>

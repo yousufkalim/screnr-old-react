@@ -53,8 +53,6 @@ const LoginForm = () => {
       return;
     }
 
-    setLoading(true);
-
     const data = new FormData(event.currentTarget);
 
     const isValidated = FormValidations.login(data);
@@ -66,6 +64,8 @@ const LoginForm = () => {
     let response;
 
     try{
+
+      setLoading(true);
 
       response = await Api("post", "/auth/login", {
         email: data.get("email"),
@@ -91,7 +91,7 @@ const LoginForm = () => {
       }
 
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
 
     setLoading(false);

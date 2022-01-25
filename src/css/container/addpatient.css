@@ -344,6 +344,12 @@
 .box {
   border-radius: 20px !important;
 }
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  min-width: 90% !important;
+} */
+.date-picker {
+  min-width: 90% !important;
+}
 @media only screen and (max-width: 1366px) {
   .box {
     width: 100% !important;

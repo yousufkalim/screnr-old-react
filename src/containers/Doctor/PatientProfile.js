@@ -15,9 +15,11 @@ const PatientProfile = (props) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [patient, setPatient] = useState(null);
+  const [assessments, setAssessment] = useState([]);
 
   useEffect(() => {
     getPatient();
+    getAssessments();
   }, []);
 
   // func to get current project
@@ -29,7 +31,19 @@ const PatientProfile = (props) => {
       setPatient(patientData);
       setIsLoading(false);
     }catch(e){
-      // Do nothing
+      console.trace(e);
+    }
+  };
+
+  // func to get current project
+  const getAssessments = async () => {
+    let response;
+    try{
+      response = await Api("get", `/assessments/${params.id}`);
+      const assessmentsData = response.data.Assessment;
+      setAssessment(assessmentsData);
+    }catch(e){
+      console.trace(e);
     }
   };
 
@@ -92,154 +106,20 @@ const PatientProfile = (props) => {
               <Typography className="Profileinfo">
                 Virtual Physical Therapy
               </Typography>
-              <div className="profileinput1">
-                <input type="text" placeholder="Name" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="Shoulder pain"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Status" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="Completed"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Date" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="17-jan-2022"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Time start" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="9:45 am"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Time spent" disabled />
-                <input
-                  type="input"
-                  placeholder="30 Minutes"
-                />
-              </div>
-              <div className="profileinput3" style={{ marginBottom: "4%" }}>
-                <input type="text" disabled />
-                <input
-                  disabled
-                  type="input"
-                  id="profileinput"
-                  placeholder="Motion Details"
-                />
-              </div>
-
-              <div className="profileinput1">
-                <input type="text" placeholder="Name" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="Shoulder pain"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Status" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="Completed"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Date" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="17-jan-2022"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Time start" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="9:45 am"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Time spent" disabled />
-                <input
-                  type="input"
-                  placeholder="30 Minutes"
-                />
-              </div>
-              <div className="profileinput" style={{ marginBottom: "4%" }}>
-                <input type="text" disabled />
-                <input
-                  disabled
-                  className="profilefield"
-                  type="input"
-                  id="profileinput"
-                  placeholder="Motion Details"
-                />
-              </div>
-
-              <div className="profileinput1">
-                <input type="text" placeholder="Name" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="Shoulder pain"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Status" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="Completed"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Date" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="17-jan-2022"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Time start" disabled />
-                <input
-                  disabled
-                  type="input"
-                  placeholder="9:45 am"
-                />
-              </div>
-              <div className="profileinput2">
-                <input type="text" placeholder="Time spent" disabled />
-                <input
-                  type="input"
-                  placeholder="30 Minutes"
-                />
-              </div>
-              <div className="profile_input">
-                <input type="text" disabled />
-                <input
-                  disabled
-                  className="profilefield"
-                  type="input"
-                  id="profileinput"
-                  placeholder="Motion Details"
-                />
-              </div>
+              {
+                assessments.length == 0
+                ? <>
+                      <Typography>
+                        No assessments
+                      </Typography>
+                  </> 
+                :
+                assessments.map((item) => (
+                  <>
+                  <AssessmentListTile {...item}/>
+                  </>
+                ))
+              }
             </Grid>
           </Grid>
         </>
@@ -247,5 +127,73 @@ const PatientProfile = (props) => {
     </>
   );
 };
+
+function AssessmentListTile(props){
+
+  const navigate = useNavigate();
+
+  const navToReviewPatientResponse = () => {
+    navigate(`/doctor/dashboard/review_patient_response/${props._id}`);
+  }
+
+  return (
+    <>
+      <div className="profileinput1">
+        <input type="text" placeholder="Name" disabled />
+        <input
+          disabled
+          type="input"
+          placeholder={props.exercise}
+        />
+      </div>
+      <div className="profileinput2">
+        <input type="text" placeholder="Status" disabled />
+        <input
+          disabled
+          type="input"
+          placeholder={`${props.status.charAt(0).toUpperCase()}${props.status.slice(1)}`}
+        />
+      </div>
+      <div className="profileinput2">
+        <input type="text" placeholder="Date" disabled />
+        <input
+          disabled
+          type="input"
+          placeholder={new Date(props.due_date).toLocaleDateString("en-US")}
+        />
+      </div>
+      <div className="profileinput2">
+        <input type="text" placeholder="Time start" disabled />
+        <input
+          disabled
+          type="input"
+          placeholder="N/A"
+        />
+      </div>
+      <div className="profileinput2">
+        <input type="text" placeholder="Time spent" disabled />
+        <input
+          type="input"
+          placeholder="N/A"
+        />
+      </div>
+      <div
+        className={ props.status == "requested" ? "profileinput" : "profileinput" }
+        style={{ marginBottom: "4%" }}
+        onClick={ props.status == "requested" ? null : () => navToReviewPatientResponse() }
+      >
+        <input type="text" disabled />
+        <input
+          disabled
+          className="profilefield"
+          type="input"
+          id="profileinput"
+          placeholder={ props.status == "requested" ? "To be filled" : "View Details" }
+        />
+      </div>
+    </>
+  );
+
+}
 
 export default PatientProfile;

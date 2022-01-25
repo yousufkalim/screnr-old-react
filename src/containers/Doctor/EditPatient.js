@@ -55,7 +55,7 @@ const EditPatient = (props) => {
       setDateOfBirth(patientData.dob);
       setIsLoading(false);
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
   };
 
@@ -104,7 +104,7 @@ const EditPatient = (props) => {
       response = await Api("put", `/patients/${params.id}`, body);
 
     }catch(e){
-      // Do nothing
+      console.trace(e);
     }
 
     setIsProcessing(false);
