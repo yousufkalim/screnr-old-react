@@ -13,11 +13,10 @@ const TherapistProfile = (props) => {
     <>
       <Paper
         elevation={3}
+        className="Therapist"
         sx={{
           borderRadius: "20px",
           background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
-          width: "100%",
-          height: "100%",
           paddingBottom: "5%",
           marginTop: "10px",
         }}
@@ -97,7 +96,7 @@ const TherapistProfile = (props) => {
           </div>
         </div>
         <div className="Profilediv2">
-          <div className="profiles-div">
+          <div className="profiles-div" style={{ width: "100% !important" }}>
             <input type="text" placeholder="Last Password Changed" disabled />
             <input
               disabled

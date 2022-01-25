@@ -20,7 +20,12 @@
   color: #f6fafb !important;
   /* margin-left: 15% !important; */
 }
-
+@media only screen and (max-width: 768px) {
+  .HeaderHeading {
+    font-size: 20px !important;
+    margin-left: -50px !important;
+  }
+}
 @media only screen and (max-width: 600px) {
   .HeaderHeading {
     display: none !important;

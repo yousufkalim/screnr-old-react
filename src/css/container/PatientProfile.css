@@ -55,7 +55,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80%;
+  width: 90%;
   /* margin-bottom: 5% !important;
     margin: 1% 5%; */
 }
@@ -108,7 +108,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80% !important;
+  width: 90%;
 }
 
 .profiles-input1 > * {
@@ -152,7 +152,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80% !important;
+  width: 90%;
 }
 
 .profiles-input2 > * {
@@ -196,7 +196,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80% !important;
+  width: 90%;
 }
 
 .profiles-input3 > * {
@@ -240,7 +240,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80% !important;
+  width: 90%;
 }
 
 .profiles-input4 > * {
@@ -293,7 +293,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80% !important;
+  width: 90%;
 }
 
 .profiles-input5 > * {
@@ -337,7 +337,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80% !important;
+  width: 90%;
 }
 
 .profiles-input6 > * {
@@ -356,7 +356,7 @@
   width: 60% !important;
   border-top-right-radius: none;
 
-  border-bottom-right-radius: none;
+  border-bottom-right-radius: 10px;
 
   border: 1px solid #919b9b;
   border-left: none;
@@ -366,7 +366,7 @@
   width: 60% !important;
   border-top-right-radius: none;
 
-  border-bottom-right-radius: none;
+  border-bottom-right-radius: 10px;
 
   border: 1px solid #919b9b;
   border-left: none;
@@ -376,7 +376,7 @@
 
   transition: all 0.2s;
   border-top-left-radius: none;
-  border-bottom-left-radius: none;
+  border-bottom-left-radius: 10px;
   border: 1px solid #919b9b;
   border-right: none;
   width: 40%;
@@ -391,7 +391,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80%;
+  width: 90%;
   /* margin-bottom: 5% !important;
     margin: 1% 5%; */
 }
@@ -404,7 +404,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 .profiles-div input[type="input"] {
   flex-basis: 90% !important;
@@ -449,7 +449,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80%;
+  width: 90%;
   /* margin-bottom: 5% !important;
       margin: 1% 5%; */
 }
@@ -462,7 +462,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 .profiles-div2 input[type="input"] {
   flex-basis: 90% !important;
@@ -510,7 +510,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 80%;
+  width: 90%;
   /* margin-bottom: 5% !important;
         margin: 1% 5%; */
 }
@@ -523,7 +523,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 .profiles-div3 input[type="input"] {
   flex-basis: 90% !important;
@@ -820,6 +820,7 @@
   .Exercise_detaill {
     display: flex !important;
     flex-direction: column !important;
+    align-content: center;
     align-items: center !important;
     justify-content: center !important;
   }
@@ -848,5 +849,8 @@
   }
   .Patient_button {
     font-size: 10px !important;
+  }
+  .box {
+    width: 100% !important;
   }
 }

@@ -1,0 +1,33 @@
+.checkboxtitle {
+  font-family: Inter !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+
+  /* Orange - Screnr */
+
+  color: #fba622;
+}
+.AssessmentButton {
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 5%;
+}
+.Questiondiv {
+  margin-bottom: 15% !important;
+  width: 100% !important;
+}
+.color {
+  color: green !important;
+}
+.bottomdiv {
+  margin-bottom: 0px !important;
+}
+textarea::placeholder {
+  color: #919b9b;
+}
+@media only screen and (max-width: 600px) {
+}
