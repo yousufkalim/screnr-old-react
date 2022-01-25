@@ -38,10 +38,10 @@ const PrescribingTherapy = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-
+            width: "95%",
             flexWrap: "wrap",
             "& > :not(style)": {
-              m: 10,
+              m: 5,
               width: "80%",
               height: "85%",
             },
@@ -62,9 +62,9 @@ const PrescribingTherapy = () => {
 
             flexWrap: "wrap",
             "& > :not(style)": {
-              m: 10,
-              width: "85%",
-              height: "85%",
+              width: "95%",
+              height: "100%",
+              marginTop: "5%",
             },
             borderRadius: "20px",
           }}
@@ -107,7 +107,7 @@ const PrescribingTherapy = () => {
               </div>
             </div>
 
-            <div className="Profilediv2">
+            <div className="Profiledivs">
               <div className="profiles-div">
                 <input type="text" placeholder="Question 1" disabled />
                 <input
@@ -141,23 +141,8 @@ const PrescribingTherapy = () => {
               <img src={DeleteIcon} style={{ margin: "10px" }}></img>
               <img src={AddIcon} style={{ margin: "10px" }}></img>
             </div>
-            {/* <Grid xs={1} sm={1} md={1} sx={{}}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    border: "1px solid black",
-                    borderRadius: "30px",
-                  }}
-                >
-                  <img src={EditIcon} style={{ padding: "20px" }}></img>
-                  <img src={DeleteIcon} style={{ padding: "20px" }}></img>
-                  <img src={AddIcon} style={{ padding: "20px" }}></img>
-                </div>
-              </Grid>
-            </Grid> */}
 
-            <div className="Profile-div2">
+            <div className="Profile-div2 Profiledivs">
               <div className="profiles-div">
                 <input type="text" placeholder="Question 1" disabled />
                 <input
@@ -191,27 +176,7 @@ const PrescribingTherapy = () => {
               <img src={DeleteIcon} style={{ margin: "10px" }}></img>
               <img src={AddIcon} style={{ margin: "10px" }}></img>
             </div>
-            {/* <Grid
-                xs={1}
-                sm={1}
-                md={1}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  //   justifyContent: "space-between",
-                  //   marginLeft: "86%",
-                  //   marginTop: "-14%",
-                  border: "1px solid black",
-                  borderRadius: "30px",
-                  height: "20% !important",
-                }}
-              >
-                <img src={EditIcon}></img>
-                <img src={DeleteIcon}></img>
-                <img src={AddIcon}></img>
-              </Grid>
-            </Grid> */}
-            <div className="Profile-div2">
+            <div className="Profile-div2 Profiledivs">
               <div className="profiles-div">
                 <input type="text" placeholder="Question 1" disabled />
                 <input
