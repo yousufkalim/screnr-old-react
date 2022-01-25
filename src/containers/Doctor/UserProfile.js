@@ -4,6 +4,7 @@ import AppBar from "../../components/common/AppBar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+
 import Box from "@mui/material/Box";
 
 const UserProfile = () => {
@@ -27,17 +28,18 @@ const UserProfile = () => {
         </Button>
       </Grid>
       <Box
-        className="box"
+        className="userprofile"
         sx={{
           display: "flex",
           justifyContent: "center",
           flexWrap: "wrap",
           "& > :not(style)": {
-            m: 10,
+            mt: 5,
             width: "50%",
             height: "100%",
           },
           borderRadius: "20px",
+          background: "#F6FAFB",
         }}
       >
         <TherapistProfile issue={"Physical Therapist"}></TherapistProfile>

@@ -86,9 +86,12 @@ const PatientProfile = (props) => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
-                  width: "100%",
+                  width: "90%",
                   height: "80%",
+                  mt: 8,
+                  ml: 2,
+                  mr: 2,
+                  mb: 2,
                 },
                 borderRadius: "20px",
               }}

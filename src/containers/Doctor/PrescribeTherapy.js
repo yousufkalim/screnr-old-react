@@ -170,9 +170,10 @@ const PrescribeTherapy = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
+                width: "95%",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
+                  m: 5,
                   width: "80%",
                   height: "85%",
                 },
@@ -190,11 +191,12 @@ const PrescribeTherapy = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
+
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
-                  width: "85%",
-                  height: "85%",
+                  width: "95%",
+                  height: "100%",
+                  marginTop: "5%",
                 },
                 borderRadius: "20px",
               }}
@@ -266,7 +268,8 @@ function QuestionListTile(props){
 
   return (
     <>
-      <div className="Profile-div2">
+      {/* Look for style */}
+      <div className="Profiledivs">
         <div className="profiles-div">
           <input type="text" placeholder={`Question ${props.index + 1}`} disabled />
           <input

@@ -128,7 +128,7 @@ const AddPatient = () => {
             justifyContent: "center",
             flexWrap: "wrap",
             "& > :not(style)": {
-              m: 10,
+              mt: 2,
               width: "80%",
               height: "100%",
             },

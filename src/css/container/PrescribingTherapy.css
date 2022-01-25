@@ -24,7 +24,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 .profiles-div2 {
   display: -webkit-box;
@@ -45,7 +45,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 .profiles-div2 select[type="input"] {
   flex-basis: 90% !important;
@@ -86,7 +86,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 .profiles-div3 select[type="input"] {
   flex-basis: 90% !important;
@@ -107,6 +107,14 @@
 
   border: 1px solid #919b9b;
   border-left: none;
+}
+.Profiledivs {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 4% !important;
+  width: 95% !important;
 }
 .profiles-div select[type="input"] {
   flex-basis: 90% !important;
@@ -131,12 +139,13 @@
 }
 .iconsdiv {
   position: relative;
-  left: 90%;
-  bottom: 15%;
+  left: 90.3%;
+  bottom: 14%;
   display: inline-block;
   border-left: none;
   border: 1px solid black;
   border-radius: 30px;
+  border-bottom-left-radius: 0px;
 }
 
 .iconsdiv img {
