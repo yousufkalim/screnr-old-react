@@ -34,7 +34,7 @@ const PatientProfile = (props) => {
           item
           sx={12}
           sm={12}
-          md={7}
+          md={6}
           className="profilecontainer"
           sx={{
             display: "flex",
@@ -42,23 +42,19 @@ const PatientProfile = (props) => {
 
             flexWrap: "wrap",
             "& > :not(style)": {
-              m: 10,
-              width: "100%",
+              width: "90%",
               height: "80%",
+              mt: 8,
+              ml: 2,
+              mr: 2,
+              mb: 2,
             },
             borderRadius: "20px",
           }}
         >
           <Profile issue="Shoulder pain"></Profile>
         </Grid>
-        <Grid
-          item
-          sx={12}
-          sm={12}
-          md={5}
-          className="Exercise_detaill"
-          xs={{ width: "100%" }}
-        >
+        <Grid item sx={12} sm={12} md={6} className="Exercise_detaill">
           <Typography className="Profileinfo">
             Virtual Physical Therapy
           </Typography>
