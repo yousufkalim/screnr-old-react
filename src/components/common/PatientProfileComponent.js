@@ -14,6 +14,7 @@ const PatientProfileComponent = (props) => {
     <>
       <Paper
         elevation={3}
+        className="patientprofile"
         sx={{
           borderRadius: "20px",
           background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
