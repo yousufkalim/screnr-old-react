@@ -7,11 +7,13 @@ import PatientSurveys from "../containers/Doctor/survey";
 import DoctorDashboard from "../containers/Doctor/DoctorDashboard";
 import AddPatient from "../containers/Doctor/AddPatient";
 import PatientProfile from "../containers/Doctor/PatientProfile";
-
+import SimpleExercise from "../containers/Patient/SimpleExercise";
 import TherapyExercises from "../containers/Patient/TherapyExercises";
-
+import ChangePassword from "../containers/Doctor/ChangePassword";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PrescribingTherapy from "../containers/Doctor/PrescribingTherapy";
+import PatientProfileSetting from "../containers/Patient/PatientProfileSetting";
+import Therapist from "../containers/Patient/Therapist";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
 import ReviewPatientResponse from "../containers/Doctor/ReviewPatientResponse";
@@ -110,6 +112,30 @@ var DoctorRoutes = [
     icon: <PollIcon />,
     element: UserProfile,
   },
+  {
+    path: "/doctor/dashboard/ChangePassword",
+    name: "ChangePassword",
+    icon: <PollIcon />,
+    element: ChangePassword,
+  },
+  {
+    path: "/doctor/dashboard/SimpleExercise",
+    name: "SimpleExercise",
+    icon: <PollIcon />,
+    element: SimpleExercise,
+  },
+  {
+    path: "/doctor/dashboard/Therapist",
+    name: "Therapist",
+    icon: <PollIcon />,
+    element: Therapist,
+  },
+  {
+    path: "/doctor/dashboard/PatientProfileSetting",
+    name: "PatientProfileSetting",
+    icon: <PollIcon />,
+    element: PatientProfileSetting,
+  },
 ];
 
 // Routes for patient
@@ -125,6 +151,30 @@ var PatientRoutes = [
     name: "TherapyExercises",
     icon: <PollIcon />,
     element: TherapyExercises,
+  },
+  {
+    path: "/patient/dashboard/SimpleExercise",
+    name: "SimpleExercise",
+    icon: <PollIcon />,
+    element: SimpleExercise,
+  },
+  {
+    path: "/patient/dashboard/SimpleExercise",
+    name: "SimpleExercise",
+    icon: <PollIcon />,
+    element: SimpleExercise,
+  },
+  {
+    path: "/patient/dashboard/Therapist",
+    name: "Therapist",
+    icon: <PollIcon />,
+    element: Therapist,
+  },
+  {
+    path: "/patient/dashboard/PatientProfileSetting",
+    name: "PatientProfileSetting",
+    icon: <PollIcon />,
+    element: PatientProfileSetting,
   },
 ];
 
