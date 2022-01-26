@@ -76,7 +76,7 @@ const ResponsiveAppBar = (props) => {
           <Typography className="HeaderHeading">{props.heading}</Typography>
         </div>
         <Box className="Headerlogodiv">
-          <Tooltip title="Open settings">
+          <Tooltip title="Open notifications">
             <IconButton
               // sx={{ p: 0, ml: 2 }}
 

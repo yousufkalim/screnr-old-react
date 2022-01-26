@@ -11,6 +11,8 @@ import PatientProfile from "../containers/Doctor/PatientProfile";
 
 import PatientDashboard from "../containers/Patient/PatientDashboard";
 import PerformAssessment from "../containers/Patient/PerformAssessment";
+import AllTherapists from "../containers/Patient/AllTherapists";
+import PerformMotionCapture from "../containers/Patient/PerformMotionCapture";
 
 import PrescribeTherapy from "../containers/Doctor/PrescribeTherapy";
 import SimpleExercise from "../containers/Patient/SimpleExercise";
@@ -191,6 +193,18 @@ const PatientRoutes = [
     name: "PatientProfile",
     icon: <PollIcon />,
     element: PatientProfileEdit,
+  },
+  {
+    path: "/patient/all_therapists",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: AllTherapists,
+  },
+  {
+    path: "/patient/motion_capture_assessment",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: PerformMotionCapture,
   },
 ];
 

@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import { ReactComponent as Calendar } from "../../assets/images/date_range.svg";
 import { ReactComponent as Medicalicon } from "../../assets/images/medical.svg";
 
+import MobileBottomBar from "../../components/common/MobileBottomBar";
+
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
@@ -92,6 +94,7 @@ const PatientDashboard = () => {
           </>
         ))}
       </Grid>
+      <MobileBottomBar activeIndex={1} />
     </>
   );
 };

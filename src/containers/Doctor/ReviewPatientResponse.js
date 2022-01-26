@@ -303,6 +303,9 @@ const ReviewPatientResponse = () => {
                         backgroundColor: " #25C8B4",
                         padding: "10px 11px 10px 12px !important",
                         fontSize: "16px !important",
+                        overflowX: "hidden",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis"
                       }}
                       className="Patient_button"
                     >

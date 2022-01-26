@@ -8,6 +8,7 @@ import Eclipse3 from "../../assets/images/Eclipse3.svg";
 import Eclipse4 from "../../assets/images/Eclipse4.svg";
 import AppBar from "../../components/common/AppBar";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
+import MobileBottomBar from "../../components/common/MobileBottomBar";
 
 import { toast } from "react-toastify";
 
@@ -15,6 +16,8 @@ import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 import * as FormValidations from "../../validations";
+
+import { handleLogout } from "../../utils/Auth";
 
 const PatientProfile = () => {
 
@@ -96,6 +99,10 @@ const PatientProfile = () => {
 
   };
 
+  const handleLogoutSubmit = () => {
+    handleLogout(navigate);
+  }
+
   return (
     <>
       {
@@ -116,7 +123,7 @@ const PatientProfile = () => {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#454238" }}
+                  sx={{ backgroundColor: "#454238", fontSize: "16px !important" }}
                   className="Patient_button"
                   type="submit"
                 >
@@ -231,8 +238,17 @@ const PatientProfile = () => {
                     </div>
                   </div>
                 </Paper>
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: "#454238", fontSize: "16px !important", margin: "20px 0px !important" }}
+                  className="Patient_button"
+                  onClick={handleLogoutSubmit}
+                >
+                  Logout
+                </Button>
               </Box>
             </form>
+            <MobileBottomBar activeIndex={3} />
           </>
       }
     </>

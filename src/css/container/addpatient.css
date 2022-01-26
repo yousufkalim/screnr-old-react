@@ -7,9 +7,6 @@
   /* margin-bottom: 3% !important; */
   margin: 0% 5%;
 }
-.flex-form:focus {
-  border-color: black;
-}
 
 .selectform {
   display: -webkit-box;
@@ -135,9 +132,6 @@
   border-left: none;
 }
 
-input[type="text"]:focus {
-  border: 1px solid #25c8b4 !important;
-}
 .addform input[type="input"] {
   flex-basis: 90% !important;
   width: 90% !important;
