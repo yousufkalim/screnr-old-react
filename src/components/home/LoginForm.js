@@ -100,7 +100,6 @@ const LoginForm = () => {
         <img className="Login_img" src={logo} alt="" />
         <img className="Login_img1" src={LoginVector} alt="" />
       </Grid>
-
       <Grid item xs={false} sm={4} md={6}>
         <Box className="Login_Box">
           <Box

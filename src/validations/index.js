@@ -163,9 +163,58 @@ function editPatient(data){
 
 }
 
+function editProfileDoctor(data){
+
+  const valArr = [
+    {
+      name: "First Name",
+      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
+    },
+    {
+      name: "Last Name",
+      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
+    },
+    {
+      name: "Mobile Number",
+      validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
+    },
+    {
+      name: "Address"
+    },
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
+function editProfilePatient(data){
+
+  const valArr = [
+    {
+      name: "Mobile Number",
+      validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
+    },
+    {
+      name: "National ID",
+    },
+    {
+      name: "Address"
+    },
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
 export {
   login,
   register,
   addPatient,
-  editPatient
+  editPatient,
+  editProfileDoctor,
+  editProfilePatient
 }

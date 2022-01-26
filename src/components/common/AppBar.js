@@ -14,8 +14,12 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
 import Screnr from "../../assets/images/screnr.svg";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
+
+import { getUser } from "../../utils/Auth"
 
 const ResponsiveAppBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,9 +31,27 @@ const ResponsiveAppBar = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleSubmitLogout = () => {
+  const handleLogoutSubmit = () => {
     handleLogout(navigate);
-  };
+  }
+  const navToProfileScreen = () => {
+    const user = getUser();
+
+    if(user.role == "therapist"){
+      navigate("/doctor/dashboard/profile");
+    } else {
+      navigate("/patient/dashboard/profile");
+    }
+  }
+  const navToDashboardScreen = () => {
+    const user = getUser();
+
+    if(user.role == "therapist"){
+      navigate("/doctor/dashboard");
+    } else {
+      navigate("/patient/dashboard");
+    }
+  }
   return (
     <AppBar
       position="sticky"
@@ -45,7 +67,7 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div">
+        <Grid className="Headerlogo_div" onClick={navToDashboardScreen}>
           <img className="Headerlogo" src={Screnr} alt="" />
           <div className="logo"></div>
           <p className="healthlogo">Health</p>
@@ -87,9 +109,15 @@ const ResponsiveAppBar = (props) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem onClick={handleSubmitLogout}>
+          <MenuItem onClick={navToProfileScreen}>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <PersonIcon fontSize="small" />
+            </ListItemIcon>
+            Profile
+          </MenuItem>
+          <MenuItem onClick={handleLogoutSubmit}>
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
             </ListItemIcon>
             Logout
           </MenuItem>

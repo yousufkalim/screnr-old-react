@@ -21,6 +21,7 @@ const ReviewPatientResponse = () => {
   const [assessment, setAssessment] = useState(null);
   const [patient, setPatient] = useState(null);
   const [questionFeedbacks, setQuestionFeedbacks] = useState([]);
+  const [noteText, setNoteText] = useState("");
 
   useEffect(() => {
     loadData();
@@ -92,8 +93,9 @@ const ReviewPatientResponse = () => {
     try {
       const body = {
         status: "reviewed",
-        note: "FAKE",
         feedbacks: questionFeedbacks,
+        note: noteText,
+        feedbacks: questionFeedbacks
       };
 
       setIsProcessing(true);
@@ -288,6 +290,8 @@ const ReviewPatientResponse = () => {
                       type="input"
                       id="feed"
                       placeholder="Write Note for Yourself....."
+                      defaultValue={ assessment.note }
+                      onChange={(event) => setNoteText(event.currentTarget.value)}
                     />
                   </div>
                 </div>
@@ -324,9 +328,6 @@ const ReviewPatientResponse = () => {
                         : "Mark as Checked"}
                     </Button>
                   </Grid>
-                  {console.log(
-                    `THIS IS THE assessment.status: ${assessment.status}`
-                  )}
                 </Grid>
               </Paper>
             </Grid>
