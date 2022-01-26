@@ -74,7 +74,10 @@ const RegisterForm = () => {
     event.preventDefault();
   };
   const handleChangepassword = (prop) => (event) => {
-    setConfirmPasswordValue({ ...confirmPasswordValue, [prop]: event.target.value });
+    setConfirmPasswordValue({
+      ...confirmPasswordValue,
+      [prop]: event.target.value,
+    });
   };
 
   // onChange Function for Input Field
@@ -90,8 +93,7 @@ const RegisterForm = () => {
   };
 
   const handleSignUp = async () => {
-
-    if(loading){
+    if (loading) {
       return;
     }
 
@@ -100,19 +102,18 @@ const RegisterForm = () => {
       dob: date,
       password: passwordValue.password,
       confirm_password: confirmPasswordValue.password,
-      gender
+      gender,
     };
 
     const isValidated = FormValidations.register(newData);
 
-    if(!isValidated){
-      return
-    };
+    if (!isValidated) {
+      return;
+    }
 
     let response;
 
-    try{
-
+    try {
       setLoading(true);
 
       response = await Api("post", `/therapists`, newData);
@@ -120,11 +121,8 @@ const RegisterForm = () => {
       if (response.data) {
         toast.success("User registered successfully");
 
-        handleLogin(
-          response.data.token,
-          response.data.data
-        );
-  
+        handleLogin(response.data.token, response.data.data);
+
         if (response.data.data.role === "patient") {
           window.location = "/patient/dashboard";
         } else if (response.data.data.role === "therapist") {
@@ -134,12 +132,11 @@ const RegisterForm = () => {
           return;
         }
       }
-    } catch(e){
+    } catch (e) {
       console.trace(e);
     }
 
     setLoading(false);
-
   };
 
   return (
@@ -150,11 +147,7 @@ const RegisterForm = () => {
       </Grid>
       <Grid item xs={false} sm={4} md={6}>
         <Box className="Login_Box">
-          <Box
-            component="form"
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12} md={6}>
                 <InputLabel
@@ -314,15 +307,14 @@ const RegisterForm = () => {
                   Date of birth
                 </InputLabel>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DesktopDatePicker
-                  label="Date of Birth"
-                  inputFormat="MM/dd/yyyy"
-                  value={date}
-                  onChange={(_) => setDate(_)}
-                  renderInput={(params) => <TextField {...params} />}
-                  maxDate={new Date()}
-                />
-              </LocalizationProvider>
+                  <DesktopDatePicker
+                    inputFormat="MM/dd/yyyy"
+                    value={date}
+                    onChange={(_) => setDate(_)}
+                    renderInput={(params) => <TextField {...params} />}
+                    maxDate={new Date()}
+                  />
+                </LocalizationProvider>
               </Grid>
               <Grid item xs={12} sm={12} md={6}>
                 <InputLabel
@@ -371,21 +363,23 @@ const RegisterForm = () => {
                 mb: 2,
                 background: "#454238",
                 boxShadow: "0px 15px 45px rgba(49, 36, 36, 0.29)",
+                textTransform: "capitalize",
               }}
               onClick={handleSignUp}
             >
-              Sign up
+              Signup
             </Button>
 
             <Button
               variant="contained"
-              className="login_button"
+              className="back_button"
               sx={{
                 mt: 3,
                 mb: 2,
                 ml: 2,
                 background: "#454238",
                 boxShadow: "0px 15px 45px rgba(49, 36, 36, 0.29)",
+                textTransform: "capitalize",
               }}
               onClick={navToSignIn}
             >

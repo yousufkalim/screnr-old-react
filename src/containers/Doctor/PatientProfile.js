@@ -9,7 +9,6 @@ import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PatientProfile = (props) => {
-
   const navigate = useNavigate();
   const params = useParams();
 
@@ -25,12 +24,12 @@ const PatientProfile = (props) => {
   // func to get current project
   const getPatient = async () => {
     let response;
-    try{
+    try {
       response = await Api("get", `/patients/${params.id}`);
       const patientData = response.data.patient;
       setPatient(patientData);
       setIsLoading(false);
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
@@ -38,26 +37,27 @@ const PatientProfile = (props) => {
   // func to get current project
   const getAssessments = async () => {
     let response;
-    try{
+    try {
       response = await Api("get", `/assessments/${params.id}`);
       const assessmentsData = response.data.Assessment;
       setAssessment(assessmentsData);
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
 
   const navToPrescribePatient = async (id) => {
     navigate(`/doctor/dashboard/prescribe_therapy/${id}`);
-  }
+  };
 
   return (
     <>
-      {isLoading
-      ? <></>
-      : <>
+      {isLoading ? (
+        <></>
+      ) : (
+        <>
           <AppBar heading={"Patient Profile"}></AppBar>
-          <Grid className="Bottom_header">
+          <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
               sx={{ fontSize: "20px !important" }}
@@ -73,7 +73,11 @@ const PatientProfile = (props) => {
               Prescribe Exercise
             </Button>
           </Grid>
-          <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
+          <Grid
+            container
+            spacing={1}
+            sx={{ background: "#F6FAFB", mt: 8, mb: 6 }}
+          >
             <Grid
               item
               xs={12}
@@ -86,8 +90,8 @@ const PatientProfile = (props) => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "90%",
-                  height: "80%",
+                  width: "80%",
+                  // height: "100%",
                   mt: 8,
                   ml: 2,
                   mr: 2,
@@ -109,52 +113,46 @@ const PatientProfile = (props) => {
               <Typography className="Profileinfo">
                 Virtual Physical Therapy
               </Typography>
-              {
-                assessments.length == 0
-                ? <>
-                      <Typography>
-                        No assessments
-                      </Typography>
-                  </> 
-                :
+              {assessments.length == 0 ? (
+                <>
+                  <Typography>No assessments</Typography>
+                </>
+              ) : (
                 assessments.map((item) => (
                   <>
-                  <AssessmentListTile {...item}/>
+                    <AssessmentListTile {...item} />
                   </>
                 ))
-              }
+              )}
             </Grid>
           </Grid>
         </>
-      }
+      )}
     </>
   );
 };
 
-function AssessmentListTile(props){
-
+function AssessmentListTile(props) {
   const navigate = useNavigate();
 
   const navToReviewPatientResponse = () => {
     navigate(`/doctor/dashboard/review_patient_response/${props._id}`);
-  }
+  };
 
   return (
     <>
       <div className="profileinput1">
         <input type="text" placeholder="Name" disabled />
-        <input
-          disabled
-          type="input"
-          placeholder={props.exercise}
-        />
+        <input disabled type="input" placeholder={props.exercise} />
       </div>
       <div className="profileinput2">
         <input type="text" placeholder="Status" disabled />
         <input
           disabled
           type="input"
-          placeholder={`${props.status.charAt(0).toUpperCase()}${props.status.slice(1)}`}
+          placeholder={`${props.status
+            .charAt(0)
+            .toUpperCase()}${props.status.slice(1)}`}
         />
       </div>
       <div className="profileinput2">
@@ -167,23 +165,22 @@ function AssessmentListTile(props){
       </div>
       <div className="profileinput2">
         <input type="text" placeholder="Time start" disabled />
-        <input
-          disabled
-          type="input"
-          placeholder="N/A"
-        />
+        <input disabled type="input" placeholder="N/A" />
       </div>
       <div className="profileinput2">
         <input type="text" placeholder="Time spent" disabled />
-        <input
-          type="input"
-          placeholder="N/A"
-        />
+        <input type="input" placeholder="N/A" />
       </div>
       <div
-        className={ props.status == "requested" ? "profileinput" : "profileinput" }
+        className={
+          props.status == "requested" ? "profileinput" : "profileinput"
+        }
         style={{ marginBottom: "4%" }}
-        onClick={ props.status == "requested" ? null : () => navToReviewPatientResponse() }
+        onClick={
+          props.status == "requested"
+            ? null
+            : () => navToReviewPatientResponse()
+        }
       >
         <input type="text" disabled />
         <input
@@ -191,12 +188,14 @@ function AssessmentListTile(props){
           className="profilefield"
           type="input"
           id="profileinput"
-          placeholder={ props.status == "requested" ? "To be filled" : "View Details" }
+          placeholder={
+            props.status == "requested" ? "To be filled" : "View Details"
+          }
+          style={{ cursor: "pointer" }}
         />
       </div>
     </>
   );
-
 }
 
 export default PatientProfile;
