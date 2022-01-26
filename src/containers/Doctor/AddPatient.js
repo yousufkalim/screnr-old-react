@@ -76,7 +76,7 @@ const AddPatient = () => {
         confirmPassword: data.get("Confirm Password"),
         gender: gender,
         dob: dateOfBirth,
-        national_id: "1234", // TODO: FAKE
+        national_id: "12345678", // TODO: FAKE
         patient_id: data.get("Patient ID"),
         address: data.get("Address"),
         problem_name: data.get("Problem Name"),
@@ -92,8 +92,6 @@ const AddPatient = () => {
     }
 
     setLoading(false);
-
-    console.log(`THIS IS THE loading-END: ${loading}`);
 
     if(response){
       toast.success("Patient created successfully!");

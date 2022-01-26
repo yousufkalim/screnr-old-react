@@ -73,7 +73,7 @@ const PrescribeTherapy = () => {
         exercise: exercise,
         sets: noOfSets,
         reps: noOfReps,
-        due_date: "2022/01/19", // TODO: Fake
+        due_date: (new Date().getDate() + 1).toLocaleDateString("en-US"),
         type: "simple", // TODO: Fake
         questions_array: questions,
       };
