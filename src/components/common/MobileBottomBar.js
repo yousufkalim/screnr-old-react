@@ -39,7 +39,14 @@ export default function MobileBottomBar(props){
 
     return (
       <>
-        <BottomNavigation sx={{ width: "100%", background: " #136773", position:"sticky" }}>
+        <BottomNavigation sx={{
+            width: "100%",
+            background: " #136773",
+            position: "fixed",
+            left: "0",
+            bottom: "0",
+            height: "60px",
+        }}>
           <BottomNavigationAction
             onClick={navToAllTherapists}
             icon={activeIndex == 0 ? <PhysiotherapistActive /> : <Physiotherapist />}
