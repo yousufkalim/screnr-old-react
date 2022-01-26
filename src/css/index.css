@@ -3,7 +3,7 @@
 @import url("./Doctor/index.css");
 @import url("./components/index.css");
 @import url("./container/index.css");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 /* Defaults */
 * {
   padding: 0;

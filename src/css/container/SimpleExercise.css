@@ -17,7 +17,7 @@
   margin-bottom: 5%;
 }
 .Questiondiv {
-  margin-bottom: 15% !important;
+  /* margin-bottom: 15% !important; */
   width: 100% !important;
 }
 .color {
@@ -28,6 +28,7 @@
 }
 textarea::placeholder {
   color: #919b9b;
+  margin-top: 5% !important;
 }
 @media only screen and (max-width: 600px) {
 }

@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ReviewPatientResponse = () => {
-
   const navigate = useNavigate();
   const params = useParams();
 
@@ -25,47 +24,47 @@ const ReviewPatientResponse = () => {
   const [noteText, setNoteText] = useState("");
 
   useEffect(() => {
-    loadData()
+    loadData();
   }, []);
 
   const fillQuestionFeedbacks = (assessmentData) => {
     const questions = assessmentData.questions;
     const questionFeedbacksArr = [];
-    for( let i = 0; i < questions.length; i++ ){
+    for (let i = 0; i < questions.length; i++) {
       questionFeedbacksArr.push({
         question_id: questions[i]._id,
-        feedback: ""
+        feedback: "",
       });
     }
     setQuestionFeedbacks(questionFeedbacksArr);
-  }
+  };
 
-  function updateQuestionFeedback(index, text){
+  function updateQuestionFeedback(index, text) {
     const obj = {
-      "question_id": questionFeedbacks[index].question_id,
-      "feedback": text,
-    }
+      question_id: questionFeedbacks[index].question_id,
+      feedback: text,
+    };
 
     const questionsFeedbacksCopy = [...questionFeedbacks];
     questionsFeedbacksCopy[index] = obj;
     setQuestionFeedbacks(questionsFeedbacksCopy);
-  };
+  }
 
   const loadData = async () => {
     const patientID = await getAssessment();
     await getPatient(patientID);
-  }
+  };
 
   // func to get current project
   const getAssessment = async () => {
     let response;
-    try{
+    try {
       response = await Api("get", `/assessments/getassessment/${params.id}`);
       const assessmentData = response.data.assessment;
       setAssessment(assessmentData);
       fillQuestionFeedbacks(assessmentData);
       return assessmentData.patient._id;
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
@@ -73,48 +72,49 @@ const ReviewPatientResponse = () => {
   // func to get current project
   const getPatient = async (patientID) => {
     let response;
-    try{
+    try {
       response = await Api("get", `/patients/${patientID}`);
       const patientData = response.data.patient;
       setPatient(patientData);
       setIsLoading(false);
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
 
   // Calling create assessment
   const handleSubmit = async () => {
-
-    if(isProcessing){
+    if (isProcessing) {
       return;
     }
 
     let response;
 
-    try{
-
+    try {
       const body = {
         status: "reviewed",
+        feedbacks: questionFeedbacks,
         note: noteText,
         feedbacks: questionFeedbacks
       };
 
       setIsProcessing(true);
 
-      response = await Api("put", `/assessments/reviewassessment/${params.id}`, body);
-
-    }catch(e){
+      response = await Api(
+        "put",
+        `/assessments/reviewassessment/${params.id}`,
+        body
+      );
+    } catch (e) {
       console.trace(e);
     }
 
     setIsProcessing(false);
 
-    if(response){
+    if (response) {
       toast.success("Assessment reviewed successfully!");
       navToDashboard();
     }
-
   };
 
   const navToDashboard = async () => {
@@ -123,26 +123,28 @@ const ReviewPatientResponse = () => {
 
   return (
     <>
-      {
-        isLoading
-        ? <></>
-        : <>
-        <AppBar heading={"Review Patient Response"}></AppBar>
-          <Grid className="Bottom_header">
+      {isLoading ? (
+        <></>
+      ) : (
+        <>
+          <AppBar heading={"Review Patient Response"}></AppBar>
+          <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
               sx={{ fontSize: "20px !important" }}
             >
-            {`Patient ID: ${patient.patient_id}`}
+              {`Patient ID: ${patient.patient_id}`}
             </Typography>
             <Button
-              disabled={ assessment.status == "reviewed" ? true : false }
+              disabled={assessment.status == "reviewed" ? true : false}
               variant="contained"
               sx={{ backgroundColor: " #25C8B4" }}
               className="Patient_button"
               onClick={() => handleSubmit()}
             >
-              { assessment.status == "reviewed" ? "Already Checked" : "Mark as Checked" }
+              {assessment.status == "reviewed"
+                ? "Already Checked"
+                : "Mark as Checked"}
             </Button>
           </Grid>
           <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
@@ -158,9 +160,8 @@ const ReviewPatientResponse = () => {
                 width: "100%",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
-
-                  height: "50%",
+                  mt: 20,
+                  ml: 10,
                 },
                 borderRadius: "20px",
               }}
@@ -180,7 +181,7 @@ const ReviewPatientResponse = () => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
+                  mt: 20,
                 },
                 borderRadius: "20px",
               }}
@@ -189,7 +190,8 @@ const ReviewPatientResponse = () => {
                 elevation={3}
                 sx={{
                   borderRadius: "20px",
-                  background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
+                  background:
+                    "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                   width: "85%",
                   height: "92%",
                 }}
@@ -271,23 +273,20 @@ const ReviewPatientResponse = () => {
                   </div>
                 </div> */}
                 <Typography className="Caption">Theoretical</Typography>
-                {
-                  assessment.questions.map(
-                    (e, i) => 
-                    <QuestionListTile
-                      {...e}
-                      assessment={assessment}
-                      index={i}
-                      key={i}
-                      updateQuestionFeedback={updateQuestionFeedback}
-                    />
-                  )
-                }
+                {assessment.questions.map((e, i) => (
+                  <QuestionListTile
+                    {...e}
+                    assessment={assessment}
+                    index={i}
+                    key={i}
+                    updateQuestionFeedback={updateQuestionFeedback}
+                  />
+                ))}
                 <div className="Profilediv2">
                   <div className="textarea1">
                     <input type="text" placeholder="Note" disabled />
                     <textarea
-                      disabled={ assessment.status == "reviewed" ? true : false }
+                      disabled={assessment.status == "reviewed" ? true : false}
                       type="input"
                       id="feed"
                       placeholder="Write Note for Yourself....."
@@ -302,7 +301,8 @@ const ReviewPatientResponse = () => {
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
-                        padding: "10px !important",
+                        padding: "10px 11px 10px 12px !important",
+                        fontSize: "16px !important",
                       }}
                       className="Patient_button"
                     >
@@ -311,17 +311,21 @@ const ReviewPatientResponse = () => {
                   </Grid>
                   <Grid xs={12} sm={12} md={8}>
                     <Button
-                      disabled={ assessment.status == "reviewed" ? true : false }
+                      disabled={assessment.status == "reviewed" ? true : false}
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
-                        padding: "10px !important",
+                        padding: "10px 11px 10px 12px !important",
+                        fontSize: "16px !important",
+
                         marginRight: "10% !important",
                       }}
                       className="Patient_button"
                       onClick={() => handleSubmit()}
                     >
-                      { assessment.status == "reviewed" ? "Already Checked" : "Mark as Checked" }
+                      {assessment.status == "reviewed"
+                        ? "Already Checked"
+                        : "Mark as Checked"}
                     </Button>
                   </Grid>
                 </Grid>
@@ -329,53 +333,52 @@ const ReviewPatientResponse = () => {
             </Grid>
           </Grid>
         </>
-      }
+      )}
     </>
   );
 };
 
-function QuestionListTile(props){
-
+function QuestionListTile(props) {
   const { updateQuestionFeedback } = props;
 
   return (
     <>
       <div className="Profilediv2">
         <div className="profiles-div">
-          <input type="text" placeholder={`Question ${props.index + 1}`} disabled />
-          <input
-            disabled
-            type="input"
-            placeholder={props.title}
-          />
-        </div>
-        <div className="textarea">
-          <input type="text" placeholder={`Answer ${props.index + 1}`} disabled />
-          <textarea
-            disabled
-            type="input"
-            placeholder={props.value}
-          />
-        </div>
-        <div className="profiles-div3">
           <input
             type="text"
-            placeholder="Feedback"
-            id="feedback"
+            placeholder={`Question ${props.index + 1}`}
             disabled
           />
+          <input disabled type="input" placeholder={props.title} />
+        </div>
+        <div className="textarea">
           <input
-            disabled={ props.assessment.status == "reviewed" ? true : false }
+            type="text"
+            placeholder={`Answer ${props.index + 1}`}
+            disabled
+          />
+          <textarea disabled type="input" placeholder={props.value} />
+        </div>
+        <div className="profiles-div3">
+          <input type="text" placeholder="Feedback" id="feedback" disabled />
+          <input
+            disabled={props.assessment.status == "reviewed" ? true : false}
             type="input"
             id="feed"
-            placeholder={ props.assessment.status == "reviewed" ? props.feedback : "Write feedback to send to patient..." }
-            onChange={ (event) => updateQuestionFeedback(props.index, event.target.value) }
+            placeholder={
+              props.assessment.status == "reviewed"
+                ? props.feedback
+                : "Write feedback to send to patient..."
+            }
+            onChange={(event) =>
+              updateQuestionFeedback(props.index, event.target.value)
+            }
           />
         </div>
       </div>
     </>
   );
-
 }
 
 export default ReviewPatientResponse;
