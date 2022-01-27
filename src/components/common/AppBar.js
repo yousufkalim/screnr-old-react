@@ -13,7 +13,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
-
+import Screnr from "../../assets/images/screnr.svg";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
 
@@ -29,10 +29,10 @@ const ResponsiveAppBar = (props) => {
   };
   const handleSubmitLogout = () => {
     handleLogout(navigate);
-  }
+  };
   return (
     <AppBar
-      position="relative"
+      position="sticky"
       sx={{
         backgroundColor: " #136773",
         zIndex: (theme) => theme.zIndex.drawer + 1,
@@ -46,20 +46,35 @@ const ResponsiveAppBar = (props) => {
         }}
       >
         <Grid className="Headerlogo_div">
-          <img className="Headerlogo" src={Headerlogo} alt="" />
-          <Typography className="HeaderHeading">{props.heading}</Typography>
+          <img className="Headerlogo" src={Screnr} alt="" />
+          <div className="logo"></div>
+          <p className="healthlogo">Health</p>
         </Grid>
+        <div className="header">
+          <Typography className="HeaderHeading">{props.heading}</Typography>
+        </div>
         <Box className="Headerlogodiv">
           <Tooltip title="Open settings">
             <IconButton
-              sx={{ p: 0, ml: 2 }}
-              onClick={handleClick}
+              // sx={{ p: 0, ml: 2 }}
+
               size="small"
               aria-controls={open ? "account-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
               <img src={Notificationicon} alt="" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Open settings">
+            <IconButton
+              // sx={{ p: 0, ml: 2 }}
+              onClick={handleClick}
+              size="small"
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            >
               <img src={Settingicon} alt="" />
             </IconButton>
           </Tooltip>
