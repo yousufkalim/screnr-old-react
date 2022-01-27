@@ -1,14 +1,15 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Therapist from "../../assets/images/Therapisti.svg";
-import EditButton from "../../assets/images/EditButton.svg";
+import UploadImage from "../../assets/images/AddImage.svg";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
+import assetsURL from "../../utils/Assets";
 
 const TherapistProfile = (props) => {
+
+  const { toEdit, handleImageSelect, profileImage } = props;
+
   return (
     <>
       <Paper
@@ -22,76 +23,97 @@ const TherapistProfile = (props) => {
         }}
       >
         <Grid className="profileimg" sx={{ marginTop: "5%" }}>
-          <img src={Therapist}></img>
+          <label>
+            <input
+              style={{
+                display: "none",
+                cursor: "none",
+              }}
+              type="file"
+              accept="image/*"
+              placeholder="Ref."
+              onChange={handleImageSelect}
+              onClick={(event)=> { 
+                event.target.value = null
+              }}
+            />
+            <img
+              src={
+                profileImage
+                ? URL.createObjectURL(profileImage)
+                : props.avatar
+                ? assetsURL(props.avatar)
+                : UploadImage
+              }
+              className="imageContainer"
+            />
+          </label>
         </Grid>
-        <Typography className="PatientName">Farhan shakir</Typography>
+        <Typography className="PatientName">{`${props.first_name} ${props.last_name}`}</Typography>
         <Typography className="PatientInfo">
           <Hospitalicon
             sx={{ marginRight: "10px" }}
             className="Profile-Icons"
           ></Hospitalicon>
-          {props.issue}
+          {props.doc_specialization}
         </Typography>
         <div className="profilediv">
           <div className="profiles-input">
             <input type="text" disabled />
             <input
-              disabled
-              type="input"
-              
-              
-              placeholder="0315 1234567"
-            />
-          </div>
-          <div className="profiles-input3">
-            <input type="text" disabled />
-            <input
-              disabled
-              type="input"
-              
-              
-              placeholder="farhanshakir"
-            />
-          </div>
-          <div className="profiles-input1">
-            <input type="text" disabled />
-            <input
-              disabled
-              type="input"
-              
-              
-              placeholder="2002/11/23"
-            />
-          </div>
-          <div className="profiles-input2">
-            <input type="text" disabled />
-            <input
-              disabled
-              type="input"
-              
-              
-              placeholder="33022-8328432-5"
+              disabled={!toEdit}
+              type="number"
+              name="Phone"
+              placeholder="Phone"
+              defaultValue={props.phone}
             />
           </div>
           <div className="profiles-input5">
             <input type="text" disabled />
             <input
-              disabled
+              disabled={true}
               type="input"
-              
-              
-              placeholder="farhanshakir"
+              name="Email"
+              placeholder="Email"
+              defaultValue={props.email}
             />
           </div>
-
+          <div className="profiles-input1">
+            <input type="text" disabled />
+            <input
+              disabled={true}
+              type="input"
+              defaultValue={new Date(props.dob).toLocaleDateString("en-US")}
+            />
+          </div>
+          <div className="profiles-input5-1">
+            <input type="text" disabled />
+            <input
+              disabled={true}
+              type="input"
+              name="National ID"
+              placeholder="National ID"
+              defaultValue={"FOR QA"}
+            />
+          </div>
+          <div className="profiles-input5-2">
+            <input type="text" disabled />
+            <input
+              disabled={true}
+              type="input"
+              name="Hospital"
+              placeholder="Hospital"
+              defaultValue={"FOR QA"}
+            />
+          </div>
           <div className="profiles-input6">
             <input type="text" disabled />
             <input
-              disabled
+              disabled={!toEdit}
               type="input"
-              
-              
-              placeholder="Johar Town, Lahore"
+              name="Address"
+              placeholder="Address"
+              defaultValue={props.address}
             />
           </div>
         </div>
@@ -101,9 +123,11 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              
-              
-              placeholder="13-DEC-2021"
+              defaultValue={
+                props.last_password_changed
+                ? (new Date(props.last_password_changed).toLocaleDateString("en-US"))
+                : "N/A"
+              }
             />
           </div>
           <div className="profiles-div2">
@@ -111,20 +135,15 @@ const TherapistProfile = (props) => {
             <input
               disabled
               type="input"
-              
-              
               placeholder="**********"
             />
           </div>
-
           <div className="profiles-div3">
             <input type="text" placeholder="Account Created" disabled />
             <input
               disabled
               type="input"
-              
-              
-              placeholder="29-July-2021"
+              defaultValue={new Date(props.createdAt).toLocaleDateString("en-US")}
             />
           </div>
         </div>

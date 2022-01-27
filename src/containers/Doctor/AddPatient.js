@@ -37,9 +37,15 @@ const AddPatient = () => {
   const [loading, setLoading] = useState(false);
   let [gender, setGender] = useState("male");
   let [dateOfBirth, setDateOfBirth] = useState(null);
+  let [profileImage, setProfileImage] = useState(null);
 
   // const classes = useFormFieldStyles();
   const navigate = useNavigate();
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  }
 
   // Calling create patient
   const handleSubmit = async (event) => {
@@ -70,22 +76,24 @@ const AddPatient = () => {
     let response;
 
     try {
-      const body = {
-        first_name: data.get("First Name"),
-        middle_name: data.get("Middle Name"),
-        last_name: data.get("Last Name"),
-        phone: data.get("Mobile Number"),
-        email: data.get("Email Address"),
-        password: data.get("Password"),
-        confirmPassword: data.get("Confirm Password"),
-        gender: gender,
-        dob: dateOfBirth,
-        national_id: "1234", // TODO: FAKE
-        patient_id: data.get("Patient ID"),
-        address: data.get("Address"),
-        problem_name: data.get("Problem Name"),
-        problem_description: data.get("Problem Description"),
-      };
+
+      const body = new FormData();
+
+      body.append("first_name",  data.get("First Name"));
+      body.append("middle_name",  data.get("Middle Name"));
+      body.append("last_name",  data.get("Last Name"));
+      body.append("phone",  data.get("Mobile Number"));
+      body.append("email",  data.get("Email Address"));
+      body.append("password",  data.get("Password"));
+      body.append("confirmPassword",  data.get("Confirm Password"));
+      body.append("gender",  gender);
+      body.append("dob",  dateOfBirth);
+      body.append("national_id",  "12345678"); // TODO: FAKE
+      body.append("patient_id",  data.get("Patient ID"));
+      body.append("address",  data.get("Address"));
+      body.append("problem_name",  data.get("Problem Name"));
+      body.append("problem_description",  data.get("Problem Description"));
+      body.append("image",  profileImage);
 
       setLoading(true);
 
@@ -96,9 +104,7 @@ const AddPatient = () => {
 
     setLoading(false);
 
-    console.log(`THIS IS THE loading-END: ${loading}`);
-
-    if (response) {
+    if(response){
       toast.success("Patient created successfully!");
       navToDashboard();
     }
@@ -146,11 +152,23 @@ const AddPatient = () => {
             <Grid className="uploadimg">
               <label>
                 <input
-                  style={{ display: "none", cursor: "none" }}
+                  style={{
+                    display: "none",
+                    cursor: "none",
+                  }}
                   type="file"
+                  accept="image/*"
                   placeholder="Ref."
+                  onChange={handleImageSelect}
+                  onClick={(event)=> { 
+                    event.target.value = null
+                  }}
                 />
-                <img src={UploadImage}></img>
+                
+                <img
+                  src={profileImage ? URL.createObjectURL(profileImage) : UploadImage}
+                  className="imageContainer"
+                />
               </label>
             </Grid>
             <Grid

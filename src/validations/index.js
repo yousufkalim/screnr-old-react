@@ -163,9 +163,50 @@ function editPatient(data){
 
 }
 
+function editProfileDoctor(data){
+
+  const valArr = [
+    {
+      name: "Phone",
+      validationFunction: () => Validators.phoneNoValidator("Phone", data.get("Phone"))
+    },
+    {
+      name: "Address"
+    },
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
+function editProfilePatient(data){
+
+  const valArr = [
+    {
+      name: "Mobile Number",
+      validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
+    },
+    {
+      name: "National ID",
+    },
+    {
+      name: "Address"
+    },
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
 export {
   login,
   register,
   addPatient,
-  editPatient
+  editPatient,
+  editProfileDoctor,
+  editProfilePatient
 }

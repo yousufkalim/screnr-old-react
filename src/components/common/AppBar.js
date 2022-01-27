@@ -14,9 +14,13 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
 import Screnr from "../../assets/images/screnr.svg";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
 import LogoFinal from "../../assets/images/logofinal.svg";
+import { getUser } from "../../utils/Auth"
+
 const ResponsiveAppBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
@@ -27,9 +31,27 @@ const ResponsiveAppBar = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleSubmitLogout = () => {
+  const handleLogoutSubmit = () => {
     handleLogout(navigate);
-  };
+  }
+  const navToProfileScreen = () => {
+    const user = getUser();
+
+    if(user.role == "therapist"){
+      navigate("/doctor/dashboard/profile");
+    } else {
+      navigate("/patient/dashboard/profile");
+    }
+  }
+  const navToDashboardScreen = () => {
+    const user = getUser();
+
+    if(user.role == "therapist"){
+      navigate("/doctor/dashboard");
+    } else {
+      navigate("/patient/dashboard");
+    }
+  }
   return (
     <AppBar
       position="sticky"
@@ -45,13 +67,7 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" }}>
-          {/* <img
-            className="Headerlogo"
-            src={LogoFinal}
-            alt=""
-            
-          /> */}
+        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" } onClick={navToDashboardScreen}>
           <img
             className="Headerlogo"
             src={Screnr}
@@ -65,7 +81,7 @@ const ResponsiveAppBar = (props) => {
           <Typography className="HeaderHeading">{props.heading}</Typography>
         </div>
         <Box className="Headerlogodiv">
-          <Tooltip title="Open settings">
+          <Tooltip title="Open notifications">
             <IconButton
               // sx={{ p: 0, ml: 2 }}
 
@@ -102,9 +118,15 @@ const ResponsiveAppBar = (props) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem onClick={handleSubmitLogout}>
+          <MenuItem onClick={navToProfileScreen}>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <PersonIcon fontSize="small" />
+            </ListItemIcon>
+            Profile
+          </MenuItem>
+          <MenuItem onClick={handleLogoutSubmit}>
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
             </ListItemIcon>
             Logout
           </MenuItem>

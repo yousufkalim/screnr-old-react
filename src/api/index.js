@@ -13,7 +13,14 @@ const api = async (method = "get", uri, body) => {
     axios[method](url, body)
       .then((res) => resolve(res))
       .catch((err) => {
-        if (err?.response?.status === 403) {
+        // No internet
+        if(err.toJSON().message === 'Network Error'){
+          toast.error(
+            "No Internet."
+          );
+
+          reject(err);
+        } else if (err?.response?.status === 403) {
           window.location = "/home";
         } else {
           console.log("API Error --------> ", err.response?.data?.message);

@@ -3,20 +3,14 @@ import AppBar from "../../components/common/AppBar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
 import Paper from "@mui/material/Paper";
-
 import Checkbox from "@mui/material/Checkbox";
+import MobileBottomBar from "../../components/common/MobileBottomBar";
+
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { ReactComponent as Setting } from "../../assets/images/setting.svg";
-import { ReactComponent as Exercise } from "../../assets/images/Exercise.svg";
-import { ReactComponent as Scorecard } from "../../assets/images/Scorecard.svg";
-import { ReactComponent as Physiotherapist } from "../../assets/images/Physiotherapist.svg";
 const PerformAssessment = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -177,7 +171,7 @@ const PerformAssessment = () => {
             <div className="AssessmentButton">
               <Button
                 variant="contained"
-                sx={{ backgroundColor: " #25C8B4" }}
+                sx={{ backgroundColor: " #25C8B4", fontSize: "16px !important"}}
                 className="Patient_button"
                 onClick={() => handleSubmit()}
                 disabled={
@@ -194,20 +188,7 @@ const PerformAssessment = () => {
                   : "Send Assessment"}
               </Button>
             </div>
-            <BottomNavigation sx={{ width: "100%", background: " #136773" }}>
-              <BottomNavigationAction
-                icon={<Physiotherapist />}
-              ></BottomNavigationAction>
-              <BottomNavigationAction
-                icon={<Scorecard />}
-              ></BottomNavigationAction>
-              <BottomNavigationAction
-                icon={<Exercise />}
-              ></BottomNavigationAction>
-              <BottomNavigationAction
-                icon={<Setting />}
-              ></BottomNavigationAction>
-            </BottomNavigation>
+            <MobileBottomBar />
           </Grid>
         </>
       )}

@@ -14,6 +14,8 @@ import { ReactComponent as Callicon } from "../../assets/images/call.svg";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
+import assetsURL from "../../utils/Assets";
+
 const DoctorDashboard = () => {
   const navigate = useNavigate();
 
@@ -73,7 +75,11 @@ const DoctorDashboard = () => {
               >
                 <img
                   className="Eclipse"
-                  src={item.gender == "male" ? Eclipse3 : Eclipse4}
+                  src={
+                    item.avatar
+                    ? assetsURL(item.avatar)
+                    : item.gender == "male" ? Eclipse3 : Eclipse4
+                  }
                   alt=""
                 />
                 <Typography className="PatientName">{`${item.first_name} ${item.last_name}`}</Typography>

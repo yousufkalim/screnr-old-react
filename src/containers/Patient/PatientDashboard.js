@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import { ReactComponent as Calendar } from "../../assets/images/date_range.svg";
 import { ReactComponent as Medicalicon } from "../../assets/images/medical.svg";
 
+import MobileBottomBar from "../../components/common/MobileBottomBar";
+
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +45,12 @@ const PatientDashboard = () => {
         <Typography className="Patient_heading">Therapy Exercises</Typography>
       </Grid>
       <Grid container spacing={1} className="patient_maindiv">
-        {assessments.map((item) => (
+        {
+          assessments.length == 0
+          ?
+          <Typography> No Assessments </Typography>
+          :
+          assessments.map((item) => (
           <>
             <Grid
               xs={10}
@@ -84,6 +91,7 @@ const PatientDashboard = () => {
           </>
         ))}
       </Grid>
+      <MobileBottomBar activeIndex={1} />
     </>
   );
 };

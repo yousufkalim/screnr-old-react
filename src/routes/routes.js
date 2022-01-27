@@ -11,23 +11,25 @@ import PatientProfile from "../containers/Doctor/PatientProfile";
 
 import PatientDashboard from "../containers/Patient/PatientDashboard";
 import PerformAssessment from "../containers/Patient/PerformAssessment";
+import AllTherapists from "../containers/Patient/AllTherapists";
+import PerformMotionCapture from "../containers/Patient/PerformMotionCapture";
 
 import PrescribeTherapy from "../containers/Doctor/PrescribeTherapy";
 import SimpleExercise from "../containers/Patient/SimpleExercise";
 import ChangePassword from "../containers/Doctor/ChangePassword";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import PatientProfileSetting from "../containers/Patient/PatientProfileSetting";
+import PatientProfileEdit from "../containers/Patient/PatientProfile";
 import Therapist from "../containers/Patient/Therapist";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
 import ReviewPatientResponse from "../containers/Doctor/ReviewPatientResponse";
 import RespondedPatientReview from "../containers/Doctor/RespondedPatientReview";
-import UserProfile from "../containers/Doctor/UserProfile";
+import DoctorProfile from "../containers/Doctor/DoctorProfile";
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterationIcon from "@mui/icons-material/AccountBox";
 
 // Routes for login
-var AuthRoutes = [
+const AuthRoutes = [
   {
     path: "*",
     name: "Login",
@@ -49,7 +51,7 @@ var AuthRoutes = [
 ];
 
 // Routes for doctor
-var DoctorRoutes = [
+const DoctorRoutes = [
   {
     path: "*",
     name: "Dashboard",
@@ -117,10 +119,10 @@ var DoctorRoutes = [
     element: RespondedPatientReview,
   },
   {
-    path: "/doctor/dashboard/UserProfile",
-    name: "UserProfile",
+    path: "/doctor/dashboard/profile",
+    name: "DoctorProfile",
     icon: <PollIcon />,
-    element: UserProfile,
+    element: DoctorProfile,
   },
   {
     path: "/doctor/dashboard/ChangePassword",
@@ -144,12 +146,12 @@ var DoctorRoutes = [
     path: "/doctor/dashboard/PatientProfileSetting",
     name: "PatientProfileSetting",
     icon: <PollIcon />,
-    element: PatientProfileSetting,
+    element: PatientProfile,
   },
 ];
 
 // Routes for patient
-var PatientRoutes = [
+const PatientRoutes = [
   {
     path: "*",
     name: "PatientDashboard",
@@ -187,10 +189,22 @@ var PatientRoutes = [
     element: Therapist,
   },
   {
-    path: "/patient/dashboard/PatientProfileSetting",
-    name: "PatientProfileSetting",
+    path: "/patient/dashboard/profile",
+    name: "PatientProfile",
     icon: <PollIcon />,
-    element: PatientProfileSetting,
+    element: PatientProfileEdit,
+  },
+  {
+    path: "/patient/all_therapists",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: AllTherapists,
+  },
+  {
+    path: "/patient/motion_capture_assessment",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: PerformMotionCapture,
   },
 ];
 
