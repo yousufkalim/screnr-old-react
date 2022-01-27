@@ -67,7 +67,7 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" } onClick={navToDashboardScreen}>
+        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" }} onClick={navToDashboardScreen}>
           <img
             className="Headerlogo"
             src={Screnr}
