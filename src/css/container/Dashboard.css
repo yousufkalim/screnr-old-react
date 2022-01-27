@@ -15,6 +15,10 @@
   margin-left: 20px !important;
   padding-bottom: 2% !important;
 }
+div.nonActiveClas:hover{
+  background: linear-gradient(0deg, #F6FAFB, #F6FAFB), #F6FAFB !important;
+  box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
+}
 .Patient_heading {
   font-family: Inter !important;
   font-style: normal !important;

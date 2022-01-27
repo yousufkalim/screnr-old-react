@@ -16,3 +16,7 @@
 :root {
   --primary: "green";
 }
+
+body {
+  background: #F6FAFB;
+}
