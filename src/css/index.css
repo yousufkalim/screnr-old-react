@@ -4,6 +4,7 @@
 @import url("./components/index.css");
 @import url("./container/index.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&display=swap");
 /* Defaults */
 * {
   padding: 0;
@@ -16,7 +17,6 @@
 :root {
   --primary: "green";
 }
-
 body {
-  background: #F6FAFB;
+  background: #f6fafb !important;
 }

@@ -20,6 +20,7 @@ const DoctorProfile = (props) => {
   const [profile, setProfile] = useState(null);
 
   const [toEdit, setToEdit] = useState(false);
+  let [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
     getProfile();
@@ -50,6 +51,11 @@ const DoctorProfile = (props) => {
 
   }
 
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  }
+
   // Calling profile-update api with profile data
   const handleSubmit = async (event) => {
 
@@ -71,12 +77,13 @@ const DoctorProfile = (props) => {
 
       setIsLoading(true);
 
-      response = await Api("put", "/therapists", {
-        first_name: data.get("First Name"),
-        last_name: data.get("Last Name"),
-        phone: data.get("Mobile Number"),
-        address: data.get("Address"),
-      });
+      const body = new FormData();
+
+      body.append("phone",  data.get("Phone"));
+      body.append("address",  data.get("Address"));
+      body.append("image",  profileImage);
+
+      response = await Api("put", "/therapists", body);
 
       if(response.data){
         toast.success("Profile updated successfully!");
@@ -141,6 +148,8 @@ const DoctorProfile = (props) => {
                 <TherapistProfile
                   {...profile}
                   toEdit={toEdit}
+                  profileImage={profileImage}
+                  handleImageSelect={handleImageSelect}
                 />
               </Box>
             </form>

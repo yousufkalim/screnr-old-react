@@ -1,9 +1,9 @@
 .profileimg {
   display: flex !important;
   justify-content: center !important;
-  margin-top: 20px;
+  margin-top: 8px;
   margin-right: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .Profile-Icons {
   margin-right: 10px !important;
@@ -24,7 +24,7 @@
   justify-content: flex-end;
 }
 .editbutton {
-  width: 10%;
+  width: 7%;
 }
 .profilediv {
   display: flex !important;
@@ -327,11 +327,102 @@
   border-right: none;
   width: 40%;
   font-size: 13px;
+  background-image: url("../../assets/images/email.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 5%;
+}
+
+.profiles-input5-1 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 90%;
+}
+
+.profiles-input5-1 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input5-1 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input5-1 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
+  background-image: url("../../assets/images/Chrome.svg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 5%;
+}
+
+.profiles-input5-2 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 90%;
+}
+
+.profiles-input5-2 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
+}
+.profiles-input5-2 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
+.profiles-input5-2 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  border: 1px solid #919b9b;
+  border-right: none;
+  width: 40%;
+  font-size: 13px;
   background-image: url("../../assets/images/buillding.svg");
   background-repeat: no-repeat;
   background-position: left;
   background-position-x: 5%;
 }
+
 .profiles-input6 {
   display: -webkit-box;
   display: flex;
@@ -849,7 +940,9 @@
   width: 40%;
   font-size: 13px;
 }
-
+.css-78dcb3-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #136773 !important;
+}
 #inputplaceholder1::placeholder {
   font-family: Inter !;
   font-style: normal !;

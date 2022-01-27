@@ -14,6 +14,8 @@ import { ReactComponent as Callicon } from "../../assets/images/call.svg";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
+import assetsURL from "../../utils/Assets";
+
 const DoctorDashboard = () => {
   const navigate = useNavigate();
 
@@ -67,13 +69,17 @@ const DoctorDashboard = () => {
               <Grid
                 xs={10}
                 sm={10}
-                md={2}
+                md={2.5}
                 className="nonActiveClas"
                 onClick={() => navToPatientProfile(`${item._id}`)}
               >
                 <img
                   className="Eclipse"
-                  src={item.gender == "male" ? Eclipse3 : Eclipse4}
+                  src={
+                    item.avatar
+                    ? assetsURL(item.avatar)
+                    : item.gender == "male" ? Eclipse3 : Eclipse4
+                  }
                   alt=""
                 />
                 <Typography className="PatientName">{`${item.first_name} ${item.last_name}`}</Typography>
@@ -82,7 +88,7 @@ const DoctorDashboard = () => {
                   <Calendar className="Icons"></Calendar>
                   {20}
                 </Typography>
-                <Typography className="PatientAge" sx={{ marginBottom: "2%" }}>
+                <Typography className="PatientAge" sx={{ marginBottom: "5%" }}>
                   <Hospitalicon className="Icons"></Hospitalicon>
                   {item.problem_name}
                 </Typography>
@@ -90,7 +96,10 @@ const DoctorDashboard = () => {
                   <Callicon className="Icons"></Callicon>
                   {item.phone}
                 </Typography>
-                <Typography className="Patient_detail">
+                <Typography
+                  className="Patient_detail"
+                  style={{ marginBottom: "" }}
+                >
                   <Emailicon className="Icons"></Emailicon>
                   {item.email}
                 </Typography>

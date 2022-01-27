@@ -1,9 +1,10 @@
 .Bottom_header {
   display: flex !important;
   justify-content: space-between !important;
-  margin: 0 10% 0 0 !important;
+  /* margin: 0 5% 0 0 !important; */
   background: #f6fafb !important;
-  box-shadow: 0px 0px 28px rgba(200, 207, 208, 80.28) !important;
+  padding-bottom: -5px;
+  box-shadow: 0px 4px 28px rgba(200, 207, 208, 0.28);
   /* padding-bottom: 20px; */
   width: 100%;
   z-index: 12 !important;
@@ -12,10 +13,13 @@
   background: linear-gradient(0deg, #e7faff, #e7faff), #f6fafb !important;
   border-radius: 20px !important;
   margin-top: 10px !important;
-  margin-left: 20px !important;
+  margin-top: 10px !important;
+  margin-left: 15px !important;
   padding-bottom: 2% !important;
+  padding-left: 2% !important;
+  padding-right: 0% !important;
 }
-div.nonActiveClas:hover{
+div.nonActiveClas:hover {
   background: linear-gradient(0deg, #F6FAFB, #F6FAFB), #F6FAFB !important;
   box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
 }
@@ -23,7 +27,7 @@ div.nonActiveClas:hover{
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 36px !important;
+  font-size: 28px !important;
   line-height: 44px !important;
   margin: 1% 0 1% 2% !important;
   /* identical to box height */
@@ -36,9 +40,9 @@ div.nonActiveClas:hover{
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 20px !important;
+  font-size: 16px !important;
   border-radius: 0% !important;
-  margin: 1% 4% 1% 0% !important;
+  margin: 1% 2% 1% 0% !important;
   box-shadow: 0px 15px 45px rgba(69, 66, 56, 0.29) !important;
   padding: 5px 40px 5px 40px !important;
   display: flex !important;
@@ -58,7 +62,8 @@ div.nonActiveClas:hover{
   /* margin-right: 20px !important; */
 }
 .Eclipse {
-  width: 60%;
+  border-radius: 50%;
+  width: 50%;
   margin-left: 20% !important;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -66,24 +71,31 @@ div.nonActiveClas:hover{
   justify-content: center !important;
   align-items: center !important;
   align-content: center !important;
+  height: 170px;
+  width: 170px;
+  object-fit: contain;
 }
 .patient_maindiv {
   /* margin: 1% 0 3% 5% !important; */
-  margin-top: 4.5% !important;
+  margin-top: 7% !important;
   height: 100% !important;
   margin-bottom: 20px !important;
   background-color: #f6fafb !important;
   display: flex !important;
-  justify-content: center !important;
+  align-items: center !important;
+  justify-content: left !important;
   cursor: pointer !important;
 }
-
+div .nonActiveClas:hover {
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
+  box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
+}
 .PatientName {
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 20px !important;
-  line-height: 24px !important;
+  font-size: 16px !important;
+  /* line-height: 24px !important; */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -101,7 +113,7 @@ div.nonActiveClas:hover{
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  margin: 5px 0 20px 0 !important;
+  margin: 5px 0 10px 0 !important;
 
   color: #fba622 !important ;
 }
@@ -109,7 +121,19 @@ div.nonActiveClas:hover{
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 18px !important;
+  font-size: 14px !important;
+  /* margin-left: 20px !important; */
+  /* Black - Screnr */
+  /* display: flex !important; */
+  text-align: left !important;
+
+  color: #454238 !important;
+}
+.Patient_Age {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
   margin-left: 20px !important;
   /* Black - Screnr */
   /* display: flex !important; */
@@ -121,11 +145,12 @@ div.nonActiveClas:hover{
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  font-size: 18px !important;
-  margin-left: 20px !important;
+  font-size: 14px !important;
+  text-overflow: ellipsis !important;
+  /* margin-left: 20px !important; */
   /* Black - Screnr */
   /* display: flex !important; */
-  text-align: left !important;
+  /* text-align: left !important; */
 
   color: #454238 !important;
 }

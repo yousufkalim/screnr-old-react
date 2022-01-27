@@ -106,7 +106,7 @@ const PerformAssessment = () => {
       ) : (
         <>
           <AppBar heading={assessment.exercise}></AppBar>
-          <Grid className="Bottom_header">
+          <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
               sx={{ fontSize: "20px !important" }}
@@ -122,10 +122,10 @@ const PerformAssessment = () => {
               justifyContent: "center",
               alignItems: "center",
               width: "100%",
+              height: "100vh !important",
+              marginTop: "12%",
               flexWrap: "wrap",
-              "& > :not(style)": {
-                mt: 4,
-              },
+              "& > :not(style)": {},
 
               borderRadius: "20px",
             }}
@@ -152,7 +152,7 @@ const PerformAssessment = () => {
               ))}
             </Paper>
 
-            <div style={{ display: "flex", margin: "-10% 0 0 13%" }}>
+            <div style={{ display: "flex" }}>
               <Checkbox
                 defaultChecked
                 variant="body1"

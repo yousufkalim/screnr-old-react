@@ -66,7 +66,7 @@ const PatientProfile = (props) => {
             </Typography>
             <Button
               variant="contained"
-              sx={{ backgroundColor: " #25C8B4" }}
+              sx={{ backgroundColor: " #454238" }}
               className="Patient_button"
               onClick={() => navToPrescribePatient(patient._id)}
             >
@@ -76,24 +76,24 @@ const PatientProfile = (props) => {
           <Grid
             container
             spacing={1}
-            sx={{ background: "#F6FAFB", mt: 8, mb: 6 }}
+            sx={{ background: "#F6FAFB", mt: 4, mb: 6 }}
           >
             <Grid
               item
               xs={12}
               sm={12}
-              md={7}
+              md={6}
               className="profilecontainer"
               sx={{
                 display: "flex",
                 justifyContent: "center",
-
+                position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "80%",
-                  // height: "100%",
-                  mt: 8,
-                  ml: 2,
+                  width: "45%",
+                  height: "680px !important",
+                  mt: 10,
+                  ml: 10,
                   mr: 2,
                   mb: 2,
                 },
@@ -106,9 +106,9 @@ const PatientProfile = (props) => {
               item
               sx={12}
               sm={12}
-              md={5}
+              md={6}
               className="Exercise_detaill"
-              xs={{ width: "100%" }}
+              xs={{ ml: 3 }}
             >
               <Typography className="Profileinfo">
                 Virtual Physical Therapy

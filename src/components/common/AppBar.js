@@ -18,7 +18,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
-
+import LogoFinal from "../../assets/images/logofinal.svg";
 import { getUser } from "../../utils/Auth"
 
 const ResponsiveAppBar = (props) => {
@@ -67,8 +67,13 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div" onClick={navToDashboardScreen}>
-          <img className="Headerlogo" src={Screnr} alt="" />
+        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" }} onClick={navToDashboardScreen}>
+          <img
+            className="Headerlogo"
+            src={Screnr}
+            alt=""
+            style={{ width: "55%", marginBottom: "-5px" }}
+          />
           <div className="logo"></div>
           <p className="healthlogo">Health</p>
         </Grid>
@@ -85,7 +90,11 @@ const ResponsiveAppBar = (props) => {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <img src={Notificationicon} alt="" />
+              <img
+                src={Notificationicon}
+                alt=""
+                style={{ width: "80%", marginLeft: "30%" }}
+              />
             </IconButton>
           </Tooltip>
           <Tooltip title="Open settings">
@@ -97,7 +106,7 @@ const ResponsiveAppBar = (props) => {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <img src={Settingicon} alt="" />
+              <img src={Settingicon} alt="" style={{ width: "80%" }} />
             </IconButton>
           </Tooltip>
         </Box>

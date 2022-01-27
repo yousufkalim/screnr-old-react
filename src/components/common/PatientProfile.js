@@ -2,12 +2,14 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Profileimg from "../../assets/images/Profileimg.svg";
+import Eclipse3 from "../../assets/images/Eclipse3.svg";
+import Eclipse4 from "../../assets/images/Eclipse4.svg";
 import EditButton from "../../assets/images/EditButton.svg";
-
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
 
 import { useNavigate, useParams } from "react-router-dom";
+
+import assetsURL from "../../utils/Assets";
 
 const PatientProfile = (props) => {
   const navigate = useNavigate();
@@ -24,8 +26,7 @@ const PatientProfile = (props) => {
         sx={{
           borderRadius: "20px",
           background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
-          width: "100%",
-          paddingBottom: "10%",
+          position: "fixed",
         }}
       >
         {props.noEdit ? (
@@ -39,7 +40,14 @@ const PatientProfile = (props) => {
           </Grid>
         )}
         <Grid className="profileimg">
-          <img src={Profileimg}></img>
+          <img
+            src={
+              props.avatar
+              ? assetsURL(props.avatar)
+              : props.gender == "male" ? Eclipse3 : Eclipse4
+            }
+            className="imageContainer"
+          />
         </Grid>
         <Typography className="PatientName">{`${props.first_name} ${props.last_name}`}</Typography>
         <Typography className="PatientInfo">

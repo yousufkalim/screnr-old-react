@@ -147,7 +147,7 @@ const ReviewPatientResponse = () => {
                 : "Mark as Checked"}
             </Button>
           </Grid>
-          <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
+          <Grid container spacing={1} sx={{ background: "#F6FAFB", mt: 3 }}>
             <Grid
               item
               xs={12}
@@ -157,11 +157,15 @@ const ReviewPatientResponse = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                width: "100%",
+                width: "80%",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  mt: 20,
+                  width: "45%",
+                  height: "680px",
+                  mt: 10,
                   ml: 10,
+
+                  mb: 2,
                 },
                 borderRadius: "20px",
               }}
@@ -181,9 +185,11 @@ const ReviewPatientResponse = () => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  mt: 20,
+                  mt: 10,
+                  mr: 4,
                 },
                 borderRadius: "20px",
+                mb: 10,
               }}
             >
               <Paper
@@ -296,30 +302,28 @@ const ReviewPatientResponse = () => {
                   </div>
                 </div>
                 <Grid container spacing={1} className="Profilediv1">
-                  <Grid xs={12} sm={12} md={4}>
+                  <Grid xs={12} sm={12} md={6}>
                     <Button
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
-                        padding: "10px 11px 10px 12px !important",
-                        fontSize: "16px !important",
-                        overflowX: "hidden",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis"
+                        padding: "10px 30px 10px 30px !important",
+                        marginRight: "20px",
+                        fontSize: "14px !important",
                       }}
                       className="Patient_button"
                     >
                       Send Response to Patient
                     </Button>
                   </Grid>
-                  <Grid xs={12} sm={12} md={8}>
+                  <Grid xs={12} sm={12} md={6}>
                     <Button
                       disabled={assessment.status == "reviewed" ? true : false}
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
                         padding: "10px 11px 10px 12px !important",
-                        fontSize: "16px !important",
+                        fontSize: "14px !important",
 
                         marginRight: "10% !important",
                       }}
