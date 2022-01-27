@@ -1,5 +1,6 @@
 .Patient_login_maindiv {
   overflow: hidden !important;
+  background-color: #f6fafb !important;
 }
 .Login_img {
   width: 70% !important;
@@ -38,9 +39,35 @@
 .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
   width: 90% !important;
 }
-
+.MuiOutlinedInput-root {
+  border: 1px solid !important;
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #454238 !important;
+  border-width: 0.5px !important;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #454238 !important;
+  border-width: 0.5px !important;
+}
+.css-1ypf68p-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #454238 !important;
+}
+.css-18akkrb-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #454238 !important;
+}
 .login_button {
-  padding: 15px 25px 15px 25px !important;
+  padding: 10px 30px 10px 30px !important;
+  font-size: 20px !important;
+
+  text-decoration: none !important;
+}
+.back_button {
+  padding: 10px 30px 10px 30px !important;
+  font-size: 20px !important;
+
   text-decoration: none !important;
 }
 .helpertext {
@@ -65,8 +92,10 @@
   font-size: 20px !important;
   color: #136773 !important;
 }
+.a:-webkit-any-link {
+}
 .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-  color: #919b9b !important;
+  /* color: #919b9b !important; */
 }
 @media only screen and (max-width: 2500px) {
   .mobileviewpic {
@@ -128,5 +157,10 @@
   }
   .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
     width: 100% !important;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .back_button {
+    right: 20px !important;
   }
 }

@@ -1,11 +1,12 @@
 .Bottom_header {
   display: flex !important;
   justify-content: space-between !important;
-  /* margin: 1% 3% 0 0 !important; */
+  margin: 0 10% 0 0 !important;
   background: #f6fafb !important;
-  box-shadow: 0px 4px 28px rgba(200, 207, 208, 0.28) !important;
+  box-shadow: 0px 0px 28px rgba(200, 207, 208, 80.28) !important;
   /* padding-bottom: 20px; */
   width: 100%;
+  z-index: 12 !important;
 }
 .nonActiveClas {
   background: linear-gradient(0deg, #e7faff, #e7faff), #f6fafb !important;
@@ -31,15 +32,16 @@
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 15px !important;
+  font-size: 20px !important;
   border-radius: 0% !important;
-  margin: 1% 1% 1% 0% !important;
+  margin: 1% 4% 1% 0% !important;
   box-shadow: 0px 15px 45px rgba(69, 66, 56, 0.29) !important;
-  padding: 15px 30px 15px 30px !important;
+  padding: 5px 40px 5px 40px !important;
   display: flex !important;
   align-items: center !important;
   text-align: center !important;
   color: #f6fafb !important;
+  text-transform: capitalize !important;
 }
 .Patient_details {
   background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
@@ -63,12 +65,15 @@
 }
 .patient_maindiv {
   /* margin: 1% 0 3% 5% !important; */
-  margin-top: 20px !important;
+  margin-top: 4.5% !important;
+  height: 100% !important;
   margin-bottom: 20px !important;
-
+  background-color: #f6fafb !important;
   display: flex !important;
   justify-content: center !important;
+  cursor: pointer !important;
 }
+
 .PatientName {
   font-family: Inter !important;
   font-style: normal !important;
@@ -99,7 +104,19 @@
 .PatientAge {
   font-family: Inter !important;
   font-style: normal !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  margin-left: 20px !important;
+  /* Black - Screnr */
+  /* display: flex !important; */
+  text-align: left !important;
+
+  color: #454238 !important;
+}
+.Patient_detail {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
   font-size: 18px !important;
   margin-left: 20px !important;
   /* Black - Screnr */
@@ -110,4 +127,9 @@
 }
 .Icons {
   margin-right: 10px !important;
+}
+@media only screen and (max-width: 600px) {
+  .Patient_heading {
+    font-size: 20px !important;
+  }
 }
