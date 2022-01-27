@@ -46,6 +46,7 @@ export default function MobileBottomBar(props){
             left: "0",
             bottom: "0",
             height: "60px",
+            zIndex: "20"
         }}>
           <BottomNavigationAction
             onClick={navToAllTherapists}
