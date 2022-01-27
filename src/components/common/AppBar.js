@@ -13,9 +13,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
-
+import Screnr from "../../assets/images/screnr.svg";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
+
+import { getUser } from "../../utils/Auth"
 
 const ResponsiveAppBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,12 +31,30 @@ const ResponsiveAppBar = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleSubmitLogout = () => {
+  const handleLogoutSubmit = () => {
     handleLogout(navigate);
+  }
+  const navToProfileScreen = () => {
+    const user = getUser();
+
+    if(user.role == "therapist"){
+      navigate("/doctor/dashboard/profile");
+    } else {
+      navigate("/patient/dashboard/profile");
+    }
+  }
+  const navToDashboardScreen = () => {
+    const user = getUser();
+
+    if(user.role == "therapist"){
+      navigate("/doctor/dashboard");
+    } else {
+      navigate("/patient/dashboard");
+    }
   }
   return (
     <AppBar
-      position="relative"
+      position="sticky"
       sx={{
         backgroundColor: " #136773",
         zIndex: (theme) => theme.zIndex.drawer + 1,
@@ -45,21 +67,36 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div">
-          <img className="Headerlogo" src={Headerlogo} alt="" />
-          <Typography className="HeaderHeading">{props.heading}</Typography>
+        <Grid className="Headerlogo_div" onClick={navToDashboardScreen}>
+          <img className="Headerlogo" src={Screnr} alt="" />
+          <div className="logo"></div>
+          <p className="healthlogo">Health</p>
         </Grid>
+        <div className="header">
+          <Typography className="HeaderHeading">{props.heading}</Typography>
+        </div>
         <Box className="Headerlogodiv">
-          <Tooltip title="Open settings">
+          <Tooltip title="Open notifications">
             <IconButton
-              sx={{ p: 0, ml: 2 }}
-              onClick={handleClick}
+              // sx={{ p: 0, ml: 2 }}
+
               size="small"
               aria-controls={open ? "account-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
               <img src={Notificationicon} alt="" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Open settings">
+            <IconButton
+              // sx={{ p: 0, ml: 2 }}
+              onClick={handleClick}
+              size="small"
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            >
               <img src={Settingicon} alt="" />
             </IconButton>
           </Tooltip>
@@ -72,9 +109,15 @@ const ResponsiveAppBar = (props) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem onClick={handleSubmitLogout}>
+          <MenuItem onClick={navToProfileScreen}>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <PersonIcon fontSize="small" />
+            </ListItemIcon>
+            Profile
+          </MenuItem>
+          <MenuItem onClick={handleLogoutSubmit}>
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
             </ListItemIcon>
             Logout
           </MenuItem>

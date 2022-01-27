@@ -1,24 +1,44 @@
 .Headerlogo_div {
   display: flex !important;
+  justify-content: space-between !important;
   align-items: center !important;
 }
 .Headerlogo {
-  width: 50% !important;
-  margin-top: 25px;
-  /* margin-top: 20px !important; */
-  /* padding-top: 20px; */
-
-  /* padding-right: 50px; */
+  display: flex !important;
+  margin-top: 2%;
+  align-items: center !important;
 }
+.logo {
+  width: 5px;
+  height: 55px;
+  background: white;
+  margin-right: 12px;
+  margin-left: -15px;
+}
+.healthlogo {
+  font-family: "Montserrat !important";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px !important;
+  line-height: 29px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin-bottom: 6px !important;
 
+  /* Background - Screnr */
+
+  color: #f6fafb;
+}
 .HeaderHeading {
   font-family: Inter !important;
   font-style: normal !important;
-  font-weight: 400 !important;
-  font-size: 32px !important;
-  line-height: 39px !important;
+  font-weight: 600 !important;
+  font-size: 25px !important;
   color: #f6fafb !important;
-  /* margin-left: 15% !important; */
+}
+.header {
+  position: relative;
+  left: -106px;
 }
 @media only screen and (max-width: 768px) {
   .HeaderHeading {

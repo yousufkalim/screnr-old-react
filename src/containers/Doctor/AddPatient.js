@@ -28,7 +28,6 @@ const useFormFieldStyles = makeStyles((theme) => ({
 }));
 
 const AddPatient = () => {
-
   const [loading, setLoading] = useState(false);
   let [gender, setGender] = useState("male");
   let [dateOfBirth, setDateOfBirth] = useState(null);
@@ -40,7 +39,7 @@ const AddPatient = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(loading){
+    if (loading) {
       return;
     }
 
@@ -64,8 +63,7 @@ const AddPatient = () => {
 
     let response;
 
-    try{
-
+    try {
       const body = {
         first_name: data.get("First Name"),
         middle_name: data.get("Middle Name"),
@@ -76,7 +74,7 @@ const AddPatient = () => {
         confirmPassword: data.get("Confirm Password"),
         gender: gender,
         dob: dateOfBirth,
-        national_id: "1234", // TODO: FAKE
+        national_id: "12345678", // TODO: FAKE
         patient_id: data.get("Patient ID"),
         address: data.get("Address"),
         problem_name: data.get("Problem Name"),
@@ -86,20 +84,16 @@ const AddPatient = () => {
       setLoading(true);
 
       response = await Api("post", "/patients", body);
-
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
 
     setLoading(false);
 
-    console.log(`THIS IS THE loading-END: ${loading}`);
-
     if(response){
       toast.success("Patient created successfully!");
       navToDashboard();
     }
-
   };
 
   const navToDashboard = async () => {
@@ -108,9 +102,9 @@ const AddPatient = () => {
 
   return (
     <>
-      <AppBar heading={"Add to list"}></AppBar>
+      <AppBar heading={"Add Patient"}></AppBar>
       <form noValidate onSubmit={handleSubmit}>
-        <Grid className="Bottom_header">
+        <Grid className="Bottom_header" sx={{ position: "fixed" }}>
           <Typography className="Patient_heading"></Typography>
           <Button
             variant="contained"
@@ -128,14 +122,19 @@ const AddPatient = () => {
             justifyContent: "center",
             flexWrap: "wrap",
             "& > :not(style)": {
-              mt: 2,
+              mt: 15,
+              mb: 6,
               width: "80%",
               height: "100%",
             },
             borderRadius: "20px",
+            background: "#F6FAFB",
           }}
         >
-          <Paper elevation={3} sx={{ borderRadius: "20px" }}>
+          <Paper
+            elevation={3}
+            sx={{ borderRadius: "20px", background: "#F6FAFB" }}
+          >
             <Grid className="uploadimg">
               <label>
                 <input
@@ -156,24 +155,19 @@ const AddPatient = () => {
                 //   margin: 10,
               }}
             >
-              <div className="flex-form" style={{ marginBottom: "3%" }}>
+              <div
+                className="flex-form"
+                style={{ marginBottom: "3%", background: "#F6FAFB" }}
+              >
                 <input type="text" placeholder="Patient ID" disabled />
-                <input
-                  type="number"
-                  name="Patient ID"
-                  placeholder="12345"
-                />
+                <input type="number" name="Patient ID" placeholder="12345" />
               </div>
 
               <div className="flexform">
                 <input type="text" placeholder="First Name" disabled />
-                <input
-                  type="input"
-                  name="First Name"
-                  placeholder="Type here"
-                />
+                <input type="input" name="First Name" placeholder="Type here" />
               </div>
-              <div className="flexforminput">
+              <div className="profiles-div_">
                 <input type="text" placeholder="Middle Name" disabled />
                 <input
                   type="input"
@@ -183,15 +177,17 @@ const AddPatient = () => {
               </div>
               <div className="flex_forminput">
                 <input type="text" placeholder="Last Name" disabled />
-                <input
-                  type="input"
-                  name="Last Name"
-                  placeholder="Type here"
-                />
+                <input type="input" name="Last Name" placeholder="Type here" />
               </div>
               <div className="selectform">
                 <input type="text" placeholder="Gender" disabled />
-                <select name="gender" id="gender" type="input" value={gender} onChange={ (event) => setGender(event.target.value) }>
+                <select
+                  name="gender"
+                  id="gender"
+                  type="input"
+                  value={gender}
+                  onChange={(event) => setGender(event.target.value)}
+                >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="others">Others</option>
@@ -199,11 +195,7 @@ const AddPatient = () => {
               </div>
               <div className="addform">
                 <input type="text" placeholder="Address" disabled />
-                <input
-                  type="input"
-                  name="Address"
-                  placeholder="12345"
-                />
+                <input type="input" name="Address" placeholder="12345" />
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker

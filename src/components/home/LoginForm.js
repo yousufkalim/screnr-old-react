@@ -16,18 +16,21 @@ import IconButton from "@mui/material/IconButton";
 import Api from "../../api/index";
 import { handleLogin } from "../../utils/Auth";
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import * as FormValidations from "../../validations";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [Confirmloginvalues, setConfirmloginValues] = React.useState({
     password: "",
     showPassword: false,
   });
-
+  const navToRegister = () => {
+    navigate("/register");
+  };
   const handleClickShowloginPassword = () => {
     setConfirmloginValues({
       ...Confirmloginvalues,
@@ -46,10 +49,9 @@ const LoginForm = () => {
 
   // Calling login api with login data
   const handleLoginSubmit = async (event) => {
-
     event.preventDefault();
 
-    if(loading){
+    if (loading) {
       return;
     }
 
@@ -57,14 +59,13 @@ const LoginForm = () => {
 
     const isValidated = FormValidations.login(data);
 
-    if(!isValidated){
-      return
-    };
+    if (!isValidated) {
+      return;
+    }
 
     let response;
 
-    try{
-
+    try {
       setLoading(true);
 
       response = await Api("post", "/auth/login", {
@@ -72,13 +73,10 @@ const LoginForm = () => {
         password: data.get("password"),
       });
 
-      if(response.data){
+      if (response.data) {
         toast.success("Login successful!");
 
-        handleLogin(
-          response.data.token,
-          response.data.data
-        );
+        handleLogin(response.data.token, response.data.data);
 
         if (response.data.data.role === "patient") {
           window.location = "/patient/dashboard";
@@ -89,13 +87,11 @@ const LoginForm = () => {
           return;
         }
       }
-
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
 
     setLoading(false);
-
   };
 
   return (
@@ -104,7 +100,6 @@ const LoginForm = () => {
         <img className="Login_img" src={logo} alt="" />
         <img className="Login_img1" src={LoginVector} alt="" />
       </Grid>
-
       <Grid item xs={false} sm={4} md={6}>
         <Box className="Login_Box">
           <Box
@@ -172,11 +167,12 @@ const LoginForm = () => {
               sx={{
                 mt: 3,
                 mb: 2,
-                background: "#454238",
-                boxShadow: "0px 15px 45px rgba(49, 36, 36, 0.29)",
+                backgroundColor: "#454238 !important",
+                boxShadow: "0px 0px 20px rgba(49, 36, 36, 0.29)",
+                textTransform: "Capitalize",
               }}
             >
-              Sign In
+              Login
             </Button>
             <Grid container spacing={1}>
               <Grid md={12}>
@@ -185,14 +181,14 @@ const LoginForm = () => {
                 </Typography>
               </Grid>
               <Grid sm={12} xs={12} md={12}>
-                <Link to="/register">
-                  <Button
-                    variant="text"
-                    className="swtich_FormBtn"
-                  >
-                    Register Now
-                  </Button>
-                </Link>
+                <Button
+                  variant="text"
+                  className="swtich_FormBtn"
+                  sx={{ textTransform: "Capitalize" }}
+                  onClick={navToRegister}
+                >
+                  Register Now
+                </Button>
               </Grid>
               <img className="mobileviewpic" src={LoginVector} alt="" />
             </Grid>
