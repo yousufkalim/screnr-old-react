@@ -5,35 +5,42 @@
 }
 .Headerlogo {
   display: flex !important;
+  height: 50%;
   margin-top: 2%;
   align-items: center !important;
 }
 .logo {
-  width: 5px;
-  height: 55px;
+  width: 2px;
+  height: 40px;
   background: white;
-  margin-right: 12px;
-  margin-left: -15px;
+
+  margin-left: -7%;
+}
+.css-18078n-MuiPaper-root-MuiAppBar-root {
+  box-shadow: none !important;
 }
 .healthlogo {
-  font-family: "Montserrat !important";
+  font-family: Montserrat !important;
   font-style: normal;
   font-weight: normal;
-  font-size: 30px !important;
+  font-size: 24px;
   line-height: 29px;
-  letter-spacing: 1px;
+  margin-bottom: 2px;
+  letter-spacing: -0.045em;
+  margin-right: 17%;
   text-transform: capitalize;
-  margin-bottom: 6px !important;
 
   /* Background - Screnr */
 
   color: #f6fafb;
+
+  text-shadow: 0px 8px 27px rgba(7, 110, 176, 0.3);
 }
 .HeaderHeading {
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 600 !important;
-  font-size: 25px !important;
+  font-size: 22px !important;
   color: #f6fafb !important;
 }
 .header {

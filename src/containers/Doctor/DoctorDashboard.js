@@ -69,7 +69,7 @@ const DoctorDashboard = () => {
               <Grid
                 xs={10}
                 sm={10}
-                md={2}
+                md={2.5}
                 className="nonActiveClas"
                 onClick={() => navToPatientProfile(`${item._id}`)}
               >
@@ -88,7 +88,7 @@ const DoctorDashboard = () => {
                   <Calendar className="Icons"></Calendar>
                   {20}
                 </Typography>
-                <Typography className="PatientAge" sx={{ marginBottom: "2%" }}>
+                <Typography className="PatientAge" sx={{ marginBottom: "5%" }}>
                   <Hospitalicon className="Icons"></Hospitalicon>
                   {item.problem_name}
                 </Typography>
@@ -96,7 +96,10 @@ const DoctorDashboard = () => {
                   <Callicon className="Icons"></Callicon>
                   {item.phone}
                 </Typography>
-                <Typography className="Patient_detail">
+                <Typography
+                  className="Patient_detail"
+                  style={{ marginBottom: "" }}
+                >
                   <Emailicon className="Icons"></Emailicon>
                   {item.email}
                 </Typography>

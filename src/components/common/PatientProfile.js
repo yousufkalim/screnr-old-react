@@ -26,8 +26,7 @@ const PatientProfile = (props) => {
         sx={{
           borderRadius: "20px",
           background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
-          width: "100%",
-          paddingBottom: "10%",
+          position: "fixed",
         }}
       >
         {props.noEdit ? (

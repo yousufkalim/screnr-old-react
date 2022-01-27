@@ -1,9 +1,9 @@
 .profileimg {
   display: flex !important;
   justify-content: center !important;
-  margin-top: 20px;
+  margin-top: 8px;
   margin-right: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .Profile-Icons {
   margin-right: 10px !important;
@@ -24,7 +24,7 @@
   justify-content: flex-end;
 }
 .editbutton {
-  width: 10%;
+  width: 7%;
 }
 .profilediv {
   display: flex !important;
@@ -940,7 +940,9 @@
   width: 40%;
   font-size: 13px;
 }
-
+.css-78dcb3-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #136773 !important;
+}
 #inputplaceholder1::placeholder {
   font-family: Inter !;
   font-style: normal !;

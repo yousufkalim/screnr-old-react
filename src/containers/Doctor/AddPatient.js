@@ -13,27 +13,33 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 import TextField from "@mui/material/TextField";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-
+// import { makeStyles } from "@material-ui/core/styles";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 import * as FormValidations from "../../validations";
 
-const useFormFieldStyles = makeStyles((theme) => ({
-  input: {
-    "& .MuiInputBase-root:focused": {
-      borderColor: "green",
-    },
+// const useFormFieldStyles = makeStyles((theme) => ({
+//   input: {
+//     "& .MuiInputBase-root:focused": {
+//       borderColor: "green",
+//     },
+//   },
+// }));
+const useStyles = makeStyles({
+  button: {
+    width: "20% !important",
   },
-}));
+});
 
 const AddPatient = () => {
+  const classes = useStyles();
   const [loading, setLoading] = useState(false);
   let [gender, setGender] = useState("male");
   let [dateOfBirth, setDateOfBirth] = useState(null);
   let [profileImage, setProfileImage] = useState(null);
 
-  const classes = useFormFieldStyles();
+  // const classes = useFormFieldStyles();
   const navigate = useNavigate();
 
   const handleImageSelect = (event) => {
@@ -195,7 +201,7 @@ const AddPatient = () => {
                   placeholder="Type here"
                 />
               </div>
-              <div className="flex_forminput">
+              <div className="flex_forminput" style={{ marginBottom: "2%" }}>
                 <input type="text" placeholder="Last Name" disabled />
                 <input type="input" name="Last Name" placeholder="Type here" />
               </div>
@@ -220,7 +226,7 @@ const AddPatient = () => {
               <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker
                   fulWidth
-                  className="date-picker"
+                  className={classes.button}
                   label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}
