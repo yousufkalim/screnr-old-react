@@ -30,7 +30,18 @@ const PatientProfile = (props) => {
         }}
       >
         {props.noEdit ? (
-          <></>
+          <>
+            <Grid
+              className="eidtprofile"
+            >
+              <div style={{
+                display: "inline-block",
+                margin: "0px",
+                textAlign: "center"
+              }}>
+              </div>
+            </Grid>
+          </>
         ) : (
           <Grid
             className="eidtprofile"
@@ -44,7 +55,8 @@ const PatientProfile = (props) => {
             src={
               props.avatar
               ? assetsURL(props.avatar)
-              : props.gender == "male" ? Eclipse3 : Eclipse4
+              // : props.gender == "male" ? Eclipse3 : Eclipse4
+              : Eclipse3
             }
             className="imageContainer"
           />
