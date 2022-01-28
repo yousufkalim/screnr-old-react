@@ -188,7 +188,8 @@ const PatientProfile = () => {
                           ? URL.createObjectURL(profileImage)
                           : profile.avatar
                           ? assetsURL(profile.avatar)
-                          : profile.gender == "male" ? Eclipse3 : Eclipse4
+                          // : profile.gender == "male" ? Eclipse3 : Eclipse4
+                          : Eclipse3
                         }
                         className="imageContainer"
                       />

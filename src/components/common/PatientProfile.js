@@ -55,7 +55,8 @@ const PatientProfile = (props) => {
             src={
               props.avatar
               ? assetsURL(props.avatar)
-              : props.gender == "male" ? Eclipse3 : Eclipse4
+              // : props.gender == "male" ? Eclipse3 : Eclipse4
+              : Eclipse3
             }
             className="imageContainer"
           />
