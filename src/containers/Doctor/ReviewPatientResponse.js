@@ -307,7 +307,7 @@ const ReviewPatientResponse = () => {
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
-                        padding: "10px 30px 10px 30px !important",
+                        // padding: "10px 30px 10px 30px !important",
                         marginRight: "20px",
                         fontSize: "14px !important",
                       }}

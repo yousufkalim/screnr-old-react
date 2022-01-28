@@ -22,7 +22,7 @@ const UserProfile = () => {
           variant="contained"
           sx={{
             backgroundColor: " #25C8B4",
-            padding: "10px 60px 10px 60px !Important",
+            // padding: "10px 60px 10px 60px !Important",
           }}
           className="Patient_button"
         >

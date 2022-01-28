@@ -52,7 +52,7 @@ const DoctorDashboard = () => {
         <Typography className="Patient_heading">Patients</Typography>
         <Button
           variant="contained"
-          sx={{ backgroundColor: " #25C8B4" }}
+          sx={{ backgroundColor: " #25C8B4", marginTop: "20px !important", marginBottom: "20px !important" }}
           className="Patient_button"
           onClick={navToAddPatient}
         >
