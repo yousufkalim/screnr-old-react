@@ -30,7 +30,18 @@ const PatientProfile = (props) => {
         }}
       >
         {props.noEdit ? (
-          <></>
+          <>
+            <Grid
+              className="eidtprofile"
+            >
+              <div style={{
+                display: "inline-block",
+                margin: "0px",
+                textAlign: "center"
+              }}>
+              </div>
+            </Grid>
+          </>
         ) : (
           <Grid
             className="eidtprofile"

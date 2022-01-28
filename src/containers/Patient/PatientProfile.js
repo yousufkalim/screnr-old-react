@@ -135,7 +135,7 @@ const PatientProfile = () => {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#454238", fontSize: "16px !important" }}
+                  sx={{ backgroundColor: "#454238", fontSize: "14px !important" }}
                   className="Patient_button"
                   type="submit"
                 >

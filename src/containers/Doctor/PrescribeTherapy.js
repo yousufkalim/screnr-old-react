@@ -164,12 +164,16 @@ const PrescribeTherapy = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-
+                position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  mt: 8,
-                  width: "45%",
-                  height: "640px",
+                  paddingTop:"1%",
+                  width: "42%",
+                  height: "630px !important",
+                  mt: 6,
+                  ml: 0,
+                  mr: 3,
+                  mb: 2,
                 },
                 borderRadius: "20px",
               }}

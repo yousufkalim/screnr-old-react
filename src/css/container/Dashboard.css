@@ -16,12 +16,17 @@
   margin-top: 10px !important;
   margin-left: 15px !important;
   padding-bottom: 2% !important;
-  padding-left: 2% !important;
   padding-right: 0% !important;
 }
 div.nonActiveClas:hover {
   background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
   box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
+}
+.css-8rfxpa:hover {
+  background-color: #136773 !important;
+}
+.css-uuj2dg-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #136773 !important;
 }
 .Patient_heading {
   font-family: Inter !important;
@@ -29,7 +34,7 @@ div.nonActiveClas:hover {
   font-weight: 600 !important;
   font-size: 28px !important;
   line-height: 44px !important;
-  margin: 1% 0 1% 2% !important;
+  padding: 1% 0 1% 3% !important;
   /* identical to box height */
 
   color: #136773;
@@ -51,6 +56,20 @@ div.nonActiveClas:hover {
   color: #f6fafb !important;
   text-transform: capitalize !important;
 }
+.Patient_review_button {
+  font-family: Inter !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  border-radius: 0% !important;
+  box-shadow: 0px 15px 45px rgba(69, 66, 56, 0.29) !important;
+  padding: 5px 20px 5px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  text-align: center !important;
+  color: #f6fafb !important;
+  text-transform: capitalize !important;
+}
 .Patient_details {
   background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
   box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
@@ -64,9 +83,7 @@ div.nonActiveClas:hover {
 .Eclipse {
   border-radius: 50%;
   width: 50%;
-  margin-left: 20% !important;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 2% auto !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -76,19 +93,14 @@ div.nonActiveClas:hover {
   object-fit: contain;
 }
 .patient_maindiv {
-  /* margin: 1% 0 3% 5% !important; */
   margin-top: 7% !important;
   height: 100% !important;
   margin-bottom: 20px !important;
+  justify-content: space-around !important;
   background-color: #f6fafb !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: left !important;
   cursor: pointer !important;
-}
-div .nonActiveClas:hover {
-  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
-  box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
 }
 .PatientName {
   font-family: Inter !important;
@@ -122,9 +134,9 @@ div .nonActiveClas:hover {
   font-style: normal !important;
   font-weight: 600 !important;
   font-size: 14px !important;
-  /* margin-left: 20px !important; */
+  margin-left: 8% !important;
   /* Black - Screnr */
-  /* display: flex !important; */
+  display: flex !important;
   text-align: left !important;
 
   color: #454238 !important;
@@ -147,15 +159,19 @@ div .nonActiveClas:hover {
   font-weight: 400 !important;
   font-size: 14px !important;
   text-overflow: ellipsis !important;
+  margin-left: 8% !important;
   /* margin-left: 20px !important; */
   /* Black - Screnr */
-  /* display: flex !important; */
-  /* text-align: left !important; */
-
+  display: flex !important;
+  text-align: left !important;
   color: #454238 !important;
 }
 .Icons {
   margin-right: 10px !important;
+}
+.css-tuxzvu {
+  width: 100% !important;
+  margin-left: 0px !important;
 }
 @media only screen and (max-width: 600px) {
   .Patient_heading {

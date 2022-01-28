@@ -87,6 +87,9 @@ function addPatient(data){
       // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
     },
     {
+      name: "ID",
+    },
+    {
       name: "Mobile Number",
       validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
     },
