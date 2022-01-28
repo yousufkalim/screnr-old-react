@@ -150,44 +150,47 @@ const PerformAssessment = () => {
                   updateQuestionAnswer={updateQuestionAnswer}
                 />
               ))}
+              <div style={{ display: "flex", marginTop: "30px !important" }}>
+                <Checkbox
+                  defaultChecked
+                  variant="body1"
+                  className="checkbox"
+                  sx={{
+                    color: "#FBA622",
+                    "&.Mui-checked": {
+                      color: "#FBA622",
+                    },
+                  }}
+                />
+                <Typography className="checkboxtitle">
+                  Acknowledging the response
+                </Typography>
+              </div>
+              <div className="AssessmentButton">
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: " #25C8B4",
+                    fontSize: "16px !important",
+                  }}
+                  className="Patient_button"
+                  onClick={() => handleSubmit()}
+                  disabled={
+                    assessment.status == "submitted" ||
+                    assessment.status == "reviewed"
+                      ? true
+                      : false
+                  }
+                >
+                  {assessment.status == "submitted"
+                    ? "Already Submitted"
+                    : assessment.status == "reviewed"
+                    ? "Aleady Reviewed"
+                    : "Send Assessment"}
+                </Button>
+              </div>
             </Paper>
 
-            <div style={{ display: "flex" }}>
-              <Checkbox
-                defaultChecked
-                variant="body1"
-                className="checkbox"
-                sx={{
-                  color: "#FBA622",
-                  "&.Mui-checked": {
-                    color: "#FBA622",
-                  },
-                }}
-              />
-              <Typography className="checkboxtitle">
-                Acknowledging the response
-              </Typography>
-            </div>
-            <div className="AssessmentButton">
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: " #25C8B4", fontSize: "16px !important"}}
-                className="Patient_button"
-                onClick={() => handleSubmit()}
-                disabled={
-                  assessment.status == "submitted" ||
-                  assessment.status == "reviewed"
-                    ? true
-                    : false
-                }
-              >
-                {assessment.status == "submitted"
-                  ? "Already Submitted"
-                  : assessment.status == "reviewed"
-                  ? "Aleady Reviewed"
-                  : "Send Assessment"}
-              </Button>
-            </div>
             <MobileBottomBar />
           </Grid>
         </>
