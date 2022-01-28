@@ -10,14 +10,19 @@
 .flex-form:focus {
   border-color: black;
 }
-
+/* .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  width: 15% !important;
+} */
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  min-width: 80% !important;
+}
 .selectform {
   display: -webkit-box;
   display: flex;
   z-index: 10;
   position: relative;
   width: 95%;
-  margin-top: 3% !important;
+  /* margin-top: 3% !important; */
   background: #f6fafb !important;
 
   margin: 0% 5%;
@@ -131,12 +136,8 @@
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 
-  border: 1px solid #919b9b;
+  border: 2px solid #919b9b;
   border-left: none;
-}
-
-input[type="text"]:focus {
-  border: 1px solid #25c8b4 !important;
 }
 .addform input[type="input"] {
   flex-basis: 90% !important;
@@ -144,7 +145,7 @@ input[type="text"]:focus {
   border-top-right-radius: none;
   border-bottom-right-radius: 10px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .selectform select[type="input"] {
@@ -153,7 +154,7 @@ input[type="text"]:focus {
   border-top-right-radius: 10px;
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .selectform input[type="input"] {
@@ -162,7 +163,7 @@ input[type="text"]:focus {
   border-top-right-radius: 10px;
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flex_forminput input[type="input"] {
@@ -171,7 +172,7 @@ input[type="text"]:focus {
   border-top-right-radius: none;
   border-bottom-right-radius: 10px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flex_forminput input[type="text"] {
@@ -180,7 +181,7 @@ input[type="text"]:focus {
   transition: all 0.2s;
   border-bottom-left-radius: 10px;
   border-top-left-radius: none;
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
@@ -191,7 +192,7 @@ input[type="text"]:focus {
   transition: all 0.2s;
   border-bottom-left-radius: 10px;
   border-top-left-radius: none;
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
@@ -202,7 +203,7 @@ input[type="text"]:focus {
   transition: all 0.2s;
   border-bottom-left-radius: none;
   border-top-left-radius: 10px;
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
@@ -213,11 +214,11 @@ input[type="text"]:focus {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .css-16vm0i2-MuiButtonBase-root-MuiButton-root:hover {
-  background-color: #25c8b4 !important;
+  background-color: #136773 !important;
 }
 .flex-form input[type="password"] {
   flex-basis: 90% !important;
@@ -225,7 +226,7 @@ input[type="text"]:focus {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flex-form input[type="date"] {
@@ -234,7 +235,7 @@ input[type="text"]:focus {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 ::placeholder {
@@ -267,7 +268,7 @@ input[type="text"]:focus {
   transition: all 0.2s;
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
@@ -278,7 +279,7 @@ input[type="text"]:focus {
   border-top-right-radius: 10px;
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flexform input[type="number"] {
@@ -287,7 +288,7 @@ input[type="text"]:focus {
   border-top-right-radius: 10px;
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flexform input[type="password"] {
@@ -296,7 +297,7 @@ input[type="text"]:focus {
   border-top-right-radius: 10px;
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flexform input[type="text"] {
@@ -306,7 +307,7 @@ input[type="text"]:focus {
   border-bottom-left-radius: none;
   border-top-left-radius: 10px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
@@ -317,7 +318,7 @@ input[type="text"]:focus {
   border-top-right-radius: none;
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flexforminput input[type="number"] {
@@ -325,7 +326,7 @@ input[type="text"]:focus {
   width: 90% !important;
   border-top-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 .flexforminput input[type="password"] {
@@ -334,7 +335,7 @@ input[type="text"]:focus {
   border-top-right-radius: none;
   border-bottom-right-radius: 10px;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 
@@ -345,7 +346,7 @@ input[type="text"]:focus {
   border-bottom-left-radius: 10px;
   border-top-left-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
@@ -403,7 +404,7 @@ input[type="text"]:focus {
 
   border-bottom-right-radius: none;
 
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-left: none;
 }
 
@@ -413,7 +414,7 @@ input[type="text"]:focus {
   transition: all 0.2s;
   border-top-left-radius: none;
   border-bottom-left-radius: none;
-  border: 1px solid #919b9b;
+  border: 1.5px solid #919b9b;
   border-right: none;
   width: 20%;
   font-size: 13px;
