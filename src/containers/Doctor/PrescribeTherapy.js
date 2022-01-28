@@ -154,7 +154,7 @@ const PrescribeTherapy = () => {
               Send to patient
             </Button>
           </Grid>
-          <Grid container spacing={1} sx={{ background: "#F6FAFB", mt: 10 }}>
+          <Grid container spacing={1} sx={{ background: "#F6FAFB", mt: 5 }}>
             <Grid
               item
               xs={12}
@@ -167,8 +167,9 @@ const PrescribeTherapy = () => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 5,
-                  width: "80%",
+                  mt: 8,
+                  width: "45%",
+                  height: "640px",
                 },
                 borderRadius: "20px",
               }}
@@ -188,8 +189,10 @@ const PrescribeTherapy = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "95%",
-                  height: "100%",
-                  marginTop: "5%",
+
+                  paddingBottom: "10%",
+                  marginTop: "6.5%",
+                  marginBottom: "6.5%",
                 },
                 borderRadius: "20px",
               }}
@@ -198,6 +201,7 @@ const PrescribeTherapy = () => {
                 elevation={3}
                 sx={{
                   borderRadius: "20px",
+
                   background:
                     "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                 }}
