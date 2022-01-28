@@ -57,6 +57,16 @@
   border: 1px solid #919b9b;
   border-left: none;
 }
+.profiles-div2 select[type="sets"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
 .profiles-div2 input[type="text"] {
   color: #fff;
 
@@ -98,6 +108,16 @@
   border: 1px solid #919b9b;
   border-left: none;
 }
+.profiles-div3 select[type="reps"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
 .profiles-div3 textarea[type="input"] {
   flex-basis: 90% !important;
   width: 60% !important;
@@ -113,10 +133,10 @@
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  margin-top: 4% !important;
+  /* margin-top: 4% !important; */
   width: 95% !important;
 }
-.profiles-div select[type="input"] {
+.profiles-div select[type="exercise"] {
   flex-basis: 90% !important;
   width: 60% !important;
   border-top-right-radius: 10px;
@@ -126,6 +146,7 @@
   border: 1px solid #919b9b;
   border-left: none;
 }
+
 .profiles-div3 input[type="text"] {
   color: #fff;
 
@@ -139,19 +160,38 @@
 }
 .iconsdiv {
   position: relative;
-  left: 90.3%;
-  bottom: 14%;
+  margin-top: 11%;
+  top: 18% !important;
+  padding-top: 0%;
+  margin-bottom: 6%;
+  right: 4.6%;
+  /* bottom: 50% !important; */
   display: inline-block;
   border-left: none;
   border: 1px solid black;
   border-radius: 30px;
   border-bottom-left-radius: 0px;
 }
-
+.iconnewdiv {
+  position: relative;
+  margin-top: 16%;
+  top: 20% !important;
+  padding-top: 0%;
+  margin-bottom: 6%;
+  right: 4.7%;
+  max-width: 6% !important;
+  /* bottom: 50% !important; */
+  display: inline-block;
+  border-left: none;
+  border: 1px solid black;
+  border-radius: 30px;
+  border-bottom-left-radius: 0px;
+}
 .iconsdiv img {
   display: block;
   text-align: center;
   padding: 8%;
+  cursor: pointer !important;
 
   transition: all 0.3s ease;
 }

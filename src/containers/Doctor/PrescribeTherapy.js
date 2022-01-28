@@ -15,7 +15,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PrescribeTherapy = () => {
-
   const navigate = useNavigate();
   const params = useParams();
 
@@ -28,15 +27,13 @@ const PrescribeTherapy = () => {
   const [noOfSets, setNoOfSets] = useState(1);
   const [noOfReps, setNoOfReps] = useState(10);
 
-  const [questions, setQuestions] = useState(
-    [
-      {
-        "title": "",
-        "description": "",
-        "type": "text"
-      }
-    ]
-  );
+  const [questions, setQuestions] = useState([
+    {
+      title: "",
+      description: "",
+      type: "text",
+    },
+  ]);
 
   useEffect(() => {
     getPatient();
@@ -45,20 +42,19 @@ const PrescribeTherapy = () => {
   // func to get current project
   const getPatient = async () => {
     let response;
-    try{
+    try {
       response = await Api("get", `/patients/${params.id}`);
       const patientData = response.data.patient;
       setPatient(patientData);
       setIsLoading(false);
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
 
   // Calling create assessment
   const handleSubmit = async () => {
-
-    if(isProcessing){
+    if (isProcessing) {
       return;
     }
 
@@ -66,85 +62,83 @@ const PrescribeTherapy = () => {
 
     let response;
 
-    try{
-
+    try {
       const body = {
         patient_id: params.id,
         exercise: exercise,
         sets: noOfSets,
         reps: noOfReps,
-        due_date: (new Date().getDate() + 1).toLocaleDateString("en-US"),
+        due_date: (new Date()).toLocaleDateString("en-US"),
         type: "simple", // TODO: Fake
         questions_array: questions,
       };
 
       response = await Api("post", `/assessments`, body);
-
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
 
     setIsProcessing(false);
 
-    if(response){
+    if (response) {
       toast.success("Assessment created successfully!");
       navToDashboard();
     }
-
   };
 
   const navToDashboard = async () => {
     navigate("/doctor/dashboard");
   };
 
-  function addQuestion(){
+  function addQuestion() {
     const obj = {
-      "title": "",
-      "description": "",
-      "type": "text"
+      title: "",
+      description: "",
+      type: "text",
     };
     const questionsCopy = [...questions];
     questionsCopy.push(obj);
     setQuestions(questionsCopy);
   }
 
-  function removeQuestion(index){
+  function removeQuestion(index) {
     const questionsCopy = [...questions];
     questionsCopy.splice(index, 1);
     setQuestions(questionsCopy);
-  };
+  }
 
-  function updateQuestionTitle(index, text){
+  function updateQuestionTitle(index, text) {
     const obj = {
-      "title": text,
-      "description": questions[index].description,
-      "type": "text"
-    }
+      title: text,
+      description: questions[index].description,
+      type: "text",
+    };
 
     const questionsCopy = [...questions];
     questionsCopy[index] = obj;
     setQuestions(questionsCopy);
-  };
+  }
 
-  function updateQuestionDescription(index, text){
+  function updateQuestionDescription(index, text) {
     const obj = {
-      "title": questions[index].title,
-      "description": text,
-      "type": "text"
-    }
+      title: questions[index].title,
+      description: text,
+      type: "text",
+    };
 
     const questionsCopy = [...questions];
     questionsCopy[index] = obj;
     setQuestions(questionsCopy);
-  };
+  }
 
   return (
     <>
-      {isLoading
-      ? <></>
-      : <>
+      {isLoading ? (
+        <></>
+      ) : (
+        <>
           <AppBar heading={"Prescribing Therapy Exercise"}></AppBar>
-          <Grid className="Bottom_header">
+          <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
               sx={{ fontSize: "20px !important" }}
@@ -160,7 +154,7 @@ const PrescribeTherapy = () => {
               Send to patient
             </Button>
           </Grid>
-          <Grid container spacing={1} sx={{ background: "#F6FAFB" }}>
+          <Grid container spacing={1} sx={{ background: "#F6FAFB", mt: 5 }}>
             <Grid
               item
               xs={12}
@@ -170,12 +164,16 @@ const PrescribeTherapy = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                width: "95%",
+                position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 5,
-                  width: "80%",
-                  height: "85%",
+                  paddingTop:"1%",
+                  width: "42%",
+                  height: "630px !important",
+                  mt: 6,
+                  ml: 0,
+                  mr: 3,
+                  mb: 2,
                 },
                 borderRadius: "20px",
               }}
@@ -195,8 +193,10 @@ const PrescribeTherapy = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "95%",
-                  height: "100%",
-                  marginTop: "5%",
+
+                  paddingBottom: "10%",
+                  marginTop: "6.5%",
+                  marginBottom: "6.5%",
                 },
                 borderRadius: "20px",
               }}
@@ -205,13 +205,21 @@ const PrescribeTherapy = () => {
                 elevation={3}
                 sx={{
                   borderRadius: "20px",
-                  background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
+
+                  background:
+                    "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                 }}
               >
-                <div className="Profilediv2" style={{marginBottom: "100px"}}>
+                <div className="Profilediv2" style={{ marginBottom: "1%" }}>
                   <div className="profiles-div">
                     <input type="text" placeholder="Exercise" disabled />
-                    <select name="exercise" id="exercise" type="exercise" value={exercise} onChange={ (e) => setExercise(e.target.value) }>
+                    <select
+                      name="exercise"
+                      id="exercise"
+                      type="exercise"
+                      value={exercise}
+                      onChange={(e) => setExercise(e.target.value)}
+                    >
                       <option value="Shoulder">Shoulder</option>
                       <option value="Neck">Neck</option>
                       <option value="Joints">Joints</option>
@@ -221,7 +229,13 @@ const PrescribeTherapy = () => {
                   </div>
                   <div className="profiles-div2">
                     <input type="text" placeholder="Sets" disabled />
-                    <select name="sets" id="sets" type="sets" value={noOfSets} onChange={ (e) => setNoOfSets(e.target.value) }>
+                    <select
+                      name="sets"
+                      id="sets"
+                      type="sets"
+                      value={noOfSets}
+                      onChange={(e) => setNoOfSets(e.target.value)}
+                    >
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -230,7 +244,13 @@ const PrescribeTherapy = () => {
                   </div>
                   <div className="profiles-div3">
                     <input type="text" placeholder="Reps" disabled />
-                    <select name="reps" id="reps" type="reps" value={noOfReps} onChange={ (e) => setNoOfReps(e.target.value) }>
+                    <select
+                      name="reps"
+                      id="reps"
+                      type="reps"
+                      value={noOfReps}
+                      onChange={(e) => setNoOfReps(e.target.value)}
+                    >
                       <option value="10">10</option>
                       <option value="11">11</option>
                       <option value="12">12</option>
@@ -238,79 +258,91 @@ const PrescribeTherapy = () => {
                     </select>
                   </div>
                 </div>
-                {
-                  questions.map(
-                    (e, i) => 
-                    <QuestionListTile
-                      {...e}
-                      index={i}
-                      isLast={i == (questions.length - 1)} // lastIndex
-                      addQuestion={addQuestion}
-                      removeQuestion={removeQuestion}
-                      updateQuestionTitle={updateQuestionTitle}
-                      updateQuestionDescription={updateQuestionDescription}
-                      key={i}
-                    />
-                  )
-                }
+                {questions.map((e, i) => (
+                  <QuestionListTile
+                    {...e}
+                    index={i}
+                    isLast={i == questions.length - 1} // lastIndex
+                    addQuestion={addQuestion}
+                    removeQuestion={removeQuestion}
+                    updateQuestionTitle={updateQuestionTitle}
+                    updateQuestionDescription={updateQuestionDescription}
+                    key={i}
+                  />
+                ))}
               </Paper>
             </Grid>
           </Grid>
         </>
-      }
+      )}
     </>
   );
 };
 
-function QuestionListTile(props){
-
-  const { addQuestion, removeQuestion, updateQuestionTitle, updateQuestionDescription } = props;
+function QuestionListTile(props) {
+  const {
+    addQuestion,
+    removeQuestion,
+    updateQuestionTitle,
+    updateQuestionDescription,
+  } = props;
 
   return (
     <>
       {/* Look for style */}
-      <div className="Profiledivs">
-        <div className="profiles-div">
-          <input type="text" placeholder={`Question ${props.index + 1}`} disabled />
-          <input
-            type="input"
-            placeholder="Question?"
-            defaultValue={props.title}
-            onChange={ (event) => updateQuestionTitle(props.index, event.target.value) }
-          />
+      <div style={{ display: "flex", marginBottom: "-6%" }}>
+        <div className="Profiledivs">
+          <div className="profiles-div">
+            <input
+              type="text"
+              placeholder={`Question ${props.index + 1}`}
+              disabled
+            />
+            <input
+              type="input"
+              placeholder="Question?"
+              defaultValue={props.title}
+              onChange={(event) =>
+                updateQuestionTitle(props.index, event.target.value)
+              }
+            />
+          </div>
+          <div className="profiles-div2">
+            <input type="text" placeholder="Answer" disabled />
+            <input disabled type="input" placeholder="Short Answer" />
+          </div>
+          <div className="profiles-div3">
+            <input type="text" placeholder="Description" disabled />
+            <textarea
+              type="input"
+              placeholder="Description"
+              defaultValue={props.description}
+              onChange={(event) =>
+                updateQuestionDescription(props.index, event.target.value)
+              }
+            />
+          </div>
         </div>
-        <div className="profiles-div2">
-          <input type="text" placeholder="Answer" disabled />
-          <input
-            disabled
-            type="input"
-            placeholder="Short Answer"
-          />
+        <div className={props.isLast ? `iconsdiv` : `iconnewdiv`}>
+          <img src={EditIcon} style={{ margin: "10px" }}></img>
+          <img
+            src={DeleteIcon}
+            style={{ margin: "10px" }}
+            onClick={() => removeQuestion(props.index)}
+          ></img>
+          {props.isLast ? (
+            <img
+              src={AddIcon}
+              style={{ margin: "10px" }}
+              onClick={() => addQuestion()}
+            ></img>
+          ) : (
+            <></>
+          )}
         </div>
-        <div className="profiles-div3">
-          <input type="text" placeholder="Description" disabled />
-          <textarea
-            type="input"
-            placeholder="Description"
-            defaultValue={props.description}
-            onChange={ (event) => updateQuestionDescription(props.index, event.target.value) }
-          />
-        </div>
-      </div>
-      <div className="iconsdiv">
-        <img src={EditIcon} style={{ margin: "10px" }}></img>
-        <img src={DeleteIcon} style={{ margin: "10px" }} onClick={() => removeQuestion(props.index)}></img>
-        {
-          props.isLast
-          ? <img src={AddIcon} style={{ margin: "10px" }} onClick={() => addQuestion()}></img>
-          : <></>
-        }
       </div>
     </>
   );
-
 }
 
 export default PrescribeTherapy;
-
-

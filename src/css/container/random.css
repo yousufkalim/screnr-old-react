@@ -1,0 +1,7 @@
+
+.imageContainer {
+    height: 138px !important;
+    width: 120px !important;
+    border-radius: 50%;
+    object-fit: contain;
+}

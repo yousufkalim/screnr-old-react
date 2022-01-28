@@ -13,7 +13,6 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 import TextField from "@mui/material/TextField";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
@@ -21,26 +20,32 @@ import * as FormValidations from "../../validations";
 
 const useFormFieldStyles = makeStyles((theme) => ({
   input: {
-    "& .MuiInputBase-root:focused": {
-      borderColor: "green",
+    "& .css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+      borderWidth: "1px !important",
+      borderColor: "#454238 !important",
+      borderRadius: "20px !important"
     },
   },
 }));
 
 const AddPatient = () => {
-
   const [loading, setLoading] = useState(false);
-  let [gender, setGender] = useState("male");
   let [dateOfBirth, setDateOfBirth] = useState(null);
+  let [profileImage, setProfileImage] = useState(null);
 
   const classes = useFormFieldStyles();
   const navigate = useNavigate();
+
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  }
 
   // Calling create patient
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(loading){
+    if (loading) {
       return;
     }
 
@@ -64,30 +69,29 @@ const AddPatient = () => {
 
     let response;
 
-    try{
+    try {
 
-      const body = {
-        first_name: data.get("First Name"),
-        middle_name: data.get("Middle Name"),
-        last_name: data.get("Last Name"),
-        phone: data.get("Mobile Number"),
-        email: data.get("Email Address"),
-        password: data.get("Password"),
-        confirmPassword: data.get("Confirm Password"),
-        gender: gender,
-        dob: dateOfBirth,
-        national_id: "12345678", // TODO: FAKE
-        patient_id: data.get("Patient ID"),
-        address: data.get("Address"),
-        problem_name: data.get("Problem Name"),
-        problem_description: data.get("Problem Description"),
-      };
+      const body = new FormData();
+
+      body.append("first_name",  data.get("First Name"));
+      body.append("middle_name",  data.get("Middle Name"));
+      body.append("last_name",  data.get("Last Name"));
+      body.append("phone",  data.get("Mobile Number"));
+      body.append("email",  data.get("Email Address"));
+      body.append("password",  data.get("Password"));
+      body.append("confirmPassword",  data.get("Confirm Password"));
+      body.append("dob",  dateOfBirth);
+      body.append("national_id", data.get("ID"));
+      body.append("patient_id",  data.get("Patient ID"));
+      body.append("address",  data.get("Address"));
+      body.append("problem_name",  data.get("Problem Name"));
+      body.append("problem_description",  data.get("Problem Description"));
+      body.append("image",  profileImage);
 
       setLoading(true);
 
       response = await Api("post", "/patients", body);
-
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
 
@@ -97,7 +101,6 @@ const AddPatient = () => {
       toast.success("Patient created successfully!");
       navToDashboard();
     }
-
   };
 
   const navToDashboard = async () => {
@@ -106,9 +109,9 @@ const AddPatient = () => {
 
   return (
     <>
-      <AppBar heading={"Add to list"}></AppBar>
+      <AppBar heading={"Add Patient"}></AppBar>
       <form noValidate onSubmit={handleSubmit}>
-        <Grid className="Bottom_header">
+        <Grid className="Bottom_header" sx={{ position: "fixed" }}>
           <Typography className="Patient_heading"></Typography>
           <Button
             variant="contained"
@@ -126,22 +129,39 @@ const AddPatient = () => {
             justifyContent: "center",
             flexWrap: "wrap",
             "& > :not(style)": {
-              mt: 2,
+              mt: 15,
+              mb: 6,
               width: "80%",
               height: "100%",
             },
             borderRadius: "20px",
+            background: "#F6FAFB",
           }}
         >
-          <Paper elevation={3} sx={{ borderRadius: "20px" }}>
+          <Paper
+            elevation={3}
+            sx={{ borderRadius: "20px", background: "#F6FAFB" }}
+          >
             <Grid className="uploadimg">
               <label>
                 <input
-                  style={{ display: "none", cursor: "none" }}
+                  style={{
+                    display: "none",
+                    cursor: "none",
+                  }}
                   type="file"
+                  accept="image/*"
                   placeholder="Ref."
+                  onChange={handleImageSelect}
+                  onClick={(event)=> { 
+                    event.target.value = null
+                  }}
                 />
-                <img src={UploadImage}></img>
+                
+                <img
+                  src={profileImage ? URL.createObjectURL(profileImage) : UploadImage}
+                  className="imageContainer"
+                />
               </label>
             </Grid>
             <Grid
@@ -151,27 +171,21 @@ const AddPatient = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignContent: "center",
-                //   margin: 10,
               }}
             >
-              <div className="flex-form" style={{ marginBottom: "3%" }}>
+              <div
+                className="flex-form"
+                style={{ marginBottom: "3%", background: "#F6FAFB" }}
+              >
                 <input type="text" placeholder="Patient ID" disabled />
-                <input
-                  type="number"
-                  name="Patient ID"
-                  placeholder="12345"
-                />
+                <input type="number" name="Patient ID" placeholder="12345" />
               </div>
 
               <div className="flexform">
                 <input type="text" placeholder="First Name" disabled />
-                <input
-                  type="input"
-                  name="First Name"
-                  placeholder="Type here"
-                />
+                <input type="input" name="First Name" placeholder="Type here" />
               </div>
-              <div className="flexforminput">
+              <div className="profiles-div_">
                 <input type="text" placeholder="Middle Name" disabled />
                 <input
                   type="input"
@@ -179,34 +193,14 @@ const AddPatient = () => {
                   placeholder="Type here"
                 />
               </div>
-              <div className="flex_forminput">
+              <div className="flex_forminput" style={{ marginBottom: "2%" }}>
                 <input type="text" placeholder="Last Name" disabled />
-                <input
-                  type="input"
-                  name="Last Name"
-                  placeholder="Type here"
-                />
-              </div>
-              <div className="selectform">
-                <input type="text" placeholder="Gender" disabled />
-                <select name="gender" id="gender" type="input" value={gender} onChange={ (event) => setGender(event.target.value) }>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
-              <div className="addform">
-                <input type="text" placeholder="Address" disabled />
-                <input
-                  type="input"
-                  name="Address"
-                  placeholder="12345"
-                />
+                <input type="input" name="Last Name" placeholder="Type here" />
               </div>
               <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker
                   fulWidth
-                  className="date-picker"
+                  className={classes.input}
                   label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}
@@ -215,6 +209,13 @@ const AddPatient = () => {
                   maxDate={new Date()}
                 />
               </LocalizationProvider>
+              <div
+                className="flex-form"
+                style={{ background: "#F6FAFB", marginTop: "3%"}}
+              >
+                <input type="text" placeholder="ID" disabled />
+                <input type="input" name="ID" placeholder="123457890" />
+              </div>
               <div className="flexform" style={{ marginTop: "3%" }}>
                 <input type="text" placeholder="Mobile Number" disabled />
                 <input
@@ -230,6 +231,13 @@ const AddPatient = () => {
                   name="Email Address"
                   placeholder="Type here"
                 />
+              </div>
+              <div
+                className="flex-form"
+                style={{ marginBottom: "3%", background: "#F6FAFB" }}
+              >
+                <input type="text" placeholder="Address" disabled />
+                <input type="input" name="Address" placeholder="Type here" />
               </div>
               <div className="selectform">
                 <input type="text" placeholder="Problem Name" disabled />

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import AppBar from "../../components/common/AppBar";
 
@@ -14,8 +14,9 @@ import { ReactComponent as Callicon } from "../../assets/images/call.svg";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
-const DoctorDashboard = () => {
+import assetsURL from "../../utils/Assets";
 
+const DoctorDashboard = () => {
   const navigate = useNavigate();
 
   const [patients, setPatients] = useState([]);
@@ -27,31 +28,31 @@ const DoctorDashboard = () => {
   // func to get current project
   const getPatients = async () => {
     let response;
-    try{
+    try {
       response = await Api("get", `/patients/`);
       const patientsData = response.data.data;
       setPatients(patientsData);
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
 
   const navToAddPatient = async () => {
     navigate("/doctor/dashboard/add_patient");
-  }
+  };
 
   const navToPatientProfile = async (id) => {
     navigate(`/doctor/dashboard/patient_profile/${id}`);
-  }
+  };
 
   return (
     <>
       <AppBar heading={"Dashboard"}></AppBar>
-      <Grid className="Bottom_header">
+      <Grid className="Bottom_header" sx={{ position: "fixed" }}>
         <Typography className="Patient_heading">Patients</Typography>
         <Button
           variant="contained"
-          sx={{ backgroundColor: " #25C8B4" }}
+          sx={{ backgroundColor: " #25C8B4", marginTop: "20px !important", marginBottom: "20px !important" }}
           className="Patient_button"
           onClick={navToAddPatient}
         >
@@ -60,44 +61,52 @@ const DoctorDashboard = () => {
       </Grid>
 
       <Grid container spacing={1} className="patient_maindiv">
-        {
-          patients.length == 0
-          ?
+        {patients.length == 0 ? (
           <Typography> No Patients </Typography>
-          :
+        ) : (
           patients.map((item) => (
-          <>
-            <Grid
-              xs={10}
-              sm={10}
-              md={2}
-              className={`${
-                item.status == "nonActive" ? "nonActiveClas" : "Patient_details"
-              }`}
-              onClick={() => navToPatientProfile(`${item._id}`)}
-            >
-              <img className="Eclipse" src={item.gender == "male" ? Eclipse3 : Eclipse4} alt="" />
-              <Typography className="PatientName">{`${item.first_name} ${item.last_name}`}</Typography>
-              <Typography className="Patientid">{`Patient ID: ${item.patient_id}`}</Typography>
-              <Typography className="PatientAge">
-                <Calendar className="Icons"></Calendar>
-                {20}
-              </Typography>
-              <Typography className="PatientAge">
-                <Hospitalicon className="Icons"></Hospitalicon>
-                {item.problem_name}
-              </Typography>
-              <Typography className="PatientAge">
-                <Callicon className="Icons"></Callicon>
-                {item.phone}
-              </Typography>
-              <Typography className="PatientAge">
-                <Emailicon className="Icons"></Emailicon>
-                {item.email}
-              </Typography>
-            </Grid>
-          </>
-        ))}
+            <>
+              <Grid
+                xs={10}
+                sm={10}
+                md={2.5}
+                className="nonActiveClas"
+                onClick={() => navToPatientProfile(`${item._id}`)}
+              >
+                <img
+                  className="Eclipse"
+                  src={
+                    item.avatar
+                    ? assetsURL(item.avatar)
+                    : item.gender == "male" ? Eclipse3 : Eclipse4
+                  }
+                  alt=""
+                />
+                <Typography className="PatientName">{`${item.first_name} ${item.last_name}`}</Typography>
+                <Typography className="Patientid">{`Patient ID: ${item.patient_id}`}</Typography>
+                <Typography className="PatientAge">
+                  <Calendar className="Icons"></Calendar>
+                  {20}
+                </Typography>
+                <Typography className="PatientAge" sx={{ marginBottom: "5%" }}>
+                  <Hospitalicon className="Icons"></Hospitalicon>
+                  {item.problem_name}
+                </Typography>
+                <Typography className="Patient_detail">
+                  <Callicon className="Icons"></Callicon>
+                  {item.phone}
+                </Typography>
+                <Typography
+                  className="Patient_detail"
+                  style={{ marginBottom: "" }}
+                >
+                  <Emailicon className="Icons"></Emailicon>
+                  {item.email}
+                </Typography>
+              </Grid>
+            </>
+          ))
+        )}
       </Grid>
     </>
   );

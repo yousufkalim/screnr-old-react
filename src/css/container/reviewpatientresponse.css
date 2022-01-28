@@ -11,14 +11,13 @@
 #feedback::placeholder {
   color: #fba622;
 }
-#feed::placeholder {
+#feed::placeholder { /* TODO: THIS IS POINT OF INTEREST */
   color: #fba622;
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 500 !important;
   font-size: 14px !important;
   line-height: 17px !important;
-  /* identical to box height */
 }
 #details::placeholder {
   font-family: Inter !important;
@@ -167,4 +166,13 @@
   margin-top: 5% !important;
   display: flex !important;
   flex-wrap: wrap !important;
+}
+/* .css-n1opdd-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #136773 !important;
+}
+.css-1vijq4x-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #136773 !important;
+} */
+.css-8whfqg-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: #136773 !important;
 }

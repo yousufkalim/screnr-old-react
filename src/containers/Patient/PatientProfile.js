@@ -8,6 +8,7 @@ import Eclipse3 from "../../assets/images/Eclipse3.svg";
 import Eclipse4 from "../../assets/images/Eclipse4.svg";
 import AppBar from "../../components/common/AppBar";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
+import MobileBottomBar from "../../components/common/MobileBottomBar";
 
 import { toast } from "react-toastify";
 
@@ -15,6 +16,9 @@ import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 import * as FormValidations from "../../validations";
+
+import assetsURL from "../../utils/Assets";
+import { handleLogout, getUser } from "../../utils/Auth";
 
 const PatientProfile = () => {
 
@@ -24,6 +28,7 @@ const PatientProfile = () => {
   const [profile, setProfile] = useState(null);
 
   const [toEdit, setToEdit] = useState(false);
+  let [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
     getProfile();
@@ -54,6 +59,11 @@ const PatientProfile = () => {
 
   }
 
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  }
+
   // Calling profile-update api with profile data
   const handleSubmit = async (event) => {
 
@@ -73,13 +83,18 @@ const PatientProfile = () => {
 
     try{
 
+      const body = new FormData();
+
+      body.append("phone",  data.get("Mobile Number"));
+      body.append("national_id",  data.get("National ID"));
+      body.append("address",  data.get("Address"));
+      body.append("image",  profileImage);
+
+      const user = getUser();
+
       setIsLoading(true);
 
-      response = await Api("put", "/patients", {
-        phone: data.get("Mobile Number"),
-        national_id: data.get("National ID"),
-        address: data.get("Address"),
-      });
+      response = await Api("put", `/patients/${user._id}`, body);
 
       if(response.data){
         toast.success("Profile updated successfully!");
@@ -95,6 +110,10 @@ const PatientProfile = () => {
     setToEdit(false);
 
   };
+
+  const handleLogoutSubmit = () => {
+    handleLogout(navigate);
+  }
 
   return (
     <>
@@ -116,7 +135,7 @@ const PatientProfile = () => {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#454238" }}
+                  sx={{ backgroundColor: "#454238", fontSize: "14px !important" }}
                   className="Patient_button"
                   type="submit"
                 >
@@ -149,7 +168,31 @@ const PatientProfile = () => {
                   }}
                 >
                   <Grid className="profileimg">
-                    <img src={profile.gender == "male" ? Eclipse3 : Eclipse4}></img>
+                    <label>
+                      <input
+                        style={{
+                          display: "none",
+                          cursor: "none",
+                        }}
+                        type="file"
+                        accept="image/*"
+                        placeholder="Ref."
+                        onChange={handleImageSelect}
+                        onClick={(event)=> { 
+                          event.target.value = null
+                        }}
+                      />
+                      <img
+                        src={
+                          profileImage
+                          ? URL.createObjectURL(profileImage)
+                          : profile.avatar
+                          ? assetsURL(profile.avatar)
+                          : profile.gender == "male" ? Eclipse3 : Eclipse4
+                        }
+                        className="imageContainer"
+                      />
+                    </label>
                   </Grid>
                   <Typography className="PatientName">{`${profile.first_name} ${profile.last_name}`}</Typography>
                   <Typography className="PatientInfo">
@@ -184,7 +227,7 @@ const PatientProfile = () => {
                       <input type="text" disabled />
                       <input
                         disabled={!toEdit}
-                        type="input"
+                        type="number"
                         name="Mobile Number"
                         placeholder="Phone"
                         defaultValue={profile.phone}
@@ -226,13 +269,23 @@ const PatientProfile = () => {
                         disabled={!toEdit}
                         type="input"
                         name="Address"
+                        placeholder="Address"
                         defaultValue={profile.address}
                       />
                     </div>
                   </div>
                 </Paper>
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: "#454238", fontSize: "16px !important", margin: "20px 0px !important" }}
+                  className="Patient_button"
+                  onClick={handleLogoutSubmit}
+                >
+                  Logout
+                </Button>
               </Box>
             </form>
+            <MobileBottomBar activeIndex={3} />
           </>
       }
     </>

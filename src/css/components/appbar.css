@@ -1,24 +1,54 @@
 .Headerlogo_div {
   display: flex !important;
+  justify-content: space-between !important;
   align-items: center !important;
 }
 .Headerlogo {
-  width: 50% !important;
-  margin-top: 25px;
-  /* margin-top: 20px !important; */
-  /* padding-top: 20px; */
-
-  /* padding-right: 50px; */
+  display: flex !important;
+  height: 50%;
+  margin-top: 2%;
+  align-items: center !important;
 }
+.logo {
+  width: 2px;
+  height: 40px;
+  background: white;
 
+  margin-left: -7%;
+}
+.css-18078n-MuiPaper-root-MuiAppBar-root {
+  box-shadow: none !important;
+}
+.healthlogo {
+  font-family: Montserrat !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 2px;
+  letter-spacing: -0.045em;
+  margin-right: 17%;
+  text-transform: capitalize;
+
+  /* Background - Screnr */
+
+  color: #f6fafb;
+
+  text-shadow: 0px 8px 27px rgba(7, 110, 176, 0.3);
+}
 .HeaderHeading {
   font-family: Inter !important;
   font-style: normal !important;
-  font-weight: 400 !important;
-  font-size: 32px !important;
-  line-height: 39px !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
   color: #f6fafb !important;
-  /* margin-left: 15% !important; */
+}
+.header {
+  position: relative;
+  left: -106px;
+}
+.css-npid7e {
+  box-shadow: none !important;
 }
 @media only screen and (max-width: 768px) {
   .HeaderHeading {

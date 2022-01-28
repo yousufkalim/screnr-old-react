@@ -87,6 +87,9 @@ function addPatient(data){
       // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
     },
     {
+      name: "ID",
+    },
+    {
       name: "Mobile Number",
       validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
     },
@@ -167,16 +170,8 @@ function editProfileDoctor(data){
 
   const valArr = [
     {
-      name: "First Name",
-      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
-    },
-    {
-      name: "Last Name",
-      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
-    },
-    {
-      name: "Mobile Number",
-      validationFunction: () => Validators.phoneNoValidator("Mobile Number", data.get("Mobile Number"))
+      name: "Phone",
+      validationFunction: () => Validators.phoneNoValidator("Phone", data.get("Phone"))
     },
     {
       name: "Address"

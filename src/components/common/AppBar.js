@@ -12,12 +12,13 @@ import Settingicon from "../../assets/images/settings.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
+import Screnr from "../../assets/images/screnr.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
-
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
-
+import LogoFinal from "../../assets/images/logofinal.svg";
 import { getUser } from "../../utils/Auth"
 
 const ResponsiveAppBar = (props) => {
@@ -53,7 +54,7 @@ const ResponsiveAppBar = (props) => {
   }
   return (
     <AppBar
-      position="relative"
+      position="sticky"
       sx={{
         backgroundColor: " #136773",
         zIndex: (theme) => theme.zIndex.drawer + 1,
@@ -66,22 +67,46 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div" onClick={navToDashboardScreen}>
-          <img className="Headerlogo" src={Headerlogo} alt="" />
-          <Typography className="HeaderHeading">{props.heading}</Typography>
+        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" }} onClick={navToDashboardScreen}>
+          <img
+            className="Headerlogo"
+            src={Screnr}
+            alt=""
+            style={{ width: "55%", marginBottom: "-5px" }}
+          />
+          <div className="logo"></div>
+          <p className="healthlogo">Health</p>
         </Grid>
+        <div className="header">
+          <Typography className="HeaderHeading">{props.heading}</Typography>
+        </div>
         <Box className="Headerlogodiv">
+          <Tooltip title="Open notifications">
+            <IconButton
+              // sx={{ p: 0, ml: 2 }}
+
+              size="small"
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            >
+              <img
+                src={Notificationicon}
+                alt=""
+                style={{ width: "80%", marginLeft: "30%" }}
+              />
+            </IconButton>
+          </Tooltip>
           <Tooltip title="Open settings">
             <IconButton
-              sx={{ p: 0, ml: 2 }}
+              // sx={{ p: 0, ml: 2 }}
               onClick={handleClick}
               size="small"
               aria-controls={open ? "account-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <img src={Notificationicon} alt="" />
-              <img src={Settingicon} alt="" />
+              <img src={Settingicon} alt="" style={{ width: "80%" }} />
             </IconButton>
           </Tooltip>
         </Box>
