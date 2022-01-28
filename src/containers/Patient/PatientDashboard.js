@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
 
 const PatientDashboard = () => {
-
   const navigate = useNavigate();
 
   const [assessments, setAssessment] = useState([]);
@@ -24,18 +23,18 @@ const PatientDashboard = () => {
   const getAssessments = async () => {
     const user = getUser();
     let response;
-    try{
+    try {
       response = await Api("get", `/assessments/${user._id}`);
       const assessmentsData = response.data.Assessment;
       setAssessment(assessmentsData);
-    }catch(e){
+    } catch (e) {
       console.trace(e);
     }
   };
 
   const navToPerformAssessment = async (id) => {
     navigate(`/patient/assessment/${id}`);
-  }
+  };
 
   return (
     <>
@@ -59,11 +58,11 @@ const PatientDashboard = () => {
                 <Typography className="ExerciseName">
                   {`${item.exercise} Exercise`}
                 </Typography>
-                <Typography className="PatientAge">
+                <Typography className="Patient_Age">
                   <Calendar className="Icons"></Calendar>
                   {new Date(item.due_date).toLocaleDateString("en-US")}
                 </Typography>
-                <Typography className="PatientAge">
+                <Typography className="Patient_Age">
                   <Medicalicon className="Icons"></Medicalicon>
                   {`Therapist ${item.therapist.first_name}`}
                 </Typography>
@@ -75,13 +74,11 @@ const PatientDashboard = () => {
                     : "nonActive_testStatus "
                 }`}
               >
-                {
-                  item.status == "requested"
+                {item.status == "requested"
                   ? "Virutal Physical Therapy"
                   : item.status == "reviewed"
                   ? "Reviewed"
-                  : "Completed"
-                }
+                  : "Completed"}
               </Typography>
             </Grid>
           </>
