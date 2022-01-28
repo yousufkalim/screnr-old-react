@@ -157,14 +157,14 @@ const ReviewPatientResponse = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                width: "80%",
+                position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "45%",
-                  height: "680px",
-                  mt: 10,
-                  ml: 10,
-
+                  width: "42%",
+                  height: "640px !important",
+                  mt: 7,
+                  ml: 0,
+                  mr: 3,
                   mb: 2,
                 },
                 borderRadius: "20px",
@@ -301,41 +301,37 @@ const ReviewPatientResponse = () => {
                     />
                   </div>
                 </div>
-                <Grid container spacing={1} className="Profilediv1">
-                  <Grid xs={12} sm={12} md={6}>
+                <div style={{display: "flex", justifyContent: "space-around", alignItems: "center", marginTop: "4%"}}>
+                  <div>
                     <Button
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
-                        // padding: "10px 30px 10px 30px !important",
-                        marginRight: "20px",
                         fontSize: "14px !important",
                       }}
-                      className="Patient_button"
+                      className="Patient_review_button"
+                      onClick={ () => toast(`Response sent to patient.`) }
                     >
                       Send Response to Patient
                     </Button>
-                  </Grid>
-                  <Grid xs={12} sm={12} md={6}>
+                  </div>
+                  <div>
                     <Button
                       disabled={assessment.status == "reviewed" ? true : false}
                       variant="contained"
                       sx={{
                         backgroundColor: " #25C8B4",
-                        padding: "10px 11px 10px 12px !important",
                         fontSize: "14px !important",
-
-                        marginRight: "10% !important",
                       }}
-                      className="Patient_button"
+                      className="Patient_review_button"
                       onClick={() => handleSubmit()}
                     >
                       {assessment.status == "reviewed"
                         ? "Already Checked"
                         : "Mark as Checked"}
                     </Button>
-                  </Grid>
-                </Grid>
+                  </div>
+                </div>
               </Paper>
             </Grid>
           </Grid>
