@@ -95,7 +95,7 @@ const ReviewPatientResponse = () => {
         status: "reviewed",
         feedbacks: questionFeedbacks,
         note: noteText,
-        feedbacks: questionFeedbacks
+        feedbacks: questionFeedbacks,
       };
 
       setIsProcessing(true);
@@ -127,7 +127,10 @@ const ReviewPatientResponse = () => {
         <></>
       ) : (
         <>
-          <AppBar heading={"Review Patient Response"}></AppBar>
+          <AppBar
+            className="Appbar_background"
+            heading={"Review Patient Response"}
+          ></AppBar>
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
@@ -296,12 +299,21 @@ const ReviewPatientResponse = () => {
                       type="input"
                       id="feed"
                       placeholder="Write Note for Yourself....."
-                      defaultValue={ assessment.note }
-                      onChange={(event) => setNoteText(event.currentTarget.value)}
+                      defaultValue={assessment.note}
+                      onChange={(event) =>
+                        setNoteText(event.currentTarget.value)
+                      }
                     />
                   </div>
                 </div>
-                <div style={{display: "flex", justifyContent: "space-around", alignItems: "center", marginTop: "4%"}}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    marginTop: "4%",
+                  }}
+                >
                   <div>
                     <Button
                       variant="contained"
@@ -310,7 +322,7 @@ const ReviewPatientResponse = () => {
                         fontSize: "14px !important",
                       }}
                       className="Patient_review_button"
-                      onClick={ () => toast(`Response sent to patient.`) }
+                      onClick={() => toast(`Response sent to patient.`)}
                     >
                       Send Response to Patient
                     </Button>

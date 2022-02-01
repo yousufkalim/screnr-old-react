@@ -68,7 +68,7 @@ const PrescribeTherapy = () => {
         exercise: exercise,
         sets: noOfSets,
         reps: noOfReps,
-        due_date: (new Date()).toLocaleDateString("en-US"),
+        due_date: new Date().toLocaleDateString("en-US"),
         type: "simple", // TODO: Fake
         questions_array: questions,
       };
@@ -137,7 +137,10 @@ const PrescribeTherapy = () => {
         <></>
       ) : (
         <>
-          <AppBar heading={"Prescribing Therapy Exercise"}></AppBar>
+          <AppBar
+            className="Appbar_background"
+            heading={"Prescribing Therapy Exercise"}
+          ></AppBar>
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
@@ -167,7 +170,7 @@ const PrescribeTherapy = () => {
                 position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  paddingTop:"1%",
+                  paddingTop: "1%",
                   width: "42%",
                   height: "630px !important",
                   mt: 6,

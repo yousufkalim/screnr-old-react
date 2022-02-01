@@ -23,7 +23,7 @@ const useFormFieldStyles = makeStyles((theme) => ({
     "& .css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
       borderWidth: "1px !important",
       borderColor: "#454238 !important",
-      borderRadius: "20px !important"
+      borderRadius: "20px !important",
     },
   },
 }));
@@ -39,7 +39,7 @@ const AddPatient = () => {
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
     setProfileImage(file);
-  }
+  };
 
   // Calling create patient
   const handleSubmit = async (event) => {
@@ -70,23 +70,22 @@ const AddPatient = () => {
     let response;
 
     try {
-
       const body = new FormData();
 
-      body.append("first_name",  data.get("First Name"));
-      body.append("middle_name",  data.get("Middle Name"));
-      body.append("last_name",  data.get("Last Name"));
-      body.append("phone",  data.get("Mobile Number"));
-      body.append("email",  data.get("Email Address"));
-      body.append("password",  data.get("Password"));
-      body.append("confirmPassword",  data.get("Confirm Password"));
-      body.append("dob",  dateOfBirth);
+      body.append("first_name", data.get("First Name"));
+      body.append("middle_name", data.get("Middle Name"));
+      body.append("last_name", data.get("Last Name"));
+      body.append("phone", data.get("Mobile Number"));
+      body.append("email", data.get("Email Address"));
+      body.append("password", data.get("Password"));
+      body.append("confirmPassword", data.get("Confirm Password"));
+      body.append("dob", dateOfBirth);
       body.append("national_id", data.get("ID"));
-      body.append("patient_id",  data.get("Patient ID"));
-      body.append("address",  data.get("Address"));
-      body.append("problem_name",  data.get("Problem Name"));
-      body.append("problem_description",  data.get("Problem Description"));
-      body.append("image",  profileImage);
+      body.append("patient_id", data.get("Patient ID"));
+      body.append("address", data.get("Address"));
+      body.append("problem_name", data.get("Problem Name"));
+      body.append("problem_description", data.get("Problem Description"));
+      body.append("image", profileImage);
 
       setLoading(true);
 
@@ -97,7 +96,7 @@ const AddPatient = () => {
 
     setLoading(false);
 
-    if(response){
+    if (response) {
       toast.success("Patient created successfully!");
       navToDashboard();
     }
@@ -109,7 +108,7 @@ const AddPatient = () => {
 
   return (
     <>
-      <AppBar heading={"Add Patient"}></AppBar>
+      <AppBar className="Appbar_background" heading={"Add Patient"}></AppBar>
       <form noValidate onSubmit={handleSubmit}>
         <Grid className="Bottom_header" sx={{ position: "fixed" }}>
           <Typography className="Patient_heading"></Typography>
@@ -153,13 +152,17 @@ const AddPatient = () => {
                   accept="image/*"
                   placeholder="Ref."
                   onChange={handleImageSelect}
-                  onClick={(event)=> { 
-                    event.target.value = null
+                  onClick={(event) => {
+                    event.target.value = null;
                   }}
                 />
-                
+
                 <img
-                  src={profileImage ? URL.createObjectURL(profileImage) : UploadImage}
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : UploadImage
+                  }
                   className="imageContainer"
                 />
               </label>
@@ -211,7 +214,7 @@ const AddPatient = () => {
               </LocalizationProvider>
               <div
                 className="flex-form"
-                style={{ background: "#F6FAFB", marginTop: "3%"}}
+                style={{ background: "#F6FAFB", marginTop: "3%" }}
               >
                 <input type="text" placeholder="ID" disabled />
                 <input type="input" name="ID" placeholder="123457890" />

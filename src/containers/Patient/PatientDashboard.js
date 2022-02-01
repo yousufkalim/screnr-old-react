@@ -40,58 +40,57 @@ const PatientDashboard = () => {
 
   return (
     <>
-      <AppBar></AppBar>
+      <AppBar className="Appbar_background"></AppBar>
       <Grid className="Bottom_header">
         <Typography className="Patient_heading">Therapy Exercises</Typography>
       </Grid>
       <Grid container spacing={1} className="patient_maindiv">
-        {
-          assessments.length == 0
-          ?
+        {assessments.length == 0 ? (
           <Typography> No Assessments </Typography>
-          :
+        ) : (
           assessments.map((item) => (
-          <>
-            <Grid
-              xs={10}
-              sm={10}
-              md={2}
-              className={`Exercise_details ${
-                item.status == "nonActive" ? "non_ActiveClas" : ""
-              }`}
-              onClick={() => navToPerformAssessment(item._id)}
-            >
-              <>
-                <Typography className="ExerciseName">
-                  {`${item.exercise} Exercise`}
-                </Typography>
-                <Typography className="Patient_Age">
-                  <Calendar className="Icons"></Calendar>
-                  {new Date(item.due_date).toLocaleDateString("en-US")}
-                </Typography>
-                <Typography className="Patient_Age">
-                  <Medicalicon className="Icons"></Medicalicon>
-                  {`Therapist ${item.therapist.first_name}`}
-                </Typography>
-              </>
-              <Typography
-                className={`${
-                  item.status == "requested"
-                    ? "testStatus"
-                    : "nonActive_testStatus "
+            <>
+              <Grid
+                xs={10}
+                sm={10}
+                md={2}
+                className={`Exercise_details ${
+                  item.status == "nonActive" ? "non_ActiveClas" : ""
                 }`}
+                onClick={() => navToPerformAssessment(item._id)}
               >
-                {item.status == "requested"
-                  ? "Virutal Physical Therapy"
-                  : item.status == "reviewed"
-                  ? "Reviewed"
-                  : "Completed"}
-              </Typography>
-            </Grid>
-          </>
-        ))}
+                <>
+                  <Typography className="ExerciseName">
+                    {`${item.exercise} Exercise`}
+                  </Typography>
+                  <Typography className="Patient_Age">
+                    <Calendar className="Icons"></Calendar>
+                    {new Date(item.due_date).toLocaleDateString("en-US")}
+                  </Typography>
+                  <Typography className="Patient_Age">
+                    <Medicalicon className="Icons"></Medicalicon>
+                    {`Therapist ${item.therapist.first_name}`}
+                  </Typography>
+                </>
+                <Typography
+                  className={`${
+                    item.status == "requested"
+                      ? "testStatus"
+                      : "nonActive_testStatus "
+                  }`}
+                >
+                  {item.status == "requested"
+                    ? "Virutal Physical Therapy"
+                    : item.status == "reviewed"
+                    ? "Reviewed"
+                    : "Completed"}
+                </Typography>
+              </Grid>
+            </>
+          ))
+        )}
       </Grid>
-      <MobileBottomBar activeIndex={1} />
+      <MobileBottomBar className="bottomnav" activeIndex={1} />
     </>
   );
 };

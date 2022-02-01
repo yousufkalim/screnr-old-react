@@ -26,6 +26,9 @@ import RespondedPatientReview from "../containers/Doctor/RespondedPatientReview"
 import DoctorProfile from "../containers/Doctor/DoctorProfile";
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterationIcon from "@mui/icons-material/AccountBox";
+import Motion_captureCam from "../containers/Patient/Motion_captureCam";
+import Motion_captureRecording from "../containers/Patient/Motion_captureRecording";
+import Recording_ended from "../containers/Patient/Recording_ended";
 
 // Routes for login
 const AuthRoutes = [
@@ -182,10 +185,28 @@ const PatientRoutes = [
     element: AllTherapists,
   },
   {
-    path: "/patient/motion_capture_assessment",
+    path: "/patient/motion_capture_assessments",
     name: "PatientProfile",
     icon: <PollIcon />,
     element: PerformMotionCapture,
+  },
+  {
+    path: "/patient/motion_capture_assessment_1",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: Motion_captureCam,
+  },
+  {
+    path: "/patient/motion_capture_assessment_2",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: Motion_captureRecording,
+  },
+  {
+    path: "/patient/motion_capture_assessment_3",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: Recording_ended,
   },
 ];
 

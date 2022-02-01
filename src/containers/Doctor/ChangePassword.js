@@ -12,7 +12,10 @@ import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg
 const UserProfile = () => {
   return (
     <>
-      <AppBar heading={"Change Password"}></AppBar>
+      <AppBar
+        className="Appbar_background"
+        heading={"Change Password"}
+      ></AppBar>
       <Grid className="Bottom_header">
         <Typography
           className="Patient_heading"

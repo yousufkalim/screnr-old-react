@@ -105,8 +105,11 @@ const PerformAssessment = () => {
         <></>
       ) : (
         <>
-          <AppBar heading={assessment.exercise}></AppBar>
-          <Grid className="Bottom_header" sx={{ position: "fixed" }}>
+          <AppBar
+            className="Appbar_background"
+            heading={assessment.exercise}
+          ></AppBar>
+          <Grid className="Bottom_header">
             <Typography
               className="Patient_heading"
               sx={{ fontSize: "20px !important" }}
@@ -121,9 +124,9 @@ const PerformAssessment = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              alignContent: "center",
               width: "100%",
-              height: "100vh !important",
-              marginTop: "12%",
+
               flexWrap: "wrap",
               "& > :not(style)": {},
 
@@ -135,8 +138,8 @@ const PerformAssessment = () => {
               sx={{
                 width: "85%",
                 borderRadius: "20px",
-                marginTop: "5%",
-                marginBottom: "12%",
+                marginTop: "4%",
+                marginBottom: "20%",
                 paddingBottom: "5%",
               }}
             >
@@ -191,7 +194,7 @@ const PerformAssessment = () => {
               </div>
             </Paper>
 
-            <MobileBottomBar />
+            <MobileBottomBar className="bottomnav" />
           </Grid>
         </>
       )}
