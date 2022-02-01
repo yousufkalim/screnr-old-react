@@ -25,7 +25,7 @@ export default function MobileBottomBar(props) {
   };
 
   const navToPerformMotionCaptureAssessment = () => {
-    navigate("/patient/motion_capture_assessment");
+    navigate("/patient/motion_capture_assessments");
   };
 
   const navToDashboard = () => {
