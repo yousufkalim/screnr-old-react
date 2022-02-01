@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { ReactComponent as Calendar } from "../../assets/images/date_range.svg";
 import { ReactComponent as Medicalicon } from "../../assets/images/medical.svg";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import MobileBottomBar from "../../components/common/MobileBottomBar";
 
 import Api from "../../api";
