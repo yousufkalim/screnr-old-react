@@ -5,7 +5,7 @@
   background: #f6fafb !important;
   padding-bottom: -5px;
   box-shadow: 0px 4px 28px rgba(200, 207, 208, 0.28);
-  /* padding-bottom: 20px; */
+  padding-bottom: 15px !important;
   width: 100%;
   z-index: 12 !important;
 }
@@ -19,7 +19,7 @@
   padding-right: 0% !important;
 }
 div.nonActiveClas:hover {
-  background: linear-gradient(0deg, #F6FAFB, #F6FAFB), #F6FAFB !important;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
   box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
 }
 .css-8rfxpa:hover {
@@ -112,7 +112,7 @@ div.nonActiveClas:hover {
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-
+  text-transform: capitalize !important ;
   color: #454238 !important;
 }
 .Patientid {

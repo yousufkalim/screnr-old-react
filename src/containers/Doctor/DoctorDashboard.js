@@ -78,7 +78,8 @@ const DoctorDashboard = () => {
                   src={
                     item.avatar
                     ? assetsURL(item.avatar)
-                    : item.gender == "male" ? Eclipse3 : Eclipse4
+                    // : item.gender == "male" ? Eclipse3 : Eclipse4
+                    : Eclipse3
                   }
                   alt=""
                 />
