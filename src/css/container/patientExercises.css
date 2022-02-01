@@ -1,13 +1,13 @@
 .Exercise_details {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
+  justify-content: center !important;
   background: linear-gradient(0deg, #ffffff, #ffffff), #ffffff !important;
   box-shadow: 0px 10px 35px rgba(17, 162, 131, 0.45) !important;
   /* background: red !important    ; */
   border-radius: 20px !important;
   margin-top: 10px !important;
-  margin-left: 20px !important;
+  /* margin-left: 20px !important; */
 
   text-align: center !important;
 }
@@ -42,8 +42,8 @@
   font-size: 18px !important;
   line-height: 22px !important;
   color: #f6fafb !important;
-  margin-top: 30px !important;
-  padding: 30px !important;
+  margin-top: 17px !important;
+  padding: 21px !important;
   background: #919b9b !important;
   border-radius: 0px 0px 20px 20px !important;
 }
