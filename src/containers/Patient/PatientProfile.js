@@ -235,16 +235,6 @@ const PatientProfile = () => {
                       )}
                     />
                   </div>
-                  <div className="profiles-input2">
-                    <input type="text" disabled />
-                    <input
-                      disabled={!toEdit}
-                      type="input"
-                      name="National ID"
-                      placeholder="National ID"
-                      defaultValue={profile.national_id}
-                    />
-                  </div>
                   <div className="profiles-input3">
                     <input type="text" disabled />
                     <input
@@ -255,48 +245,15 @@ const PatientProfile = () => {
                       defaultValue={profile.email}
                     />
                   </div>
-
-                  <div className="profilediv">
-                    <div className="profiles-input">
-                      <input type="text" disabled />
-                      <input
-                        disabled={!toEdit}
-                        type="number"
-                        name="Mobile Number"
-                        placeholder="Phone"
-                        defaultValue={profile.phone}
-                      />
-                    </div>
-                    <div className="profiles-input1">
-                      <input type="text" disabled />
-                      <input
-                        disabled
-                        type="input"
-                        name="Date of Birth"
-                        placeholder="01/18/1990"
-                        defaultValue={new Date(profile.dob).toLocaleDateString("en-US")}
-                      />
-                    </div>
-                    <div className="profiles-input3">
-                      <input type="text" disabled />
-                      <input
-                        disabled={true}
-                        type="input"
-                        name="Email"
-                        placeholder="Email"
-                        defaultValue={profile.email}
-                      />
-                    </div>
-                    <div className="profiles-input4">
-                      <input type="text" disabled />
-                      <input
-                        disabled={!toEdit}
-                        type="input"
-                        name="Address"
-                        placeholder="Address"
-                        defaultValue={profile.address}
-                      />
-                    </div>
+                  <div className="profiles-input4">
+                    <input type="text" disabled />
+                    <input
+                      disabled={!toEdit}
+                      type="input"
+                      name="Address"
+                      placeholder="Address"
+                      defaultValue={profile.address}
+                    />
                   </div>
                 </div>
               </Paper>

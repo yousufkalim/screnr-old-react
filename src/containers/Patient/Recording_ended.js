@@ -65,14 +65,13 @@ const Recording_ended = () => {
                 Repitition:12
               </Typography>
             </div>
-
             <Typography onClick={(e) => setStep(1)} className="motionStatus">
               Send to Therapist
             </Typography>
           </Grid>
         </Grid>
 
-        <MobileBottomBar className="bottom_nav" activeIndex={1} />
+        <MobileBottomBar className="bottom_nav" activeIndex={2} />
       </div>
     </>
   );
