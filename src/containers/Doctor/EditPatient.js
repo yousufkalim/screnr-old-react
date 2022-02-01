@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import UploadImage from "../../assets/images/AddImage.svg";
-import { makeStyles } from "@mui/styles";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TextField from "@mui/material/TextField";
@@ -20,14 +19,6 @@ import * as FormValidations from "../../validations";
 
 import assetsURL from "../../utils/Assets";
 
-const useFormFieldStyles = makeStyles((theme) => ({
-  input: {
-    "& .MuiInputBase-root:focused": {
-      borderColor: "green",
-    },
-  },
-}));
-
 const EditPatient = (props) => {
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -35,7 +26,6 @@ const EditPatient = (props) => {
   let [dateOfBirth, setDateOfBirth] = useState(null);
   let [profileImage, setProfileImage] = useState(null);
 
-  const classes = useFormFieldStyles();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -102,7 +92,6 @@ const EditPatient = (props) => {
       body.append("email",  data.get("Email Address"));
       body.append("gender",  gender);
       body.append("dob",  dateOfBirth);
-      body.append("national_id",  "12345678"); // TODO: FAKE
       body.append("patient_id",  data.get("Patient ID"));
       body.append("address",  data.get("Address"));
       body.append("problem_name",  data.get("Problem Name"));
@@ -218,7 +207,7 @@ const EditPatient = (props) => {
                         defaultValue={patient.first_name}
                       />
                     </div>
-                    <div className="flexforminput">
+                    <div className="profiles-div_">
                       <input type="text" placeholder="Middle Name" disabled />
                       <input
                         type="input"
@@ -236,7 +225,7 @@ const EditPatient = (props) => {
                         defaultValue={patient.last_name}
                       />
                     </div>
-                    <div className="selectform">
+                    <div className="selectform" style={{ marginTop: "3%" }}>
                       <input type="text" placeholder="Gender" disabled />
                       <select name="gender" id="gender" type="input" value={gender} onChange={ (event) => setGender(event.target.value) }>
                         <option value="male">Male</option>
@@ -257,7 +246,6 @@ const EditPatient = (props) => {
                     <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                       <DesktopDatePicker
                         fulWidth
-                        className={classes.input}
                         // label="Date of Birth"
                         inputFormat="MM/dd/yyyy"
                         value={dateOfBirth}

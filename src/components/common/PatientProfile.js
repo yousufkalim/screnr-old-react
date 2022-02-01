@@ -82,10 +82,6 @@ const PatientProfile = (props) => {
               placeholder={new Date(props.dob).toLocaleDateString("en-US")}
             />
           </div>
-          <div className="profiles-input2">
-            <input type="text" disabled />
-            <input disabled type="input" placeholder={props.national_id} />
-          </div>
           <div className="profiles-input3">
             <input type="text" disabled />
             <input disabled type="input" placeholder={props.email} />

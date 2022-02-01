@@ -86,7 +86,6 @@ const PatientProfile = () => {
       const body = new FormData();
 
       body.append("phone",  data.get("Mobile Number"));
-      body.append("national_id",  data.get("National ID"));
       body.append("address",  data.get("Address"));
       body.append("image",  profileImage);
 
@@ -242,16 +241,6 @@ const PatientProfile = () => {
                         name="Date of Birth"
                         placeholder="01/18/1990"
                         defaultValue={new Date(profile.dob).toLocaleDateString("en-US")}
-                      />
-                    </div>
-                    <div className="profiles-input2">
-                      <input type="text" disabled />
-                      <input
-                        disabled={!toEdit}
-                        type="input"
-                        name="National ID"
-                        placeholder="National ID"
-                        defaultValue={profile.national_id}
                       />
                     </div>
                     <div className="profiles-input3">

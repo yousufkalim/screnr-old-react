@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import UploadImage from "../../assets/images/AddImage.svg";
-import { makeStyles } from "@mui/styles";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
@@ -18,22 +17,11 @@ import { useNavigate } from "react-router-dom";
 
 import * as FormValidations from "../../validations";
 
-const useFormFieldStyles = makeStyles((theme) => ({
-  input: {
-    "& .css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
-      borderWidth: "1px !important",
-      borderColor: "#454238 !important",
-      borderRadius: "20px !important"
-    },
-  },
-}));
-
 const AddPatient = () => {
   const [loading, setLoading] = useState(false);
   let [dateOfBirth, setDateOfBirth] = useState(null);
   let [profileImage, setProfileImage] = useState(null);
 
-  const classes = useFormFieldStyles();
   const navigate = useNavigate();
 
   const handleImageSelect = (event) => {
@@ -81,7 +69,6 @@ const AddPatient = () => {
       body.append("password",  data.get("Password"));
       body.append("confirmPassword",  data.get("Confirm Password"));
       body.append("dob",  dateOfBirth);
-      body.append("national_id", data.get("ID"));
       body.append("patient_id",  data.get("Patient ID"));
       body.append("address",  data.get("Address"));
       body.append("problem_name",  data.get("Problem Name"));
@@ -200,7 +187,6 @@ const AddPatient = () => {
               <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                 <DesktopDatePicker
                   fulWidth
-                  className={classes.input}
                   label="Date of Birth"
                   inputFormat="MM/dd/yyyy"
                   value={dateOfBirth}
@@ -209,13 +195,6 @@ const AddPatient = () => {
                   maxDate={new Date()}
                 />
               </LocalizationProvider>
-              <div
-                className="flex-form"
-                style={{ background: "#F6FAFB", marginTop: "3%"}}
-              >
-                <input type="text" placeholder="ID" disabled />
-                <input type="input" name="ID" placeholder="123457890" />
-              </div>
               <div className="flexform" style={{ marginTop: "3%" }}>
                 <input type="text" placeholder="Mobile Number" disabled />
                 <input
