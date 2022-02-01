@@ -47,12 +47,16 @@ const DoctorDashboard = () => {
 
   return (
     <>
-      <AppBar heading={"Dashboard"}></AppBar>
+      <AppBar className="Appbar_background" heading={"Dashboard"}></AppBar>
       <Grid className="Bottom_header" sx={{ position: "fixed" }}>
         <Typography className="Patient_heading">Patients</Typography>
         <Button
           variant="contained"
-          sx={{ backgroundColor: " #25C8B4", marginTop: "20px !important", marginBottom: "20px !important" }}
+          sx={{
+            backgroundColor: " #25C8B4",
+            marginTop: "20px !important",
+            marginBottom: "20px !important",
+          }}
           className="Patient_button"
           onClick={navToAddPatient}
         >
@@ -77,9 +81,9 @@ const DoctorDashboard = () => {
                   className="Eclipse"
                   src={
                     item.avatar
-                    ? assetsURL(item.avatar)
-                    // : item.gender == "male" ? Eclipse3 : Eclipse4
-                    : Eclipse3
+                      ? assetsURL(item.avatar)
+                      : // : item.gender == "male" ? Eclipse3 : Eclipse4
+                        Eclipse3
                   }
                   alt=""
                 />
