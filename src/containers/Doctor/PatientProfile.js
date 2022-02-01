@@ -56,7 +56,10 @@ const PatientProfile = (props) => {
         <></>
       ) : (
         <>
-          <AppBar heading={"Patient Profile"}></AppBar>
+          <AppBar
+            className="Appbar_background"
+            heading={"Patient Profile"}
+          ></AppBar>
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
@@ -92,10 +95,10 @@ const PatientProfile = (props) => {
                 "& > :not(style)": {
                   width: "42%",
                   height: "640px !important",
-                  mt: 6,
+                  mt: 8,
                   ml: 0,
                   mr: 3,
-                  mb: 2,
+                  // mb: 2,
                 },
                 borderRadius: "20px",
               }}

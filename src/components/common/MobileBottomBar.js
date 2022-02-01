@@ -15,56 +15,60 @@ import { ReactComponent as PhysiotherapistActive } from "../../assets/images/Phy
 
 import { useNavigate } from "react-router-dom";
 
-export default function MobileBottomBar(props){
+export default function MobileBottomBar(props) {
+  const { activeIndex } = props;
 
-    const { activeIndex } = props;
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const navToAllTherapists = () => {
+    navigate("/patient/all_therapists");
+  };
 
-    const navToAllTherapists = () => {
-        navigate("/patient/all_therapists");
-    }
+  const navToPerformMotionCaptureAssessment = () => {
+    navigate("/patient/motion_capture_assessments");
+  };
 
-    const navToPerformMotionCaptureAssessment = () => {
-        navigate("/patient/motion_capture_assessment");
-    }
+  const navToDashboard = () => {
+    navigate("/patient/dashboard");
+  };
 
-    const navToDashboard = () => {
-        navigate("/patient/dashboard");
-    }
+  const navToProfile = () => {
+    navigate("/patient/dashboard/profile");
+  };
 
-    const navToProfile = () => {
-        navigate("/patient/dashboard/profile");
-    }
+  return (
+    <>
+      <BottomNavigation
+        className={props.className}
+        sx={{
+          width: "100%",
 
-    return (
-      <>
-        <BottomNavigation sx={{
-            width: "100%",
-            background: " #136773",
-            position: "fixed",
-            left: "0",
-            bottom: "0",
-            height: "60px",
-            zIndex: "20"
-        }}>
-          <BottomNavigationAction
-            onClick={navToAllTherapists}
-            icon={activeIndex == 0 ? <PhysiotherapistActive /> : <Physiotherapist />}
-          ></BottomNavigationAction>
-          <BottomNavigationAction
-            onClick={navToDashboard}
-            icon={activeIndex == 1 ? <ScorecardActive /> : <Scorecard />}
-          ></BottomNavigationAction>
-          <BottomNavigationAction
-            onClick={navToPerformMotionCaptureAssessment}
-            icon={activeIndex == 2 ? <ExerciseActive /> : <Exercise />}
-          ></BottomNavigationAction>
-          <BottomNavigationAction
-            onClick={navToProfile}
-            icon={activeIndex == 3 ? <SettingActive /> : <Setting /> }
-          ></BottomNavigationAction>
-        </BottomNavigation>
-      </>
-    );
-  }
+          position: "fixed",
+          left: "0",
+          bottom: "0",
+          height: "60px",
+          zIndex: "20",
+        }}
+      >
+        <BottomNavigationAction
+          onClick={navToAllTherapists}
+          icon={
+            activeIndex == 0 ? <PhysiotherapistActive /> : <Physiotherapist />
+          }
+        ></BottomNavigationAction>
+        <BottomNavigationAction
+          onClick={navToDashboard}
+          icon={activeIndex == 1 ? <ScorecardActive /> : <Scorecard />}
+        ></BottomNavigationAction>
+        <BottomNavigationAction
+          onClick={navToPerformMotionCaptureAssessment}
+          icon={activeIndex == 2 ? <ExerciseActive /> : <Exercise />}
+        ></BottomNavigationAction>
+        <BottomNavigationAction
+          onClick={navToProfile}
+          icon={activeIndex == 3 ? <SettingActive /> : <Setting />}
+        ></BottomNavigationAction>
+      </BottomNavigation>
+    </>
+  );
+}

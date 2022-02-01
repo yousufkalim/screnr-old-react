@@ -27,7 +27,7 @@ const AddPatient = () => {
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
     setProfileImage(file);
-  }
+  };
 
   // Calling create patient
   const handleSubmit = async (event) => {
@@ -58,7 +58,6 @@ const AddPatient = () => {
     let response;
 
     try {
-
       const body = new FormData();
 
       body.append("first_name",  data.get("First Name"));
@@ -84,7 +83,7 @@ const AddPatient = () => {
 
     setLoading(false);
 
-    if(response){
+    if (response) {
       toast.success("Patient created successfully!");
       navToDashboard();
     }
@@ -96,7 +95,7 @@ const AddPatient = () => {
 
   return (
     <>
-      <AppBar heading={"Add Patient"}></AppBar>
+      <AppBar className="Appbar_background" heading={"Add Patient"}></AppBar>
       <form noValidate onSubmit={handleSubmit}>
         <Grid className="Bottom_header" sx={{ position: "fixed" }}>
           <Typography className="Patient_heading"></Typography>
@@ -140,13 +139,17 @@ const AddPatient = () => {
                   accept="image/*"
                   placeholder="Ref."
                   onChange={handleImageSelect}
-                  onClick={(event)=> { 
-                    event.target.value = null
+                  onClick={(event) => {
+                    event.target.value = null;
                   }}
                 />
-                
+
                 <img
-                  src={profileImage ? URL.createObjectURL(profileImage) : UploadImage}
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : UploadImage
+                  }
                   className="imageContainer"
                 />
               </label>

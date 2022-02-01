@@ -9,7 +9,10 @@ import Paper from "@mui/material/Paper";
 const RespondedPatientReview = () => {
   return (
     <>
-      <AppBar heading={"Review Patient Response"}></AppBar>
+      <AppBar
+        className="Appbar_background"
+        heading={"Review Patient Response"}
+      ></AppBar>
       <Grid className="Bottom_header">
         <Typography
           className="Patient_heading"
@@ -77,33 +80,15 @@ const RespondedPatientReview = () => {
             <div className="Profilediv2">
               <div className="profiles-div">
                 <input type="text" placeholder="Exercise" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="Shoulder pain"
-                />
+                <input disabled type="input" placeholder="Shoulder pain" />
               </div>
               <div className="profiles-div2">
                 <input type="text" placeholder="Sets" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="3"
-                />
+                <input disabled type="input" placeholder="3" />
               </div>
               <div className="profiles-div3">
                 <input type="text" placeholder="Reps" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="10"
-                />
+                <input disabled type="input" placeholder="10" />
               </div>
             </div>
             <Typography className="Caption">Motion Capture Sessions</Typography>
@@ -113,30 +98,17 @@ const RespondedPatientReview = () => {
                 <input
                   disabled
                   type="input"
-                  
                   id="details"
                   placeholder="To check all details expand this tab please"
                 />
               </div>
               <div className="profiles-div2">
                 <input type="text" placeholder="Start Time" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="10:30 am"
-                />
+                <input disabled type="input" placeholder="10:30 am" />
               </div>
               <div className="Patientresponse">
                 <input type="text" placeholder="Spent Time" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="45 minutes"
-                />
+                <input disabled type="input" placeholder="45 minutes" />
               </div>
               <div className="Patientresponse">
                 <input
@@ -148,41 +120,26 @@ const RespondedPatientReview = () => {
                 <input
                   id="feed"
                   type="input"
-                  
                   placeholder="Write feedback to send to patient..."
                   disabled
                 />
               </div>
               <div className="profiles-div3">
                 <input type="text" placeholder="Screenshots" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder=""
-                />
+                <input disabled type="input" placeholder="" />
               </div>
             </div>
             <Typography className="Caption">Theoretical</Typography>
             <div className="Profilediv2">
               <div className="profiles-div">
                 <input type="text" placeholder="Exercise" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="Shoulder pain"
-                />
+                <input disabled type="input" placeholder="Shoulder pain" />
               </div>
               <div className="textarea">
                 <input type="text" placeholder="Sets" disabled />
                 <textarea
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />
               </div>
@@ -196,7 +153,6 @@ const RespondedPatientReview = () => {
                 <input
                   disabled
                   type="input"
-                  
                   id="feed"
                   placeholder="Write feedback to send to patient..."
                 />
@@ -205,21 +161,13 @@ const RespondedPatientReview = () => {
             <div className="Profilediv2">
               <div className="profiles-div">
                 <input type="text" placeholder="Exercise" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="Shoulder pain"
-                />
+                <input disabled type="input" placeholder="Shoulder pain" />
               </div>
               <div className="textarea">
                 <input type="text" placeholder="Sets" disabled />
                 <textarea
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />
               </div>
@@ -233,7 +181,6 @@ const RespondedPatientReview = () => {
                 <input
                   disabled
                   type="input"
-                  
                   id="feed"
                   placeholder="Write feedback to send to patient..."
                 />
@@ -242,21 +189,13 @@ const RespondedPatientReview = () => {
             <div className="Profilediv2">
               <div className="profiles-div">
                 <input type="text" placeholder="Exercise" disabled />
-                <input
-                  disabled
-                  type="input"
-                  
-                  
-                  placeholder="Shoulder pain"
-                />
+                <input disabled type="input" placeholder="Shoulder pain" />
               </div>
               <div className="textarea">
                 <input type="text" placeholder="Sets" disabled />
                 <textarea
                   disabled
                   type="input"
-                  
-                  
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />
               </div>
@@ -270,7 +209,6 @@ const RespondedPatientReview = () => {
                 <input
                   disabled
                   type="input"
-                  
                   id="feed"
                   placeholder="Write feedback to send to patient..."
                 />
@@ -281,7 +219,6 @@ const RespondedPatientReview = () => {
                 <input type="text" placeholder="Note" disabled />
                 <textarea
                   type="input"
-                  
                   id="feed"
                   placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
                 />

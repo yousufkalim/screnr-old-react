@@ -16,7 +16,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
-import { getUser } from "../../utils/Auth"
+import LogoFinal from "../../assets/images/logofinal.svg";
+import { getUser } from "../../utils/Auth";
 
 const ResponsiveAppBar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,30 +31,30 @@ const ResponsiveAppBar = (props) => {
   };
   const handleLogoutSubmit = () => {
     handleLogout(navigate);
-  }
+  };
   const navToProfileScreen = () => {
     const user = getUser();
 
-    if(user.role == "therapist"){
+    if (user.role == "therapist") {
       navigate("/doctor/dashboard/profile");
     } else {
       navigate("/patient/dashboard/profile");
     }
-  }
-  const navToDashboardScreen = () => {
+  };
+  const navToDashboardScreen = (props) => {
     const user = getUser();
 
-    if(user.role == "therapist"){
+    if (user.role == "therapist") {
       navigate("/doctor/dashboard");
     } else {
       navigate("/patient/dashboard");
     }
-  }
+  };
   return (
     <AppBar
+      className={props.className}
       position="sticky"
       sx={{
-        backgroundColor: " #136773",
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
     >
@@ -64,7 +65,11 @@ const ResponsiveAppBar = (props) => {
           //   alignItems: "center",
         }}
       >
-        <Grid className="Headerlogo_div" sx={{ marginBottom: "-6px" }} onClick={navToDashboardScreen}>
+        <Grid
+          className="Headerlogo_div"
+          sx={{ marginBottom: "-6px" }}
+          onClick={navToDashboardScreen}
+        >
           <img
             className="Headerlogo"
             src={Screnr}
