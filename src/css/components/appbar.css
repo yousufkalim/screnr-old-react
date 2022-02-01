@@ -36,6 +36,9 @@
 
   text-shadow: 0px 8px 27px rgba(7, 110, 176, 0.3);
 }
+.Appbar_background {
+  background-color: #136773 !important;
+}
 .HeaderHeading {
   font-family: Inter !important;
   font-style: normal !important;
