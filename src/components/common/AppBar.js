@@ -16,7 +16,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
-import LogoFinal from "../../assets/images/logofinal.svg";
 import { getUser } from "../../utils/Auth";
 
 const ResponsiveAppBar = (props) => {
@@ -85,8 +84,6 @@ const ResponsiveAppBar = (props) => {
         <Box className="Headerlogodiv">
           <Tooltip title="Open notifications">
             <IconButton
-              // sx={{ p: 0, ml: 2 }}
-
               size="small"
               aria-controls={open ? "account-menu" : undefined}
               aria-haspopup="true"
