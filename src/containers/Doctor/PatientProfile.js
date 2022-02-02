@@ -90,7 +90,7 @@ const PatientProfile = (props) => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                position: "sticky",
+                // position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "42%",

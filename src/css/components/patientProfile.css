@@ -1,5 +1,12 @@
 @media only screen and (max-width: 600px) {
   .patientprofile {
     width: 100% !important;
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-left: 6% !important;
   }
 }
