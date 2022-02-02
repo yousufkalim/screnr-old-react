@@ -80,9 +80,9 @@ const PatientProfile = () => {
     try {
       const body = new FormData();
 
-      body.append("phone",  data.get("Mobile Number"));
-      body.append("address",  data.get("Address"));
-      body.append("image",  profileImage);
+      body.append("phone", data.get("Mobile Number"));
+      body.append("address", data.get("Address"));
+      body.append("image", profileImage);
 
       const user = getUser();
 
@@ -118,7 +118,7 @@ const PatientProfile = () => {
             <Grid className="Bottom_header">
               <Typography
                 className="Patient_heading"
-                sx={{ fontSize: "20px !important" }}
+                // sx={{ fontSize: "20px !important" }}
               >
                 User Profile
               </Typography>

@@ -54,10 +54,13 @@
   border-color: #454238 !important;
   border-width: 0.5px !important;
 } */
-.css-1ypf68p-MuiButtonBase-root-MuiButton-root:hover {
+.css-lq1h0j:hover {
   background-color: #136773 !important;
 }
-.css-18akkrb-MuiButtonBase-root-MuiButton-root:hover {
+.css-zjlgo6:hover {
+  background-color: #136773 !important;
+}
+.css-8gywav:hover {
   background-color: #136773 !important;
 }
 .login_button {
@@ -95,13 +98,20 @@
 }
 .a:-webkit-any-link {
 }
-
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+/* .css-1v4ccyo:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #454238 !important;
+} */
+/* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
   border-width: 1px !important;
   border-color: #454238 !important;
   border-radius: 20px !important;
+} */
+.css-igs3ac {
+  border-color: #454238 !important;
 }
-
+.css-1bn53lx {
+  border-radius: 20px !important;
+}
 @media only screen and (max-width: 2500px) {
   .mobileviewpic {
     display: none !important;

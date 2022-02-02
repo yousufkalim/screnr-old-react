@@ -63,7 +63,7 @@ const PatientProfile = (props) => {
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
-              sx={{ fontSize: "20px !important" }}
+              // sx={{ fontSize: "20px !important" }}
             >
               {`Patient ID: ${patient.patient_id}`}
             </Typography>
@@ -95,7 +95,7 @@ const PatientProfile = (props) => {
                 "& > :not(style)": {
                   width: "42%",
                   height: "640px !important",
-                  mt: 8,
+                  mt: 10,
                   ml: 0,
                   mr: 3,
                   // mb: 2,
@@ -122,9 +122,9 @@ const PatientProfile = (props) => {
                 </>
               ) : (
                 <>
-                  {
-                    assessments.map( item => <AssessmentListTile {...item} /> )
-                  }
+                  {assessments.map((item) => (
+                    <AssessmentListTile {...item} />
+                  ))}
                 </>
               )}
             </Grid>
@@ -193,8 +193,8 @@ function AssessmentListTile(props) {
           id="profileinput"
           placeholder={
             props.type == "simple"
-            ? `Simple Exercise Details`
-            : `Motion Capture Details`
+              ? `Simple Exercise Details`
+              : `Motion Capture Details`
           }
           style={{ cursor: "pointer" }}
         />

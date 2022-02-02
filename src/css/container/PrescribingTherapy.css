@@ -202,3 +202,24 @@
   justify-content: center !important;
   margin-top: -10% !important;
 }
+@media only screen and (max-width: 540px) {
+  .Profiledivs {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 8% !important;
+    width: 95% !important;
+  }
+  .iconnewdiv {
+    position: relative;
+    right: 4.2%;
+    max-width: 11% !important;
+  }
+  .iconsdiv {
+    position: relative;
+    margin-top: 20%;
+    right: 4.3%;
+    /* bottom: 50% !important; */
+  }
+}

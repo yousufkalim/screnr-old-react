@@ -56,6 +56,7 @@ const ResponsiveAppBar = (props) => {
       position="sticky"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
+        boxShadow: "0px !important",
       }}
     >
       <Toolbar

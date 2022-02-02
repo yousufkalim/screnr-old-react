@@ -37,7 +37,7 @@ const PerformMotionCapture = () => {
   useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
   }, []);
-  
+
   return (
     <>
       <div>
@@ -71,7 +71,7 @@ const PerformMotionCapture = () => {
                       style={{
                         marginLeft: "8%",
                         marginTop: "10%",
-                        paddingBottom: "10%",
+                        paddingBottom: "5%",
                       }}
                     >
                       <div
@@ -121,13 +121,11 @@ const PerformMotionCapture = () => {
                         : "nonActive_testStatus "
                     }`}
                   >
-                    {
-                      item.status == "requested"
+                    {item.status == "requested"
                       ? "Let's start"
                       : item.status == "reviewed"
                       ? "Reviewed"
-                      : "Completed"
-                    }
+                      : "Completed"}
                   </Typography>
                 </Grid>
               </>

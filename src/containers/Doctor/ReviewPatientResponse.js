@@ -132,10 +132,7 @@ const ReviewPatientResponse = () => {
             heading={"Review Patient Response"}
           ></AppBar>
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
-            <Typography
-              className="Patient_heading"
-              sx={{ fontSize: "20px !important" }}
-            >
+            <Typography className="Patient_heading">
               {`Patient ID: ${patient.patient_id}`}
             </Typography>
             <Button
@@ -165,7 +162,7 @@ const ReviewPatientResponse = () => {
                 "& > :not(style)": {
                   width: "42%",
                   height: "640px !important",
-                  mt: 7,
+                  mt: 10,
                   ml: 0,
                   mr: 3,
                   mb: 2,
@@ -307,6 +304,7 @@ const ReviewPatientResponse = () => {
                   </div>
                 </div>
                 <div
+                  className="Review_buttons"
                   style={{
                     display: "flex",
                     justifyContent: "space-around",
