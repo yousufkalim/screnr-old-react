@@ -179,10 +179,7 @@ const PrescribeTherapy = () => {
             heading={"Prescribing Therapy Exercise"}
           ></AppBar>
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
-            <Typography
-              className="Patient_heading"
-              sx={{ fontSize: "20px !important" }}
-            >
+            <Typography className="Patient_heading">
               {`Patient ID: ${patient.patient_id}`}
             </Typography>
             <Button
@@ -210,7 +207,7 @@ const PrescribeTherapy = () => {
                   paddingTop: "1%",
                   width: "42%",
                   height: "630px !important",
-                  mt: 6,
+                  mt: 8,
                   ml: 0,
                   mr: 3,
                   mb: 2,

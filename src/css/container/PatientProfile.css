@@ -893,7 +893,7 @@
   border-top-left-radius: none;
   border: 1px solid #fc3232;
   border-right: none;
-  width: 40%;
+  width: 64%;
   font-size: 13px;
 }
 
@@ -935,10 +935,10 @@
   border-top-left-radius: none;
   border: 1px solid #25c8b4;
   border-right: none;
-  width: 40%;
+  width: 64%;
   font-size: 13px;
 }
-.css-78dcb3-MuiButtonBase-root-MuiButton-root:hover {
+.css-o0594v:hover {
   background-color: #136773 !important;
 }
 #inputplaceholder1::placeholder {
@@ -968,7 +968,8 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-right: 25% !important;
+    margin-left: 4% !important;
+    /* margin-right: 25% !important; */
   }
   .Exercise_detaill {
     display: flex !important;
@@ -980,6 +981,14 @@
   .Profileinfo {
     margin-top: 1% !important;
     margin-bottom: 4% !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .profile_input input[type="text"] {
+    width: 55% !important;
+  }
+  .profileinput input[type="text"] {
+    width: 55% !important;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -1001,9 +1010,15 @@
     color: black;
   }
   .Patient_button {
-    font-size: 10px !important;
+    font-size: 13px !important;
   }
   .box {
     width: 100% !important;
+  }
+  .profile_input input[type="text"] {
+    width: 33% !important;
+  }
+  .profileinput input[type="text"] {
+    width: 33% !important;
   }
 }

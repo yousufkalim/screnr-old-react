@@ -11,7 +11,8 @@
 #feedback::placeholder {
   color: #fba622;
 }
-#feed::placeholder { /* TODO: THIS IS POINT OF INTEREST */
+#feed::placeholder {
+  /* TODO: THIS IS POINT OF INTEREST */
   color: #fba622;
   font-family: Inter !important;
   font-style: normal !important;
@@ -167,12 +168,25 @@
   display: flex !important;
   flex-wrap: wrap !important;
 }
+.Review_buttons {
+  margin-bottom: 5% !important;
+}
 /* .css-n1opdd-MuiButtonBase-root-MuiButton-root:hover {
   background-color: #136773 !important;
 }
 .css-1vijq4x-MuiButtonBase-root-MuiButton-root:hover {
   background-color: #136773 !important;
 } */
-.css-8whfqg-MuiButtonBase-root-MuiButton-root:hover {
+.css-e7uqvc:hover {
   background-color: #136773 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .Review_buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  .Patient_review_button {
+    margin-bottom: 5% !important;
+  }
 }

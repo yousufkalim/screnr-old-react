@@ -5,7 +5,7 @@
   background: #f6fafb !important;
   padding-bottom: -5px;
   box-shadow: 0px 4px 28px rgba(200, 207, 208, 0.28);
-  padding-bottom: 15px !important;
+  /* padding-bottom: 15px !important; */
   width: 100%;
   z-index: 12 !important;
 }
@@ -25,7 +25,7 @@ div.nonActiveClas:hover {
 .css-8rfxpa:hover {
   background-color: #136773 !important;
 }
-.css-uuj2dg-MuiButtonBase-root-MuiButton-root:hover {
+.css-1211xvv:hover {
   background-color: #136773 !important;
 }
 .Patient_heading {
@@ -182,8 +182,29 @@ div.nonActiveClas:hover {
   width: 100% !important;
   margin-left: 0px !important;
 }
+@media only screen and (max-width: 1300px) {
+  .patient_maindiv {
+    margin-top: 10% !important;
+  }
+}
+@media only screen and (max-width: 890px) {
+  .patient_maindiv {
+    margin-top: 15% !important;
+  }
+}
 @media only screen and (max-width: 600px) {
   .Patient_heading {
-    font-size: 20px !important;
+    font-size: 15px !important;
+  }
+  .patient_maindiv {
+    margin-top: 20% !important;
+  }
+}
+@media only screen and (max-width: 450px) {
+  /* .Patient_heading {
+    font-size: 14px !important;
+  } */
+  .patient_maindiv {
+    margin-top: 24% !important;
   }
 }
