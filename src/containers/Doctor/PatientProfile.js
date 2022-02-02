@@ -121,11 +121,11 @@ const PatientProfile = (props) => {
                   <Typography>No assessments</Typography>
                 </>
               ) : (
-                assessments.map((item) => (
-                  <>
-                    <AssessmentListTile {...item} />
-                  </>
-                ))
+                <>
+                  {
+                    assessments.map( item => <AssessmentListTile {...item} /> )
+                  }
+                </>
               )}
             </Grid>
           </Grid>
@@ -176,7 +176,7 @@ function AssessmentListTile(props) {
       </div>
       <div
         className={
-          props.status == "requested" ? "profileinput" : "profile_input"
+          props.status == "requested" ? "profile_input" : "profileinput"
         }
         style={{ marginBottom: "4%" }}
         onClick={
@@ -192,7 +192,9 @@ function AssessmentListTile(props) {
           type="input"
           id="profileinput"
           placeholder={
-            props.status == "requested" ? "To be filled" : "View Details"
+            props.type == "simple"
+            ? `Simple Exercise Details`
+            : `Motion Capture Details`
           }
           style={{ cursor: "pointer" }}
         />
