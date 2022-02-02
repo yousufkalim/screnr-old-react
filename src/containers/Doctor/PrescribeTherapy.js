@@ -5,15 +5,18 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Profile from "../../components/common/PatientProfile";
 import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
 import EditIcon from "../../assets/images/mode.svg";
 import DeleteIcon from "../../assets/images/delete.svg";
 import AddIcon from "../../assets/images/add.svg";
 import ContentEditable from 'react-contenteditable';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
+import { makeStyles } from "@material-ui/core/styles";
 
 const PrescribeTherapy = () => {
   const navigate = useNavigate();
@@ -111,6 +114,9 @@ const PrescribeTherapy = () => {
   }
 
   function updateQuestionTitle(index, text) {
+
+    console.log(`THIS IS THE index: ${index}, text: ${text}`);
+
     const obj = {
       ...questions[index],
       title: text,
@@ -329,12 +335,72 @@ function QuestionListTile(props) {
     updateAnswerText
   } = props;
 
+  const [suggestedQuestions, setSuggestedQuestions] = useState([]);
   const [answerType, setAnswerType] = useState("text");
 
   const updateType = (type) => {
     setAnswerType(type);
     updateQuestionType(props.index, type);
   }
+
+  // func to get suggestions
+  const getSuggestions = async (query) => {
+    let response;
+    try {
+      const body = {
+        query: query
+      }
+      response = await Api(
+        "post",
+        `/existing_questions/query`,
+        body
+      );
+      const _suggestedQuestions = response.data.data;
+      if(_suggestedQuestions){
+        setSuggestedQuestions(_suggestedQuestions);
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const titleInputCallback = (event) => {
+    const text = event.target.value;
+
+    updateQuestionTitle(props.index, text);
+    getSuggestions(text);
+  }
+
+  const useStyles = makeStyles({
+    customTextField: {
+      "& input::placeholder": {
+        color: "white",
+      },
+    },
+    option: {
+      background: "#242635 ",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "#9198a5 !important",
+      },
+    },
+    noOptions: {
+      display: `${suggestedQuestions.length <= 0 ? "none" : "inherit"}`,
+      color: "white",
+    },
+    select: {
+      background: "#242635",
+      color: "#9198a5",
+      "&:before": {
+        borderColor: "red",
+      },
+      "&:after": {
+        borderColor: "yellow",
+      },
+    },
+  });
+
+  const classes = useStyles();
 
   return (
     <>
@@ -346,13 +412,41 @@ function QuestionListTile(props) {
               placeholder={`Question ${props.index + 1}`}
               disabled
             />
-            <input
+            {/* <input
               type="input"
               placeholder="Question?"
               defaultValue={props.title}
               onChange={(event) =>
                 updateQuestionTitle(props.index, event.target.value)
               }
+            /> */}
+            <Autocomplete
+              options={suggestedQuestions}
+              classes={{
+                option: classes.option,
+              }}
+              PaperComponent={({ children }) => (
+                <Paper style={{ background: "#fff" }}>
+                  {children}
+                </Paper>
+              )}
+              onChange={ event => updateQuestionTitle(props.index, event.target.textContent) }
+              getOptionLabel={ obj => obj.text }
+              style={{
+                width: "100%",
+                margin: "auto",
+              }}
+              renderInput={(params) => (
+                <TextField
+                  classes={{ root: classes.customTextField }}
+                  {...params}
+                  placeholder="Question?"
+                  style={{ color: "black" }}
+                  variant="outlined"
+                  onChange={event => titleInputCallback(event)}
+                  value={props.title}
+                />
+              )}
             />
           </div>
           <div className="profiles-div2">

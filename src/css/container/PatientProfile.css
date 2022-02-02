@@ -524,7 +524,6 @@
 }
 .profiles-div input[type="text"] {
   color: #fff;
-
   transition: all 0.2s;
   border-bottom-left-radius: none;
   border-top-left-radius: 10px;
