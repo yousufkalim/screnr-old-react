@@ -5,6 +5,7 @@
   align-content: center;
   margin-top: 6%;
 }
+
 .profiles-div {
   display: -webkit-box;
   display: flex;
@@ -13,8 +14,9 @@
   position: relative;
   /* width: 90%; */
   /* margin-bottom: 5% !important;
-          margin: 1% 5%; */
+          /* margin: 1% 5%;  */
 }
+
 .profiles-div > * {
   border: 0;
   padding: 0 0 0 10px;
@@ -26,6 +28,7 @@
   -webkit-appearance: none;
   background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
+
 .profiles-div2 {
   display: -webkit-box;
   display: flex;
@@ -214,6 +217,62 @@
   align-items: center !important;
   justify-content: center !important;
   margin-top: -10% !important;
+}
+/* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 0px;
+  pointer-events: none;
+  /* border-radius: inherit; 
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  border-radius: 0px !important; 
+  border-color: #919b9b !important;
+   border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important; 
+} */
+.MuiAutocomplete-hasPopupIcon
+  .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"],
+.MuiAutocomplete-hasClearIcon
+  .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  border-color: #919b9b !important;
+  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-left: none !important;
+}
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]
+  .MuiAutocomplete-input {
+  padding: 3.5px 0px !important;
+}
+.MuiButtonBase-root {
+}
+.Autocomplete-div {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 91.2% !important;
+  margin-right: 10px;
+  /* margin: 1% 5%; */
+}
+.Autocomplete-div > * {
+  /* border: 0; */
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 20px !important;
+  outline: 0;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb;
 }
 @media only screen and (max-width: 1400px) {
   .Profiledivs {
