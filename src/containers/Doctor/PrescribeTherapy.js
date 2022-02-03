@@ -114,9 +114,6 @@ const PrescribeTherapy = () => {
   }
 
   function updateQuestionTitle(index, text) {
-
-    console.log(`THIS IS THE index: ${index}, text: ${text}`);
-
     const obj = {
       ...questions[index],
       title: text,
@@ -169,6 +166,13 @@ const PrescribeTherapy = () => {
 
     const questionsCopy = [...questions];
     questionsCopy[questionIndex].answers = answersCopy;
+
+    setQuestions(questionsCopy);
+  }
+
+  function updateQuestion(questionIndex, obj) {
+    const questionsCopy = [...questions];
+    questionsCopy[questionIndex] = obj;
 
     setQuestions(questionsCopy);
   }
@@ -312,6 +316,7 @@ const PrescribeTherapy = () => {
                     updateQuestionDescription={updateQuestionDescription}
                     updateQuestionType={updateQuestionType}
                     updateAnswerText={updateAnswerText}
+                    updateQuestion={updateQuestion}
                     key={i}
                   />
                 ))}
@@ -332,7 +337,8 @@ function QuestionListTile(props) {
     updateQuestionTitle,
     updateQuestionDescription,
     updateQuestionType,
-    updateAnswerText
+    updateAnswerText,
+    updateQuestion
   } = props;
 
   const [suggestedQuestions, setSuggestedQuestions] = useState([]);
@@ -364,11 +370,24 @@ function QuestionListTile(props) {
     }
   };
 
-  const titleInputCallback = (event) => {
+  const questionInputCallback = (event) => {
     const text = event.target.value;
 
     updateQuestionTitle(props.index, text);
     getSuggestions(text);
+  }
+
+  const questionSelectCallback = async (questionTitle) => {
+    let objX = suggestedQuestions.filter(obj => {
+      return obj.title == questionTitle;
+    });
+    objX = objX[0];
+
+    setAnswerType(objX.type); // Local
+    updateQuestion(
+      props.index,
+      objX
+    ); // Global
   }
 
   const useStyles = makeStyles({
@@ -430,8 +449,8 @@ function QuestionListTile(props) {
                   {children}
                 </Paper>
               )}
-              onChange={ event => updateQuestionTitle(props.index, event.target.textContent) }
-              getOptionLabel={ obj => obj.text }
+              onChange={ event => questionSelectCallback(event.target.textContent) }
+              getOptionLabel={ obj => obj.title }
               style={{
                 width: "100%",
                 margin: "auto",
@@ -443,7 +462,7 @@ function QuestionListTile(props) {
                   placeholder="Question?"
                   style={{ color: "black" }}
                   variant="outlined"
-                  onChange={event => titleInputCallback(event)}
+                  onChange={event => questionInputCallback(event)}
                   value={props.title}
                 />
               )}
