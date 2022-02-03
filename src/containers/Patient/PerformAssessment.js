@@ -32,19 +32,17 @@ const PerformAssessment = () => {
     for (let i = 0; i < questions.length; i++) {
       questionRepliesArr.push({
         question_id: questions[i]._id,
-        value: "",
+        value: [],
       });
     }
     setQuestionReplies(questionRepliesArr);
   };
 
-  function updateQuestionAnswer(index, text) {
+  function updateQuestionAnswer(index, textArr) {
     const obj = {
       question_id: questionReplies[index].question_id,
-      value: text,
+      value: textArr,
     };
-
-    console.log(`THIS IS THE obj: ${JSON.stringify(obj)}`);
 
     const questionsRepliesCopy = [...questionReplies];
     questionsRepliesCopy[index] = obj;
@@ -272,7 +270,7 @@ function QuestionListTile(props) {
           <div className="profiles-div3">
             <input
               type="text"
-              placeholder={`${props.type == "text" ? "Answerr": "Options"}`}
+              placeholder={`${props.type == "text" ? "Answer": "Options"}`}
               style={{ background: "#fff" }}
               disabled
             />
@@ -294,7 +292,7 @@ function QuestionListTile(props) {
                       : "Type your answer here..."
                   }
                   onChange={(event) =>
-                    updateQuestionAnswer(props.index, event.target.value)
+                    updateQuestionAnswer(props.index, [event.target.value])
                   }
                 />
               ) : props.type == "mcqs" ? (
@@ -353,7 +351,7 @@ function MCQSAnswers(props) {
     }
 
     setCheckedMCQIndex(value);
-    updateQuestionAnswer(questionIndex, answers[value]);
+    updateQuestionAnswer(questionIndex, [answers[value]]);
   };
 
   return (
@@ -418,10 +416,54 @@ function ChecklistAnswers(props) {
     false,
   ]);
 
+  useEffect(() => {
+    fillExistingResponse();
+  }, []);
+
+  const fillExistingResponse = () => {
+    if(
+      props.assessment.status == "submitted" ||
+      props.assessment.status == "reviewed"
+    ){
+      const checkedAnswersRepliesArr = [];
+      for( let i = 0; i < checkedAnswers.length; i++ ){
+        if(props.question.value.includes(answers[i])){
+          checkedAnswersRepliesArr.push(true);
+        } else {
+          checkedAnswersRepliesArr.push(false);
+        }
+      }
+      setCheckedAnswers(checkedAnswersRepliesArr);
+    }
+  }
+
   const updateIsChecked = (index, value) => {
+
+    if(
+      props.assessment.status == "submitted" ||
+      props.assessment.status == "reviewed"
+    ){
+      // Do nothing.
+      return;
+    }
+
     const objCopy = [...checkedAnswers];
     objCopy[index] = value;
     setCheckedAnswers(objCopy);
+
+    const checkedAnswersTextArr = [];
+    for( let i = 0; i < objCopy.length; i++ ){
+      if(objCopy[i]){
+        checkedAnswersTextArr.push(answers[i]);
+      } else {
+        const index = checkedAnswersTextArr.indexOf(answers[i]);
+        if (index !== -1) {
+          checkedAnswersTextArr.splice(index, 1);
+        }
+      }
+    }
+
+    updateQuestionAnswer(questionIndex, checkedAnswersTextArr);
   };
 
   return (

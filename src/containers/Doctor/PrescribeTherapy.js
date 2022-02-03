@@ -372,9 +372,17 @@ function QuestionListTile(props) {
     objX = objX[0];
 
     setAnswerType(objX.type); // Local
+
+    const obj = {
+      title: objX.title,
+      description: objX.description,
+      type: objX.type,
+      answers: objX.answers,
+    };
+
     updateQuestion(
       props.index,
-      objX
+      obj
     ); // Global
   }
 
@@ -384,6 +392,7 @@ function QuestionListTile(props) {
         <div className="Profiledivs">
           <div className="Autocomplete-div">
             <Autocomplete
+              freeSolo={true}
               options={suggestedQuestions}
               PaperComponent={({ children }) => (
                 <Paper style={{ background: "#fff" }}>{children}</Paper>

@@ -162,7 +162,7 @@ const ReviewPatientResponse = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "42%",
-                  height: "640px !important",
+                  height: "600px !important",
                   mt: 10,
                   ml: 0,
                   mr: 3,
@@ -375,10 +375,10 @@ function QuestionListTile(props) {
 }
 
 function MCQSAnswers(props) {
-  const { answers, questionIndex } = props;
+  const { answers } = props;
   return (
     <div>
-      {answers.filter(v => v == props.question.value).map((v, i) => (
+      {answers.filter(v => props.question.value.includes(v)).map((v, i) => (
         <MCQSAnswersListTile
           index={i}
           value={v}
@@ -427,27 +427,12 @@ function MCQSAnswersListTile(props) {
 function ChecklistAnswers(props) {
   const { answers, questionIndex, updateQuestionAnswer } = props;
 
-  const [checkedAnswers, setCheckedAnswers] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const updateIsChecked = (index, value) => {
-    const objCopy = [...checkedAnswers];
-    objCopy[index] = value;
-    setCheckedAnswers(objCopy);
-  };
-
   return (
     <div>
-      {answers.map((v, i) => (
+      {answers.filter(v => props.question.value.includes(v)).map((v, i) => (
         <ChecklistAnswersListTile
           index={i}
           value={v}
-          isChecked={checkedAnswers[i]}
-          updateIsChecked={updateIsChecked}
           questionIndex={questionIndex}
           updateQuestionAnswer={updateQuestionAnswer}
           key={i}
@@ -458,18 +443,8 @@ function ChecklistAnswers(props) {
 }
 
 function ChecklistAnswersListTile(props) {
-  const { updateIsChecked, updateQuestionAnswer } = props;
 
   const text = useRef(props.value);
-
-  const handleChange = (e) => {
-    text.current = e.target.value;
-    updateQuestionAnswer(
-      props.questionIndex, // Question index
-      props.index, // Answer index
-      e.target.value // Answer text
-    );
-  };
 
   return (
     <div
@@ -484,8 +459,8 @@ function ChecklistAnswersListTile(props) {
       <input
         type="checkbox"
         name={`option_${props.index}`}
-        checked={props.isChecked}
-        onChange={(e) => updateIsChecked(props.index, !props.isChecked)}
+        checked={true}
+        onChange={(e) => {}}
         style={{
           height: "15px",
           width: "15px",
@@ -496,7 +471,6 @@ function ChecklistAnswersListTile(props) {
       />
       <ContentEditable
         html={text.current}
-        onChange={handleChange}
         key={`label_${props.index}`}
       />
     </div>
