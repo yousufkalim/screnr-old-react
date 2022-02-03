@@ -30,13 +30,14 @@ const PerformMotionCapture = () => {
     }
   };
 
-  const navToPerformAssessment = async (id) => {
-    navigate(`/patient/assessment/${id}`);
+  const navToPerformMotionCapture = async (id) => {
+    navigate(`/patient/motion_capture_assessment_1`);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-  }, [counter]);
+  }, []);
+
   return (
     <>
       <div>
@@ -47,7 +48,7 @@ const PerformMotionCapture = () => {
         <Grid
           container
           spacing={1}
-          className="patient_maindiv"
+          className="patient_mo_capture"
           sx={{ marginTop: "0px !important" }}
         >
           {assessments.length == 0 ? (
@@ -63,13 +64,14 @@ const PerformMotionCapture = () => {
                     item.status == "nonActive" ? "non_ActiveClas" : ""
                   }`}
                   sx={{ marginBottom: "25px !important" }}
+                  onClick={() => navToPerformMotionCapture(item._id)}
                 >
                   <>
                     <div
                       style={{
                         marginLeft: "8%",
                         marginTop: "10%",
-                        paddingBottom: "10%",
+                        paddingBottom: "5%",
                       }}
                     >
                       <div
@@ -120,7 +122,7 @@ const PerformMotionCapture = () => {
                     }`}
                   >
                     {item.status == "requested"
-                      ? "Lets start"
+                      ? "Let's start"
                       : item.status == "reviewed"
                       ? "Reviewed"
                       : "Completed"}

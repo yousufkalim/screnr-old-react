@@ -5,20 +5,17 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import Headerlogo from "../../assets/images/Headerlogo.svg";
 import Grid from "@mui/material/Grid";
 import Notificationicon from "../../assets/images/circle_notifications.svg";
 import Settingicon from "../../assets/images/settings.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Logout from "@mui/icons-material/Logout";
 import Screnr from "../../assets/images/screnr.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
-import LogoFinal from "../../assets/images/logofinal.svg";
 import { getUser } from "../../utils/Auth";
 
 const ResponsiveAppBar = (props) => {
@@ -58,6 +55,7 @@ const ResponsiveAppBar = (props) => {
       position="sticky"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
+        boxShadow: "0px !important",
       }}
     >
       <Toolbar
@@ -87,8 +85,6 @@ const ResponsiveAppBar = (props) => {
         <Box className="Headerlogodiv">
           <Tooltip title="Open notifications">
             <IconButton
-              // sx={{ p: 0, ml: 2 }}
-
               size="small"
               aria-controls={open ? "account-menu" : undefined}
               aria-haspopup="true"

@@ -208,6 +208,12 @@ const PatientRoutes = [
     icon: <PollIcon />,
     element: Recording_ended,
   },
+  {
+    path: "/patient/motion_capture_assessment_3",
+    name: "PatientProfile",
+    icon: <PollIcon />,
+    element: Recording_ended,
+  },
 ];
 
 // Getting all routes

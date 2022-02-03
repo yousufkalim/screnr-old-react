@@ -81,7 +81,6 @@ const PatientProfile = () => {
       const body = new FormData();
 
       body.append("phone", data.get("Mobile Number"));
-      body.append("national_id", data.get("National ID"));
       body.append("address", data.get("Address"));
       body.append("image", profileImage);
 
@@ -119,7 +118,7 @@ const PatientProfile = () => {
             <Grid className="Bottom_header">
               <Typography
                 className="Patient_heading"
-                sx={{ fontSize: "20px !important" }}
+                // sx={{ fontSize: "20px !important" }}
               >
                 User Profile
               </Typography>
@@ -234,16 +233,6 @@ const PatientProfile = () => {
                       defaultValue={new Date(profile.dob).toLocaleDateString(
                         "en-US"
                       )}
-                    />
-                  </div>
-                  <div className="profiles-input2">
-                    <input type="text" disabled />
-                    <input
-                      disabled={!toEdit}
-                      type="input"
-                      name="National ID"
-                      placeholder="National ID"
-                      defaultValue={profile.national_id}
                     />
                   </div>
                   <div className="profiles-input3">

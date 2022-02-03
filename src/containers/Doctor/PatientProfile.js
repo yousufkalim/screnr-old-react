@@ -63,7 +63,7 @@ const PatientProfile = (props) => {
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
             <Typography
               className="Patient_heading"
-              sx={{ fontSize: "20px !important" }}
+              // sx={{ fontSize: "20px !important" }}
             >
               {`Patient ID: ${patient.patient_id}`}
             </Typography>
@@ -90,12 +90,12 @@ const PatientProfile = (props) => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                position: "sticky",
+                // position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "42%",
                   height: "640px !important",
-                  mt: 8,
+                  mt: 10,
                   ml: 0,
                   mr: 3,
                   // mb: 2,
@@ -121,11 +121,11 @@ const PatientProfile = (props) => {
                   <Typography>No assessments</Typography>
                 </>
               ) : (
-                assessments.map((item) => (
-                  <>
+                <>
+                  {assessments.map((item) => (
                     <AssessmentListTile {...item} />
-                  </>
-                ))
+                  ))}
+                </>
               )}
             </Grid>
           </Grid>
@@ -176,7 +176,7 @@ function AssessmentListTile(props) {
       </div>
       <div
         className={
-          props.status == "requested" ? "profileinput" : "profile_input"
+          props.status == "requested" ? "profile_input" : "profileinput"
         }
         style={{ marginBottom: "4%" }}
         onClick={
@@ -192,7 +192,9 @@ function AssessmentListTile(props) {
           type="input"
           id="profileinput"
           placeholder={
-            props.status == "requested" ? "To be filled" : "View Details"
+            props.type == "simple"
+              ? `Simple Exercise Details`
+              : `Motion Capture Details`
           }
           style={{ cursor: "pointer" }}
         />

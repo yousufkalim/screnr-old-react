@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppBar from "../../components/common/AppBar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Profile from "../../components/common/PatientProfile";
 import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
 import EditIcon from "../../assets/images/mode.svg";
 import DeleteIcon from "../../assets/images/delete.svg";
 import AddIcon from "../../assets/images/add.svg";
+import ContentEditable from 'react-contenteditable';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
+import { makeStyles } from "@material-ui/core/styles";
 
 const PrescribeTherapy = () => {
   const navigate = useNavigate();
@@ -32,6 +36,7 @@ const PrescribeTherapy = () => {
       title: "",
       description: "",
       type: "text",
+      answers: []
     },
   ]);
 
@@ -95,6 +100,7 @@ const PrescribeTherapy = () => {
       title: "",
       description: "",
       type: "text",
+      answers: []
     };
     const questionsCopy = [...questions];
     questionsCopy.push(obj);
@@ -108,10 +114,12 @@ const PrescribeTherapy = () => {
   }
 
   function updateQuestionTitle(index, text) {
+
+    console.log(`THIS IS THE index: ${index}, text: ${text}`);
+
     const obj = {
+      ...questions[index],
       title: text,
-      description: questions[index].description,
-      type: "text",
     };
 
     const questionsCopy = [...questions];
@@ -121,9 +129,9 @@ const PrescribeTherapy = () => {
 
   function updateQuestionDescription(index, text) {
     const obj = {
-      title: questions[index].title,
+      ...questions[index],
       description: text,
-      type: "text",
+      answers: [],
     };
 
     const questionsCopy = [...questions];
@@ -131,8 +139,43 @@ const PrescribeTherapy = () => {
     setQuestions(questionsCopy);
   }
 
+  function updateQuestionType(index, type) {
+    const obj = {
+      ...questions[index],
+      type: type,
+      answers: [],
+    };
+
+    if(type == "mcqs" || type == "checkboxes"){
+      obj.description = "";
+      obj.answers = [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+      ];
+    }
+
+    const questionsCopy = [...questions];
+    questionsCopy[index] = obj;
+    setQuestions(questionsCopy);
+  }
+
+  function updateAnswerText(questionIndex, answerIndex, answerText) {
+    const question = questions[questionIndex];
+
+    const answersCopy = question.answers;
+    answersCopy[answerIndex] = answerText;
+
+    const questionsCopy = [...questions];
+    questionsCopy[questionIndex].answers = answersCopy;
+
+    setQuestions(questionsCopy);
+  }
+
   return (
     <>
+      {console.log(`THIS IS THE questions: ${JSON.stringify(questions)}`)}
       {isLoading ? (
         <></>
       ) : (
@@ -142,10 +185,7 @@ const PrescribeTherapy = () => {
             heading={"Prescribing Therapy Exercise"}
           ></AppBar>
           <Grid className="Bottom_header" sx={{ position: "fixed" }}>
-            <Typography
-              className="Patient_heading"
-              sx={{ fontSize: "20px !important" }}
-            >
+            <Typography className="Patient_heading">
               {`Patient ID: ${patient.patient_id}`}
             </Typography>
             <Button
@@ -173,7 +213,7 @@ const PrescribeTherapy = () => {
                   paddingTop: "1%",
                   width: "42%",
                   height: "630px !important",
-                  mt: 6,
+                  mt: 8,
                   ml: 0,
                   mr: 3,
                   mb: 2,
@@ -270,6 +310,8 @@ const PrescribeTherapy = () => {
                     removeQuestion={removeQuestion}
                     updateQuestionTitle={updateQuestionTitle}
                     updateQuestionDescription={updateQuestionDescription}
+                    updateQuestionType={updateQuestionType}
+                    updateAnswerText={updateAnswerText}
                     key={i}
                   />
                 ))}
@@ -283,16 +325,85 @@ const PrescribeTherapy = () => {
 };
 
 function QuestionListTile(props) {
+
   const {
     addQuestion,
     removeQuestion,
     updateQuestionTitle,
     updateQuestionDescription,
+    updateQuestionType,
+    updateAnswerText
   } = props;
+
+  const [suggestedQuestions, setSuggestedQuestions] = useState([]);
+  const [answerType, setAnswerType] = useState("text");
+
+  const updateType = (type) => {
+    setAnswerType(type);
+    updateQuestionType(props.index, type);
+  }
+
+  // func to get suggestions
+  const getSuggestions = async (query) => {
+    let response;
+    try {
+      const body = {
+        query: query
+      }
+      response = await Api(
+        "post",
+        `/existing_questions/query`,
+        body
+      );
+      const _suggestedQuestions = response.data.data;
+      if(_suggestedQuestions){
+        setSuggestedQuestions(_suggestedQuestions);
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+  };
+
+  const titleInputCallback = (event) => {
+    const text = event.target.value;
+
+    updateQuestionTitle(props.index, text);
+    getSuggestions(text);
+  }
+
+  const useStyles = makeStyles({
+    customTextField: {
+      "& input::placeholder": {
+        color: "white",
+      },
+    },
+    option: {
+      background: "#242635 ",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "#9198a5 !important",
+      },
+    },
+    noOptions: {
+      display: `${suggestedQuestions.length <= 0 ? "none" : "inherit"}`,
+      color: "white",
+    },
+    select: {
+      background: "#242635",
+      color: "#9198a5",
+      "&:before": {
+        borderColor: "red",
+      },
+      "&:after": {
+        borderColor: "yellow",
+      },
+    },
+  });
+
+  const classes = useStyles();
 
   return (
     <>
-      {/* Look for style */}
       <div style={{ display: "flex", marginBottom: "-6%" }}>
         <div className="Profiledivs">
           <div className="profiles-div">
@@ -301,30 +412,85 @@ function QuestionListTile(props) {
               placeholder={`Question ${props.index + 1}`}
               disabled
             />
-            <input
+            {/* <input
               type="input"
               placeholder="Question?"
               defaultValue={props.title}
               onChange={(event) =>
                 updateQuestionTitle(props.index, event.target.value)
               }
+            /> */}
+            <Autocomplete
+              options={suggestedQuestions}
+              classes={{
+                option: classes.option,
+              }}
+              PaperComponent={({ children }) => (
+                <Paper style={{ background: "#fff" }}>
+                  {children}
+                </Paper>
+              )}
+              onChange={ event => updateQuestionTitle(props.index, event.target.textContent) }
+              getOptionLabel={ obj => obj.text }
+              style={{
+                width: "100%",
+                margin: "auto",
+              }}
+              renderInput={(params) => (
+                <TextField
+                  classes={{ root: classes.customTextField }}
+                  {...params}
+                  placeholder="Question?"
+                  style={{ color: "black" }}
+                  variant="outlined"
+                  onChange={event => titleInputCallback(event)}
+                  value={props.title}
+                />
+              )}
             />
           </div>
           <div className="profiles-div2">
-            <input type="text" placeholder="Answer" disabled />
-            <input disabled type="input" placeholder="Short Answer" />
+            <input type="text" placeholder="Answer Type" disabled />
+            <select
+              name="answer_type"
+              id="answer_type"
+              type="answer_type"
+              value={answerType}
+              onChange={(e) => updateType(e.target.value)}
+            >
+              <option value="text">Short Answer</option>
+              <option value="mcqs">Multiple Options</option>
+              <option value="checkboxes">Checkbox</option>
+            </select>
           </div>
-          <div className="profiles-div3">
-            <input type="text" placeholder="Description" disabled />
-            <textarea
-              type="input"
-              placeholder="Description"
-              defaultValue={props.description}
-              onChange={(event) =>
-                updateQuestionDescription(props.index, event.target.value)
-              }
-            />
-          </div>
+          {
+            answerType == "text"
+            ? <div className="profiles-div3">
+                <input type="text" placeholder="Description" disabled />
+                <textarea
+                  type="input"
+                  placeholder="Description"
+                  defaultValue={props.description}
+                  onChange={(event) =>
+                    updateQuestionDescription(props.index, event.target.value)
+                  }
+                />
+              </div>
+            : answerType == "mcqs"
+            ? <MCQSAnswers
+                answers={props.answers}
+                questionIndex={props.index}
+                updateAnswerText={updateAnswerText}
+              />
+            : answerType == "checkboxes"
+            ? <ChecklistAnswers
+                answers={props.answers}
+                questionIndex={props.index}
+                updateAnswerText={updateAnswerText}
+              />
+            : <></>
+          }
+          
         </div>
         <div className={props.isLast ? `iconsdiv` : `iconnewdiv`}>
           <img src={EditIcon} style={{ margin: "10px" }}></img>
@@ -346,6 +512,149 @@ function QuestionListTile(props) {
       </div>
     </>
   );
+}
+
+function MCQSAnswers(props){
+
+  const { answers, questionIndex, updateAnswerText } = props;
+
+  const [checkedMCQIndex, setCheckedMCQIndex] = useState(null);
+
+  const updateCheckedMCQIndex = (value) => {
+    setCheckedMCQIndex(value)
+  }
+
+  return (
+    <div>
+      {
+        answers.map(
+          (v,i) => (
+            <MCQSAnswersListTile
+              index={i}
+              value={v}
+              isChecked={i==checkedMCQIndex}
+              updateCheckedMCQIndex={updateCheckedMCQIndex}
+              questionIndex={questionIndex}
+              updateAnswerText={updateAnswerText}
+              key={i}
+            />
+          )
+        )
+      }
+    </div>
+  );
+
+}
+
+function MCQSAnswersListTile(props){
+
+  const { updateCheckedMCQIndex, updateAnswerText } = props;
+
+  const text = useRef(props.value);
+
+  const handleChange = (e) => {
+    text.current = e.target.value;
+    updateAnswerText(
+      props.questionIndex, // Question index
+      props.index, // Answer index
+      e.target.value // Answer text
+    );
+  }
+
+  return (
+    <div style={{display: "flex", "justifyContent": "flex-start", alignItems: "start", marginTop: "5px"}}>
+      <input
+        type="radio"
+        name={`option_${props.index}`}
+        checked={props.isChecked}
+        onChange={ e => updateCheckedMCQIndex(props.index) }
+        style={{height: "15px", width: "15px", marginRight: "10px"}}
+        key={`input_${props.index}`}
+      />
+      <ContentEditable
+        html={text.current}
+        onChange={handleChange}
+        key={`label_${props.index}`}
+      />
+    </div>
+  );
+
+}
+
+function ChecklistAnswers(props){
+
+  const { answers, questionIndex, updateAnswerText } = props;
+
+  const [checkedAnswers, setCheckedAnswers] = useState(
+    [
+      false,
+      false,
+      false,
+      false
+    ]
+  );
+
+  const updateIsChecked = (index, value) => {
+    const objCopy = [...checkedAnswers];
+    objCopy[index] = value;
+    setCheckedAnswers(objCopy);
+  }
+
+  return (
+    <div>
+      {
+        answers.map(
+          (v,i) => (
+            <ChecklistAnswersListTile
+              index={i}
+              value={v}
+              isChecked={checkedAnswers[i]}
+              updateIsChecked={updateIsChecked}
+              questionIndex={questionIndex}
+              updateAnswerText={updateAnswerText}
+              key={i}
+            />
+          )
+        )
+      }
+    </div>
+  );
+
+}
+
+function ChecklistAnswersListTile(props){
+
+  const { updateIsChecked, updateAnswerText } = props;
+
+  const text = useRef(props.value);
+
+  const handleChange = (e) => {
+    text.current = e.target.value;
+    updateAnswerText(
+      props.questionIndex, // Question index
+      props.index, // Answer index
+      e.target.value // Answer text
+    );
+  }
+
+  return (
+    <div style={{display: "flex", "justifyContent": "flex-start", alignItems: "start", marginTop: "5px"}}>
+      <input
+        type="checkbox"
+        name={`option_${props.index}`}
+        checked={props.isChecked}
+        onChange={ e => updateIsChecked(props.index, !props.isChecked) }
+        style={{height: "15px", width: "15px", marginRight: "10px"}}
+        key={`input_${props.index}`}
+      />
+      <ContentEditable
+        html={text.current}
+        onChange={handleChange}
+        key={`label_${props.index}`}
+      />
+    </div>
+  );
+
 }
 
 export default PrescribeTherapy;
