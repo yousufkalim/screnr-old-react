@@ -504,6 +504,11 @@
   border: 1px solid #919b9b;
   border-left: none;
 }
+.profiles-div input[type="input"]::placeholder {
+  /* overflow: auto !important; */
+  /* font-size: 8px !important; */
+}
+
 .profiles-div input[type="password"] {
   flex-basis: 90% !important;
   width: 60% !important;
@@ -1022,5 +1027,8 @@
   }
   .profileinput input[type="text"] {
     width: 33% !important;
+  }
+  .Exercise_detaill {
+    padding-bottom: 18% !important  ;
   }
 }
