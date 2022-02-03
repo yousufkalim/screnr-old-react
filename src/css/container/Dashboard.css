@@ -55,6 +55,7 @@ div.nonActiveClas:hover {
   text-align: center !important;
   color: #f6fafb !important;
   text-transform: capitalize !important;
+  background-color: #25c8b4 !important;
 }
 .Patient_review_button {
   font-family: Inter !important;
