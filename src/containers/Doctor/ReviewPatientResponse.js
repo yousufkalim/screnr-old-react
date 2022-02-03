@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppBar from "../../components/common/AppBar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Profile from "../../components/common/PatientProfile";
 import Paper from "@mui/material/Paper";
+import ContentEditable from "react-contenteditable";
 
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
@@ -228,56 +229,6 @@ const ReviewPatientResponse = () => {
                     />
                   </div>
                 </div>
-                {/* <Typography className="Caption">Motion Capture Sessions</Typography>
-                <div className="profilediv">
-                  <div className="profiles-div">
-                    <input type="text" placeholder="Details" disabled />
-                    <input
-                      disabled
-                      type="input"
-                      id="details"
-                      placeholder="To check all details expand this tab please"
-                    />
-                  </div>
-                  <div className="profiles-div2">
-                    <input type="text" placeholder="Start Time" disabled />
-                    <input
-                      disabled
-                      type="input"
-                      placeholder="10:30 am"
-                    />
-                  </div>
-                  <div className="Patientresponse">
-                    <input type="text" placeholder="Spent Time" disabled />
-                    <input
-                      disabled
-                      type="input"
-                      placeholder="45 minutes"
-                    />
-                  </div>
-                  <div className="Patientresponse">
-                    <input
-                      id="feedback"
-                      type="text"
-                      placeholder="Feedback"
-                      disabled
-                    />
-                    <input
-                      id="feed"
-                      type="input"
-                      placeholder="Write feedback to send to patient..."
-                      disabled
-                    />
-                  </div>
-                  <div className="profiles-div3">
-                    <input type="text" placeholder="Screenshots" disabled />
-                    <input
-                      disabled
-                      type="input"
-                      placeholder=""
-                    />
-                  </div>
-                </div> */}
                 <Typography className="Caption">Theoretical</Typography>
                 {assessment.questions.map((e, i) => (
                   <QuestionListTile
@@ -368,10 +319,39 @@ function QuestionListTile(props) {
         <div className="textarea">
           <input
             type="text"
-            placeholder={`Answer ${props.index + 1}`}
+            placeholder={
+                props.type == "text"
+                ? "Answer"
+                : props.type == "mcqs"
+                ? "Options"
+                : props.type == "checkboxes"
+                ? "Options"
+                : ""
+              }
             disabled
           />
-          <textarea disabled type="input" placeholder={props.value} />
+          {
+            props.type == "text" ? (
+              <textarea disabled type="input" placeholder={props.value} />
+            ) : props.type == "mcqs" ? (
+              <MCQSAnswers
+                assessment={props.assessment}
+                question={props}
+                answers={props.answers}
+                questionIndex={props.index}
+              />
+            ) : props.type == "checkboxes" ? (
+              <ChecklistAnswers
+                assessment={props.assessment}
+                question={props}
+                answers={props.answers}
+                questionIndex={props.index}
+              />
+            ) : (
+              <></>
+            )
+          }
+          
         </div>
         <div className="profiles-div3">
           <input type="text" placeholder="Feedback" id="feedback" disabled />
@@ -391,6 +371,135 @@ function QuestionListTile(props) {
         </div>
       </div>
     </>
+  );
+}
+
+function MCQSAnswers(props) {
+  const { answers, questionIndex } = props;
+  return (
+    <div>
+      {answers.filter(v => v == props.question.value).map((v, i) => (
+        <MCQSAnswersListTile
+          index={i}
+          value={v}
+          key={i}
+        />
+      ))}
+    </div>
+  );
+}
+
+function MCQSAnswersListTile(props) {
+
+  const text = useRef(props.value);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "start",
+        marginTop: "5px",
+        marginBottom: "-10px",
+      }}
+    >
+      <input
+        type="radio"
+        name={`option_${props.index}`}
+        checked={true}
+        onChange={(e) => {}}
+        style={{
+          height: "15px",
+          width: "15px",
+          marginRight: "20px",
+          marginTop: "12px",
+        }}
+        key={`input_${props.index}`}
+      />
+      <ContentEditable
+        html={text.current}
+        key={`label_${props.index}`}
+      />
+    </div>
+  );
+}
+
+function ChecklistAnswers(props) {
+  const { answers, questionIndex, updateQuestionAnswer } = props;
+
+  const [checkedAnswers, setCheckedAnswers] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const updateIsChecked = (index, value) => {
+    const objCopy = [...checkedAnswers];
+    objCopy[index] = value;
+    setCheckedAnswers(objCopy);
+  };
+
+  return (
+    <div>
+      {answers.map((v, i) => (
+        <ChecklistAnswersListTile
+          index={i}
+          value={v}
+          isChecked={checkedAnswers[i]}
+          updateIsChecked={updateIsChecked}
+          questionIndex={questionIndex}
+          updateQuestionAnswer={updateQuestionAnswer}
+          key={i}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ChecklistAnswersListTile(props) {
+  const { updateIsChecked, updateQuestionAnswer } = props;
+
+  const text = useRef(props.value);
+
+  const handleChange = (e) => {
+    text.current = e.target.value;
+    updateQuestionAnswer(
+      props.questionIndex, // Question index
+      props.index, // Answer index
+      e.target.value // Answer text
+    );
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "start",
+        marginTop: "5px",
+        marginBottom: "-10px",
+      }}
+    >
+      <input
+        type="checkbox"
+        name={`option_${props.index}`}
+        checked={props.isChecked}
+        onChange={(e) => updateIsChecked(props.index, !props.isChecked)}
+        style={{
+          height: "15px",
+          width: "15px",
+          marginRight: "20px",
+          marginTop: "12px",
+        }}
+        key={`input_${props.index}`}
+      />
+      <ContentEditable
+        html={text.current}
+        onChange={handleChange}
+        key={`label_${props.index}`}
+      />
+    </div>
   );
 }
 

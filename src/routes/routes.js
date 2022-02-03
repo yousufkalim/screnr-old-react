@@ -22,7 +22,6 @@ import Therapist from "../containers/Patient/Therapist";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
 import ReviewPatientResponse from "../containers/Doctor/ReviewPatientResponse";
-import RespondedPatientReview from "../containers/Doctor/RespondedPatientReview";
 import DoctorProfile from "../containers/Doctor/DoctorProfile";
 import LoginIcon from "@mui/icons-material/Login";
 import RegisterationIcon from "@mui/icons-material/AccountBox";
@@ -113,12 +112,6 @@ const DoctorRoutes = [
     name: "ReviewPatientResponse",
     icon: <PollIcon />,
     element: ReviewPatientResponse,
-  },
-  {
-    path: "/doctor/dashboard/RespondedPatientReview",
-    name: "RespondedPatientReview",
-    icon: <PollIcon />,
-    element: RespondedPatientReview,
   },
   {
     path: "/doctor/dashboard/profile",
