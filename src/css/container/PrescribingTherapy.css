@@ -57,6 +57,16 @@
   border: 1px solid #919b9b;
   border-left: none;
 }
+.profiles-div2 select[type="answer_type"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+
+  border-bottom-right-radius: none;
+
+  border: 1px solid #919b9b;
+  border-left: none;
+}
 .profiles-div2 select[type="sets"] {
   flex-basis: 90% !important;
   width: 60% !important;
@@ -82,6 +92,8 @@
   display: -webkit-box;
   display: flex;
   z-index: 10;
+  border: 1px solid #919b9b;
+  /* margin-bottom: 1% !important; */
   position: relative;
   /* width: 90%; */
   /* margin-bottom: 5% !important;
@@ -105,7 +117,7 @@
 
   border-bottom-right-radius: 10px;
 
-  border: 1px solid #919b9b;
+  /* border: 1px solid #919b9b; */
   border-left: none;
 }
 .profiles-div3 select[type="reps"] {
@@ -115,17 +127,18 @@
 
   border-bottom-right-radius: 10px;
 
-  border: 1px solid #919b9b;
+  /* border: 1px solid #919b9b; */
   border-left: none;
 }
+
 .profiles-div3 textarea[type="input"] {
   flex-basis: 90% !important;
   width: 60% !important;
   border-top-right-radius: none;
 
   border-bottom-right-radius: 10px;
-
-  border: 1px solid #919b9b;
+  margin-bottom: 20px;
+  /* border: 1px solid #919b9b; */
   border-left: none;
 }
 .Profiledivs {
@@ -152,19 +165,19 @@
 
   transition: all 0.2s;
   border-top-left-radius: none;
-  border-bottom-left-radius: none;
-  border: 1px solid #919b9b;
+  border-bottom-left-radius: 10px;
+  border: 1px;
   border-right: none;
   width: 40%;
   font-size: 13px;
 }
 .iconsdiv {
   position: relative;
-  margin-top: 11%;
+  margin-top: 17%;
   top: 18% !important;
   padding-top: 0%;
-  margin-bottom: 6%;
-  right: 4.6%;
+  margin-bottom: 12%;
+  right: 4.7%;
   /* bottom: 50% !important; */
   display: inline-block;
   border-left: none;
@@ -174,10 +187,10 @@
 }
 .iconnewdiv {
   position: relative;
-  margin-top: 16%;
+  margin-top: 20%;
   top: 20% !important;
   padding-top: 0%;
-  margin-bottom: 6%;
+  margin-bottom: 15%;
   right: 4.7%;
   max-width: 6% !important;
   /* bottom: 50% !important; */
@@ -202,16 +215,28 @@
   justify-content: center !important;
   margin-top: -10% !important;
 }
+@media only screen and (max-width: 1400px) {
+  .Profiledivs {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 17% !important;
+    width: 95% !important;
+  }
+}
+
 @media only screen and (max-width: 540px) {
   .Profiledivs {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-top: 8% !important;
+    margin-top: 17% !important;
     width: 95% !important;
   }
   .iconnewdiv {
+    margin-bottom: 15% !important;
     position: relative;
     right: 4.2%;
     max-width: 11% !important;
