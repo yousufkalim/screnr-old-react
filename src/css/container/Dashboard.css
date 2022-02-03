@@ -103,6 +103,17 @@ div.nonActiveClas:hover {
   align-items: center !important;
   cursor: pointer !important;
 }
+.patient_dashboarddiv {
+  margin-top: 7% !important;
+  height: 100% !important;
+  margin-bottom: 20px !important;
+  justify-content: space-around !important;
+  background-color: #f6fafb !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  padding-bottom: 10% !important;
+}
 .patient_mo_capture {
   margin-top: 7% !important;
   height: 100% !important;

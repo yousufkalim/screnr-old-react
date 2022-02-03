@@ -314,44 +314,46 @@ function QuestionListTile(props) {
             placeholder={`Question ${props.index + 1}`}
             disabled
           />
-          <input disabled type="input" placeholder={props.title} />
+          <input
+            disabled
+            type="input"
+            placeholder="Questions"
+            defaultValue={props.title}
+          />
         </div>
         <div className="textarea">
           <input
             type="text"
             placeholder={
-                props.type == "text"
+              props.type == "text"
                 ? "Answer"
                 : props.type == "mcqs"
                 ? "Options"
                 : props.type == "checkboxes"
                 ? "Options"
                 : ""
-              }
+            }
             disabled
           />
-          {
-            props.type == "text" ? (
-              <textarea disabled type="input" placeholder={props.value} />
-            ) : props.type == "mcqs" ? (
-              <MCQSAnswers
-                assessment={props.assessment}
-                question={props}
-                answers={props.answers}
-                questionIndex={props.index}
-              />
-            ) : props.type == "checkboxes" ? (
-              <ChecklistAnswers
-                assessment={props.assessment}
-                question={props}
-                answers={props.answers}
-                questionIndex={props.index}
-              />
-            ) : (
-              <></>
-            )
-          }
-          
+          {props.type == "text" ? (
+            <textarea disabled type="input" placeholder={props.value} />
+          ) : props.type == "mcqs" ? (
+            <MCQSAnswers
+              assessment={props.assessment}
+              question={props}
+              answers={props.answers}
+              questionIndex={props.index}
+            />
+          ) : props.type == "checkboxes" ? (
+            <ChecklistAnswers
+              assessment={props.assessment}
+              question={props}
+              answers={props.answers}
+              questionIndex={props.index}
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <div className="profiles-div3">
           <input type="text" placeholder="Feedback" id="feedback" disabled />
@@ -390,7 +392,6 @@ function MCQSAnswers(props) {
 }
 
 function MCQSAnswersListTile(props) {
-
   const text = useRef(props.value);
 
   return (
@@ -418,6 +419,7 @@ function MCQSAnswersListTile(props) {
       />
       <ContentEditable
         html={text.current}
+        disabled
         key={`label_${props.index}`}
       />
     </div>
@@ -471,6 +473,7 @@ function ChecklistAnswersListTile(props) {
       />
       <ContentEditable
         html={text.current}
+        disabled
         key={`label_${props.index}`}
       />
     </div>

@@ -210,7 +210,7 @@ const PrescribeTherapy = () => {
                 "& > :not(style)": {
                   paddingTop: "1%",
                   width: "42%",
-                  height: "630px !important",
+                  height: "600px !important",
                   mt: 8,
                   ml: 0,
                   mr: 3,
@@ -235,7 +235,7 @@ const PrescribeTherapy = () => {
                 "& > :not(style)": {
                   width: "95%",
 
-                  paddingBottom: "10%",
+                  paddingBottom: "18%",
                   marginTop: "6.5%",
                   marginBottom: "6.5%",
                 },
@@ -331,7 +331,7 @@ function QuestionListTile(props) {
     updateQuestionDescription,
     updateQuestionType,
     updateAnswerText,
-    updateQuestion
+    updateQuestion,
   } = props;
 
   const [suggestedQuestions, setSuggestedQuestions] = useState([]);
@@ -366,7 +366,7 @@ function QuestionListTile(props) {
   };
 
   const questionSelectCallback = async (questionTitle) => {
-    let objX = suggestedQuestions.filter(obj => {
+    let objX = suggestedQuestions.filter((obj) => {
       return obj.title == questionTitle;
     });
     objX = objX[0];
@@ -397,8 +397,10 @@ function QuestionListTile(props) {
               PaperComponent={({ children }) => (
                 <Paper style={{ background: "#fff" }}>{children}</Paper>
               )}
-              onChange={ event => questionSelectCallback(event.target.textContent) }
-              getOptionLabel={ obj => obj.title }
+              onChange={(event) =>
+                questionSelectCallback(event.target.textContent)
+              }
+              getOptionLabel={(obj) => obj.title}
               style={{
                 width: "100%",
                 margin: "auto",
@@ -409,7 +411,7 @@ function QuestionListTile(props) {
                   placeholder="Question?"
                   style={{ color: "black" }}
                   variant="outlined"
-                  onChange={event => questionInputCallback(event)}
+                  onChange={(event) => questionInputCallback(event)}
                   value={props.title}
                 />
               )}
@@ -442,7 +444,7 @@ function QuestionListTile(props) {
               />
             </div>
           ) : answerType == "mcqs" ? (
-            <div className="profiles-div3">
+            <div className="options_div">
               <input type="text" placeholder="Options" disabled />
               <MCQSAnswers
                 answers={props.answers}
@@ -451,7 +453,7 @@ function QuestionListTile(props) {
               />
             </div>
           ) : answerType == "checkboxes" ? (
-            <div className="profiles-div3">
+            <div className="options_div">
               <input type="text" placeholder="Options" disabled />
               <ChecklistAnswers
                 answers={props.answers}

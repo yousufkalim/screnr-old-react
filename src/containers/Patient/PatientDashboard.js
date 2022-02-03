@@ -44,7 +44,12 @@ const PatientDashboard = () => {
       <Grid className="Bottom_header">
         <Typography className="Patient_heading">Therapy Exercises</Typography>
       </Grid>
-      <Grid container spacing={1} className="patient_maindiv">
+      <Grid
+        container
+        spacing={1}
+        className="patient_dashboarddiv"
+        style={{ marginTop: "0px !important" }}
+      >
         {assessments.length == 0 ? (
           <Typography> No Assessments </Typography>
         ) : (
