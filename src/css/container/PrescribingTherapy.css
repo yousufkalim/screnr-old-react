@@ -200,6 +200,9 @@
   /* border: 1px solid #919b9b; */
   border-left: none;
 }
+.box-container {
+  margin-bottom: 42px !important;
+}
 .Profiledivs {
   display: flex !important;
   flex-direction: column !important;
@@ -207,7 +210,10 @@
   justify-content: center !important;
   /* margin-top: 4% !important; */
   width: 95% !important;
+  height: fit-content !important;
+  /* height: 53vh !important; */
 }
+
 .profiles-div select[type="exercise"] {
   flex-basis: 90% !important;
   width: 60% !important;
@@ -242,33 +248,52 @@
   font-size: 13px;
 }
 .iconsdiv {
-  position: relative;
-  margin-top: 17%;
+  /* position: relative;
+  margin-top: 7%;
 
   padding-top: 0%;
-  margin-bottom: 7%;
+  margin-bottom: 5%;
   right: 4.7%;
-  /* bottom: 50% !important; */
+  bottom: 50% !important;
   display: inline-block;
   border-left: none;
   border: 1px solid black;
   border-radius: 30px;
   border-bottom-left-radius: 0px;
+  height: fit-content !important; */
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-block;
+  position: relative;
+  right: 4.7% !important;
+  /* padding-top: 25px; */
+  height: fit-content !important;
+  border-bottom-left-radius: 0px;
 }
 .iconnewdiv {
-  position: relative;
+  /* position: relative;
   margin-top: 20%;
   top: 20% !important;
   padding-top: 0%;
   margin-bottom: 15%;
   right: 4.7%;
   max-width: 6% !important;
-  /* bottom: 50% !important; */
+  bottom: 50% !important;
   display: inline-block;
   border-left: none;
   border: 1px solid black;
   border-radius: 30px;
+  border-bottom-left-radius: 0px; */
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-block;
+  position: relative;
+  right: 4.7% !important;
+  max-width: 5% !important;
   border-bottom-left-radius: 0px;
+
+  /* padding-top: 25px; */
+  height: fit-content !important;
 }
 .iconsdiv img {
   display: block;

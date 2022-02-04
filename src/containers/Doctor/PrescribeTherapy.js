@@ -377,7 +377,10 @@ function QuestionListTile(props) {
 
   return (
     <>
-      <div style={{ display: "flex", marginBottom: "-14%" }}>
+      <div
+        style={{ display: "flex", marginBottom: "-14%", alignItems: "end" }}
+        className="box-container"
+      >
         <div className="Profiledivs">
           <div className="Autocomplete-div">
             <Autocomplete
@@ -566,15 +569,17 @@ function ChecklistAnswers(props) {
   return (
     <div>
       {answers.map((v, i) => (
-        <ChecklistAnswersListTile
-          index={i}
-          value={v}
-          isChecked={checkedAnswers[i]}
-          updateIsChecked={updateIsChecked}
-          questionIndex={questionIndex}
-          updateAnswerText={updateAnswerText}
-          key={i}
-        />
+        <div>
+          <ChecklistAnswersListTile
+            index={i}
+            value={v}
+            isChecked={checkedAnswers[i]}
+            updateIsChecked={updateIsChecked}
+            questionIndex={questionIndex}
+            updateAnswerText={updateAnswerText}
+            key={i}
+          />
+        </div>
       ))}
     </div>
   );
