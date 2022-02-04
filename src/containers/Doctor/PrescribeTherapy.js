@@ -173,7 +173,6 @@ const PrescribeTherapy = () => {
 
   return (
     <>
-      {console.log(`THIS IS THE questions: ${JSON.stringify(questions)}`)}
       {isLoading ? (
         <></>
       ) : (
@@ -251,7 +250,7 @@ const PrescribeTherapy = () => {
                     "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                 }}
               >
-                <div className="Profilediv2" style={{ marginBottom: "1%" }}>
+                <div className="Profilediv2" style={{ marginBottom: "6%" }}>
                   <div className="profiles-div">
                     <input type="text" placeholder="Exercise" disabled />
                     <select
@@ -304,6 +303,7 @@ const PrescribeTherapy = () => {
                     {...e}
                     index={i}
                     isLast={i == questions.length - 1} // lastIndex
+                    renderDeleteBtn={questions.length >= 2} // More than one questions
                     addQuestion={addQuestion}
                     removeQuestion={removeQuestion}
                     updateQuestionTitle={updateQuestionTitle}
@@ -470,11 +470,18 @@ function QuestionListTile(props) {
         </div>
         <div className={props.isLast ? `iconsdiv` : `iconnewdiv`}>
           <img src={EditIcon} style={{ margin: "10px" }}></img>
-          <img
-            src={DeleteIcon}
-            style={{ margin: "10px" }}
-            onClick={() => removeQuestion(props.index)}
-          ></img>
+          {
+            props.renderDeleteBtn  ? (
+              <img
+                src={DeleteIcon}
+                style={{ margin: "10px" }}
+                onClick={() => removeQuestion(props.index)}
+              ></img>
+            ) : (
+              <></>
+            )
+          }
+          
           {props.isLast ? (
             <img
               src={AddIcon}

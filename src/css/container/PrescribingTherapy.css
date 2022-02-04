@@ -248,19 +248,10 @@
   font-size: 13px;
 }
 .iconsdiv {
-  /* position: relative;
-  margin-top: 7%;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 
-  padding-top: 0%;
-  margin-bottom: 5%;
-  right: 4.7%;
-  bottom: 50% !important;
-  display: inline-block;
-  border-left: none;
-  border: 1px solid black;
-  border-radius: 30px;
-  border-bottom-left-radius: 0px;
-  height: fit-content !important; */
   border: 1px solid black;
   border-radius: 30px;
   display: inline-block;
@@ -271,19 +262,10 @@
   border-bottom-left-radius: 0px;
 }
 .iconnewdiv {
-  /* position: relative;
-  margin-top: 20%;
-  top: 20% !important;
-  padding-top: 0%;
-  margin-bottom: 15%;
-  right: 4.7%;
-  max-width: 6% !important;
-  bottom: 50% !important;
-  display: inline-block;
-  border-left: none;
-  border: 1px solid black;
-  border-radius: 30px;
-  border-bottom-left-radius: 0px; */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+
   border: 1px solid black;
   border-radius: 30px;
   display: inline-block;
@@ -340,6 +322,7 @@
   border-bottom-right-radius: 0px;
   border-left: none !important;
   color: gray !important;
+  border-color: red;
 }
 .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]
   .MuiAutocomplete-input {
@@ -352,7 +335,7 @@
   display: flex;
   z-index: 10;
   position: relative;
-  width: 91.1% !important;
+  width: 91.4% !important;
   margin-right: 10px;
   /* margin: 1% 5%; */
 }
@@ -370,6 +353,9 @@
 .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]
   .MuiAutocomplete-input:first-child {
   color: #454238 !important;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: #919B9B !important;
 }
 @media only screen and (max-width: 1400px) {
   .Profiledivs {
