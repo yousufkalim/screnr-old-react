@@ -380,13 +380,11 @@ function MCQSAnswers(props) {
   const { answers } = props;
   return (
     <div>
-      {answers.filter(v => props.question.value.includes(v)).map((v, i) => (
-        <MCQSAnswersListTile
-          index={i}
-          value={v}
-          key={i}
-        />
-      ))}
+      {answers
+        .filter((v) => props.question.value.includes(v))
+        .map((v, i) => (
+          <MCQSAnswersListTile index={i} value={v} key={i} />
+        ))}
     </div>
   );
 }
@@ -402,6 +400,7 @@ function MCQSAnswersListTile(props) {
         alignItems: "start",
         marginTop: "5px",
         marginBottom: "-10px",
+        color: "#25C8B4",
       }}
     >
       <input
@@ -431,21 +430,22 @@ function ChecklistAnswers(props) {
 
   return (
     <div>
-      {answers.filter(v => props.question.value.includes(v)).map((v, i) => (
-        <ChecklistAnswersListTile
-          index={i}
-          value={v}
-          questionIndex={questionIndex}
-          updateQuestionAnswer={updateQuestionAnswer}
-          key={i}
-        />
-      ))}
+      {answers
+        .filter((v) => props.question.value.includes(v))
+        .map((v, i) => (
+          <ChecklistAnswersListTile
+            index={i}
+            value={v}
+            questionIndex={questionIndex}
+            updateQuestionAnswer={updateQuestionAnswer}
+            key={i}
+          />
+        ))}
     </div>
   );
 }
 
 function ChecklistAnswersListTile(props) {
-
   const text = useRef(props.value);
 
   return (

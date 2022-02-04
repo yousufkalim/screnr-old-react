@@ -107,7 +107,7 @@
   border-radius: 20px !important;
 } */
 .css-igs3ac {
-  border-color: #454238 !important;
+  border-color: #919b9b !important;
 }
 .css-1bn53lx {
   border-radius: 20px !important;
@@ -152,16 +152,17 @@
     display: none !important;
   }
   .Login_Box {
-    margin-left: 15% !important;
+    margin-left: 12% !important;
     margin-top: 5% !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    margin-right: 12% !important;
   }
   .mobileviewpic {
     display: flex !important;
     overflow: hidden !important;
-    margin: 126px 0px 0px -54px !important;
+    margin: 199px 0px 0px -39px !important;
   }
   .inputfield {
     width: 100% !important;

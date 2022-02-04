@@ -41,8 +41,10 @@ const PatientDashboard = () => {
   return (
     <>
       <AppBar className="Appbar_background"></AppBar>
-      <Grid className="Bottom_header">
-        <Typography className="Patient_heading">Therapy Exercises</Typography>
+      <Grid className="B_header">
+        <Typography className="Patient_heading" sx={{ marginLeft: "24px" }}>
+          Therapy Exercises
+        </Typography>
       </Grid>
       <Grid
         container
@@ -73,7 +75,10 @@ const PatientDashboard = () => {
                     {new Date(item.due_date).toLocaleDateString("en-US")}
                   </Typography>
                   <Typography className="Patient_Age">
-                    <Medicalicon className="Icons"></Medicalicon>
+                    <Medicalicon
+                      className="Icon"
+                      sx={{ marginLeft: "5% !important" }}
+                    ></Medicalicon>
                     {`Therapist ${item.therapist.first_name}`}
                   </Typography>
                 </>
