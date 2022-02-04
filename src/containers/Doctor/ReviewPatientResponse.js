@@ -200,7 +200,7 @@ const ReviewPatientResponse = () => {
                   background:
                     "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                   width: "85%",
-                  height: "92%",
+                  height: "95%",
                 }}
               >
                 <div className="Profilediv2">
@@ -405,9 +405,9 @@ function MCQSAnswersListTile(props) {
     >
       <input
         type="radio"
-        name={`option_${props.index}`}
+        name={`option_${props.index}_${Math.floor((Math.random() * 1000000) + 1)}`}
         checked={true}
-        onChange={(e) => {}}
+        onChange={(e) => {console.log(`HERE.`)}}
         style={{
           height: "15px",
           width: "15px",
@@ -460,7 +460,7 @@ function ChecklistAnswersListTile(props) {
     >
       <input
         type="checkbox"
-        name={`option_${props.index}`}
+        name={`option_${props.index}_${Math.floor((Math.random() * 1000000) + 1)}`}
         checked={true}
         onChange={(e) => {}}
         style={{
