@@ -267,7 +267,7 @@ const PrescribeTherapy = () => {
                       <option value="Hips">Hips</option>
                     </select>
                   </div>
-                  <div className="profiles-div2">
+                  <div className="profiles_div2">
                     <input type="text" placeholder="Sets" disabled />
                     <select
                       name="sets"
@@ -282,7 +282,10 @@ const PrescribeTherapy = () => {
                       <option value="4">4</option>
                     </select>
                   </div>
-                  <div className="profiles-div3">
+                  <div
+                    className="profiles-div3"
+                    style={{ border: "1px solid #454238" }}
+                  >
                     <input type="text" placeholder="Reps" disabled />
                     <select
                       name="reps"
@@ -380,11 +383,8 @@ function QuestionListTile(props) {
       answers: objX.answers,
     };
 
-    updateQuestion(
-      props.index,
-      obj
-    ); // Global
-  }
+    updateQuestion(props.index, obj); // Global
+  };
 
   return (
     <>
