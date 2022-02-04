@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppBar from "../../components/common/AppBar";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import MobileBottomBar from "../../components/common/MobileBottomBar";
+import ContentEditable from "react-contenteditable";
 
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
@@ -31,16 +32,16 @@ const PerformAssessment = () => {
     for (let i = 0; i < questions.length; i++) {
       questionRepliesArr.push({
         question_id: questions[i]._id,
-        value: "",
+        value: [],
       });
     }
     setQuestionReplies(questionRepliesArr);
   };
 
-  function updateQuestionAnswer(index, text) {
+  function updateQuestionAnswer(index, textArr) {
     const obj = {
       question_id: questionReplies[index].question_id,
-      value: text,
+      value: textArr,
     };
 
     const questionsRepliesCopy = [...questionReplies];
@@ -253,7 +254,15 @@ function QuestionListTile(props) {
             <input
               disabled
               type="input"
-              placeholder="Description"
+              placeholder={
+                props.type == "text"
+                ? "Description"
+                : props.type == "mcqs"
+                ? "Multiple Options"
+                : props.type == "checkboxes"
+                ? "Please check all the right one's"
+                : ""
+              }
               defaultValue={props.description}
               style={{ background: "#fff" }}
             />
@@ -261,33 +270,262 @@ function QuestionListTile(props) {
           <div className="profiles-div3">
             <input
               type="text"
-              placeholder={`Your Answer`}
+              placeholder={`${props.type == "text" ? "Answer": "Options"}`}
               style={{ background: "#fff" }}
               disabled
             />
-            <textarea
-              disabled={
-                props.assessment.status == "submitted" ||
-                props.assessment.status == "reviewed"
-                  ? true
-                  : false
-              }
-              type="input"
-              style={{ background: "#fff" }}
-              placeholder={
-                props.assessment.status == "submitted" ||
-                props.assessment.status == "reviewed"
-                  ? props.value
-                  : "Type your answer here..."
-              }
-              onChange={(event) =>
-                updateQuestionAnswer(props.index, event.target.value)
-              }
-            />
+            {
+              props.type == "text" ? (
+                <textarea
+                  disabled={
+                    props.assessment.status == "submitted" ||
+                    props.assessment.status == "reviewed"
+                      ? true
+                      : false
+                  }
+                  type="input"
+                  style={{ background: "#fff" }}
+                  placeholder={
+                    props.assessment.status == "submitted" ||
+                    props.assessment.status == "reviewed"
+                      ? props.value
+                      : "Type your answer here..."
+                  }
+                  onChange={(event) =>
+                    updateQuestionAnswer(props.index, [event.target.value])
+                  }
+                />
+              ) : props.type == "mcqs" ? (
+                <MCQSAnswers
+                  assessment={props.assessment}
+                  question={props}
+                  answers={props.answers}
+                  questionIndex={props.index}
+                  updateQuestionAnswer={updateQuestionAnswer}
+                />
+              ) : props.type == "checkboxes" ? (
+                <ChecklistAnswers
+                  assessment={props.assessment}
+                  question={props}
+                  answers={props.answers}
+                  questionIndex={props.index}
+                  updateQuestionAnswer={updateQuestionAnswer}
+                />
+              ) : (
+                <></>
+              )
+            }
           </div>
         </div>
       </Grid>
     </>
+  );
+}
+
+function MCQSAnswers(props) {
+  const { answers, questionIndex, updateQuestionAnswer } = props;
+
+  const [checkedMCQIndex, setCheckedMCQIndex] = useState(null);
+
+  useEffect(() => {
+    fillExistingResponse();
+  }, []);
+
+  const fillExistingResponse = () => {
+    if(
+      props.assessment.status == "submitted" ||
+      props.assessment.status == "reviewed"
+    ){
+      const indexOfChecked = answers.findIndex( v => v == props.question.value );
+      setCheckedMCQIndex(indexOfChecked);
+    }
+  }
+
+  const updateCheckedMCQIndex = (value) => {
+    if(
+      props.assessment.status == "submitted" ||
+      props.assessment.status == "reviewed"
+    ){
+      // Do nothing.
+      return;
+    }
+
+    setCheckedMCQIndex(value);
+    updateQuestionAnswer(questionIndex, [answers[value]]);
+  };
+
+  return (
+    <div>
+      {answers.map((v, i) => (
+        <MCQSAnswersListTile
+          index={i}
+          value={v}
+          isChecked={i == checkedMCQIndex}
+          updateCheckedMCQIndex={updateCheckedMCQIndex}
+          questionIndex={questionIndex}
+          key={i}
+        />
+      ))}
+    </div>
+  );
+}
+
+function MCQSAnswersListTile(props) {
+  const { updateCheckedMCQIndex } = props;
+
+  const text = useRef(props.value);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "start",
+        marginTop: "5px",
+        marginBottom: "-10px",
+      }}
+    >
+      <input
+        type="radio"
+        name={`option_${props.index}`}
+        checked={props.isChecked}
+        onChange={(e) => updateCheckedMCQIndex(props.index)}
+        style={{
+          height: "15px",
+          width: "15px",
+          marginRight: "20px",
+          marginTop: "12px",
+        }}
+        key={`input_${props.index}`}
+      />
+      <ContentEditable
+        html={text.current}
+        key={`label_${props.index}`}
+      />
+    </div>
+  );
+}
+
+function ChecklistAnswers(props) {
+  const { answers, questionIndex, updateQuestionAnswer } = props;
+
+  const [checkedAnswers, setCheckedAnswers] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  useEffect(() => {
+    fillExistingResponse();
+  }, []);
+
+  const fillExistingResponse = () => {
+    if(
+      props.assessment.status == "submitted" ||
+      props.assessment.status == "reviewed"
+    ){
+      const checkedAnswersRepliesArr = [];
+      for( let i = 0; i < checkedAnswers.length; i++ ){
+        if(props.question.value.includes(answers[i])){
+          checkedAnswersRepliesArr.push(true);
+        } else {
+          checkedAnswersRepliesArr.push(false);
+        }
+      }
+      setCheckedAnswers(checkedAnswersRepliesArr);
+    }
+  }
+
+  const updateIsChecked = (index, value) => {
+
+    if(
+      props.assessment.status == "submitted" ||
+      props.assessment.status == "reviewed"
+    ){
+      // Do nothing.
+      return;
+    }
+
+    const objCopy = [...checkedAnswers];
+    objCopy[index] = value;
+    setCheckedAnswers(objCopy);
+
+    const checkedAnswersTextArr = [];
+    for( let i = 0; i < objCopy.length; i++ ){
+      if(objCopy[i]){
+        checkedAnswersTextArr.push(answers[i]);
+      } else {
+        const index = checkedAnswersTextArr.indexOf(answers[i]);
+        if (index !== -1) {
+          checkedAnswersTextArr.splice(index, 1);
+        }
+      }
+    }
+
+    updateQuestionAnswer(questionIndex, checkedAnswersTextArr);
+  };
+
+  return (
+    <div>
+      {answers.map((v, i) => (
+        <ChecklistAnswersListTile
+          index={i}
+          value={v}
+          isChecked={checkedAnswers[i]}
+          updateIsChecked={updateIsChecked}
+          questionIndex={questionIndex}
+          updateQuestionAnswer={updateQuestionAnswer}
+          key={i}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ChecklistAnswersListTile(props) {
+  const { updateIsChecked, updateQuestionAnswer } = props;
+
+  const text = useRef(props.value);
+
+  const handleChange = (e) => {
+    text.current = e.target.value;
+    updateQuestionAnswer(
+      props.questionIndex, // Question index
+      props.index, // Answer index
+      e.target.value // Answer text
+    );
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "start",
+        marginTop: "5px",
+        marginBottom: "-10px",
+      }}
+    >
+      <input
+        type="checkbox"
+        name={`option_${props.index}`}
+        checked={props.isChecked}
+        onChange={(e) => updateIsChecked(props.index, !props.isChecked)}
+        style={{
+          height: "15px",
+          width: "15px",
+          marginRight: "20px",
+          marginTop: "12px",
+        }}
+        key={`input_${props.index}`}
+      />
+      <ContentEditable
+        html={text.current}
+        onChange={handleChange}
+        key={`label_${props.index}`}
+      />
+    </div>
   );
 }
 

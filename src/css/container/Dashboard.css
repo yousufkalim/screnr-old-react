@@ -55,6 +55,7 @@ div.nonActiveClas:hover {
   text-align: center !important;
   color: #f6fafb !important;
   text-transform: capitalize !important;
+  background-color: #25c8b4 !important;
 }
 .Patient_review_button {
   font-family: Inter !important;
@@ -101,6 +102,17 @@ div.nonActiveClas:hover {
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
+}
+.patient_dashboarddiv {
+  margin-top: 7% !important;
+  height: 100% !important;
+  margin-bottom: 20px !important;
+  justify-content: space-around !important;
+  background-color: #f6fafb !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  padding-bottom: 10% !important;
 }
 .patient_mo_capture {
   margin-top: 7% !important;
