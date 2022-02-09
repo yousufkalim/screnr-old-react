@@ -38,7 +38,7 @@ function register(data){
       validationError = Validators.lengthValidator("Password", data[prop], 8);
     } else if(prop == "confirm_password"){
       validationError = Validators.lengthValidator("Confirm Password", data[prop], 8);
-    } else if(prop == "doc_specailization"){
+    } else if(prop == "doc_specialization"){
       validationError = Validators.nullValidator("Specialization", data[prop]);
     } else if(prop == "phone"){
       validationError = Validators.phoneNoValidator("Phone No", data[prop]);

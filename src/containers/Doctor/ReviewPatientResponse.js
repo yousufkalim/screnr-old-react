@@ -200,7 +200,7 @@ const ReviewPatientResponse = () => {
                   background:
                     "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                   width: "85%",
-                  height: "92%",
+                  height: "95%",
                 }}
               >
                 <div className="Profilediv2">
@@ -380,13 +380,11 @@ function MCQSAnswers(props) {
   const { answers } = props;
   return (
     <div>
-      {answers.filter(v => props.question.value.includes(v)).map((v, i) => (
-        <MCQSAnswersListTile
-          index={i}
-          value={v}
-          key={i}
-        />
-      ))}
+      {answers
+        .filter((v) => props.question.value.includes(v))
+        .map((v, i) => (
+          <MCQSAnswersListTile index={i} value={v} key={i} />
+        ))}
     </div>
   );
 }
@@ -402,13 +400,14 @@ function MCQSAnswersListTile(props) {
         alignItems: "start",
         marginTop: "5px",
         marginBottom: "-10px",
+        color: "#25C8B4",
       }}
     >
       <input
         type="radio"
-        name={`option_${props.index}`}
+        name={`option_${props.index}_${Math.floor((Math.random() * 1000000) + 1)}`}
         checked={true}
-        onChange={(e) => {}}
+        onChange={(e) => {console.log(`HERE.`)}}
         style={{
           height: "15px",
           width: "15px",
@@ -431,21 +430,22 @@ function ChecklistAnswers(props) {
 
   return (
     <div>
-      {answers.filter(v => props.question.value.includes(v)).map((v, i) => (
-        <ChecklistAnswersListTile
-          index={i}
-          value={v}
-          questionIndex={questionIndex}
-          updateQuestionAnswer={updateQuestionAnswer}
-          key={i}
-        />
-      ))}
+      {answers
+        .filter((v) => props.question.value.includes(v))
+        .map((v, i) => (
+          <ChecklistAnswersListTile
+            index={i}
+            value={v}
+            questionIndex={questionIndex}
+            updateQuestionAnswer={updateQuestionAnswer}
+            key={i}
+          />
+        ))}
     </div>
   );
 }
 
 function ChecklistAnswersListTile(props) {
-
   const text = useRef(props.value);
 
   return (
@@ -460,7 +460,7 @@ function ChecklistAnswersListTile(props) {
     >
       <input
         type="checkbox"
-        name={`option_${props.index}`}
+        name={`option_${props.index}_${Math.floor((Math.random() * 1000000) + 1)}`}
         checked={true}
         onChange={(e) => {}}
         style={{

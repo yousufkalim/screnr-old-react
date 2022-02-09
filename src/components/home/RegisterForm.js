@@ -38,10 +38,10 @@ const RegisterForm = () => {
     first_name: "",
     last_name: "",
     email: "",
-    doc_specailization: "",
+    doc_specialization: "",
     phone: "",
   });
-  const { first_name, last_name, email, doc_specailization, phone } = formData;
+  const { first_name, last_name, email, doc_specialization, phone } = formData;
   const [gender, setGender] = React.useState("");
   const [date, setDate] = React.useState(null);
 
@@ -325,9 +325,9 @@ const RegisterForm = () => {
                   Specialization
                 </InputLabel>
                 <OutlinedInput
-                  id="doc_specailization"
-                  name="doc_specailization"
-                  value={doc_specailization}
+                  id="doc_specialization"
+                  name="doc_specialization"
+                  value={doc_specialization}
                   onChange={onChange}
                   placeholder="Enter specialization"
                   className="register_input_field"

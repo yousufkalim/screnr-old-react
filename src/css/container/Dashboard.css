@@ -9,6 +9,17 @@
   width: 100%;
   z-index: 12 !important;
 }
+.B_header {
+  display: flex !important;
+  justify-content: space-between !important;
+  /* margin: 0 5% 0 0 !important; */
+  background: #f6fafb !important;
+  padding-bottom: -5px;
+
+  /* padding-bottom: 15px !important; */
+  width: 100%;
+  z-index: 12 !important;
+}
 .nonActiveClas {
   background: linear-gradient(0deg, #e7faff, #e7faff), #f6fafb !important;
   border-radius: 20px !important;
@@ -34,7 +45,7 @@ div.nonActiveClas:hover {
   font-weight: 600 !important;
   font-size: 28px !important;
   line-height: 44px !important;
-  padding: 1% 0 1% 3% !important;
+  padding: 1% 0 1% 2.2% !important;
   /* identical to box height */
 
   color: #136773;
@@ -97,22 +108,24 @@ div.nonActiveClas:hover {
   margin-top: 7% !important;
   height: 100% !important;
   margin-bottom: 20px !important;
-  justify-content: space-around !important;
+  /* justify-content: space-around !important; */
   background-color: #f6fafb !important;
+  margin-left: 1% !important;
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
 }
 .patient_dashboarddiv {
-  margin-top: 7% !important;
+  margin-top: 2% !important;
   height: 100% !important;
   margin-bottom: 20px !important;
-  justify-content: space-around !important;
+  /* justify-content: space-around !important; */
   background-color: #f6fafb !important;
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
   padding-bottom: 10% !important;
+  justify-content: center !important;
 }
 .patient_mo_capture {
   margin-top: 7% !important;
@@ -189,10 +202,15 @@ div.nonActiveClas:hover {
 }
 .Icons {
   margin-right: 10px !important;
+  margin-left: 5px !important;
+}
+.Icon {
+  margin-right: 10px !important;
+  margin-left: 7px !important;
 }
 .css-tuxzvu {
   width: 100% !important;
-  margin-left: 0px !important;
+  margin-left: 8px !important;
 }
 @media only screen and (max-width: 1300px) {
   .patient_maindiv {
@@ -206,7 +224,7 @@ div.nonActiveClas:hover {
 }
 @media only screen and (max-width: 600px) {
   .Patient_heading {
-    font-size: 15px !important;
+    font-size: 20px !important;
   }
   .patient_maindiv {
     margin-top: 20% !important;

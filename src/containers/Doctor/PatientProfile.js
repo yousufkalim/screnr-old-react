@@ -93,11 +93,11 @@ const PatientProfile = (props) => {
                 // position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "42%",
+                  width: "45%",
                   height: "600px !important",
                   mt: 10,
                   ml: 0,
-                  mr: 3,
+                  mr: 2,
                   // mb: 2,
                 },
                 borderRadius: "20px",
@@ -118,7 +118,9 @@ const PatientProfile = (props) => {
               </Typography>
               {assessments.length == 0 ? (
                 <>
-                  <Typography>No assessments</Typography>
+                  <Typography sx={{ marginLeft: ".5%" }}>
+                    No assessments
+                  </Typography>
                 </>
               ) : (
                 <>

@@ -110,10 +110,12 @@ const PerformAssessment = () => {
             className="Appbar_background"
             heading={assessment.exercise}
           ></AppBar>
-          <Grid className="Bottom_header">
+          <Grid className="Bottom_header" sx={{ boxShadow: "none" }}>
             <Typography
               className="Patient_heading"
-              sx={{ fontSize: "20px !important" }}
+              sx={{
+                marginLeft: "25px !important",
+              }}
             >
               Simple Exercise
             </Typography>
@@ -139,6 +141,7 @@ const PerformAssessment = () => {
               sx={{
                 width: "85%",
                 borderRadius: "20px",
+                marginLeft: "4%",
                 marginTop: "4%",
                 marginBottom: "20%",
                 paddingBottom: "5%",
@@ -150,14 +153,20 @@ const PerformAssessment = () => {
                   assessment={assessment}
                   index={i}
                   key={i}
-                  // style={{ marginTop: "100px", color: "#f2f2f2" }}
                   updateQuestionAnswer={updateQuestionAnswer}
                 />
               ))}
-              <div style={{ display: "flex", marginTop: "30px !important" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "30px !important",
+                  alignItems: "center",
+                }}
+              >
                 <Checkbox
                   defaultChecked
-                  variant="body1"
+                  // variant="body1"
                   className="checkbox"
                   sx={{
                     color: "#FBA622",
@@ -228,12 +237,14 @@ function QuestionListTile(props) {
         }}
       >
         <div className="Profiledivs Questiondiv">
-          <div className="profiles-div ">
+          <div className="profiles-div " style={{}}>
             <input
               type="text"
               placeholder={`Question ${props.index + 1}`}
               disabled
-              style={{ background: "#fff" }}
+              style={{
+                background: "#fff",
+              }}
             />
             <input
               type="input"
@@ -256,65 +267,64 @@ function QuestionListTile(props) {
               type="input"
               placeholder={
                 props.type == "text"
-                ? "Description"
-                : props.type == "mcqs"
-                ? "Multiple Options"
-                : props.type == "checkboxes"
-                ? "Please check all the right one's"
-                : ""
+                  ? "Description"
+                  : props.type == "mcqs"
+                  ? "Multiple Options"
+                  : props.type == "checkboxes"
+                  ? "Please check all the right one's"
+                  : ""
               }
               defaultValue={props.description}
               style={{ background: "#fff" }}
             />
           </div>
-          <div className="profiles-div3">
+          <div className="profiles-div4">
             <input
               type="text"
-              placeholder={`${props.type == "text" ? "Answer": "Options"}`}
-              style={{ background: "#fff" }}
+              placeholder={`${props.type == "text" ? "Answer" : "Options"}`}
               disabled
+              style={{ background: "#fff", color: "black" }}
             />
-            {
-              props.type == "text" ? (
-                <textarea
-                  disabled={
-                    props.assessment.status == "submitted" ||
-                    props.assessment.status == "reviewed"
-                      ? true
-                      : false
-                  }
-                  type="input"
-                  style={{ background: "#fff" }}
-                  placeholder={
-                    props.assessment.status == "submitted" ||
-                    props.assessment.status == "reviewed"
-                      ? props.value
-                      : "Type your answer here..."
-                  }
-                  onChange={(event) =>
-                    updateQuestionAnswer(props.index, [event.target.value])
-                  }
-                />
-              ) : props.type == "mcqs" ? (
-                <MCQSAnswers
-                  assessment={props.assessment}
-                  question={props}
-                  answers={props.answers}
-                  questionIndex={props.index}
-                  updateQuestionAnswer={updateQuestionAnswer}
-                />
-              ) : props.type == "checkboxes" ? (
-                <ChecklistAnswers
-                  assessment={props.assessment}
-                  question={props}
-                  answers={props.answers}
-                  questionIndex={props.index}
-                  updateQuestionAnswer={updateQuestionAnswer}
-                />
-              ) : (
-                <></>
-              )
-            }
+            {props.type == "text" ? (
+              <textarea
+                disabled={
+                  props.assessment.status == "submitted" ||
+                  props.assessment.status == "reviewed"
+                    ? true
+                    : false
+                }
+                type="input"
+                style={{ background: "#fff", color: "black" }}
+                placeholder={
+                  props.assessment.status == "submitted" ||
+                  props.assessment.status == "reviewed"
+                    ? props.value
+                    : "Type your answer here..."
+                }
+                onChange={(event) =>
+                  updateQuestionAnswer(props.index, [event.target.value])
+                }
+              />
+            ) : props.type == "mcqs" ? (
+              <MCQSAnswers
+                assessment={props.assessment}
+                question={props}
+                answers={props.answers}
+                questionIndex={props.index}
+                updateQuestionAnswer={updateQuestionAnswer}
+                style={{ background: "#fff !important", color: "black" }}
+              />
+            ) : props.type == "checkboxes" ? (
+              <ChecklistAnswers
+                assessment={props.assessment}
+                question={props}
+                answers={props.answers}
+                questionIndex={props.index}
+                updateQuestionAnswer={updateQuestionAnswer}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </Grid>
@@ -332,20 +342,22 @@ function MCQSAnswers(props) {
   }, []);
 
   const fillExistingResponse = () => {
-    if(
+    if (
       props.assessment.status == "submitted" ||
       props.assessment.status == "reviewed"
-    ){
-      const indexOfChecked = answers.findIndex( v => v == props.question.value );
+    ) {
+      const indexOfChecked = answers.findIndex(
+        (v) => v == props.question.value
+      );
       setCheckedMCQIndex(indexOfChecked);
     }
-  }
+  };
 
   const updateCheckedMCQIndex = (value) => {
-    if(
+    if (
       props.assessment.status == "submitted" ||
       props.assessment.status == "reviewed"
-    ){
+    ) {
       // Do nothing.
       return;
     }
@@ -383,6 +395,7 @@ function MCQSAnswersListTile(props) {
         alignItems: "start",
         marginTop: "5px",
         marginBottom: "-10px",
+        background: "#fff !important",
       }}
     >
       <input
@@ -395,13 +408,11 @@ function MCQSAnswersListTile(props) {
           width: "15px",
           marginRight: "20px",
           marginTop: "12px",
+          background: "#fff !important",
         }}
         key={`input_${props.index}`}
       />
-      <ContentEditable
-        html={text.current}
-        key={`label_${props.index}`}
-      />
+      <ContentEditable html={text.current} key={`label_${props.index}`} />
     </div>
   );
 }
@@ -421,13 +432,13 @@ function ChecklistAnswers(props) {
   }, []);
 
   const fillExistingResponse = () => {
-    if(
+    if (
       props.assessment.status == "submitted" ||
       props.assessment.status == "reviewed"
-    ){
+    ) {
       const checkedAnswersRepliesArr = [];
-      for( let i = 0; i < checkedAnswers.length; i++ ){
-        if(props.question.value.includes(answers[i])){
+      for (let i = 0; i < checkedAnswers.length; i++) {
+        if (props.question.value.includes(answers[i])) {
           checkedAnswersRepliesArr.push(true);
         } else {
           checkedAnswersRepliesArr.push(false);
@@ -435,14 +446,13 @@ function ChecklistAnswers(props) {
       }
       setCheckedAnswers(checkedAnswersRepliesArr);
     }
-  }
+  };
 
   const updateIsChecked = (index, value) => {
-
-    if(
+    if (
       props.assessment.status == "submitted" ||
       props.assessment.status == "reviewed"
-    ){
+    ) {
       // Do nothing.
       return;
     }
@@ -452,8 +462,8 @@ function ChecklistAnswers(props) {
     setCheckedAnswers(objCopy);
 
     const checkedAnswersTextArr = [];
-    for( let i = 0; i < objCopy.length; i++ ){
-      if(objCopy[i]){
+    for (let i = 0; i < objCopy.length; i++) {
+      if (objCopy[i]) {
         checkedAnswersTextArr.push(answers[i]);
       } else {
         const index = checkedAnswersTextArr.indexOf(answers[i]);
