@@ -112,6 +112,12 @@
 .css-1bn53lx {
   border-radius: 20px !important;
 }
+/* .css-tuxzvu {
+  width: calc(100% + 0px);
+} */
+.main_container {
+  overflow: hidden !important;
+}
 @media only screen and (max-width: 2500px) {
   .mobileviewpic {
     display: none !important;

@@ -43,7 +43,14 @@ const PerformMotionCapture = () => {
       <div>
         <AppBar className="Appbar_background"></AppBar>
         <Grid className="Bottom_header" sx={{ boxShadow: "none" }}>
-          <Typography className="Patient_heading">Motion Capture</Typography>
+          <Typography
+            className="Patient_heading"
+            sx={{
+              marginLeft: "25px !important",
+            }}
+          >
+            Motion Capture
+          </Typography>
         </Grid>
         <Grid
           container

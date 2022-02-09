@@ -95,107 +95,113 @@ const LoginForm = () => {
   };
 
   return (
-    <Grid container spacing={1} className="Patient_login_maindiv">
-      <Grid item xs={false} sm={4} md={6}>
-        <img className="Login_img" src={logo} alt="" />
-        <img className="Login_img1" src={LoginVector} alt="" />
-      </Grid>
-      <Grid item xs={false} sm={4} md={6}>
-        <Box className="Login_Box">
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleLoginSubmit}
-            sx={{ mt: 1 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={12} md={12}>
-                <InputLabel
-                  shrink
-                  htmlFor="bootstrap-input"
-                  className="inputlabel"
-                >
-                  Email
-                </InputLabel>
-                <OutlinedInput
-                  id="email"
-                  name="email"
-                  placeholder="abc@xyz.com"
-                  className="inputfield"
-                />
-              </Grid>
-              <Grid item xs={12} sm={12} md={12}>
-                <InputLabel
-                  shrink
-                  htmlFor="bootstrap-input"
-                  className="inputlabel"
-                >
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  className="inputfield"
-                  id="password"
-                  name="password"
-                  type={Confirmloginvalues.showPassword ? "text" : "password"}
-                  value={Confirmloginvalues.password}
-                  placeholder="Password"
-                  onChange={handleChangelogin("password")}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowloginPassword}
-                        onMouseDown={handleMouseDownloginPassword}
-                        edge="end"
-                      >
-                        {Confirmloginvalues.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </Grid>
-            </Grid>
-
-            <Button
-              type="submit"
-              variant="contained"
-              className="login_button"
-              sx={{
-                mt: 3,
-                mb: 2,
-                backgroundColor: "#454238 !important",
-                boxShadow: "0px 0px 20px rgba(49, 36, 36, 0.29)",
-                textTransform: "Capitalize",
-              }}
+    <div className="main_container">
+      <Grid container spacing={1} className="Patient_login_maindiv">
+        <Grid item xs={false} sm={4} md={6}>
+          <img className="Login_img" src={logo} alt="" />
+          <img className="Login_img1" src={LoginVector} alt="" />
+        </Grid>
+        <Grid item xs={false} sm={4} md={6}>
+          <Box className="Login_Box">
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleLoginSubmit}
+              sx={{ mt: 1 }}
             >
-              Login
-            </Button>
-            <Grid container spacing={1}>
-              <Grid md={12}>
-                <Typography component="h5" variant="h5" className="helpertext">
-                  Don't have an account?
-                </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={12}>
+                  <InputLabel
+                    shrink
+                    htmlFor="bootstrap-input"
+                    className="inputlabel"
+                  >
+                    Email
+                  </InputLabel>
+                  <OutlinedInput
+                    id="email"
+                    name="email"
+                    placeholder="abc@xyz.com"
+                    className="inputfield"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                  <InputLabel
+                    shrink
+                    htmlFor="bootstrap-input"
+                    className="inputlabel"
+                  >
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    className="inputfield"
+                    id="password"
+                    name="password"
+                    type={Confirmloginvalues.showPassword ? "text" : "password"}
+                    value={Confirmloginvalues.password}
+                    placeholder="Password"
+                    onChange={handleChangelogin("password")}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowloginPassword}
+                          onMouseDown={handleMouseDownloginPassword}
+                          edge="end"
+                        >
+                          {Confirmloginvalues.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </Grid>
               </Grid>
-              <Grid sm={12} xs={12} md={12}>
-                <Button
-                  variant="text"
-                  className="swtich_FormBtn"
-                  sx={{ textTransform: "Capitalize" }}
-                  onClick={navToRegister}
-                >
-                  Register Now
-                </Button>
+
+              <Button
+                type="submit"
+                variant="contained"
+                className="login_button"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: "#454238 !important",
+                  boxShadow: "0px 0px 20px rgba(49, 36, 36, 0.29)",
+                  textTransform: "Capitalize",
+                }}
+              >
+                Login
+              </Button>
+              <Grid container spacing={1}>
+                <Grid md={12}>
+                  <Typography
+                    component="h5"
+                    variant="h5"
+                    className="helpertext"
+                  >
+                    Don't have an account?
+                  </Typography>
+                </Grid>
+                <Grid sm={12} xs={12} md={12}>
+                  <Button
+                    variant="text"
+                    className="swtich_FormBtn"
+                    sx={{ textTransform: "Capitalize" }}
+                    onClick={navToRegister}
+                  >
+                    Register Now
+                  </Button>
+                </Grid>
+                <img className="mobileviewpic" src={LoginVector} alt="" />
               </Grid>
-              <img className="mobileviewpic" src={LoginVector} alt="" />
-            </Grid>
+            </Box>
           </Box>
-        </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 };
 

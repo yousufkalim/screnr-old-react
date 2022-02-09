@@ -205,7 +205,7 @@ const ReviewPatientResponse = () => {
               >
                 <div className="Profilediv2">
                   <div className="profiles-div">
-                    <input type="text" placeholder="Exercise" disabled />
+                    <input type="txt" placeholder="Exercise" disabled />
                     <input
                       disabled
                       type="input"
@@ -310,7 +310,7 @@ function QuestionListTile(props) {
       <div className="Profilediv2">
         <div className="profiles-div">
           <input
-            type="text"
+            type="txt"
             placeholder={`Question ${props.index + 1}`}
             disabled
           />
@@ -405,14 +405,19 @@ function MCQSAnswersListTile(props) {
     >
       <input
         type="radio"
-        name={`option_${props.index}_${Math.floor((Math.random() * 1000000) + 1)}`}
+        name={`option_${props.index}_${Math.floor(
+          Math.random() * 1000000 + 1
+        )}`}
         checked={true}
-        onChange={(e) => {console.log(`HERE.`)}}
+        onChange={(e) => {
+          console.log(`HERE.`);
+        }}
         style={{
           height: "15px",
           width: "15px",
           marginRight: "20px",
           marginTop: "12px",
+          accentColor: "#454238",
         }}
         key={`input_${props.index}`}
       />
@@ -460,7 +465,9 @@ function ChecklistAnswersListTile(props) {
     >
       <input
         type="checkbox"
-        name={`option_${props.index}_${Math.floor((Math.random() * 1000000) + 1)}`}
+        name={`option_${props.index}_${Math.floor(
+          Math.random() * 1000000 + 1
+        )}`}
         checked={true}
         onChange={(e) => {}}
         style={{
@@ -468,6 +475,7 @@ function ChecklistAnswersListTile(props) {
           width: "15px",
           marginRight: "20px",
           marginTop: "12px",
+          accentColor: "#454238",
         }}
         key={`input_${props.index}`}
       />
