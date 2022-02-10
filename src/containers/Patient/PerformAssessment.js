@@ -237,9 +237,9 @@ function QuestionListTile(props) {
         }}
       >
         <div className="Profiledivs Questiondiv">
-          <div className="profiles-div " style={{}}>
+          <div className="profiles-div" style={{}}>
             <input
-              type="text"
+              type="txt"
               placeholder={`Question ${props.index + 1}`}
               disabled
               style={{
@@ -409,6 +409,7 @@ function MCQSAnswersListTile(props) {
           marginRight: "20px",
           marginTop: "12px",
           background: "#fff !important",
+          accentColor: "#454238",
         }}
         key={`input_${props.index}`}
       />
@@ -527,6 +528,7 @@ function ChecklistAnswersListTile(props) {
           width: "15px",
           marginRight: "20px",
           marginTop: "12px",
+          accentColor: "#454238",
         }}
         key={`input_${props.index}`}
       />
