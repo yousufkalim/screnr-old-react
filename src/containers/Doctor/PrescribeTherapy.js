@@ -389,7 +389,12 @@ function QuestionListTile(props) {
   return (
     <>
       <div
-        style={{ display: "flex", marginBottom: "-14%", alignItems: "end" }}
+        style={{
+          display: "flex",
+          marginBottom: "-14%",
+          alignItems: "end",
+          justitfyContent: "center",
+        }}
         className="box-container"
       >
         <div className="Profiledivs">
@@ -405,7 +410,7 @@ function QuestionListTile(props) {
               }
               getOptionLabel={(obj) => obj.title}
               style={{
-                width: "100%",
+                width: "99.7%",
                 margin: "auto",
               }}
               renderInput={(params) => (
@@ -470,18 +475,16 @@ function QuestionListTile(props) {
         </div>
         <div className={props.isLast ? `iconsdiv` : `iconnewdiv`}>
           <img src={EditIcon} style={{ margin: "10px" }}></img>
-          {
-            props.renderDeleteBtn  ? (
-              <img
-                src={DeleteIcon}
-                style={{ margin: "10px" }}
-                onClick={() => removeQuestion(props.index)}
-              ></img>
-            ) : (
-              <></>
-            )
-          }
-          
+          {props.renderDeleteBtn ? (
+            <img
+              src={DeleteIcon}
+              style={{ margin: "10px" }}
+              onClick={() => removeQuestion(props.index)}
+            ></img>
+          ) : (
+            <></>
+          )}
+
           {props.isLast ? (
             <img
               src={AddIcon}
@@ -557,6 +560,7 @@ function MCQSAnswersListTile(props) {
           width: "15px",
           marginRight: "20px",
           marginTop: "12px",
+          accentColor: " #454238",
         }}
         key={`input_${props.index}`}
       />
@@ -638,6 +642,7 @@ function ChecklistAnswersListTile(props) {
           width: "15px",
           marginRight: "20px",
           marginTop: "12px",
+          accentColor: " #454238",
         }}
         key={`input_${props.index}`}
       />
