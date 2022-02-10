@@ -15,6 +15,7 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 
+import EyeIcon from "../../assets/images/eye.svg";
 import * as FormValidations from "../../validations";
 
 const AddPatient = () => {
@@ -60,19 +61,19 @@ const AddPatient = () => {
     try {
       const body = new FormData();
 
-      body.append("first_name",  data.get("First Name"));
-      body.append("middle_name",  data.get("Middle Name"));
-      body.append("last_name",  data.get("Last Name"));
-      body.append("phone",  data.get("Mobile Number"));
-      body.append("email",  data.get("Email Address"));
-      body.append("password",  data.get("Password"));
-      body.append("confirmPassword",  data.get("Confirm Password"));
-      body.append("dob",  dateOfBirth);
-      body.append("patient_id",  data.get("Patient ID"));
-      body.append("address",  data.get("Address"));
-      body.append("problem_name",  data.get("Problem Name"));
-      body.append("problem_description",  data.get("Problem Description"));
-      body.append("image",  profileImage);
+      body.append("first_name", data.get("First Name"));
+      body.append("middle_name", data.get("Middle Name"));
+      body.append("last_name", data.get("Last Name"));
+      body.append("phone", data.get("Mobile Number"));
+      body.append("email", data.get("Email Address"));
+      body.append("password", data.get("Password"));
+      body.append("confirmPassword", data.get("Confirm Password"));
+      body.append("dob", dateOfBirth);
+      body.append("patient_id", data.get("Patient ID"));
+      body.append("address", data.get("Address"));
+      body.append("problem_name", data.get("Problem Name"));
+      body.append("problem_description", data.get("Problem Description"));
+      body.append("image", profileImage);
 
       setLoading(true);
 
@@ -93,6 +94,17 @@ const AddPatient = () => {
     navigate("/doctor/dashboard");
   };
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
+  const handlePasswordVisible = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+  const [isConfrimPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(true);
+
+  const handleConfirmPasswordVisible = () => {
+    setIsConfirmPasswordVisible(!isConfrimPasswordVisible);
+  };
   return (
     <>
       <AppBar className="Appbar_background" heading={"Add Patient"}></AppBar>
@@ -240,19 +252,32 @@ const AddPatient = () => {
               <div className="flexform">
                 <input type="text" placeholder="Password" disabled />
                 <input
-                  type="password"
+                  type={isConfrimPasswordVisible ? "password" : "txt"}
                   name="Password"
                   placeholder="Type here"
                 />
+                <img
+                  src={EyeIcon}
+                  className="eyeicon"
+                  onClick={handleConfirmPasswordVisible}
+                ></img>
               </div>
               <div className="flexforminput" style={{ marginBottom: "3%" }}>
                 <input type="text" placeholder="Confirm Password" disabled />
                 <input
-                  type="password"
+                  // type="password"
+                  type={isPasswordVisible ? "password" : "txt"}
                   name="Confirm Password"
-                  placeholder="Type here"
+                  placeholder="Type
+                  here"
                   style={{ marginBottomRightRadisu: "10px" }}
-                />
+                ></input>
+
+                <img
+                  src={EyeIcon}
+                  className="eyeicon"
+                  onClick={handlePasswordVisible}
+                ></img>
               </div>
             </Grid>
           </Paper>
