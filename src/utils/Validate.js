@@ -1,6 +1,11 @@
 
 import { toast } from "react-toastify";
-import { kRegExpEmail, kRegExpPhone, kRegExpUserName } from "./Constants";
+import {
+  kRegExpEmail,
+  kRegExpPassword,
+  kRegExpPhone,
+  kRegExpUserName,
+} from "./Constants";
 
 function isEmpty(str) {
   return (!str || str.length === 0 );
@@ -39,10 +44,25 @@ class Validators{
       return `${name} can't be empty`;
     }
 
-    const regexMatch = String(value).match(kRegExpEmail);
+    const regexMatch = value.match(kRegExpEmail);
 
     if(!regexMatch){
       return `${name} is invalid`;
+    }
+
+    return null;
+  }
+
+  static passwordValidator(name, value){
+
+    if (isEmpty(value)) {
+      return `${name} can't be empty`;
+    }
+
+    const regexMatch = value.match(kRegExpPassword);
+
+    if(!regexMatch){
+      return `${name} must be 8 characters and include uppercase, lowercase, special character and number`;
     }
 
     return null;
@@ -54,7 +74,7 @@ class Validators{
       return `${name} can't be empty`;
     }
 
-    const regexMatch = String(value).match(kRegExpPhone);
+    const regexMatch = value.match(kRegExpPhone);
 
     if(!regexMatch){
       return `${name} is invalid`;
@@ -70,7 +90,7 @@ class Validators{
       return `${name} can't be empty`;
     }
 
-    const regexMatch = String(value).match(kRegExpUserName);
+    const regexMatch = value.match(kRegExpUserName);
 
     if(!regexMatch){
       return `${name} can only contain alphabets, numbers or underscore`;

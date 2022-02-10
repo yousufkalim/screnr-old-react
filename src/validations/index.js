@@ -35,9 +35,9 @@ function register(data){
     } else if(prop == "email"){
       validationError = Validators.emailValidator("Email", data[prop]);
     } else if(prop == "password"){
-      validationError = Validators.lengthValidator("Password", data[prop], 8);
+      validationError = Validators.passwordValidator("Password", data[prop]);
     } else if(prop == "confirm_password"){
-      validationError = Validators.lengthValidator("Confirm Password", data[prop], 8);
+      validationError = Validators.passwordValidator("Confirm Password", data[prop], 8);
     } else if(prop == "doc_specialization"){
       validationError = Validators.nullValidator("Specialization", data[prop]);
     } else if(prop == "phone"){
@@ -76,15 +76,12 @@ function addPatient(data){
     },
     {
       name: "First Name",
-      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
     },
     {
       name: "Middle Name",
-      // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
     },
     {
       name: "Last Name",
-      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
     },
     {
       name: "Mobile Number",
@@ -105,11 +102,11 @@ function addPatient(data){
     },
     {
       name: "Password",
-      validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
+      validationFunction: () => Validators.passwordValidator("Password", data.get("Password"))
     },
     {
       name: "Confirm Password",
-      validationFunction: () => Validators.lengthValidator("Confirm Password", data.get("Confirm Password"), 8)
+      validationFunction: () => Validators.passwordValidator("Confirm Password", data.get("Confirm Password"))
     },
   ];
 
@@ -128,15 +125,12 @@ function editPatient(data){
     },
     {
       name: "First Name",
-      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
     },
     {
       name: "Middle Name",
-      // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
     },
     {
       name: "Last Name",
-      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
     },
     {
       name: "Mobile Number",
