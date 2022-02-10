@@ -28,7 +28,13 @@
   margin-left: 15px !important;
   padding-bottom: 2% !important;
   padding-right: 0% !important;
+  /* margin-right: 3% !important;
+  margin-bottom: 2% !important; */
+  margin: 20px auto !important;
 }
+/* .dsf {
+  overflow: hidden !important;
+} */
 div.nonActiveClas:hover {
   background: linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb !important;
   box-shadow: 0px 14px 45px rgba(17, 162, 131, 0.35) !important;
@@ -95,7 +101,7 @@ div.nonActiveClas:hover {
 .Eclipse {
   border-radius: 50%;
   width: 50%;
-  margin: 2% auto !important;
+  margin: 6% auto !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -110,11 +116,11 @@ div.nonActiveClas:hover {
   margin-bottom: 20px !important;
   /* justify-content: space-around !important; */
   background-color: #f6fafb !important;
-  margin-left: 1% !important;
+  /* margin-left: 1% !important; */
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
-  width: 95% !important;
+  /* width: 95% !important; */
 }
 .patient_dashboarddiv {
   margin-top: 2% !important;
@@ -161,7 +167,7 @@ div.nonActiveClas:hover {
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  margin: 5px 0 10px 0 !important;
+  margin: 5px 0 21px 0 !important;
 
   color: #fba622 !important ;
 }
