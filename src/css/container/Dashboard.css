@@ -114,6 +114,7 @@ div.nonActiveClas:hover {
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
+  width: 95% !important;
 }
 .patient_dashboarddiv {
   margin-top: 2% !important;
@@ -135,6 +136,7 @@ div.nonActiveClas:hover {
   background-color: #f6fafb !important;
   display: flex !important;
   align-items: center !important;
+  margin-bottom: 15% !important;
 }
 .PatientName {
   font-family: Inter !important;
@@ -211,6 +213,7 @@ div.nonActiveClas:hover {
 .css-tuxzvu {
   width: 100% !important;
   margin-left: 8px !important;
+  overflow: hidden I !important;
 }
 @media only screen and (max-width: 1300px) {
   .patient_maindiv {
@@ -225,6 +228,7 @@ div.nonActiveClas:hover {
 @media only screen and (max-width: 600px) {
   .Patient_heading {
     font-size: 20px !important;
+    margin-left: 7% !important;
   }
   .patient_maindiv {
     margin-top: 20% !important;

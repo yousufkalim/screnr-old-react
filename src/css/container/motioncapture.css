@@ -83,6 +83,7 @@
 }
 .Motion_capture_appbar {
   background: #454238 !important;
+  box-shadow: none !important;
 }
 .bottomnav {
   background: #136773 !important;
@@ -116,6 +117,9 @@
   /* margin-left: 20px !important; */
 
   text-align: center !important;
+}
+.css-a5rdam-MuiGrid-root > .MuiGrid-item {
+  padding-left: 0px !important;
 }
 .pauseButton {
   display: flex !important;
