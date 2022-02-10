@@ -7,7 +7,6 @@ import Timer from "../../utils/Timer";
 import { useNavigate } from "react-router-dom";
 
 const Motion_captureCam = () => {
-
   const [counter, setCounter] = React.useState(9);
   const [step, setStep] = useState(1);
 
@@ -17,7 +16,7 @@ const Motion_captureCam = () => {
     setStep(2);
     setIsPaused(false);
     setCounter(counter - 1);
-  }
+  };
 
   // Tasali se krien gy bad me.
 
@@ -44,11 +43,12 @@ const Motion_captureCam = () => {
 
   const navToMotionCaptureRecording = () => {
     navigate("/patient/motion_capture_assessment_2");
-  }
+  };
 
   useEffect(() => {
-    if (counter > 0 && !isPaused) setTimeout(() => setCounter(counter - 1), 1000);
-    if(counter == 0){
+    if (counter > 0 && !isPaused)
+      setTimeout(() => setCounter(counter - 1), 1000);
+    if (counter == 0) {
       navToMotionCaptureRecording();
     }
   }, [counter, isPaused]);
@@ -128,7 +128,7 @@ const Motion_captureCam = () => {
               <div>
                 <Typography
                   className="assessment_title"
-                  sx={{ marginBottom: "2%" }}
+                  sx={{ marginBottom: "2%", marginLeft: "25px !important" }}
                 >
                   Shoulder Exercise
                 </Typography>
@@ -149,9 +149,9 @@ const Motion_captureCam = () => {
               <Typography
                 className="motionStatus"
                 sx={{ background: "#FF4B33 !important" }}
-                onClick={ () => setIsPaused(!isPaused) }
+                onClick={() => setIsPaused(!isPaused)}
               >
-                { isPaused ? "Resume" : "Stop" }
+                {isPaused ? "Resume" : "Stop"}
               </Typography>
             </Grid>
           </Grid>

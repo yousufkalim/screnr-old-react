@@ -10,14 +10,13 @@ import PButton from "../../assets/images/PButton.svg";
 import Shape from "../../assets/images/Shape.svg";
 
 const Motion_captureRecording = () => {
-
   const [step, setStep] = useState(1);
 
   const navigate = useNavigate();
 
   const navToRecordingEnded = () => {
     navigate("/patient/motion_capture_assessment_3");
-  }
+  };
 
   return (
     <>
@@ -27,20 +26,21 @@ const Motion_captureRecording = () => {
           <AppBar className="Motion_capture_appbar"></AppBar>
           <Grid
             className="Bottom_header_mobile"
-            sx={{ backgroundColor: "#454238 !important"}}
+            sx={{ backgroundColor: "#454238 !important" }}
           >
             <Typography
               className="Patient_heading"
-              sx={{ color: "#25C8B4", marginTop: "2%" }}
+              sx={{
+                color: "#25C8B4",
+                marginTop: "2%",
+                marginLeft: "25px !important",
+              }}
             >
               Motion Capture
             </Typography>
           </Grid>
-          <div
-            className="counterdiv"
-            style={{ height: "80vh" }}
-          ></div>
-          <Grid container spacing={1} className="patient_maindiv_motion" >
+          <div className="counterdiv" style={{ height: "80vh" }}></div>
+          <Grid container spacing={1} className="patient_maindiv_motion">
             <Grid item xs={10} sm={10} md={2} className="pauseButton">
               <img src={PauseButton} onClick={(e) => setStep(2)}></img>
             </Grid>
@@ -56,15 +56,16 @@ const Motion_captureRecording = () => {
           >
             <Typography
               className="Patient_heading"
-              sx={{ color: "#25C8B4", marginTop: "2%" }}
+              sx={{
+                color: "#25C8B4",
+                marginTop: "2%",
+                marginLeft: "25px !important",
+              }}
             >
               Motion Capture
             </Typography>
           </Grid>
-          <div
-            className="counterdiv"
-            style={{ height: "80vh" }}
-          ></div>
+          <div className="counterdiv" style={{ height: "80vh" }}></div>
           <Grid container spacing={1} className="patient_maindiv_motion">
             <Grid item xs={10} sm={10} md={2} className="PButton">
               <img
@@ -91,10 +92,7 @@ const Motion_captureRecording = () => {
             </Typography>
           </Grid>
 
-          <div
-            className="counterdiv"
-            style={{ height: "80vh" }}
-          >
+          <div className="counterdiv" style={{ height: "80vh" }}>
             <img src={Shape} style={{ marginTop: "10%" }}></img>
           </div>
           <Grid container spacing={1} className="patient_maindiv_motion">
@@ -102,7 +100,7 @@ const Motion_captureRecording = () => {
               <img
                 src={PButton}
                 style={{ width: "40%" }}
-                onClick={ () => navToRecordingEnded() }
+                onClick={() => navToRecordingEnded()}
               ></img>
             </Grid>
           </Grid>
