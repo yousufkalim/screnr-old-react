@@ -211,9 +211,7 @@ div.nonActiveClas:hover {
   margin-left: 7px !important;
 }
 .css-tuxzvu {
-  width: 100% !important;
-  margin-left: 8px !important;
-  overflow: hidden I !important;
+  /* width: 100% !important; */
 }
 @media only screen and (max-width: 1300px) {
   .patient_maindiv {
