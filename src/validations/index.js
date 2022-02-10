@@ -35,9 +35,9 @@ function register(data){
     } else if(prop == "email"){
       validationError = Validators.emailValidator("Email", data[prop]);
     } else if(prop == "password"){
-      validationError = Validators.lengthValidator("Password", data[prop], 8);
+      validationError = Validators.passwordValidator("Password", data[prop]);
     } else if(prop == "confirm_password"){
-      validationError = Validators.lengthValidator("Confirm Password", data[prop], 8);
+      validationError = Validators.passwordValidator("Confirm Password", data[prop], 8);
     } else if(prop == "doc_specialization"){
       validationError = Validators.nullValidator("Specialization", data[prop]);
     } else if(prop == "phone"){
@@ -48,7 +48,7 @@ function register(data){
 
     if(validationError){
       toast.error(validationError);
-      return;
+      return false;
     }
     
   }
@@ -76,15 +76,12 @@ function addPatient(data){
     },
     {
       name: "First Name",
-      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
     },
     {
       name: "Middle Name",
-      // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
     },
     {
       name: "Last Name",
-      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
     },
     {
       name: "Mobile Number",
@@ -105,11 +102,11 @@ function addPatient(data){
     },
     {
       name: "Password",
-      validationFunction: () => Validators.lengthValidator("Password", data.get("Password"), 8)
+      validationFunction: () => Validators.passwordValidator("Password", data.get("Password"))
     },
     {
       name: "Confirm Password",
-      validationFunction: () => Validators.lengthValidator("Confirm Password", data.get("Confirm Password"), 8)
+      validationFunction: () => Validators.passwordValidator("Confirm Password", data.get("Confirm Password"))
     },
   ];
 
@@ -128,15 +125,12 @@ function editPatient(data){
     },
     {
       name: "First Name",
-      // validationFunction: () => Validators.userNameValidator("First Name", data.get("First Name"))
     },
     {
       name: "Middle Name",
-      // validationFunction: () => Validators.userNameValidator("Middle Name", data.get("Middle Name"))
     },
     {
       name: "Last Name",
-      // validationFunction: () => Validators.userNameValidator("Last Name", data.get("Last Name"))
     },
     {
       name: "Mobile Number",
@@ -202,11 +196,125 @@ function editProfilePatient(data){
 
 }
 
+function assessmentQuestionsAssign(data){
+
+  let validated = true;
+
+  for( let i = 0; i < data.length; i++){
+
+    const obj = data[i];
+
+    if(obj.type == "text"){
+      validated = _validateTextQuestionAssign(obj, i+1);
+    } else {
+      validated = _validateMultipleQuestionAssign(obj, i+1);
+    }
+
+    if(!validated){
+      return false;
+    }
+
+  }
+
+  return validated;
+
+}
+
+function _validateTextQuestionAssign(obj, index){
+
+  let validated = false;
+  let validationError;
+
+  if(!obj.title){
+    validationError = `Question ${index} title can't be empty`;
+  } else if(!obj.description){
+    validationError = `Question ${index} description can't be empty`;
+  }
+
+  if(validationError){
+    toast.error(validationError);
+    validated = false;
+  } else {
+    validated = true;
+  }
+
+  return validated;
+
+}
+
+function _validateMultipleQuestionAssign(obj, index){
+
+  let validated = false;
+  let validationError;
+
+  if(!obj.title){
+    validationError = `Question ${index} title can't be empty`;
+  } else {
+    obj.answers.forEach((e, i) => {
+      if(!e){
+        validationError = `Question ${index}, Answer ${i+1} can't be empty`;
+      }
+    });
+  }
+
+  if(validationError){
+    toast.error(validationError);
+    validated = false;
+  } else {
+    validated = true;
+  }
+
+  return validated;
+
+}
+
+function assessmentQuestionsPerform(data){
+
+  let validated = true;
+
+  for( let i = 0; i < data.length; i++){
+
+    const obj = data[i];
+
+    validated = _validateQuestionPerform(obj, i+1);
+
+    if(!validated){
+      return false;
+    }
+
+  }
+
+  return validated;
+
+}
+
+function _validateQuestionPerform(obj, index){
+
+  let validated = false;
+  let validationError;
+
+  if(!obj.value[0]){ // First answer is empty string.
+    validationError = `Question ${index} must be answered`;
+  }
+
+  if(validationError){
+    toast.error(validationError);
+    validated = false;
+  } else {
+    validated = true;
+  }
+
+  return validated;
+
+}
+
 export {
   login,
   register,
   addPatient,
   editPatient,
   editProfileDoctor,
-  editProfilePatient
+  editProfilePatient,
+  assessmentQuestionsAssign,
+  assessmentQuestionsPerform
 }

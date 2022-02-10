@@ -96,7 +96,6 @@ const ReviewPatientResponse = () => {
         status: "reviewed",
         feedbacks: questionFeedbacks,
         note: noteText,
-        feedbacks: questionFeedbacks,
       };
 
       setIsProcessing(true);
@@ -161,7 +160,7 @@ const ReviewPatientResponse = () => {
                 position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "42%",
+                  width: "44%",
                   height: "600px !important",
                   mt: 10,
                   ml: 0,

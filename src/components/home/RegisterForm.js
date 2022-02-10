@@ -392,7 +392,6 @@ const RegisterForm = () => {
           </Box>
         </Box>
       </Grid>
-      )
     </Grid>
   );
 };

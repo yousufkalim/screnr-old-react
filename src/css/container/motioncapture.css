@@ -118,6 +118,10 @@
 
   text-align: center !important;
 }
+.css-a5rdam-MuiGrid-root {
+  width: 100% !important;
+  margin-left: 0px !important;
+}
 .css-a5rdam-MuiGrid-root > .MuiGrid-item {
   padding-left: 0px !important;
 }
@@ -137,6 +141,17 @@
 .patient_maindiv_motion {
   position: absolute;
   bottom: 10% !important;
+  /* margin-top: 7% !important; */
+  /* height: 600px !important; */
+  /* margin-bottom: 20px !important; */
+  justify-content: space-around !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+}
+._maindiv_motion {
+  position: absolute;
+  bottom: 3% !important;
   /* margin-top: 7% !important; */
   /* height: 600px !important; */
   /* margin-bottom: 20px !important; */

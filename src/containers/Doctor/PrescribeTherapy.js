@@ -17,6 +17,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
+import * as FormValidations from "../../validations";
+
 const PrescribeTherapy = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -62,7 +64,11 @@ const PrescribeTherapy = () => {
       return;
     }
 
-    setIsProcessing(true);
+    const validated = FormValidations.assessmentQuestionsAssign(questions);
+
+    if(!validated){
+      return;
+    }
 
     let response;
 
@@ -76,6 +82,8 @@ const PrescribeTherapy = () => {
         type: "simple", // TODO: Fake
         questions_array: questions,
       };
+
+      setIsProcessing(true);
 
       response = await Api("post", `/assessments`, body);
     } catch (e) {
@@ -208,7 +216,7 @@ const PrescribeTherapy = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   paddingTop: "1%",
-                  width: "42%",
+                  width: "44%",
                   height: "600px !important",
                   mt: 8,
                   ml: 0,
@@ -245,9 +253,7 @@ const PrescribeTherapy = () => {
                 elevation={3}
                 sx={{
                   borderRadius: "20px",
-
-                  background:
-                    "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
+                  background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                 }}
               >
                 <div className="Profilediv2" style={{ marginBottom: "6%" }}>

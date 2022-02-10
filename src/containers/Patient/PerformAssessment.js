@@ -12,6 +12,9 @@ import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
+
+import * as FormValidations from "../../validations";
+
 const PerformAssessment = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -21,6 +24,8 @@ const PerformAssessment = () => {
 
   const [assessment, setAssessment] = useState(null);
   const [questionReplies, setQuestionReplies] = useState([]);
+
+  const [isResponseAcknowledged, setIsResponseAcknowledged] = useState(true);
 
   useEffect(() => {
     getAssessment();
@@ -66,6 +71,17 @@ const PerformAssessment = () => {
   // Calling create assessment
   const handleSubmit = async () => {
     if (isProcessing) {
+      return;
+    }
+
+    if(!isResponseAcknowledged){
+      toast.error("Please check the acknowledge response box.");
+      return;
+    }
+
+    const validated = FormValidations.assessmentQuestionsPerform(questionReplies);
+
+    if(!validated){
       return;
     }
 
@@ -165,8 +181,7 @@ const PerformAssessment = () => {
                 }}
               >
                 <Checkbox
-                  defaultChecked
-                  // variant="body1"
+                  checked={isResponseAcknowledged}
                   className="checkbox"
                   sx={{
                     color: "#FBA622",
@@ -174,6 +189,7 @@ const PerformAssessment = () => {
                       color: "#FBA622",
                     },
                   }}
+                  onClick={() => setIsResponseAcknowledged(!isResponseAcknowledged)}
                 />
                 <Typography className="checkboxtitle">
                   Acknowledging the response
@@ -413,7 +429,11 @@ function MCQSAnswersListTile(props) {
         }}
         key={`input_${props.index}`}
       />
-      <ContentEditable html={text.current} key={`label_${props.index}`} />
+      <ContentEditable
+        disabled
+        html={text.current}
+        key={`label_${props.index}`}
+      />
     </div>
   );
 }
@@ -533,6 +553,7 @@ function ChecklistAnswersListTile(props) {
         key={`input_${props.index}`}
       />
       <ContentEditable
+        disabled
         html={text.current}
         onChange={handleChange}
         key={`label_${props.index}`}

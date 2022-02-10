@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import PauseButton from "../../assets/images/Button.svg";
 import PButton from "../../assets/images/PButton.svg";
 import Shape from "../../assets/images/Shape.svg";
-
+import Camera from "../../components/common/Camera";
 const Motion_captureRecording = () => {
   const [step, setStep] = useState(1);
 
@@ -20,7 +20,6 @@ const Motion_captureRecording = () => {
 
   return (
     <>
-      {console.log(`THIS IS THE step: ${step}`)}
       {step === 1 ? (
         <div style={{ background: " #454238", height: "100vh !important" }}>
           <AppBar className="Motion_capture_appbar"></AppBar>
@@ -65,12 +64,15 @@ const Motion_captureRecording = () => {
               Motion Capture
             </Typography>
           </Grid>
-          <div className="counterdiv" style={{ height: "80vh" }}></div>
-          <Grid container spacing={1} className="patient_maindiv_motion">
+          <div className="counterdiv" style={{ height: "80vh" }}>
+            <Camera />
+          </div>
+
+          <Grid container spacing={1} className="_maindiv_motion">
             <Grid item xs={10} sm={10} md={2} className="PButton">
               <img
                 src={PButton}
-                style={{ width: "40%", marginTop: "5%" }}
+                style={{ width: "40%" }}
                 onClick={(e) => setStep(3)}
               ></img>
             </Grid>
