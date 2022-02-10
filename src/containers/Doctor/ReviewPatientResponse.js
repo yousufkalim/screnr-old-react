@@ -96,7 +96,6 @@ const ReviewPatientResponse = () => {
         status: "reviewed",
         feedbacks: questionFeedbacks,
         note: noteText,
-        feedbacks: questionFeedbacks,
       };
 
       setIsProcessing(true);

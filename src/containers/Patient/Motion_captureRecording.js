@@ -20,7 +20,6 @@ const Motion_captureRecording = () => {
 
   return (
     <>
-      {console.log(`THIS IS THE step: ${step}`)}
       {step === 1 ? (
         <div style={{ background: " #454238", height: "100vh !important" }}>
           <AppBar className="Motion_capture_appbar"></AppBar>

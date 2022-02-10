@@ -48,7 +48,7 @@ function register(data){
 
     if(validationError){
       toast.error(validationError);
-      return;
+      return false;
     }
     
   }
@@ -196,11 +196,125 @@ function editProfilePatient(data){
 
 }
 
+function assessmentQuestionsAssign(data){
+
+  let validated = true;
+
+  for( let i = 0; i < data.length; i++){
+
+    const obj = data[i];
+
+    if(obj.type == "text"){
+      validated = _validateTextQuestionAssign(obj, i+1);
+    } else {
+      validated = _validateMultipleQuestionAssign(obj, i+1);
+    }
+
+    if(!validated){
+      return false;
+    }
+
+  }
+
+  return validated;
+
+}
+
+function _validateTextQuestionAssign(obj, index){
+
+  let validated = false;
+  let validationError;
+
+  if(!obj.title){
+    validationError = `Question ${index} title can't be empty`;
+  } else if(!obj.description){
+    validationError = `Question ${index} description can't be empty`;
+  }
+
+  if(validationError){
+    toast.error(validationError);
+    validated = false;
+  } else {
+    validated = true;
+  }
+
+  return validated;
+
+}
+
+function _validateMultipleQuestionAssign(obj, index){
+
+  let validated = false;
+  let validationError;
+
+  if(!obj.title){
+    validationError = `Question ${index} title can't be empty`;
+  } else {
+    obj.answers.forEach((e, i) => {
+      if(!e){
+        validationError = `Question ${index}, Answer ${i+1} can't be empty`;
+      }
+    });
+  }
+
+  if(validationError){
+    toast.error(validationError);
+    validated = false;
+  } else {
+    validated = true;
+  }
+
+  return validated;
+
+}
+
+function assessmentQuestionsPerform(data){
+
+  let validated = true;
+
+  for( let i = 0; i < data.length; i++){
+
+    const obj = data[i];
+
+    validated = _validateQuestionPerform(obj, i+1);
+
+    if(!validated){
+      return false;
+    }
+
+  }
+
+  return validated;
+
+}
+
+function _validateQuestionPerform(obj, index){
+
+  let validated = false;
+  let validationError;
+
+  if(!obj.value[0]){ // First answer is empty string.
+    validationError = `Question ${index} must be answered`;
+  }
+
+  if(validationError){
+    toast.error(validationError);
+    validated = false;
+  } else {
+    validated = true;
+  }
+
+  return validated;
+
+}
+
 export {
   login,
   register,
   addPatient,
   editPatient,
   editProfileDoctor,
-  editProfilePatient
+  editProfilePatient,
+  assessmentQuestionsAssign,
+  assessmentQuestionsPerform
 }
