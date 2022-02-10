@@ -124,7 +124,10 @@ const PatientProfile = () => {
               </Typography>
               <Button
                 variant="contained"
-                sx={{ backgroundColor: "#454238", fontSize: "14px !important" }}
+                sx={{
+                  backgroundColor: "#454238 !important",
+                  fontSize: "14px !important",
+                }}
                 className="Patient_button"
                 type="submit"
               >
@@ -212,8 +215,11 @@ const PatientProfile = () => {
                   />
                 </div>
 
-                <div className="profilediv">
-                  <div className="profiles-input">
+                <div
+                  className="profilediv"
+                  style={{ background: "#fff important" }}
+                >
+                  <div className="P_profiles-input">
                     <input type="text" disabled />
                     <input
                       disabled={!toEdit}
@@ -223,7 +229,7 @@ const PatientProfile = () => {
                       defaultValue={profile.phone}
                     />
                   </div>
-                  <div className="profiles-input1">
+                  <div className="P_profiles-input1">
                     <input type="text" disabled />
                     <input
                       disabled
@@ -235,7 +241,7 @@ const PatientProfile = () => {
                       )}
                     />
                   </div>
-                  <div className="profiles-input3">
+                  <div className="P_profiles-input3">
                     <input type="text" disabled />
                     <input
                       disabled={true}
@@ -245,7 +251,7 @@ const PatientProfile = () => {
                       defaultValue={profile.email}
                     />
                   </div>
-                  <div className="profiles-input4">
+                  <div className="P_profiles-input4">
                     <input type="text" disabled />
                     <input
                       disabled={!toEdit}
