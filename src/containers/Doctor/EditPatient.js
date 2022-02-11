@@ -63,8 +63,6 @@ const EditPatient = (props) => {
       return;
     }
 
-    setIsProcessing(true);
-
     const data = new FormData(event.currentTarget);
 
     const isValidated = FormValidations.editPatient(data);
@@ -95,6 +93,8 @@ const EditPatient = (props) => {
       body.append("problem_name",  data.get("Problem Name"));
       body.append("problem_description",  data.get("Problem Description"));
       body.append("image",  profileImage);
+
+      setIsProcessing(true);
 
       response = await Api("put", `/patients/${params.id}`, body);
     } catch (e) {
