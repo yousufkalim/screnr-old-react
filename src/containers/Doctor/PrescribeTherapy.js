@@ -208,7 +208,7 @@ const PrescribeTherapy = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   paddingTop: "1%",
-                  width: "42%",
+                  width: "44%",
                   height: "600px !important",
                   mt: 8,
                   ml: 0,
