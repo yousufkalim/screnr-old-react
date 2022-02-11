@@ -109,6 +109,10 @@ div.nonActiveClas:hover {
   height: 170px;
   width: 170px;
   object-fit: contain;
+  height: 134px !important;
+  width: 135px !important;
+  border-radius: 50%;
+  object-fit: cover !important;
 }
 .patient_maindiv {
   margin-top: 7% !important;

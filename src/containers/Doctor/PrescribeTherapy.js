@@ -66,7 +66,7 @@ const PrescribeTherapy = () => {
 
     const validated = FormValidations.assessmentQuestionsAssign(questions);
 
-    if(!validated){
+    if (!validated) {
       return;
     }
 
@@ -216,11 +216,11 @@ const PrescribeTherapy = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   paddingTop: "1%",
-                  width: "44%",
+                  width: "48%",
                   height: "600px !important",
                   mt: 8,
-                  ml: 0,
-                  mr: 3,
+                  mr: 0,
+                  marginLeft: "3%",
                   mb: 2,
                 },
                 borderRadius: "20px",
@@ -240,7 +240,7 @@ const PrescribeTherapy = () => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "95%",
+                  width: "92%",
 
                   paddingBottom: "18%",
                   marginTop: "6.5%",
@@ -253,7 +253,8 @@ const PrescribeTherapy = () => {
                 elevation={3}
                 sx={{
                   borderRadius: "20px",
-                  background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
+                  background:
+                    "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                 }}
               >
                 <div className="Profilediv2" style={{ marginBottom: "6%" }}>

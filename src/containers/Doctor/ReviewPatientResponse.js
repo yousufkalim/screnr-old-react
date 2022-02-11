@@ -160,11 +160,12 @@ const ReviewPatientResponse = () => {
                 position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "44%",
-                  height: "600px !important",
+                  width: "48.5%",
+                  height: "620px !important",
                   mt: 10,
-                  ml: 0,
-                  mr: 3,
+                  marginLeft: "3%",
+
+                  mr: 0,
                   mb: 2,
                 },
                 borderRadius: "20px",
@@ -185,8 +186,9 @@ const ReviewPatientResponse = () => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
+                  width: "92%",
                   mt: 10,
-                  mr: 4,
+                  mr: 0,
                 },
                 borderRadius: "20px",
                 mb: 10,
@@ -241,7 +243,9 @@ const ReviewPatientResponse = () => {
                 <div className="Profilediv2">
                   <div className="textarea1">
                     <input type="text" placeholder="Note" disabled />
+
                     <textarea
+                      className="pp"
                       disabled={assessment.status == "reviewed" ? true : false}
                       type="input"
                       id="feed"

@@ -66,7 +66,13 @@ const DoctorDashboard = () => {
 
       <Grid container spacing={1} className="patient_maindiv">
         {patients.length == 0 ? (
-          <Typography> No Patients </Typography>
+          <Typography
+            sx={{
+              marginLeft: "2.5% !important",
+            }}
+          >
+            No Patients
+          </Typography>
         ) : (
           patients.map((item) => (
             <>

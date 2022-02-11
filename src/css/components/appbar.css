@@ -117,6 +117,10 @@
 .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
   border-radius: 20px !important;
 }
+.css-j8xoiz-MuiToolbar-root {
+  padding-left: 1% !important;
+  width: 100% !important;
+}
 @media only screen and (max-width: 820px) {
   .HeaderHeading {
     font-size: 20px !important;
