@@ -19,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
 import { getUser } from "../../utils/Auth";
 import { ReactComponent as MenuIcon } from "../../assets/images/menuicon.svg";
-import NotificationArrow from "../../assets/images/notificationarrow.svg";
 const ResponsiveAppBar = (props) => {
   const navigate = useNavigate();
 
@@ -163,7 +162,11 @@ const ResponsiveAppBar = (props) => {
               >
                 <Typography className="NotificationName">Farhan</Typography>
                 <Typography className="NotificationMsg">
-                  Just complete the exercise!
+                  {
+                    "Just completed the exercise!".length > 25
+                    ? "Just completed the exercise!".substring(0, 24) + "..."
+                    : "Just completed the exercise!"
+                  }
                 </Typography>
               </div>
 
@@ -213,7 +216,11 @@ const ResponsiveAppBar = (props) => {
               >
                 <Typography className="NotificationName">Farhan</Typography>
                 <Typography className="NotificationMsg">
-                  Just complete the exercise!
+                  {
+                    "Just completed the exercise!".length > 25
+                    ? "Just completed the exercise!".substring(0, 24) + "..."
+                    : "Just completed the exercise!"
+                  }
                 </Typography>
               </div>
 
