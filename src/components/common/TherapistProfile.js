@@ -3,11 +3,20 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import UploadImage from "../../assets/images/AddImage.svg";
+import EditPassword from "../../assets/images/EditPassword.svg";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
 import assetsURL from "../../utils/Assets";
+import { useNavigate } from "react-router-dom";
 
 const TherapistProfile = (props) => {
+
   const { toEdit, handleImageSelect, profileImage } = props;
+
+  const navigate = useNavigate();
+
+  const navToPasswordReset = async () => {
+    navigate("/doctor/dashboard/ChangePassword");
+  }
 
   return (
     <>
@@ -125,6 +134,15 @@ const TherapistProfile = (props) => {
           <div className="profiles-div2">
             <input type="text" placeholder="Password" disabled />
             <input disabled type="input" placeholder="**********" />
+            {
+              toEdit
+              ? <img
+                  src={EditPassword}
+                  onClick={(e) => navToPasswordReset()}
+                  style={{ position: "absolute", right: "20px", top: "10px" }}
+                />
+              : <></>
+            }
           </div>
           <div className="profiles-div3">
             <input type="text" placeholder="Account Created" disabled />
