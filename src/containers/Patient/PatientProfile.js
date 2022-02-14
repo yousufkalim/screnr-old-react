@@ -166,6 +166,7 @@ const PatientProfile = () => {
                         display: "none",
                         cursor: "none",
                       }}
+                      disabled={!toEdit}
                       type="file"
                       accept="image/*"
                       placeholder="Ref."

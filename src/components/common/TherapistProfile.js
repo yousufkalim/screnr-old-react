@@ -29,6 +29,7 @@ const TherapistProfile = (props) => {
                 display: "none",
                 cursor: "none",
               }}
+              disabled={!toEdit}
               type="file"
               accept="image/*"
               placeholder="Ref."
@@ -86,24 +87,14 @@ const TherapistProfile = (props) => {
               defaultValue={new Date(props.dob).toLocaleDateString("en-US")}
             />
           </div>
-          <div className="profiles-input5-1">
-            <input type="text" disabled />
-            <input
-              disabled={true}
-              type="input"
-              name="National ID"
-              placeholder="National ID"
-              defaultValue={"FOR QA"}
-            />
-          </div>
           <div className="profiles-input5-2">
             <input type="text" disabled />
             <input
-              disabled={true}
+              disabled={!toEdit}
               type="input"
               name="Hospital"
               placeholder="Hospital"
-              defaultValue={"FOR QA"}
+              defaultValue={props.hospital}
             />
           </div>
           <div className="profiles-input6">

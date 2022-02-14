@@ -71,11 +71,6 @@ const EditPatient = (props) => {
       return;
     }
 
-    if (dateOfBirth == null) {
-      toast.error("Date of Birth can't be empty");
-      return;
-    }
-
     let response;
 
     try {
@@ -85,10 +80,6 @@ const EditPatient = (props) => {
       body.append("middle_name",  data.get("Middle Name"));
       body.append("last_name",  data.get("Last Name"));
       body.append("phone",  data.get("Mobile Number"));
-      body.append("email",  data.get("Email Address"));
-      body.append("gender",  gender);
-      body.append("dob",  dateOfBirth);
-      body.append("patient_id",  data.get("Patient ID"));
       body.append("address",  data.get("Address"));
       body.append("problem_name",  data.get("Problem Name"));
       body.append("problem_description",  data.get("Problem Description"));
@@ -190,6 +181,7 @@ const EditPatient = (props) => {
                   <div className="flex-form" style={{ marginBottom: "3%" }}>
                     <input type="text" placeholder="Patient ID" disabled />
                     <input
+                      disabled
                       type="number"
                       name="Patient ID"
                       placeholder="12345"
@@ -226,7 +218,7 @@ const EditPatient = (props) => {
                     </div>
                     <div className="selectform" style={{ marginTop: "3%" }}>
                       <input type="text" placeholder="Gender" disabled />
-                      <select name="gender" id="gender" type="input" value={gender} onChange={ (event) => setGender(event.target.value) }>
+                      <select name="gender" id="gender" type="input" value={gender} disabled>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="others">Others</option>
@@ -245,6 +237,7 @@ const EditPatient = (props) => {
                     <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
                       <DesktopDatePicker
                         fulWidth
+                        disabled
                         // label="Date of Birth"
                         inputFormat="MM/dd/yyyy"
                         value={dateOfBirth}
@@ -266,6 +259,7 @@ const EditPatient = (props) => {
                   <div className="addform">
                     <input type="text" placeholder="Email Address" disabled />
                     <input
+                      disabled
                       type="input"
                       name="Email Address"
                       placeholder="Type here"
