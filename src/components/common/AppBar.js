@@ -14,20 +14,35 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Screnr from "../../assets/images/screnr.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
+// import NotificationModal from "./NotificationModal";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
 import { getUser } from "../../utils/Auth";
-
+import { ReactComponent as MenuIcon } from "../../assets/images/menuicon.svg";
 const ResponsiveAppBar = (props) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+
+  const [anchorElNotification, setAnchorElNotification] = React.useState(null);
+  const openNotification = Boolean(anchorElNotification);
+
+  const handleClickNotification = (event) => {
+    setAnchorElNotification(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseNotification = () => {
+    setAnchorElNotification(null);
   };
+
+  const [anchorElSetting, setAnchorElSetting] = React.useState(null);
+  const openSetting = Boolean(anchorElSetting);
+
+  const handleClickSetting = (event) => {
+    setAnchorElSetting(event.currentTarget);
+  };
+  const handleCloseSetting = () => {
+    setAnchorElSetting(null);
+  };
+
+  // Nav functions for setting
   const handleLogoutSubmit = () => {
     handleLogout(navigate);
   };
@@ -85,10 +100,11 @@ const ResponsiveAppBar = (props) => {
         <Box className="Headerlogodiv">
           <Tooltip title="Open notifications">
             <IconButton
+              onClick={handleClickNotification}
               size="small"
-              aria-controls={open ? "account-menu" : undefined}
+              aria-controls={openSetting ? "account-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+              aria-expanded={openSetting ? "true" : undefined}
             >
               <img
                 src={Notificationicon}
@@ -99,22 +115,140 @@ const ResponsiveAppBar = (props) => {
           </Tooltip>
           <Tooltip title="Open settings">
             <IconButton
-              // sx={{ p: 0, ml: 2 }}
-              onClick={handleClick}
+              onClick={handleClickSetting}
               size="small"
-              aria-controls={open ? "account-menu" : undefined}
+              aria-controls={openSetting ? "account-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+              aria-expanded={openSetting ? "true" : undefined}
             >
               <img src={Settingicon} alt="" style={{ width: "80%" }} />
             </IconButton>
           </Tooltip>
         </Box>
+
         <Menu
-          anchorEl={anchorEl}
+          anchorEl={anchorElNotification}
           id="account-menu"
-          open={open}
-          onClose={handleClose}
+          open={openNotification}
+          onClose={handleCloseNotification}
+          transformOrigin={{ horizontal: "right", vertical: "top" }}
+          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "#F6FAFB",
+              boxShadow: "0px 15px 45px rgba(28, 160, 244, 0.28)",
+              borderRadius: "20px",
+              margin: "20px",
+            }}
+          >
+            {/* <img src={NotificationArrow}></img> */}
+            <div style={{ marginLeft: "10px" }}>
+              <MenuItem>
+                <ListItemIcon>
+                  <MenuIcon fontSize="small" />
+                </ListItemIcon>
+              </MenuItem>
+            </div>
+            <div style={{ margin: "10px 25px 10px 10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItem: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography className="NotificationName">Farhan</Typography>
+                <Typography className="NotificationMsg">
+                  {
+                    "Just completed the exercise!".length > 25
+                    ? "Just completed the exercise!".substring(0, 24) + "..."
+                    : "Just completed the exercise!"
+                  }
+                </Typography>
+              </div>
+
+              <Typography className="NotificationId">
+                Patient ID: 12345
+              </Typography>
+              <Typography className="NotificationTIme">1 min ago</Typography>
+            </div>
+            <div>
+              <Typography
+                className="NotificatonStatus"
+                sx={{
+                  background: "#136773",
+                  borderRadius: "0px 20px 20px 0px",
+                  padding: "35px",
+                  color: "#F6FAFB !important",
+                }}
+              >
+                Review
+              </Typography>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "#F6FAFB",
+              boxShadow: "0px 15px 45px rgba(28, 160, 244, 0.28)",
+              borderRadius: "20px",
+              margin: "20px",
+            }}
+          >
+            <div style={{ marginLeft: "10px" }}>
+              <MenuItem>
+                <ListItemIcon>
+                  <MenuIcon fontSize="small" />
+                </ListItemIcon>
+              </MenuItem>
+            </div>
+            <div style={{ margin: "10px 25px 10px 10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItem: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography className="NotificationName">Farhan</Typography>
+                <Typography className="NotificationMsg">
+                  {
+                    "Just completed the exercise!".length > 25
+                    ? "Just completed the exercise!".substring(0, 24) + "..."
+                    : "Just completed the exercise!"
+                  }
+                </Typography>
+              </div>
+
+              <Typography className="NotificationId">
+                Patient ID: 12345
+              </Typography>
+              <Typography className="NotificationTIme">1 min ago</Typography>
+            </div>
+            <div>
+              <Typography
+                className="NotificatonStatus"
+                sx={{
+                  background: "#136773",
+                  borderRadius: "0px 20px 20px 0px",
+                  padding: "35px",
+                  color: "#F6FAFB !important",
+                }}
+              >
+                Review
+              </Typography>
+            </div>
+          </div>
+        </Menu>
+        <Menu
+          anchorEl={anchorElSetting}
+          id="account-menu"
+          open={openSetting}
+          onClose={handleCloseSetting}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
