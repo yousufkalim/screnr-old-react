@@ -70,13 +70,15 @@ const DoctorProfile = (props) => {
     let response;
 
     try {
-      setIsLoading(true);
 
       const body = new FormData();
 
       body.append("phone", data.get("Phone"));
+      body.append("hospital", data.get("Hospital"));
       body.append("address", data.get("Address"));
       body.append("image", profileImage);
+
+      setIsLoading(true);
 
       response = await Api("put", "/therapists", body);
 
@@ -134,6 +136,7 @@ const DoctorProfile = (props) => {
                 },
                 borderRadius: "20px",
                 background: "#F6FAFB",
+                paddingBottom: "5%",
               }}
             >
               <TherapistProfile

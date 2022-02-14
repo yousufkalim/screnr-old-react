@@ -16,6 +16,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
+  width: 100% !important;
 }
 .Patient_id input[type="input"] {
   flex-basis: 90% !important;
@@ -27,10 +28,10 @@
   border-left: none;
 }
 .Patient_id input[type="number"] {
-  flex-basis: 90% !important;
+  flex-basis: 32% !important;
   width: 90% !important;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 
   border: 1px solid #919b9b;
   border-left: none;
@@ -39,8 +40,8 @@
   color: #fff;
   cursor: pointer;
   transition: all 0.2s;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
   border: 1px solid #919b9b;
   border-right: none;
   width: 40%;

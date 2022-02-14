@@ -161,7 +161,7 @@ const ReviewPatientResponse = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "48.5%",
-                  height: "620px !important",
+                  height: "75% !important",
                   mt: 10,
                   marginLeft: "3%",
 
