@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
 import { getUser } from "../../utils/Auth";
 import { ReactComponent as MenuIcon } from "../../assets/images/menuicon.svg";
-import NotificationArrow from "../../assets/images/notificationarrow.svg";
+// import NotificationArrow from "../../assets/images/notificationarrow.svg";
 const ResponsiveAppBar = (props) => {
   const navigate = useNavigate();
 

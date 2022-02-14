@@ -83,18 +83,18 @@ const EditPatient = (props) => {
     try {
       const body = new FormData();
 
-      body.append("first_name",  data.get("First Name"));
-      body.append("middle_name",  data.get("Middle Name"));
-      body.append("last_name",  data.get("Last Name"));
-      body.append("phone",  data.get("Mobile Number"));
-      body.append("email",  data.get("Email Address"));
-      body.append("gender",  gender);
-      body.append("dob",  dateOfBirth);
-      body.append("patient_id",  data.get("Patient ID"));
-      body.append("address",  data.get("Address"));
-      body.append("problem_name",  data.get("Problem Name"));
-      body.append("problem_description",  data.get("Problem Description"));
-      body.append("image",  profileImage);
+      body.append("first_name", data.get("First Name"));
+      body.append("middle_name", data.get("Middle Name"));
+      body.append("last_name", data.get("Last Name"));
+      body.append("phone", data.get("Mobile Number"));
+      body.append("email", data.get("Email Address"));
+      body.append("gender", gender);
+      body.append("dob", dateOfBirth);
+      body.append("patient_id", data.get("Patient ID"));
+      body.append("address", data.get("Address"));
+      body.append("problem_name", data.get("Problem Name"));
+      body.append("problem_description", data.get("Problem Description"));
+      body.append("image", profileImage);
 
       response = await Api("put", `/patients/${params.id}`, body);
     } catch (e) {
@@ -142,11 +142,13 @@ const EditPatient = (props) => {
                 justifyContent: "center",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
+                  mt: 15,
+                  mb: 6,
                   width: "80%",
                   height: "100%",
                 },
                 borderRadius: "20px",
+                background: "#F6FAFB",
               }}
             >
               <Paper elevation={3} sx={{ borderRadius: "20px" }}>
@@ -187,7 +189,12 @@ const EditPatient = (props) => {
                     //   margin: 10,
                   }}
                 >
-                  <div className="flex-form" style={{ marginBottom: "3%" }}>
+                  <div
+                    className="flex-form"
+                    style={{
+                      marginBottom: "3%",
+                    }}
+                  >
                     <input type="text" placeholder="Patient ID" disabled />
                     <input
                       type="number"
@@ -197,62 +204,68 @@ const EditPatient = (props) => {
                     />
                   </div>
 
-                    <div className="flexform">
-                      <input type="text" placeholder="First Name" disabled />
-                      <input
-                        type="input"
-                        name="First Name"
-                        placeholder="Type here"
-                        defaultValue={patient.first_name}
-                      />
-                    </div>
-                    <div className="profiles-div_">
-                      <input type="text" placeholder="Middle Name" disabled />
-                      <input
-                        type="input"
-                        name="Middle Name"
-                        placeholder="Type here"
-                        defaultValue={patient.middle_name}
-                      />
-                    </div>
-                    <div className="flex_forminput">
-                      <input type="text" placeholder="Last Name" disabled />
-                      <input
-                        type="input"
-                        name="Last Name"
-                        placeholder="Type here"
-                        defaultValue={patient.last_name}
-                      />
-                    </div>
-                    <div className="selectform" style={{ marginTop: "3%" }}>
-                      <input type="text" placeholder="Gender" disabled />
-                      <select name="gender" id="gender" type="input" value={gender} onChange={ (event) => setGender(event.target.value) }>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="others">Others</option>
-                      </select>
-                    </div>
-                    <div className="addform">
-                      <input type="text" placeholder="Address" disabled />
-                      <input
-                        type="input"
-                        name="Address"
-                        placeholder="12345"
-                        defaultValue={patient.address}
-                      />
-                    </div>
+                  <div className="flexform">
+                    <input type="text" placeholder="First Name" disabled />
+                    <input
+                      type="input"
+                      name="First Name"
+                      placeholder="Type here"
+                      defaultValue={patient.first_name}
+                    />
+                  </div>
+                  <div className="profiles-div_">
+                    <input type="text" placeholder="Middle Name" disabled />
+                    <input
+                      type="input"
+                      name="Middle Name"
+                      placeholder="Type here"
+                      defaultValue={patient.middle_name}
+                    />
+                  </div>
+                  <div className="flex_forminput">
+                    <input type="text" placeholder="Last Name" disabled />
+                    <input
+                      type="input"
+                      name="Last Name"
+                      placeholder="Type here"
+                      defaultValue={patient.last_name}
+                    />
+                  </div>
+                  <div className="selectform" style={{ marginTop: "3%" }}>
+                    <input type="text" placeholder="Gender" disabled />
+                    <select
+                      name="gender"
+                      id="gender"
+                      type="input"
+                      value={gender}
+                      onChange={(event) => setGender(event.target.value)}
+                    >
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="others">Others</option>
+                    </select>
+                  </div>
+                  <div className="addform">
+                    <input type="text" placeholder="Address" disabled />
+                    <input
+                      type="input"
+                      name="Address"
+                      placeholder="12345"
+                      defaultValue={patient.address}
+                    />
+                  </div>
 
-                    <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
-                      <DesktopDatePicker
-                        fulWidth
-                        // label="Date of Birth"
-                        inputFormat="MM/dd/yyyy"
-                        value={dateOfBirth}
-                        onChange={(_) => setDateOfBirth(_)}
-                        renderInput={(params) => <TextField {...params} />}
-                        maxDate={new Date()}
-                      />
-                    </LocalizationProvider>
+                  <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
+                    <DesktopDatePicker
+                      fulWidth
+                      // label="Date of Birth"
+                      inputFormat="MM/dd/yyyy"
+                      value={dateOfBirth}
+                      onChange={(_) => setDateOfBirth(_)}
+                      renderInput={(params) => <TextField {...params} />}
+                      maxDate={new Date()}
+                    />
+                  </LocalizationProvider>
 
                   <div className="flexform" style={{ marginTop: "3%" }}>
                     <input type="text" placeholder="Mobile Number" disabled />

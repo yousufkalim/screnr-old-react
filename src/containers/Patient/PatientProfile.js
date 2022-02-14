@@ -175,6 +175,7 @@ const PatientProfile = () => {
                       }}
                     />
                     <img
+                      style={{ marginTop: "10%" }}
                       src={
                         profileImage
                           ? URL.createObjectURL(profileImage)
@@ -187,14 +188,16 @@ const PatientProfile = () => {
                     />
                   </label>
                 </Grid>
-                <Typography className="PatientName">{`${profile.first_name} ${profile.last_name}`}</Typography>
-                <Typography className="PatientInfo">
-                  <Hospitalicon
-                    sx={{ marginRight: "10px" }}
-                    className="Profile-Icons"
-                  />
-                  {profile.problem_name}
-                </Typography>
+                <div style={{ marginBottom: "7%" }}>
+                  <Typography className="PatientName">{`${profile.first_name} ${profile.last_name}`}</Typography>
+                  <Typography className="PatientInfo">
+                    <Hospitalicon
+                      sx={{ marginRight: "10px" }}
+                      className="Profile-Icons"
+                    />
+                    {profile.problem_name}
+                  </Typography>
+                </div>
                 <div
                   className="Patient_id"
                   style={{
@@ -205,7 +208,7 @@ const PatientProfile = () => {
                     width: "90% !important",
                   }}
                 >
-                  <input type="text" placeholder="Patient ID" disabled />
+                  <input type="text" placeholder="ID" disabled />
                   <input
                     disabled={true}
                     type="number"

@@ -134,6 +134,7 @@ const DoctorProfile = (props) => {
                 },
                 borderRadius: "20px",
                 background: "#F6FAFB",
+                paddingBottom: "5%",
               }}
             >
               <TherapistProfile
