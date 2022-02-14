@@ -87,16 +87,18 @@ function TherapistListTile(props){
             className="imageContainer"
           />
         </Grid>
-        <Typography className="PatientName">{`${props.first_name} ${props.last_name}`}</Typography>
-        <Typography className="PatientInfo">
-          <Hospitalicon
-            sx={{ marginRight: "10px" }}
-            className="Profile-Icons"
-          />
-          {props.doc_specialization}
-        </Typography>
+        <div style={{marginBottom: "10%"}}>
+          <Typography className="PatientName">{`${props.first_name} ${props.last_name}`}</Typography>
+          <Typography className="PatientInfo">
+            <Hospitalicon
+              sx={{ marginRight: "10px" }}
+              className="Profile-Icons"
+            />
+            {props.doc_specialization}
+          </Typography>
+        </div>
         <div className="profilediv">
-          <div className="profiles-input">
+          <div className="P_profiles-input">
             <input type="text" disabled id="name" />
             <input
               disabled
@@ -106,7 +108,7 @@ function TherapistListTile(props){
               defaultValue={props.phone}
             />
           </div>
-          <div className="profiles-input3">
+          <div className="P_profiles-input3">
             <input type="text" id="name" disabled />
             <input
               disabled
@@ -116,7 +118,7 @@ function TherapistListTile(props){
               defaultValue={props.email}
             />
           </div>
-          <div className="profiles-input1">
+          <div className="P_profiles-input1">
             <input type="text" id="name" disabled />
             <input
               disabled
@@ -126,7 +128,7 @@ function TherapistListTile(props){
               defaultValue={props.hospital}
             />
           </div>
-          <div className="profiles-input6">
+          <div className="P_profiles-input4">
             <input type="text" id="name" disabled />
             <input
               disabled
