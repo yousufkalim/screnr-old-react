@@ -43,14 +43,13 @@ const AllTherapists = () => {
           justifyContent: "center",
           flexWrap: "wrap",
           "& > :not(style)": {
-            width: "50%",
+            width: "90% !Important",
             height: "100%",
             mb: 3,
+            mt: 4,
           },
           borderRadius: "20px",
           background: "#F6FAFB",
-          marginTop: "4%",
-          marginBottom: "12%"
         }}
       >
         {

@@ -7,7 +7,6 @@ import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg
 import assetsURL from "../../utils/Assets";
 
 const TherapistProfile = (props) => {
-
   const { toEdit, handleImageSelect, profileImage } = props;
 
   return (
@@ -18,7 +17,7 @@ const TherapistProfile = (props) => {
         sx={{
           borderRadius: "20px",
           background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
-          paddingBottom: "5%",
+          paddingBottom: "2%",
           marginTop: "10px",
         }}
       >
@@ -34,17 +33,17 @@ const TherapistProfile = (props) => {
               accept="image/*"
               placeholder="Ref."
               onChange={handleImageSelect}
-              onClick={(event)=> { 
-                event.target.value = null
+              onClick={(event) => {
+                event.target.value = null;
               }}
             />
             <img
               src={
                 profileImage
-                ? URL.createObjectURL(profileImage)
-                : props.avatar
-                ? assetsURL(props.avatar)
-                : UploadImage
+                  ? URL.createObjectURL(profileImage)
+                  : props.avatar
+                  ? assetsURL(props.avatar)
+                  : UploadImage
               }
               className="imageContainer"
             />
@@ -109,32 +108,32 @@ const TherapistProfile = (props) => {
           </div>
         </div>
         <div className="Profilediv2">
-          <div className="profiles-div" style={{ width: "100% !important" }}>
+          <div className="Date_joined" style={{ width: "100% !important" }}>
             <input type="text" placeholder="Last Password Changed" disabled />
             <input
               disabled
               type="input"
               defaultValue={
                 props.last_password_changed
-                ? (new Date(props.last_password_changed).toLocaleDateString("en-US"))
-                : "N/A"
+                  ? new Date(props.last_password_changed).toLocaleDateString(
+                      "en-US"
+                    )
+                  : "N/A"
               }
             />
           </div>
           <div className="profiles-div2">
             <input type="text" placeholder="Password" disabled />
-            <input
-              disabled
-              type="input"
-              placeholder="**********"
-            />
+            <input disabled type="input" placeholder="**********" />
           </div>
           <div className="profiles-div3">
             <input type="text" placeholder="Account Created" disabled />
             <input
               disabled
               type="input"
-              defaultValue={new Date(props.createdAt).toLocaleDateString("en-US")}
+              defaultValue={new Date(props.createdAt).toLocaleDateString(
+                "en-US"
+              )}
             />
           </div>
         </div>

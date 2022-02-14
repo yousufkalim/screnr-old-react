@@ -133,11 +133,13 @@ const EditPatient = (props) => {
                 justifyContent: "center",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  m: 10,
+                  mt: 15,
+                  mb: 6,
                   width: "80%",
                   height: "100%",
                 },
                 borderRadius: "20px",
+                background: "#F6FAFB",
               }}
             >
               <Paper elevation={3} sx={{ borderRadius: "20px" }}>
@@ -178,7 +180,12 @@ const EditPatient = (props) => {
                     //   margin: 10,
                   }}
                 >
-                  <div className="flex-form" style={{ marginBottom: "3%" }}>
+                  <div
+                    className="flex-form"
+                    style={{
+                      marginBottom: "3%",
+                    }}
+                  >
                     <input type="text" placeholder="Patient ID" disabled />
                     <input
                       disabled
@@ -188,7 +195,6 @@ const EditPatient = (props) => {
                       defaultValue={patient.patient_id}
                     />
                   </div>
-
                     <div className="flexform">
                       <input type="text" placeholder="First Name" disabled />
                       <input
