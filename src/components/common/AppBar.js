@@ -97,7 +97,7 @@ const ResponsiveAppBar = (props) => {
           <Typography className="HeaderHeading">{props.heading}</Typography>
         </div>
         <Box className="Headerlogodiv">
-          <Tooltip title="Open notifications">
+          {/* <Tooltip title="Open notifications">
             <IconButton
               onClick={handleClickNotification}
               size="small"
@@ -111,7 +111,7 @@ const ResponsiveAppBar = (props) => {
                 style={{ width: "80%", marginLeft: "30%" }}
               />
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
           <Tooltip title="Open settings">
             <IconButton
               onClick={handleClickSetting}
