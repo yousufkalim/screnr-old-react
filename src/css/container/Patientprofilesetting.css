@@ -28,7 +28,7 @@
   border-left: none;
 }
 .Patient_id input[type="number"] {
-  flex-basis: 32% !important;
+  flex-basis: 45% !important;
   width: 90% !important;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -46,4 +46,5 @@
   border-right: none;
   width: 40%;
   font-size: 13px;
+  padding-left: 25px !important;
 }

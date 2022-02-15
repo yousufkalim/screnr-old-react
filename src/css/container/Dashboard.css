@@ -237,7 +237,7 @@ div.nonActiveClas:hover {
   .Patient_heading {
     font-size: 20px !important;
     margin-left: 7% !important;
-    padding: 0px !important;
+    padding-left: 0.5% !important;
   }
   .patient_maindiv {
     margin-top: 20% !important;

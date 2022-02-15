@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import TherapistProfile from "../../components/common/TherapistProfile";
 import AppBar from "../../components/common/AppBar";
 import Typography from "@mui/material/Typography";
@@ -8,8 +9,19 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Therapist from "../../assets/images/Therapisti.svg";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
+import EyeIcon from "../../assets/images/eye.svg";
 
 const UserProfile = () => {
+  const [isOldPasswordVisible, setIsOldPasswordVisible] = useState(true);
+
+  const handleOldPasswordVisible = () => {
+    setIsOldPasswordVisible(!isOldPasswordVisible);
+  };
+  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(true);
+
+  const handleNewPasswordVisible = () => {
+    setIsNewPasswordVisible(!isNewPasswordVisible);
+  };
   return (
     <>
       <AppBar
@@ -57,11 +69,14 @@ const UserProfile = () => {
             marginTop: "10px",
           }}
         >
-          <Grid className="profileimg" sx={{ marginTop: "5%" }}>
+          <Grid
+            className="profileimg"
+            sx={{ marginTop: "5%", marginBottom: "3%" }}
+          >
             <img src={Therapist}></img>
           </Grid>
           <Typography className="PatientName">Farhan shakir</Typography>
-          <Typography className="PatientInfo">
+          <Typography className="PatientInfo" sx={{ marginBottom: "7%" }}>
             <Hospitalicon
               sx={{ marginRight: "10px" }}
               className="Profile-Icons"
@@ -70,7 +85,7 @@ const UserProfile = () => {
           </Typography>
 
           <div className="Profilediv2">
-            <div className="profiles-div">
+            <div className="Date_joined">
               <input type="text" placeholder="Last Password Changed" disabled />
               <input
                 type="input"
@@ -82,20 +97,30 @@ const UserProfile = () => {
             <div className="profiles-div2">
               <input type="text" placeholder="Old Password" disabled />
               <input
-                type="input"
+                type={isOldPasswordVisible ? "password" : "txt"}
                 name="Type here"
                 id="inputplaceholder1"
                 placeholder="**********"
               />
+              <img
+                src={EyeIcon}
+                className="eyeicon"
+                onClick={handleOldPasswordVisible}
+              ></img>
             </div>
             <div className="profiles-div2">
               <input type="text" placeholder="New Password" disabled />
               <input
-                type="input"
+                type={isNewPasswordVisible ? "password" : "txt"}
                 name="Type here"
                 id="inputplaceholder1"
                 placeholder="**********"
               />
+              <img
+                src={EyeIcon}
+                className="eyeicon"
+                onClick={handleNewPasswordVisible}
+              ></img>
             </div>
             <div className="profiles-div3">
               <input type="text" placeholder="Account Created" disabled />

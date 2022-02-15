@@ -189,7 +189,7 @@ const PatientProfile = () => {
                     />
                   </label>
                 </Grid>
-                <div style={{ marginBottom: "7%" }}>
+                <div style={{ marginBottom: "4%", marginTop: "4%" }}>
                   <Typography className="PatientName">{`${profile.first_name} ${profile.last_name}`}</Typography>
                   <Typography className="PatientInfo">
                     <Hospitalicon

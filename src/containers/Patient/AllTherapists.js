@@ -12,7 +12,6 @@ import Api from "../../api";
 import assetsURL from "../../utils/Assets";
 
 const AllTherapists = () => {
-
   const [therapists, setTherapists] = useState([]);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const AllTherapists = () => {
 
   return (
     <>
-      <AppBar className="Appbar_background"/>
+      <AppBar className="Appbar_background" />
       <Box
         className="userprofile"
         sx={{
@@ -43,7 +42,7 @@ const AllTherapists = () => {
           justifyContent: "center",
           flexWrap: "wrap",
           "& > :not(style)": {
-            width: "90% !Important",
+            width: "87% !Important",
             height: "100%",
             mb: 3,
             mt: 4,
@@ -52,21 +51,16 @@ const AllTherapists = () => {
           background: "#F6FAFB",
         }}
       >
-        {
-          therapists.map((e,i) => (
-            <TherapistListTile
-              {...e}
-              index={i}
-            />
-          ))
-        }
+        {therapists.map((e, i) => (
+          <TherapistListTile {...e} index={i} />
+        ))}
       </Box>
       <MobileBottomBar className="bottomnav" activeIndex={0} />
     </>
   );
 };
 
-function TherapistListTile(props){
+function TherapistListTile(props) {
   return (
     <>
       <Paper
@@ -79,15 +73,11 @@ function TherapistListTile(props){
       >
         <Grid className="profileimg" sx={{ marginTop: "5%" }}>
           <img
-            src={
-              props.avatar
-                ? assetsURL(props.avatar)
-                : Doctor
-            }
+            src={props.avatar ? assetsURL(props.avatar) : Doctor}
             className="imageContainer"
           />
         </Grid>
-        <div style={{marginBottom: "10%"}}>
+        <div style={{ marginBottom: "10%", marginTop: "6%" }}>
           <Typography className="PatientName">{`${props.first_name} ${props.last_name}`}</Typography>
           <Typography className="PatientInfo">
             <Hospitalicon
@@ -142,7 +132,6 @@ function TherapistListTile(props){
       </Paper>
     </>
   );
-
 }
 
 export default AllTherapists;
