@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
-  width: 390,
-  height: 660,
+  width: 440,
+  height: 720,
   facingMode: "user",
 };
 
@@ -15,6 +15,8 @@ const Camera = () => {
   return (
     <>
       <Webcam
+        height={100 + "%"}
+        width={100 + "%"}
         ref={webcamRef}
         audio={true}
         videoConstraints={videoConstraints}

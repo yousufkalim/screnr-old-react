@@ -25,7 +25,7 @@
   border-radius: 20px !important;
   margin-top: 10px !important;
   margin-top: 10px !important;
-  margin-left: 2% !important;
+  margin-left: 2.5% !important;
   padding-bottom: 2% !important;
   padding-right: 0% !important;
   /* margin-right: 3% !important;
@@ -120,7 +120,7 @@ div.nonActiveClas:hover {
   margin-bottom: 20px !important;
   /* justify-content: space-around !important; */
   background-color: #f6fafb !important;
-  /* margin-left: 1% !important; */
+  /* margin-left: 0.15% !important; */
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
@@ -237,6 +237,7 @@ div.nonActiveClas:hover {
   .Patient_heading {
     font-size: 20px !important;
     margin-left: 7% !important;
+    padding-left: 0.5% !important;
   }
   .patient_maindiv {
     margin-top: 20% !important;

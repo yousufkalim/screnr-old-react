@@ -119,8 +119,7 @@
   text-align: center !important;
 }
 .css-a5rdam-MuiGrid-root {
-  width: 100% !important;
-  margin-left: 0px !important;
+  margin-left: -6px !important;
 }
 .css-a5rdam-MuiGrid-root > .MuiGrid-item {
   padding-left: 0px !important;
