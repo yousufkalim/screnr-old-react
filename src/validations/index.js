@@ -294,6 +294,25 @@ function _validateQuestionPerform(obj, index){
 
 }
 
+function editPasswordDoctor(data){
+
+  const valArr = [
+    {
+      name: "Old Password",
+      validationFunction: () => Validators.lengthValidator("Old Password", data.get("Old Password"), 8)
+    },
+    {
+      name: "New Password",
+      validationFunction: () => Validators.passwordValidator("New Password", data.get("New Password"))
+    }
+  ];
+
+  const validated = formValidator(data, valArr)
+
+  return validated;
+
+}
+
 export {
   login,
   register,
@@ -302,5 +321,6 @@ export {
   editProfileDoctor,
   editProfilePatient,
   assessmentQuestionsAssign,
-  assessmentQuestionsPerform
+  assessmentQuestionsPerform,
+  editPasswordDoctor
 }
