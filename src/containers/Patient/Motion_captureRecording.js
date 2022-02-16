@@ -9,8 +9,8 @@ import PauseButton from "../../assets/images/Button.svg";
 import PButton from "../../assets/images/PButton.svg";
 import Shape from "../../assets/images/Shape.svg";
 import Camera from "../../components/common/Camera";
-const Motion_captureRecording = () => {
-  const [step, setStep] = useState(1);
+const Motion_captureRecording = (props) => {
+  const [step, setStep] = useState(2);
 
   const navigate = useNavigate();
 
@@ -20,34 +20,13 @@ const Motion_captureRecording = () => {
 
   return (
     <>
-      {step === 1 ? (
-        <div style={{ background: " #454238", height: "100vh !important" }}>
-          <AppBar className="Motion_capture_appbar"></AppBar>
-          <Grid
-            className="Bottom_header_mobile"
-            sx={{ backgroundColor: "#454238 !important" }}
-          >
-            <Typography
-              className="Patient_heading"
-              sx={{
-                color: "#25C8B4",
-                marginTop: "2%",
-                marginLeft: "25px !important",
-              }}
-            >
-              Motion Capture
-            </Typography>
-          </Grid>
-          <div className="counterdiv" style={{ height: "80vh" }}></div>
-          <Grid container spacing={1} className="patient_maindiv_motion">
-            <Grid item xs={10} sm={10} md={2} className="pauseButton">
-              <img src={PauseButton} onClick={(e) => setStep(2)}></img>
-            </Grid>
-          </Grid>
-          <MobileBottomBar className="bottom_nav" activeIndex={2} />
-        </div>
-      ) : step === 2 ? (
-        <div style={{ background: " #454238", height: "100vh !important" }}>
+      {step === 2 ? (
+        <div
+          style={{
+            background: " #454238",
+            height: "100vh !important",
+          }}
+        >
           <AppBar className="Motion_capture_appbar"></AppBar>
           <Grid
             className="Bottom_header_mobile"
@@ -65,14 +44,17 @@ const Motion_captureRecording = () => {
             </Typography>
           </Grid>
           <div className="counterdiv" style={{ height: "80vh" }}>
-            <Camera />
+            <Camera display={props.display} />
           </div>
 
           <Grid container spacing={1} className="_maindiv_motion">
             <Grid item xs={10} sm={10} md={2} className="PButton">
               <img
                 src={PButton}
-                style={{ width: "40%" }}
+                style={{
+                  width: "40%",
+                  display: props.display === "none" ? "none" : "",
+                }}
                 onClick={(e) => setStep(3)}
               ></img>
             </Grid>

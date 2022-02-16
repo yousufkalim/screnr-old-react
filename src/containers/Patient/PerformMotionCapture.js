@@ -6,6 +6,7 @@ import MobileBottomBar from "../../components/common/MobileBottomBar";
 import Api from "../../api";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/Auth";
+import moment from "moment";
 const PerformMotionCapture = () => {
   const [counter, setCounter] = React.useState(8);
   const [step, setStep] = useState(1);
@@ -30,8 +31,8 @@ const PerformMotionCapture = () => {
     }
   };
 
-  const navToPerformMotionCapture = async (id) => {
-    navigate(`/patient/motion_capture_assessment_1`);
+  const navToPerformMotionCapture = async (item) => {
+    navigate(`/patient/motion_capture_assessment_1`, { state: { item: item } });
   };
 
   useEffect(() => {
@@ -63,78 +64,90 @@ const PerformMotionCapture = () => {
           ) : (
             assessments.map((item) => (
               <>
-                <Grid
-                  xs={10}
-                  sm={10}
-                  md={2}
-                  className={`Exercise_details ${
-                    item.status == "nonActive" ? "non_ActiveClas" : ""
-                  }`}
-                  sx={{ marginBottom: "25px !important" }}
-                  onClick={() => navToPerformMotionCapture(item._id)}
-                >
-                  <>
-                    <div
-                      style={{
-                        marginLeft: "8%",
-                        marginTop: "10%",
-                        paddingBottom: "5%",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                        }}
-                      >
-                        <Typography className="Date_title">
-                          Assigned Date
-                        </Typography>
-                        <Typography className="date">13-Dec-2021</Typography>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          marginTop: "2%",
-                        }}
-                      >
-                        <Typography
-                          className="Due_Date_title"
-                          style={{ marginRight: "5%" }}
-                        >
-                          Due Date
-                        </Typography>
-                        <Typography className="date">13-Dec-2021</Typography>
-                      </div>
-                    </div>
-                    <div>
-                      <Typography className="assessment_title">
-                        Shoulder exercise
-                      </Typography>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                      }}
-                    >
-                      <Typography className="sets">Sets:3</Typography>
-                      <Typography className="sets">Repitition:12</Typography>
-                    </div>
-                  </>
-                  <Typography
-                    className={`${
-                      item.status == "requested"
-                        ? "motionStatus"
-                        : "nonActive_testStatus "
+                {item.type === "motion" && item.status === "requested" ? (
+                  <Grid
+                    xs={10}
+                    sm={10}
+                    md={2}
+                    className={`Exercise_details ${
+                      item.status == "nonActive" ? "non_ActiveClas" : ""
                     }`}
+                    sx={{ marginBottom: "25px !important" }}
+                    onClick={() => navToPerformMotionCapture(item)}
                   >
-                    {item.status == "requested"
-                      ? "Let's start"
-                      : item.status == "reviewed"
-                      ? "Reviewed"
-                      : "Completed"}
-                  </Typography>
-                </Grid>
+                    <>
+                      <div
+                        style={{
+                          marginLeft: "8%",
+                          marginTop: "10%",
+                          paddingBottom: "5%",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                          }}
+                        >
+                          <Typography className="Date_title">
+                            Assigned Date
+                          </Typography>
+                          <Typography className="date">
+                            {moment(item.createdAt).format("L")}
+                          </Typography>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            marginTop: "2%",
+                          }}
+                        >
+                          <Typography
+                            className="Due_Date_title"
+                            style={{ marginRight: "5%" }}
+                          >
+                            Due Date
+                          </Typography>
+                          <Typography className="date">
+                            {moment(item.due_date).format("L")}
+                          </Typography>
+                        </div>
+                      </div>
+                      <div>
+                        <Typography className="assessment_title">
+                          {item.exercise} exercise
+                        </Typography>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                        }}
+                      >
+                        <Typography className="sets">
+                          Sets: {" " + item.sets}
+                        </Typography>
+                        <Typography className="sets">
+                          Repitition: {" " + item.reps}
+                        </Typography>
+                      </div>
+                    </>
+                    <Typography
+                      className={`${
+                        item.status == "requested"
+                          ? "motionStatus"
+                          : "nonActive_testStatus "
+                      }`}
+                    >
+                      {item.status == "requested"
+                        ? "Let's start"
+                        : item.status == "reviewed"
+                        ? "Reviewed"
+                        : "Completed"}
+                    </Typography>
+                  </Grid>
+                ) : (
+                  ""
+                )}
               </>
             ))
           )}
