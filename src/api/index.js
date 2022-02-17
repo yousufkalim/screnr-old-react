@@ -20,6 +20,7 @@ const api = async (method = "get", uri, body) => {
 
           reject(err);
         } else if (err?.response?.status === 403) {
+          localStorage.clear();
           window.location = "/home";
         } else {
           console.log("API Error --------> ", err.response?.data?.message);
