@@ -462,6 +462,12 @@ input[type="radio"]::after {
   color: #454238;
 }
 
+.due_datePicker {
+  margin-bottom: 40px !important;
+  border: none !important;
+  width: 200px !important;
+}
+
 @media only screen and (max-width: 1400px) {
   .Profiledivs {
     display: flex !important;
