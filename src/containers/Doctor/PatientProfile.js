@@ -4,7 +4,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Profile from "../../components/common/PatientProfile";
-
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -15,11 +16,20 @@ const PatientProfile = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [patient, setPatient] = useState(null);
   const [assessments, setAssessment] = useState([]);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     getPatient();
     getAssessments();
   }, []);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (e) => {
+    setAnchorEl(null);
+  };
 
   // func to get current project
   const getPatient = async () => {
@@ -46,8 +56,10 @@ const PatientProfile = (props) => {
     }
   };
 
-  const navToPrescribePatient = async (id) => {
-    navigate(`/doctor/dashboard/prescribe_therapy/${id}`);
+  const navToPrescribePatient = async (id, type) => {
+    navigate(`/doctor/dashboard/prescribe_therapy/${id}`, {
+      state: { type: type },
+    });
   };
 
   return (
@@ -71,10 +83,39 @@ const PatientProfile = (props) => {
               variant="contained"
               sx={{ backgroundColor: " #454238" }}
               className="Patient_button"
-              onClick={() => navToPrescribePatient(patient._id)}
+              onClick={handleClick}
             >
               Prescribe Exercise
             </Button>
+            <Menu
+              elevation={0}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem
+                onClick={(e) => navToPrescribePatient(patient._id, "simple")}
+              >
+                Simple Exercise
+              </MenuItem>
+              <MenuItem
+                onClick={(e) => navToPrescribePatient(patient._id, "motion")}
+              >
+                Motion Capture
+              </MenuItem>
+            </Menu>
           </Grid>
           <Grid
             container
