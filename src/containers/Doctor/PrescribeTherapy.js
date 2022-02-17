@@ -184,7 +184,7 @@ const PrescribeTherapy = () => {
       {isLoading ? (
         <></>
       ) : (
-        <>
+        <div style={{ paddingBottom: "8%" }}>
           <AppBar
             className="Appbar_background"
             heading={"Prescribing Therapy Exercise"}
@@ -216,12 +216,13 @@ const PrescribeTherapy = () => {
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   paddingTop: "1%",
-                  width: "45%",
-                  height: "60% !important",
+                  width: "48%",
+                  height: "75% !important",
                   mt: 6.5,
                   mr: 0,
                   marginLeft: "3%",
                   mb: 2,
+                  paddingBottom: "10%",
                 },
                 borderRadius: "20px",
               }}
@@ -240,7 +241,7 @@ const PrescribeTherapy = () => {
                 // overflowX: "scroll",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "92%",
+                  width: "90%",
                   height: "100%",
 
                   paddingBottom: "18%",
@@ -328,7 +329,7 @@ const PrescribeTherapy = () => {
               </Paper>
             </Grid>
           </Grid>
-        </>
+        </div>
       )}
     </>
   );
