@@ -1,5 +1,17 @@
 {
   "projects": {
-    "default": "screnr-demo"
+    "default": "screnr-ui"
+  },
+  "targets": {
+    "screnr-demo": {
+      "hosting": {
+        "dev": [
+          "screnr-ui"
+        ],
+        "prod": [
+          "screnr-prod"
+        ]
+      }
+    }
   }
 }
