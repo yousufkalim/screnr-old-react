@@ -26,13 +26,14 @@ const ChangePassword = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [profile, setProfile] = useState(null);
 
+  const [renderOldPasswordEyes, setRenderOldPasswordEyes] = useState(false);
   const [isOldPasswordVisible, setIsOldPasswordVisible] = useState(true);
-
   const handleOldPasswordVisible = () => {
     setIsOldPasswordVisible(!isOldPasswordVisible);
   };
-  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(true);
 
+  const [renderNewPasswordEyes, setRenderNewPasswordEyes] = useState(false);
+  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(true);
   const handleNewPasswordVisible = () => {
     setIsNewPasswordVisible(!isNewPasswordVisible);
   };
@@ -188,28 +189,40 @@ const ChangePassword = () => {
                     <input
                       type={isOldPasswordVisible ? "password" : "txt"}
                       name="Old Password"
-                      placeholder="**********"
+                      placeholder="Enter old password"
+                      onChange={(e) =>
+                        setRenderOldPasswordEyes(e.target.value.length != 0)
+                      }
                     />
-                    <img
-                      src={EyeIcon}
-                      className="eyeicon"
-                      onClick={handleOldPasswordVisible}
-                    ></img>
+                    {renderOldPasswordEyes ? (
+                      <img
+                        src={EyeIcon}
+                        className="eyeicon"
+                        onClick={handleOldPasswordVisible}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </div>
-
                   <div className="profiles-div2">
                     <input type="text" placeholder="New Password" disabled />
-
                     <input
                       type={isNewPasswordVisible ? "password" : "txt"}
                       name="New Password"
-                      placeholder="**********"
+                      placeholder="Enter new password"
+                      onChange={(e) =>
+                        setRenderNewPasswordEyes(e.target.value.length != 0)
+                      }
                     />
-                    <img
-                      src={EyeIcon}
-                      className="eyeicon"
-                      onClick={handleNewPasswordVisible}
-                    ></img>
+                    {renderNewPasswordEyes ? (
+                      <img
+                        src={EyeIcon}
+                        className="eyeicon"
+                        onClick={handleNewPasswordVisible}
+                      />
+                    ) : (
+                      <></>
+                    )}
                   </div>
 
                   <div className="profiles-div3">
