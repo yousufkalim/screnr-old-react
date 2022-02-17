@@ -16,7 +16,7 @@
   border-radius: 0;
   outline: 0;
   -webkit-appearance: none;
-  width: 75% !important;
+  /* width: 75% !important; */
 }
 .Patient_id input[type="input"] {
   flex-basis: 90% !important;
@@ -28,7 +28,7 @@
   border-left: none;
 }
 .Patient_id input[type="number"] {
-  flex-basis: 45% !important;
+  flex-basis: 94% !important;
   width: 90% !important;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;

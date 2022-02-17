@@ -135,7 +135,7 @@ div.nonActiveClas:hover {
   display: flex !important;
   align-items: center !important;
   cursor: pointer !important;
-  padding-bottom: 10% !important;
+  padding-bottom: 30% !important;
   justify-content: center !important;
 }
 .patient_mo_capture {
@@ -146,7 +146,7 @@ div.nonActiveClas:hover {
   background-color: #f6fafb !important;
   display: flex !important;
   align-items: center !important;
-  margin-bottom: 15% !important;
+  margin-bottom: 30% !important;
 }
 .PatientName {
   font-family: Inter !important;
