@@ -275,7 +275,16 @@ const PrescribeTherapy = () => {
                 }}
               >
                 {type === "motion" ? (
-                  <div className="Profilediv2" style={{ marginBottom: "6%" }}>
+                  <div
+                    className="Profilediv2"
+                    style={{
+                      marginBottom: "6%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      height: "100%",
+                    }}
+                  >
                     <div className="profiles-div">
                       <input type="text" placeholder="Exercise" disabled />
                       <select
@@ -327,28 +336,6 @@ const PrescribeTherapy = () => {
                         <option value="12">12</option>
                         <option value="15">15</option>
                       </select>
-                    </div>
-                    <div style={{ marginTop: "5%" }}>
-                      <LocalizationProvider
-                        dateAdapter={AdapterDateFns}
-                        fullWidth
-                      >
-                        <DesktopDatePicker
-                          fulWidth
-                          label="Due Date"
-                          inputFormat="MM/dd/yyyy"
-                          value={dueDate}
-                          onChange={(e) => setDueDate(e)}
-                          renderInput={(params) => (
-                            <TextField
-                              // variant="standrd"
-                              className="due_datePicker"
-                              {...params}
-                            />
-                          )}
-                          minDate={new Date()}
-                        />
-                      </LocalizationProvider>
                     </div>
                   </div>
                 ) : type === "simple" ? (
