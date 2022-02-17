@@ -417,7 +417,7 @@ function QuestionListTile(props) {
               }
               getOptionLabel={(obj) => obj.title}
               style={{
-                width: "99.7%",
+                width: "99.3%",
                 margin: "auto",
               }}
               renderInput={(params) => (
