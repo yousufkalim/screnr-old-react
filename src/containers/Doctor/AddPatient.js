@@ -213,7 +213,7 @@ const AddPatient = () => {
               <div className="flexform" style={{ marginTop: "3%" }}>
                 <input type="text" placeholder="Mobile Number" disabled />
                 <input
-                  type="number"
+                  type="input"
                   name="Mobile Number"
                   placeholder="Type here"
                 />

@@ -9,14 +9,13 @@ import assetsURL from "../../utils/Assets";
 import { useNavigate } from "react-router-dom";
 
 const TherapistProfile = (props) => {
-
   const { toEdit, handleImageSelect, profileImage } = props;
 
   const navigate = useNavigate();
 
   const navToPasswordReset = async () => {
     navigate("/doctor/dashboard/ChangePassword");
-  }
+  };
 
   return (
     <>
@@ -71,7 +70,7 @@ const TherapistProfile = (props) => {
             <input type="text" disabled />
             <input
               disabled={!toEdit}
-              type="number"
+              type="input"
               name="Phone"
               placeholder="Phone"
               defaultValue={props.phone}
@@ -134,15 +133,15 @@ const TherapistProfile = (props) => {
           <div className="profiles-div2">
             <input type="text" placeholder="Password" disabled />
             <input disabled type="input" placeholder="**********" />
-            {
-              toEdit
-              ? <img
-                  src={EditPassword}
-                  onClick={(e) => navToPasswordReset()}
-                  style={{ position: "absolute", right: "20px", top: "10px" }}
-                />
-              : <></>
-            }
+            {toEdit ? (
+              <img
+                src={EditPassword}
+                onClick={(e) => navToPasswordReset()}
+                style={{ position: "absolute", right: "20px", top: "10px" }}
+              />
+            ) : (
+              <></>
+            )}
           </div>
           <div className="profiles-div3">
             <input type="text" placeholder="Account Created" disabled />

@@ -212,13 +212,13 @@ const PrescribeTherapy = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                position: "sticky",
+                // position: "fixed",
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   paddingTop: "1%",
-                  width: "48%",
-                  height: "75% !important",
-                  mt: 8,
+                  width: "45%",
+                  height: "60% !important",
+                  mt: 6.5,
                   mr: 0,
                   marginLeft: "3%",
                   mb: 2,
@@ -237,10 +237,11 @@ const PrescribeTherapy = () => {
               sx={{
                 display: "flex",
                 justifyContent: "center",
-
+                // overflowX: "scroll",
                 flexWrap: "wrap",
                 "& > :not(style)": {
                   width: "92%",
+                  height: "100%",
 
                   paddingBottom: "18%",
                   marginTop: "6.5%",
@@ -399,7 +400,7 @@ function QuestionListTile(props) {
         style={{
           display: "flex",
           marginBottom: "-14%",
-          alignItems: "end",
+          alignItems: "flex-end",
           justitfyContent: "center",
         }}
         className="box-container"

@@ -51,7 +51,7 @@ const AllTherapists = () => {
           background: "#F6FAFB",
         }}
       >
-        {therapists.map((e, i) => (
+        {therapists?.map((e, i) => (
           <TherapistListTile {...e} index={i} />
         ))}
       </Box>
