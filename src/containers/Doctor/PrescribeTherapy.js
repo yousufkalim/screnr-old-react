@@ -11,6 +11,9 @@ import DeleteIcon from "../../assets/images/delete.svg";
 import AddIcon from "../../assets/images/add.svg";
 import ContentEditable from "react-contenteditable";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 import Api from "../../api";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
@@ -27,9 +30,10 @@ const PrescribeTherapy = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [patient, setPatient] = useState(null);
 
-  const [exercise, setExercise] = useState("Shoulder");
+  const [exercise, setExercise] = useState("Overhead Squat");
   const [noOfSets, setNoOfSets] = useState(1);
   const [noOfReps, setNoOfReps] = useState(10);
+  const [dueDate, setDueDate] = useState(new Date());
   const [type, setType] = useState(state.type);
 
   const [questions, setQuestions] = useState([
@@ -84,19 +88,24 @@ const PrescribeTherapy = () => {
           navToDashboard();
         }
       } else if (type === "motion") {
-        const body = {
-          patient_id: params.id,
-          exercise: exercise,
-          sets: noOfSets,
-          reps: noOfReps,
-          due_date: new Date().toLocaleDateString("en-US"),
-          type: "motion",
-          questions_array: [],
-        };
-        response = await Api("post", `/assessments`, body);
-        if (response) {
-          toast.success("Assessment created successfully!");
-          navToDashboard();
+        if (dueDate === null) {
+          toast.warning("Due date cannot be empty!");
+          return;
+        } else {
+          const body = {
+            patient_id: params.id,
+            exercise: exercise,
+            sets: noOfSets,
+            reps: noOfReps,
+            due_date: dueDate.toLocaleDateString("en-US"),
+            type: "motion",
+            questions_array: [],
+          };
+          response = await Api("post", `/assessments`, body);
+          if (response) {
+            toast.success("Assessment created successfully!");
+            navToDashboard();
+          }
         }
       }
     } catch (e) {
@@ -267,6 +276,34 @@ const PrescribeTherapy = () => {
               >
                 {type === "motion" ? (
                   <div className="Profilediv2" style={{ marginBottom: "6%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        width: "89%",
+                      }}
+                    >
+                      <LocalizationProvider
+                        dateAdapter={AdapterDateFns}
+                        fullWidth
+                      >
+                        <DesktopDatePicker
+                          fulWidth
+                          label="Due Date"
+                          inputFormat="MM/dd/yyyy"
+                          value={dueDate}
+                          onChange={(e) => setDueDate(e)}
+                          renderInput={(params) => (
+                            <TextField
+                              variant="standard"
+                              className="due_datePicker"
+                              {...params}
+                            />
+                          )}
+                          minDate={new Date()}
+                        />
+                      </LocalizationProvider>
+                    </div>
                     <div className="profiles-div">
                       <input type="text" placeholder="Exercise" disabled />
                       <select
@@ -294,10 +331,11 @@ const PrescribeTherapy = () => {
                         value={noOfSets}
                         onChange={(e) => setNoOfSets(e.target.value)}
                       >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="9">9</option>
+                        <option value="12">12</option>
+                        <option value="15">15</option>
                       </select>
                     </div>
                     <div
