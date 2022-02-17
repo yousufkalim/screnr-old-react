@@ -11,11 +11,12 @@
   font-family: Inter !important;
   font-style: normal !important;
   font-weight: 500 !important;
-  font-size: 18px !important;
-
+  font-size: 16px !important;
   text-align: center !important;
-
   color: #454238 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 .eidtprofile {
   display: flex;
@@ -99,7 +100,7 @@
   background-image: url("../../assets/images/profilecall.svg");
   background-repeat: no-repeat !important;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 
 .P_profiles-input {
@@ -152,7 +153,7 @@
   background-image: url("../../assets/images/profilecall.svg");
   background-repeat: no-repeat !important;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .profiles-input1 {
   display: -webkit-box;
@@ -196,7 +197,7 @@
   background-image: url("../../assets/images/Balloons.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 
 .P_profiles-input1 {
@@ -240,7 +241,7 @@
   background-image: url("../../assets/images/Balloons.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .profiles-input2 {
   display: -webkit-box;
@@ -284,7 +285,7 @@
   background-image: url("../../assets/images/Chrome.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .profiles-input3 {
   display: -webkit-box;
@@ -328,7 +329,7 @@
   background-image: url("../../assets/images/Profileemail.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .P_profiles-input3 {
   display: -webkit-box;
@@ -371,7 +372,7 @@
   background-image: url("../../assets/images/Profileemail.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .profiles-input4 {
   display: -webkit-box;
@@ -423,7 +424,7 @@
   background-image: url("../../assets/images/home.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .P_profiles-input4 {
   display: -webkit-box;
@@ -448,7 +449,6 @@
   width: 60% !important;
   border-top-right-radius: none;
   border-bottom-right-radius: 10px;
-
   border: 1px solid #919b9b;
   border-left: none;
 }
@@ -474,7 +474,7 @@
   background-image: url("../../assets/images/home.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 
 .profiles-input5 {
@@ -519,7 +519,7 @@
   background-image: url("../../assets/images/email.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 
 .profiles-input5-1 {
@@ -564,7 +564,7 @@
   background-image: url("../../assets/images/Chrome.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 
 .profiles-input5-2 {
@@ -609,7 +609,7 @@
   background-image: url("../../assets/images/buillding.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 
 .profiles-input6 {
@@ -664,7 +664,7 @@
   background-image: url("../../assets/images/location.svg");
   background-repeat: no-repeat;
   background-position: left;
-  background-position-x: 5%;
+  background-position-x: 15%;
 }
 .profiles-div {
   display: -webkit-box;
@@ -798,6 +798,18 @@
   border-right: none;
   width: 40%;
   font-size: 13px;
+}
+.profiles-div2 input[type="txt"] {
+  /* color: #fff; */
+
+  transition: all 0.2s;
+  border-top-left-radius: none !important;
+  border-bottom-left-radius: none !important;
+  border: 1px solid #919b9b !important;
+  border-right: none;
+  width: 90%;
+  font-size: 13px;
+  border-left: none !important;
 }
 .Date_joined {
   display: -webkit-box;
@@ -1290,7 +1302,7 @@
   .Patient_button {
     font-size: 13px !important;
 
-    margin: 2% 2% 1% 0% !important;
+    margin: 2% 6% 1% 0% !important;
     box-shadow: 0px 15px 45px rgb(69 66 56 / 29%) !important;
     padding: 5px 30px 5px 30px !important;
     display: flex !important;

@@ -11,14 +11,13 @@ import PatientProfile from "../containers/Doctor/PatientProfile";
 
 import PatientDashboard from "../containers/Patient/PatientDashboard";
 import PerformAssessment from "../containers/Patient/PerformAssessment";
-import AllTherapists from "../containers/Patient/AllTherapists";
 import PerformMotionCapture from "../containers/Patient/PerformMotionCapture";
 
 import PrescribeTherapy from "../containers/Doctor/PrescribeTherapy";
 import ChangePassword from "../containers/Doctor/ChangePassword";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PatientProfileEdit from "../containers/Patient/PatientProfile";
-import Therapist from "../containers/Patient/Therapist";
+import AllTherapists from "../containers/Patient/AllTherapists";
 import PersonIcon from "@mui/icons-material/Person";
 import PollIcon from "@mui/icons-material/Poll";
 import ReviewPatientResponse from "../containers/Doctor/ReviewPatientResponse";
@@ -126,12 +125,6 @@ const DoctorRoutes = [
     element: ChangePassword,
   },
   {
-    path: "/doctor/dashboard/Therapist",
-    name: "Therapist",
-    icon: <PollIcon />,
-    element: Therapist,
-  },
-  {
     path: "/doctor/dashboard/PatientProfileSetting",
     name: "PatientProfileSetting",
     icon: <PollIcon />,
@@ -158,12 +151,6 @@ const PatientRoutes = [
     name: "TherapyExercises",
     icon: <PollIcon />,
     element: PerformAssessment,
-  },
-  {
-    path: "/patient/dashboard/Therapist",
-    name: "Therapist",
-    icon: <PollIcon />,
-    element: Therapist,
   },
   {
     path: "/patient/dashboard/profile",

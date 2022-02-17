@@ -217,7 +217,7 @@ const PrescribeTherapy = () => {
                 "& > :not(style)": {
                   paddingTop: "1%",
                   width: "48%",
-                  height: "600px !important",
+                  height: "75% !important",
                   mt: 8,
                   mr: 0,
                   marginLeft: "3%",
@@ -417,7 +417,7 @@ function QuestionListTile(props) {
               }
               getOptionLabel={(obj) => obj.title}
               style={{
-                width: "99.7%",
+                width: "99.3%",
                 margin: "auto",
               }}
               renderInput={(params) => (

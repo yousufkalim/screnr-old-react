@@ -142,5 +142,9 @@
   }
   .Headerlogo {
     width: 55% !important;
+    margin-left: 1%;
+  }
+  .css-72kpsp {
+    padding-left: 4px !important;
   }
 }

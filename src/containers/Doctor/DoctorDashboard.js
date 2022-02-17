@@ -68,7 +68,7 @@ const DoctorDashboard = () => {
         {patients.length == 0 ? (
           <Typography
             sx={{
-              marginLeft: "2.5% !important",
+              marginLeft: "3% !important",
             }}
           >
             No Patients
