@@ -160,13 +160,12 @@ const ReviewPatientResponse = () => {
                 position: "sticky",
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "48.5%",
+                  width: "47.5%",
                   height: "75% !important",
                   mt: 10,
-                  marginLeft: "3%",
+                  marginLeft: "1%",
 
                   mr: 0,
-                  mb: 2,
                 },
                 borderRadius: "20px",
               }}
@@ -186,7 +185,7 @@ const ReviewPatientResponse = () => {
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
-                  width: "92%",
+                  width: "90%",
                   mt: 10,
                   mr: 0,
                 },
