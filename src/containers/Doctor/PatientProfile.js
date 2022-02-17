@@ -174,7 +174,7 @@ function AssessmentListTile(props) {
       </div>
       <div className="profileinput2">
         <input type="text" placeholder="Time spent" disabled />
-        <input type="input" placeholder="N/A" />
+        <input disabled type="input" placeholder="N/A" />
       </div>
       <div
         className={
