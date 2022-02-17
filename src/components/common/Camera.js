@@ -269,7 +269,7 @@ export default function Camera(props) {
       const joints = updateLandmarks(results.poseLandmarks);
 
       // Checking phase and counting the reps
-      checkPhase(calculateAngles.elbow(joints));
+      checkPhase(calculateAngles.knee(joints));
 
       let angles = {
         shoulder: calculateAngles.shoulder(joints),
