@@ -13,7 +13,6 @@ import Loader from "../../components/common/Loader";
 import left_connections from "../../assets/connections/left_connections.json";
 import right_connections from "../../assets/connections/right_connections.json";
 
-
 var camera = null;
 var showPoseLandmarks = true;
 var showSmoothLandmarks = true;
@@ -270,7 +269,7 @@ export default function Camera(props) {
       const joints = updateLandmarks(results.poseLandmarks);
 
       // Checking phase and counting the reps
-      checkPhase(calculateAngles.shoulder(joints));
+      checkPhase(calculateAngles.elbow(joints));
 
       let angles = {
         shoulder: calculateAngles.shoulder(joints),

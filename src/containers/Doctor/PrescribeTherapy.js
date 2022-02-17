@@ -13,7 +13,7 @@ import ContentEditable from "react-contenteditable";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import Api from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
@@ -22,15 +22,15 @@ import * as FormValidations from "../../validations";
 const PrescribeTherapy = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const { state } = useLocation();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isProcessing, setIsProcessing] = useState(false);
-
   const [patient, setPatient] = useState(null);
 
   const [exercise, setExercise] = useState("Shoulder");
   const [noOfSets, setNoOfSets] = useState(1);
   const [noOfReps, setNoOfReps] = useState(10);
+  const [type, setType] = useState(state.type);
 
   const [questions, setQuestions] = useState([
     {
@@ -60,41 +60,47 @@ const PrescribeTherapy = () => {
 
   // Calling create assessment
   const handleSubmit = async () => {
-    if (isProcessing) {
-      return;
-    }
-
-    const validated = FormValidations.assessmentQuestionsAssign(questions);
-
-    if (!validated) {
-      return;
-    }
-
-    let response;
-
     try {
-      const body = {
-        patient_id: params.id,
-        exercise: exercise,
-        sets: noOfSets,
-        reps: noOfReps,
-        due_date: new Date().toLocaleDateString("en-US"),
-        type: "motion",
-        questions_array: questions,
-      };
+      let response;
+      if (type === "simple") {
+        const validated = FormValidations.assessmentQuestionsAssign(questions);
 
-      setIsProcessing(true);
+        if (!validated) {
+          return;
+        }
 
-      response = await Api("post", `/assessments`, body);
+        const body = {
+          patient_id: params.id,
+          exercise: "",
+          sets: 0,
+          reps: 0,
+          due_date: new Date().toLocaleDateString("en-US"),
+          type: "simple",
+          questions_array: questions,
+        };
+        response = await Api("post", `/assessments`, body);
+        if (response) {
+          toast.success("Assessment created successfully!");
+          navToDashboard();
+        }
+      } else if (type === "motion") {
+        const body = {
+          patient_id: params.id,
+          exercise: exercise,
+          sets: noOfSets,
+          reps: noOfReps,
+          due_date: new Date().toLocaleDateString("en-US"),
+          type: "motion",
+          questions_array: [],
+        };
+        response = await Api("post", `/assessments`, body);
+        if (response) {
+          toast.success("Assessment created successfully!");
+          navToDashboard();
+        }
+      }
     } catch (e) {
       console.trace(e);
-    }
-
-    setIsProcessing(false);
-
-    if (response) {
-      toast.success("Assessment created successfully!");
-      navToDashboard();
     }
   };
 
@@ -197,7 +203,7 @@ const PrescribeTherapy = () => {
               variant="contained"
               sx={{ backgroundColor: " #25C8B4" }}
               className="Patient_button"
-              onClick={() => handleSubmit()}
+              onClick={(e) => handleSubmit()}
             >
               Send to patient
             </Button>
@@ -259,73 +265,78 @@ const PrescribeTherapy = () => {
                     "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
                 }}
               >
-                <div className="Profilediv2" style={{ marginBottom: "6%" }}>
-                  <div className="profiles-div">
-                    <input type="text" placeholder="Exercise" disabled />
-                    <select
-                      name="exercise"
-                      id="exercise"
-                      type="exercise"
-                      value={exercise}
-                      onChange={(e) => setExercise(e.target.value)}
+                {type === "motion" ? (
+                  <div className="Profilediv2" style={{ marginBottom: "6%" }}>
+                    <div className="profiles-div">
+                      <input type="text" placeholder="Exercise" disabled />
+                      <select
+                        name="exercise"
+                        id="exercise"
+                        type="exercise"
+                        value={exercise}
+                        onChange={(e) => setExercise(e.target.value)}
+                      >
+                        <option value="Shoulder">Shoulder</option>
+                        <option value="Neck">Neck</option>
+                        <option value="Joints">Joints</option>
+                        <option value="Elbow">Elbow</option>
+                        <option value="Hips">Hips</option>
+                      </select>
+                    </div>
+                    <div className="profiles_div2">
+                      <input type="text" placeholder="Sets" disabled />
+                      <select
+                        name="sets"
+                        id="sets"
+                        type="sets"
+                        value={noOfSets}
+                        onChange={(e) => setNoOfSets(e.target.value)}
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    </div>
+                    <div
+                      className="profiles-div3"
+                      style={{ border: "1px solid #454238" }}
                     >
-                      <option value="Shoulder">Shoulder</option>
-                      <option value="Neck">Neck</option>
-                      <option value="Joints">Joints</option>
-                      <option value="Elbow">Elbow</option>
-                      <option value="Hips">Hips</option>
-                    </select>
+                      <input type="text" placeholder="Reps" disabled />
+                      <select
+                        name="reps"
+                        id="reps"
+                        type="reps"
+                        value={noOfReps}
+                        onChange={(e) => setNoOfReps(e.target.value)}
+                      >
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                      </select>
+                    </div>
                   </div>
-                  <div className="profiles_div2">
-                    <input type="text" placeholder="Sets" disabled />
-                    <select
-                      name="sets"
-                      id="sets"
-                      type="sets"
-                      value={noOfSets}
-                      onChange={(e) => setNoOfSets(e.target.value)}
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
-                  </div>
-                  <div
-                    className="profiles-div3"
-                    style={{ border: "1px solid #454238" }}
-                  >
-                    <input type="text" placeholder="Reps" disabled />
-                    <select
-                      name="reps"
-                      id="reps"
-                      type="reps"
-                      value={noOfReps}
-                      onChange={(e) => setNoOfReps(e.target.value)}
-                    >
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                      <option value="13">13</option>
-                    </select>
-                  </div>
-                </div>
-                {questions.map((e, i) => (
-                  <QuestionListTile
-                    {...e}
-                    index={i}
-                    isLast={i == questions.length - 1} // lastIndex
-                    renderDeleteBtn={questions.length >= 2} // More than one questions
-                    addQuestion={addQuestion}
-                    removeQuestion={removeQuestion}
-                    updateQuestionTitle={updateQuestionTitle}
-                    updateQuestionDescription={updateQuestionDescription}
-                    updateQuestionType={updateQuestionType}
-                    updateAnswerText={updateAnswerText}
-                    updateQuestion={updateQuestion}
-                    key={i}
-                  />
-                ))}
+                ) : type === "simple" ? (
+                  questions.map((e, i) => (
+                    <QuestionListTile
+                      {...e}
+                      index={i}
+                      isLast={i == questions.length - 1} // lastIndex
+                      renderDeleteBtn={questions.length >= 2} // More than one questions
+                      addQuestion={addQuestion}
+                      removeQuestion={removeQuestion}
+                      updateQuestionTitle={updateQuestionTitle}
+                      updateQuestionDescription={updateQuestionDescription}
+                      updateQuestionType={updateQuestionType}
+                      updateAnswerText={updateAnswerText}
+                      updateQuestion={updateQuestion}
+                      key={i}
+                    />
+                  ))
+                ) : (
+                  ""
+                )}
               </Paper>
             </Grid>
           </Grid>
@@ -403,6 +414,7 @@ function QuestionListTile(props) {
           marginBottom: "-14%",
           alignItems: "flex-end",
           justitfyContent: "center",
+          marginTop: "20px",
         }}
         className="box-container"
       >
