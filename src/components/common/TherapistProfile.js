@@ -3,12 +3,20 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import UploadImage from "../../assets/images/AddImage.svg";
+import EditPassword from "../../assets/images/EditPassword.svg";
 import { ReactComponent as Hospitalicon } from "../../assets/images/Hospital.svg";
 import assetsURL from "../../utils/Assets";
+import { useNavigate } from "react-router-dom";
 
 const TherapistProfile = (props) => {
 
   const { toEdit, handleImageSelect, profileImage } = props;
+
+  const navigate = useNavigate();
+
+  const navToPasswordReset = async () => {
+    navigate("/doctor/dashboard/ChangePassword");
+  }
 
   return (
     <>
@@ -18,7 +26,7 @@ const TherapistProfile = (props) => {
         sx={{
           borderRadius: "20px",
           background: "linear-gradient(0deg, #f6fafb, #f6fafb), #f6fafb",
-          paddingBottom: "5%",
+          paddingBottom: "2%",
           marginTop: "10px",
         }}
       >
@@ -29,21 +37,22 @@ const TherapistProfile = (props) => {
                 display: "none",
                 cursor: "none",
               }}
+              disabled={!toEdit}
               type="file"
               accept="image/*"
               placeholder="Ref."
               onChange={handleImageSelect}
-              onClick={(event)=> { 
-                event.target.value = null
+              onClick={(event) => {
+                event.target.value = null;
               }}
             />
             <img
               src={
                 profileImage
-                ? URL.createObjectURL(profileImage)
-                : props.avatar
-                ? assetsURL(props.avatar)
-                : UploadImage
+                  ? URL.createObjectURL(profileImage)
+                  : props.avatar
+                  ? assetsURL(props.avatar)
+                  : UploadImage
               }
               className="imageContainer"
             />
@@ -86,24 +95,14 @@ const TherapistProfile = (props) => {
               defaultValue={new Date(props.dob).toLocaleDateString("en-US")}
             />
           </div>
-          <div className="profiles-input5-1">
-            <input type="text" disabled />
-            <input
-              disabled={true}
-              type="input"
-              name="National ID"
-              placeholder="National ID"
-              defaultValue={"FOR QA"}
-            />
-          </div>
           <div className="profiles-input5-2">
             <input type="text" disabled />
             <input
-              disabled={true}
+              disabled={!toEdit}
               type="input"
               name="Hospital"
               placeholder="Hospital"
-              defaultValue={"FOR QA"}
+              defaultValue={props.hospital}
             />
           </div>
           <div className="profiles-input6">
@@ -118,32 +117,41 @@ const TherapistProfile = (props) => {
           </div>
         </div>
         <div className="Profilediv2">
-          <div className="profiles-div" style={{ width: "100% !important" }}>
+          <div className="Date_joined" style={{ width: "100% !important" }}>
             <input type="text" placeholder="Last Password Changed" disabled />
             <input
               disabled
               type="input"
               defaultValue={
                 props.last_password_changed
-                ? (new Date(props.last_password_changed).toLocaleDateString("en-US"))
-                : "N/A"
+                  ? new Date(props.last_password_changed).toLocaleDateString(
+                      "en-US"
+                    )
+                  : "N/A"
               }
             />
           </div>
           <div className="profiles-div2">
             <input type="text" placeholder="Password" disabled />
-            <input
-              disabled
-              type="input"
-              placeholder="**********"
-            />
+            <input disabled type="input" placeholder="**********" />
+            {
+              toEdit
+              ? <img
+                  src={EditPassword}
+                  onClick={(e) => navToPasswordReset()}
+                  style={{ position: "absolute", right: "20px", top: "10px" }}
+                />
+              : <></>
+            }
           </div>
           <div className="profiles-div3">
             <input type="text" placeholder="Account Created" disabled />
             <input
               disabled
               type="input"
-              defaultValue={new Date(props.createdAt).toLocaleDateString("en-US")}
+              defaultValue={new Date(props.createdAt).toLocaleDateString(
+                "en-US"
+              )}
             />
           </div>
         </div>

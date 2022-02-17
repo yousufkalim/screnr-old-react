@@ -14,7 +14,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Screnr from "../../assets/images/screnr.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
-// import NotificationModal from "./NotificationModal";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../../utils/Auth";
 import { getUser } from "../../utils/Auth";
@@ -98,7 +97,7 @@ const ResponsiveAppBar = (props) => {
           <Typography className="HeaderHeading">{props.heading}</Typography>
         </div>
         <Box className="Headerlogodiv">
-          <Tooltip title="Open notifications">
+          {/* <Tooltip title="Open notifications">
             <IconButton
               onClick={handleClickNotification}
               size="small"
@@ -112,7 +111,7 @@ const ResponsiveAppBar = (props) => {
                 style={{ width: "80%", marginLeft: "30%" }}
               />
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
           <Tooltip title="Open settings">
             <IconButton
               onClick={handleClickSetting}
