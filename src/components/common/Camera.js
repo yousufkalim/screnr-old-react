@@ -609,14 +609,8 @@ export default function Camera(props) {
               className="output_canvas"
               style={{
                 display: props.handleSession === "end" ? "none" : "",
-                height:
-                  (window.innerHeight * 70) / 100 < 660
-                    ? (window.innerHeight * 70) / 100
-                    : 660,
-                width:
-                  (window.innerWidth * 90) / 100 < 390
-                    ? (window.innerWidth * 90) / 100
-                    : 390,
+                height: 660,
+                width: 390,
               }}
             ></canvas>
           )}
@@ -628,10 +622,7 @@ export default function Camera(props) {
             className="feedback_msg"
             style={{
               display: props.display === "none" ? "none" : "",
-              width:
-                (window.innerWidth * 90) / 100 < 390
-                  ? (window.innerWidth * 90) / 100
-                  : 390,
+              width: 390,
             }}
           >
             <p>{message}</p>
