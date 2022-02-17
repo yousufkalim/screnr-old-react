@@ -11,4 +11,4 @@ if (window.location.host === "screnrhealth.com") {
   url = "http://localhost:5000/";
 }
 
-module.exports = { baseUrl };
+module.exports = { baseUrl, url };
