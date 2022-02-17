@@ -7,8 +7,8 @@ if (window.location.host === "screnrhealth.com") {
   baseUrl = "https://screnr.falconit.com.pk/api";
   url = "https://screnr.falconit.com.pk/";
 } else {
-  baseUrl = "https://screnr.falconit.com.pk/api";
-  url = "https://screnr.falconit.com.pk/";
+  baseUrl = "http://localhost:5000/api";
+  url = "http://localhost:5000/";
 }
 
 module.exports = { baseUrl, url };
