@@ -150,7 +150,7 @@
 }
 ._maindiv_motion {
   position: absolute;
-  bottom: 3% !important;
+  bottom: 10% !important;
   /* margin-top: 7% !important; */
   /* height: 600px !important; */
   /* margin-bottom: 20px !important; */
@@ -164,14 +164,7 @@
   font-style: normal;
   font-weight: 600 !important;
   font-size: 22px !important;
-  display: flex;
-  align-items: center;
-  text-align: center;
   letter-spacing: -0.05em;
-  padding-bottom: 52% !important;
-  /* Light Grey - Screnr */
-  padding-left: 41px !important;
-  padding-right: 41px !important;
   color: #919b9b;
 }
 .counterdiv {
@@ -182,6 +175,32 @@
   line-height: 350px !important;
   text-align: center;
   letter-spacing: -0.05em;
+
+  /* Light Grey - Screnr */
+
+  color: #919b9b;
+}
+.counterdiv2 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: -0.05em;
+  width: 18ch;
+
+  /* Light Grey - Screnr */
+
+  color: #919b9b;
+}
+.counterdiv3 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: -0.05em;
+  width: 18ch;
 
   /* Light Grey - Screnr */
 
