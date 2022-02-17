@@ -10,6 +10,7 @@ import Camera from "../../components/common/Camera";
 import PButton from "../../assets/images/PButton.svg";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { baseUrl } from "../../config";
 
 const Motion_captureCam = (props) => {
   const [counter, setCounter] = React.useState(9);
@@ -53,14 +54,11 @@ const Motion_captureCam = (props) => {
 
   const handleSave = async () => {
     const res = await axios
-      .put(
-        `${process.env.REACT_APP_SERVER_URL}/assessments/update/${item._id}`,
-        {
-          status: "submitted",
-          broken_rules: brokenRules,
-          final_reps: finalReps,
-        }
-      )
+      .put(`${baseUrl}/assessments/update/${item._id}`, {
+        status: "submitted",
+        broken_rules: brokenRules,
+        final_reps: finalReps,
+      })
       .then((response) => {
         toast.success("Ended successfully");
 

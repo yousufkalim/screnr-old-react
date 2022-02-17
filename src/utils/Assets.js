@@ -1,4 +1,4 @@
- 
-export default function assetsURL(str){
-    return `${process.env.REACT_APP_BASE_URL}${String(str).replace('\\', '\/')}`
+import { url } from "../config";
+export default function assetsURL(str) {
+  return `${url}${String(str).replace("\\", "/")}`;
 }
