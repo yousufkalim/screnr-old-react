@@ -274,7 +274,9 @@ const PrescribeTherapy = () => {
                         type="exercise"
                         value={exercise}
                         onChange={(e) => setExercise(e.target.value)}
+                        disabled={true}
                       >
+                        <option value="Shoulder">Overhead Squat</option>
                         <option value="Shoulder">Shoulder</option>
                         <option value="Neck">Neck</option>
                         <option value="Joints">Joints</option>
