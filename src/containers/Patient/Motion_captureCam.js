@@ -182,10 +182,10 @@ const Motion_captureCam = (props) => {
                 }}
               >
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                  Sets:3
+                  Sets:{" " + state.item.sets}
                 </Typography>
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                  Repitition:12
+                  Repitition:{" " + state.item.reps}
                 </Typography>
               </div>
               <Button
@@ -228,10 +228,10 @@ const Motion_captureCam = (props) => {
                 }}
               >
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                  Sets:3
+                  Sets{" " + state.item.sets}
                 </Typography>
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                  Repitition:12
+                  Repitition:{" " + state.item.reps}
                 </Typography>
               </div>
               {step === 1 ? (
