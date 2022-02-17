@@ -609,8 +609,8 @@ export default function Camera(props) {
               className="output_canvas"
               style={{
                 display: props.handleSession === "end" ? "none" : "",
-                height: 660,
-                width: 390,
+                height: 720,
+                width: 440,
               }}
             ></canvas>
           )}
