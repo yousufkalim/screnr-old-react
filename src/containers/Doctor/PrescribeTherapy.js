@@ -79,7 +79,7 @@ const PrescribeTherapy = () => {
         sets: noOfSets,
         reps: noOfReps,
         due_date: new Date().toLocaleDateString("en-US"),
-        type: "simple", // TODO: Fake
+        type: "motion",
         questions_array: questions,
       };
 

@@ -64,7 +64,7 @@ const PerformMotionCapture = () => {
           ) : (
             assessments.map((item) => (
               <>
-                {item.type === "motion" && item.status === "requested" ? (
+                {item.type === "motion" ? (
                   <Grid
                     xs={10}
                     sm={10}
@@ -73,7 +73,10 @@ const PerformMotionCapture = () => {
                       item.status == "nonActive" ? "non_ActiveClas" : ""
                     }`}
                     sx={{ marginBottom: "25px !important" }}
-                    onClick={() => navToPerformMotionCapture(item)}
+                    onClick={() =>
+                      item.status === "requested" &&
+                      navToPerformMotionCapture(item)
+                    }
                   >
                     <>
                       <div
