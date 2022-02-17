@@ -608,14 +608,14 @@ export default function Camera(props) {
               ref={canvasRef}
               className="output_canvas"
               style={{
+                objectFit: window.innerWidth > 600 ? "cover" : "",
                 display: props.handleSession === "end" ? "none" : "",
-                height: 720,
-                width: 440,
+                width: 390,
+                height: 660,
               }}
             ></canvas>
           )}
         </div>
-
         {/* Feedback msg */}
         {message && (
           <div
