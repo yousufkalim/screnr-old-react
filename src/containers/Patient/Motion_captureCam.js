@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AppBar from "../../components/common/AppBar";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import MobileBottomBar from "../../components/common/MobileBottomBar";
 import Timer from "../../utils/Timer";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -22,6 +23,7 @@ const Motion_captureCam = (props) => {
   const [finalReps, setFinalReps] = useState("");
 
   const [isPaused, setIsPaused] = useState(true);
+  const [disable, setDisable] = useState(false);
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -53,6 +55,7 @@ const Motion_captureCam = (props) => {
   };
 
   const handleSave = async () => {
+    setDisable(true);
     const res = await axios
       .put(`${baseUrl}/assessments/update/${item._id}`, {
         status: "submitted",
@@ -61,11 +64,12 @@ const Motion_captureCam = (props) => {
       })
       .then((response) => {
         toast.success("Ended successfully");
-
+        setDisable(false);
         navToRecordingEnded();
       })
       .catch((e) => {
         console.log("err", e);
+        setDisable(false);
         toast.error(e);
       });
   };
@@ -184,9 +188,14 @@ const Motion_captureCam = (props) => {
                   Repitition:12
                 </Typography>
               </div>
-              <Typography onClick={handleSave} className="motionStatus">
+              <Button
+                disabled={disable}
+                onClick={handleSave}
+                className="motionStatus"
+                style={{ textTransform: "unset" }}
+              >
                 Send to Therapist
-              </Typography>
+              </Button>
             </Grid>
           </Grid>
         ) : counter === 0 ? (

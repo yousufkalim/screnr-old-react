@@ -4,7 +4,8 @@
 
 .output_canvas {
   margin: auto;
-  object-fit: cover;
+  height: 660 !important;
+  width: 390 !important;
 }
 
 .webcam_main {
