@@ -32,7 +32,7 @@ const PrescribeTherapy = () => {
 
   const [exercise, setExercise] = useState("Overhead Squat");
   const [noOfSets, setNoOfSets] = useState(1);
-  const [noOfReps, setNoOfReps] = useState(10);
+  const [noOfReps, setNoOfReps] = useState(3);
   const [dueDate, setDueDate] = useState(new Date());
   const [type, setType] = useState(state.type);
 
