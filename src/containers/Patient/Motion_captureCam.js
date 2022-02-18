@@ -21,6 +21,8 @@ const Motion_captureCam = (props) => {
   const [reps, setReps] = useState(0);
   const [brokenRules, setBrokenRules] = useState("");
   const [finalReps, setFinalReps] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const [isPaused, setIsPaused] = useState(true);
   const [disable, setDisable] = useState(false);
@@ -61,6 +63,8 @@ const Motion_captureCam = (props) => {
         status: "submitted",
         broken_rules: brokenRules,
         final_reps: finalReps,
+        time_start: startTime,
+        time_end: endTime,
       })
       .then((response) => {
         toast.success("Ended successfully");
@@ -155,6 +159,8 @@ const Motion_captureCam = (props) => {
             setReps={setReps}
             setBrokenRules={setBrokenRules}
             setFinalReps={setFinalReps}
+            setStartTime={setStartTime}
+            setEndTime={setEndTime}
           ></Camera>
         </div>
         {step === 3 ? (
