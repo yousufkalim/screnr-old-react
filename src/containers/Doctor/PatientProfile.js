@@ -8,6 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
+import moment from "moment";
 
 const PatientProfile = (props) => {
   const navigate = useNavigate();
@@ -210,12 +211,36 @@ function AssessmentListTile(props) {
         />
       </div>
       <div className="profileinput2">
-        <input type="text" placeholder="Time start" disabled />
-        <input disabled type="input" placeholder="N/A" />
+        <input type="text" placeholder="Start Time" disabled />
+        <input
+          disabled
+          type="input"
+          value={
+            props.time_start
+              ? moment(props.time_start).format("MM-DD-YYYY HH:mm:ss")
+              : "N/A"
+          }
+        />
+      </div>
+      <div className="profileinput2">
+        <input type="text" placeholder="End Time" disabled />
+        <input
+          disabled
+          type="input"
+          value={
+            props.time_end
+              ? moment(props.time_end).format("MM-DD-YYYY HH:mm:ss")
+              : "N/A"
+          }
+        />
       </div>
       <div className="profileinput2">
         <input type="text" placeholder="Time spent" disabled />
-        <input disabled type="input" placeholder="N/A" />
+        <input
+          disabled
+          type="input"
+          value={props.time_spent ? props.time_spent : "N/A"}
+        />
       </div>
       <div
         className={
