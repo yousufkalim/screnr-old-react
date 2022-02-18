@@ -34,7 +34,7 @@ window.camWidth = 1280;
 window.camHeight = 720;
 
 // Rules Data
-var brokenRules = new Array();
+var brokenRules = [{ rule1: [], rule2: [], rule3: [], rule4: [], rule5: [] }];
 
 // Pose component
 export default function Camera(props) {
@@ -517,57 +517,62 @@ export default function Camera(props) {
 
     // Rule 1:  If phase=1 and shoulder_angle < 170, display: "keep arms over ears"
     if (phase === 1 && shoulder[visibility] < 170) {
-      brokenRules.push({
+      brokenRules[0].rule1.push({
         rule_no: 1,
         message: "Keep arms over ears",
         phase: currentPhase,
         rep_no: reps.length,
         joints: joints,
         angles: angles,
+        brokenAt: new Date(),
       });
     }
     // Rule 2:  If phase=1 and shin_angle<175 and OAH_angle<195 then display: "stay on heels"
     if (phase === 1 && shin[visibility] < 175 && OAH[visibility] < 195) {
-      brokenRules.push({
+      brokenRules[0].rule2.push({
         rule_no: 2,
         message: "Stay on heels",
         phase: currentPhase,
         rep_no: reps.length,
         joints: joints,
         angles: angles,
+        brokenAt: new Date(),
       });
     }
     //  Rule 3:  If phase=1 and  shin_angle<150 and OAH_angle>=185 then display: "do not let knees pass the toes"
     if (phase === 1 && shin[visibility] < 150 && OAH[visibility] >= 185) {
-      brokenRules.push({
+      brokenRules[0].rule3.push({
         rule_no: 3,
         message: "Do not let knees pass the toes",
         phase: currentPhase,
         rep_no: reps.length,
         joints: joints,
         angles: angles,
+        brokenAt: new Date(),
       });
     }
     // Rule 4:  If phase=2 and hip_angle < 85, display: "sit hips lower"
     if (phase === 2 && hip[visibility] < 85) {
-      brokenRules.push({
+      brokenRules[0].rule4.push({
         rule_no: 4,
         message: "Sit hips lower",
         phase: currentPhase,
         rep_no: reps.length,
         joints: joints,
         angles: angles,
+        brokenAt: new Date(),
       });
     }
     // Rule 5:  If phase=2 and spine_angle < 125, display: "keep chest up"
     if (phase === 2 && spine[visibility] < 125) {
-      brokenRules.push({
+      brokenRules[0].rule5.push({
         rule_no: 5,
         message: "Keep chest up",
         phase: currentPhase,
         rep_no: reps.length,
         joints: joints,
         angles: angles,
+        brokenAt: new Date(),
       });
     }
   };
@@ -575,10 +580,12 @@ export default function Camera(props) {
   //  handleSession
   const handleSession = (session) => {
     if (session === "end") {
+      props.setEndTime(new Date());
       setSessionStarted(false);
       props.setBrokenRules(brokenRules);
       props.setFinalReps(reps);
     } else if (session === "start") {
+      props.setStartTime(new Date());
       setSessionStarted(true);
     }
   };
