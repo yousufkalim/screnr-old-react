@@ -465,7 +465,7 @@ input[type="radio"]::after {
 .due_datePicker {
   margin-bottom: 40px !important;
   border: none !important;
-  width: 200px !important;
+  width: 780px !important;
 }
 
 @media only screen and (max-width: 1400px) {
