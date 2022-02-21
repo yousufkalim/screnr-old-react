@@ -1187,6 +1187,50 @@
   font-size: 13px;
 }
 
+.profile_input2 {
+  display: -webkit-box;
+  display: flex;
+  z-index: 10;
+  position: relative;
+  width: 90%;
+  /* margin-bottom: 5% !important;
+    margin: 1% 5%; */
+}
+.profile_input2 > * {
+  border: 0;
+  padding: 0 0 0 10px;
+  background: #fff;
+  line-height: 40px;
+  font-size: 1rem;
+  border-radius: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background: grey;
+}
+.profile_input2 input[type="input"] {
+  flex-basis: 90% !important;
+  width: 60% !important;
+  border-top-right-radius: none;
+  border-bottom-right-radius: 10px;
+
+  border: 1px solid grey;
+  padding-left: 5% !important;
+
+  border-left: none;
+}
+.profile_input2 input[type="text"] {
+  color: #fff;
+
+  transition: all 0.2s;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: none;
+  border: 1px solid grey;
+  border-right: none;
+  width: 52%;
+
+  font-size: 13px;
+}
+
 .profileinput {
   display: -webkit-box;
   display: flex;
@@ -1277,6 +1321,9 @@
   .profile_input input[type="text"] {
     width: 55% !important;
   }
+  .profile_input2 input[type="text"] {
+    width: 55% !important;
+  }
   .profileinput input[type="text"] {
     width: 55% !important;
   }
@@ -1311,6 +1358,9 @@
     width: 100% !important;
   }
   .profile_input input[type="text"] {
+    width: 33% !important;
+  }
+  .profile_input2 input[type="text"] {
     width: 33% !important;
   }
   .profileinput input[type="text"] {

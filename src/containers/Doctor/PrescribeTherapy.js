@@ -75,10 +75,10 @@ const PrescribeTherapy = () => {
 
         const body = {
           patient_id: params.id,
-          exercise: "",
+          exercise: "Simple Exercise",
           sets: 0,
           reps: 0,
-          due_date: new Date().toLocaleDateString("en-US"),
+          due_date: new Date(),
           type: "simple",
           questions_array: questions,
         };
@@ -97,7 +97,7 @@ const PrescribeTherapy = () => {
             exercise: exercise,
             sets: noOfSets,
             reps: noOfReps,
-            due_date: dueDate.toLocaleDateString("en-US"),
+            due_date: dueDate,
             type: "motion",
             questions_array: [],
           };
