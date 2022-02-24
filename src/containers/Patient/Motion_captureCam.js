@@ -23,6 +23,7 @@ const Motion_captureCam = (props) => {
   const [finalReps, setFinalReps] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [rules, setRules] = useState();
 
   const [isPaused, setIsPaused] = useState(true);
   const [disable, setDisable] = useState(false);
@@ -35,12 +36,33 @@ const Motion_captureCam = (props) => {
   };
 
   useEffect(() => {
+    getRules();
+  }, [rules]);
+
+  useEffect(() => {
     setItem(state.item);
     if (counter > 0 && !isPaused)
       setTimeout(() => setCounter(counter - 1), 1000);
   }, [counter, isPaused]);
 
+  const getRules = async () => {
+    var config = {
+      method: "get",
+      url: "https://arqchicago.pythonanywhere.com/?input=Overhead%20Squat",
+    };
+    await axios(config)
+      .then(function (response) {
+        setRules(response.data);
+
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const init = () => {
+    getRules();
     setStep(2);
     setIsPaused(false);
     setCounter(counter - 1);
@@ -53,7 +75,7 @@ const Motion_captureCam = (props) => {
       return "end";
     } else if (counter === 0) {
       return "start";
-    }
+    } else return "";
   };
 
   const handleSave = async () => {
@@ -154,6 +176,7 @@ const Motion_captureCam = (props) => {
               marginRight: "auto",
             }}
             display={counter > 0 || step === 3 ? "none" : ""}
+            rules={rules}
             handleSession={(e) => handleSession()}
             item={item}
             setReps={setReps}

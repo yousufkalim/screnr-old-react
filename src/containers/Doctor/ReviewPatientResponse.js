@@ -262,271 +262,64 @@ const ReviewPatientResponse = () => {
                           margin: "24px",
                         }}
                       >
-                        {assessment.broken_rules[0].rule1.length != 0 && (
-                          <Accordion
-                            style={{
-                              backgroundColor: "transparent",
-                              width: "100%",
-                              border: "1px solid #919b9b",
-                              boxShadow: "none",
-                              borderRadius: "10px",
-                              marginBottom: "10px",
-                            }}
-                          >
-                            <AccordionSummary
-                              style={{
-                                backgroundColor: "transparent",
-                              }}
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1a-content"
-                              id="panel1a-header"
-                            >
-                              <div
+                        {Object.entries(assessment.broken_rules[0]).map(
+                          ([key, value]) => {
+                            return (
+                              <Accordion
                                 style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
+                                  backgroundColor: "transparent",
                                   width: "100%",
+                                  border: "1px solid #919b9b",
+                                  boxShadow: "none",
+                                  borderRadius: "10px",
+                                  marginBottom: "10px",
                                 }}
                               >
-                                <Typography>Rule 1</Typography>
-                                <Typography style={{ color: "red" }}>
-                                  {assessment.broken_rules[0].rule1[0].message +
-                                    " (" +
-                                    assessment.broken_rules[0].rule1.length +
-                                    " times)"}
-                                </Typography>
-                              </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              {assessment.broken_rules[0].rule1.map(
-                                (rule, index) => {
-                                  return (
-                                    <Typography>
-                                      {index +
-                                        1 +
-                                        ". Rule broken at: " +
-                                        moment(rule.brokenAt).format(
-                                          "MM-DD-YYYY HH:mm:ss"
-                                        )}
+                                <AccordionSummary
+                                  style={{
+                                    backgroundColor: "transparent",
+                                  }}
+                                  expandIcon={<ExpandMoreIcon />}
+                                  aria-controls="panel1a-content"
+                                  id="panel1a-header"
+                                >
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "space-between",
+                                      width: "100%",
+                                    }}
+                                  >
+                                    <Typography>Rule {key}</Typography>
+                                    <Typography style={{ color: "red" }}>
+                                      {value[0].message +
+                                        " (" +
+                                        value.length +
+                                        " times)"}
                                     </Typography>
-                                  );
-                                }
-                              )}
-                            </AccordionDetails>
-                          </Accordion>
+                                  </div>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                  {value.map((rule, index) => {
+                                    return (
+                                      <Typography>
+                                        {index +
+                                          1 +
+                                          ". Rule broken at: " +
+                                          moment(rule.brokenAt).format(
+                                            "MM-DD-YYYY HH:mm:ss"
+                                          )}
+                                      </Typography>
+                                    );
+                                  })}
+                                </AccordionDetails>
+                              </Accordion>
+                            );
+                          }
                         )}
-                        {assessment.broken_rules[0].rule2.length != 0 && (
-                          <Accordion
-                            style={{
-                              backgroundColor: "transparent",
-                              width: "100%",
-                              border: "1px solid #919b9b",
-                              boxShadow: "none",
-                              borderRadius: "10px",
-                              marginBottom: "10px",
-                            }}
-                          >
-                            <AccordionSummary
-                              style={{
-                                backgroundColor: "transparent",
-                              }}
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1a-content"
-                              id="panel1a-header"
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <Typography>Rule 2</Typography>
-                                <Typography style={{ color: "red" }}>
-                                  {assessment.broken_rules[0].rule2[0].message +
-                                    " (" +
-                                    assessment.broken_rules[0].rule2.length +
-                                    " times)"}
-                                </Typography>
-                              </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              {assessment.broken_rules[0].rule2.map(
-                                (rule, index) => {
-                                  return (
-                                    <Typography>
-                                      {index +
-                                        1 +
-                                        ". Rule broken at: " +
-                                        moment(rule.brokenAt).format(
-                                          "MM-DD-YYYY HH:mm:ss"
-                                        )}
-                                    </Typography>
-                                  );
-                                }
-                              )}
-                            </AccordionDetails>
-                          </Accordion>
-                        )}
-                        {assessment.broken_rules[0].rule3.length != 0 && (
-                          <Accordion
-                            style={{
-                              backgroundColor: "transparent",
-                              width: "100%",
-                              border: "1px solid #919b9b",
-                              boxShadow: "none",
-                              borderRadius: "10px",
-                              marginBottom: "10px",
-                            }}
-                          >
-                            <AccordionSummary
-                              style={{
-                                backgroundColor: "transparent",
-                              }}
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1a-content"
-                              id="panel1a-header"
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <Typography>Rule 3</Typography>
-                                <Typography style={{ color: "red" }}>
-                                  {assessment.broken_rules[0].rule3[0].message +
-                                    " (" +
-                                    assessment.broken_rules[0].rule3.length +
-                                    " times)"}
-                                </Typography>
-                              </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              {assessment.broken_rules[0].rule3.map(
-                                (rule, index) => {
-                                  return (
-                                    <Typography>
-                                      {index +
-                                        1 +
-                                        ". Rule broken at: " +
-                                        moment(rule.brokenAt).format(
-                                          "MM-DD-YYYY HH:mm:ss"
-                                        )}
-                                    </Typography>
-                                  );
-                                }
-                              )}
-                            </AccordionDetails>
-                          </Accordion>
-                        )}
-                        {assessment.broken_rules[0].rule4.length != 0 && (
-                          <Accordion
-                            style={{
-                              backgroundColor: "transparent",
-                              width: "100%",
-                              border: "1px solid #919b9b",
-                              boxShadow: "none",
-                              borderRadius: "10px",
-                              marginBottom: "10px",
-                            }}
-                          >
-                            <AccordionSummary
-                              style={{
-                                backgroundColor: "transparent",
-                              }}
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1a-content"
-                              id="panel1a-header"
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <Typography>Rule 4</Typography>
-                                <Typography style={{ color: "red" }}>
-                                  {assessment.broken_rules[0].rule4[0].message +
-                                    " (" +
-                                    assessment.broken_rules[0].rule4.length +
-                                    " times)"}
-                                </Typography>
-                              </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              {assessment.broken_rules[0].rule4.map(
-                                (rule, index) => {
-                                  return (
-                                    <Typography>
-                                      {index +
-                                        1 +
-                                        ". Rule broken at: " +
-                                        moment(rule.brokenAt).format(
-                                          "MM-DD-YYYY HH:mm:ss"
-                                        )}
-                                    </Typography>
-                                  );
-                                }
-                              )}
-                            </AccordionDetails>
-                          </Accordion>
-                        )}
-                        {assessment.broken_rules[0].rule5.length != 0 && (
-                          <Accordion
-                            style={{
-                              backgroundColor: "transparent",
-                              width: "100%",
-                              border: "1px solid #919b9b",
-                              boxShadow: "none",
-                              borderRadius: "10px",
-                              marginBottom: "10px",
-                            }}
-                          >
-                            <AccordionSummary
-                              style={{
-                                backgroundColor: "transparent",
-                              }}
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1a-content"
-                              id="panel1a-header"
-                            >
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <Typography>Rule 5</Typography>
-                                <Typography style={{ color: "red" }}>
-                                  {assessment.broken_rules[0].rule5[0].message +
-                                    " (" +
-                                    assessment.broken_rules[0].rule5.length +
-                                    " times)"}
-                                </Typography>
-                              </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              {assessment.broken_rules[0].rule5.map(
-                                (rule, index) => {
-                                  return (
-                                    <Typography>
-                                      {index +
-                                        1 +
-                                        ". Rule broken at: " +
-                                        moment(rule.brokenAt).format(
-                                          "MM-DD-YYYY HH:mm:ss"
-                                        )}
-                                    </Typography>
-                                  );
-                                }
-                              )}
-                            </AccordionDetails>
-                          </Accordion>
-                        )}
+                        {/* {assessment.broken_rules[0].rule1.length != 0 && (
+                          
+                        )} */}
                       </div>
                     </>
                   ) : (
