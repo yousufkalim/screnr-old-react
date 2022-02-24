@@ -187,6 +187,7 @@ const ReviewPatientResponse = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                height: "90% !important",
 
                 flexWrap: "wrap",
                 "& > :not(style)": {
