@@ -574,11 +574,15 @@ export default function Camera(props) {
       phase
     );
 
-    Object.entries(feedback)
-      .reverse()
-      .map(([key, value]) => {
+    let feedbackEntries = Object.entries(feedback);
+
+    if (feedbackEntries.length === 0) {
+      setMessage("");
+    } else {
+      feedbackEntries.reverse().map(([key, value]) => {
         setMessage(value.message);
       });
+    }
   };
 
   /**
