@@ -12,6 +12,7 @@ import Loader from "../../components/common/Loader";
 // Connections
 import left_connections from "../../assets/connections/left_connections.json";
 import right_connections from "../../assets/connections/right_connections.json";
+import rules from "../../assets/rules.json";
 
 var camera = null;
 var showPoseLandmarks = true;
@@ -33,8 +34,18 @@ var reps = new Array();
 window.camWidth = 1280;
 window.camHeight = 720;
 
+var checkSession = "";
+
 // Rules Data
-var brokenRules = [{ rule1: [], rule2: [], rule3: [], rule4: [], rule5: [] }];
+var brokenRules = {};
+
+var stats = {
+  joints: {},
+  angles: {},
+  leftSide: 0,
+  rightSide: 0,
+  phase: 0,
+};
 
 // Pose component
 export default function Camera(props) {
@@ -50,14 +61,9 @@ export default function Camera(props) {
   let [takeScreenshot, setTakeScreenshot] = useState(false);
   let [image, setImage] = useState();
   let [phase, setPhase] = useState(0); // We will update this state only to track in useEffect, Cz useEffect cannot track a variable, And we are not gonna use this in rules validation, We will use currentPhase variable there.
-  const [stats, setStats] = useState({
-    joints: {},
-    angles: {},
-    leftSide: 0,
-    rightSide: 0,
-    phase: 0,
-  });
+
   const [session, setSession] = useState("");
+  const [mainRules, setMainRules] = useState();
 
   // Initializing the pose component and camera
   useEffect(() => {
@@ -101,6 +107,7 @@ export default function Camera(props) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Getting frames per second
+
   useEffect(() => {
     setInterval(() => {
       setFps(frames);
@@ -111,10 +118,10 @@ export default function Camera(props) {
   // Check rules
   useEffect(() => {
     setInterval(() => {
-      if (sessionStarted) {
+      if (checkSession === "start") {
         checkRules();
       }
-    }, 4000);
+    }, 300);
   }, [sessionStarted]);
 
   useEffect(() => {
@@ -125,6 +132,7 @@ export default function Camera(props) {
       setImage();
     }
   }, [takeScreenshot]);
+
   useEffect(() => {
     setSession(props.handleSession);
   }, [props.handleSession]);
@@ -150,6 +158,82 @@ export default function Camera(props) {
       props.setReps(reps.length);
     }
   }, [phase]); // This code runs each time when phase update
+
+  const checkDynamicRules = (rules_dict, angles_dict, phase) => {
+    // rules_dict: 	dictionary of screnr rules from python server
+    // angles_dict: dictionary of angles calculated by mediapipe in screnr app
+    // phase: 		phase of the exercise calculated by mediapipe in screnr app
+
+    let feedback_dict = {};
+
+    // get all rule numbers
+    let rule_num_list = Object.keys(rules_dict);
+
+    // for each rule, get phase the rule applies to, background color for the message and the feedback message that should be displayed.
+    for (let i = 0; i < rule_num_list.length; i++) {
+      let rule_num = rule_num_list[i];
+      let phase_rule = rules_dict[rule_num_list[i]]["phase"];
+      let color_rule = rules_dict[rule_num_list[i]]["color"];
+      let message_rule = rules_dict[rule_num_list[i]]["message"];
+      let angles_rule = rules_dict[rule_num_list[i]]["angles"];
+
+      // rule only applies if mediapipe phase is the same as rule phase
+      if (phase_rule === phase) {
+        // get all angle names in the rule
+        let angle_rule = Object.keys(angles_rule);
+        let n = angle_rule.length;
+
+        // some rules have to check for two angles. this will help to check both angles when applying the rule
+        let rule_set_flag_list = new Array(n).fill(false);
+        let i = 0;
+
+        // this will iterate over each angle, its sign and the value that should be checked against the angle calculated by mediapipe
+        for (let j = 0; j < angle_rule.length; j++) {
+          let angle_name = angle_rule[j];
+          let sign_rule = angles_rule[angle_rule[j]]["sign"];
+          let angle_value_rule = angles_rule[angle_rule[j]]["value"];
+
+          if (sign_rule == "<") {
+            if (angles_dict[angle_name] < angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == "<=") {
+            if (angles_dict[angle_name] <= angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == ">") {
+            if (angles_dict[angle_name] > angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == ">=") {
+            if (angles_dict[angle_name] >= angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == "==") {
+            if (angles_dict[angle_name] == angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else {
+            rule_set_flag_list[i] = false;
+          }
+
+          i = i + 1;
+
+          if (i == n) {
+            // if rule_set_flag_list only contains true, it means the rule was violated by the patient. Return the rule message.
+            if (!rule_set_flag_list.includes(false)) {
+              feedback_dict[rule_num] = {
+                message: message_rule,
+                color: color_rule,
+              };
+            }
+          }
+        }
+      }
+    }
+
+    return feedback_dict;
+  };
 
   const onResults = (results) => {
     // FPS --> Incrementing frames variable to calculate the frames after one second, because this onResult function runs on every frame to draw landmarks
@@ -299,13 +383,13 @@ export default function Camera(props) {
         joints.knee.right_visibility +
         joints.ankle.right_visibility;
 
-      setStats({
+      stats = {
         joints,
         angles,
         leftSide,
         rightSide,
         phase: currentPhase,
-      });
+      };
 
       // Validate Rules
       checkPose(currentPhase, angles, leftSide, rightSide, setMessage);
@@ -476,28 +560,25 @@ export default function Camera(props) {
     //   If pose side is left then we have to check angles from left side
     let visibility = leftSide < rightSide ? "right" : "left";
 
-    // Rule 1:  If phase=1 and shoulder_angle < 170, display: "keep arms over ears"
-    if (phase === 1 && shoulder[visibility] < 170) {
-      setMessage("Keep arms over ears");
-    }
-    // Rule 2:  If phase=1 and shin_angle<175 and OAH_angle<195 then display: "stay on heels"
-    else if (phase === 1 && shin[visibility] < 175 && OAH[visibility] < 195) {
-      setMessage("Stay on heels");
-    }
-    //  Rule 3:  If phase=1 and  shin_angle<150 and OAH_angle>=185 then display: "do not let knees pass the toes"
-    else if (phase === 1 && shin[visibility] < 150 && OAH[visibility] >= 185) {
-      setMessage("Do not let knees pass the toes");
-    }
-    // Rule 4:  If phase=2 and hip_angle < 85, display: "sit hips lower"
-    else if (phase === 2 && hip[visibility] < 85) {
-      setMessage("Sit hips lower");
-    }
-    // Rule 5:  If phase=2 and spine_angle < 125, display: "keep chest up"
-    else if (phase === 2 && spine[visibility] < 125) {
-      setMessage("Keep chest up");
-    } else {
-      setMessage("");
-    }
+    let mediapipe_angles_dict = {
+      shoulder: shoulder[visibility],
+      hip: hip[visibility],
+      shin: shin[visibility],
+      OAH: OAH[visibility],
+      spine: spine[visibility],
+    };
+
+    let feedback = checkDynamicRules(
+      rules["Overhead_Squat"],
+      mediapipe_angles_dict,
+      phase
+    );
+
+    Object.entries(feedback)
+      .reverse()
+      .map(([key, value]) => {
+        setMessage(value.message);
+      });
   };
 
   /**
@@ -515,64 +596,33 @@ export default function Camera(props) {
     //   If pose side is left then we have to check angles from left side
     let visibility = leftSide < rightSide ? "right" : "left";
 
-    // Rule 1:  If phase=1 and shoulder_angle < 170, display: "keep arms over ears"
-    if (phase === 1 && shoulder[visibility] < 170) {
-      brokenRules[0].rule1.push({
-        rule_no: 1,
-        message: "Keep arms over ears",
-        phase: currentPhase,
-        rep_no: reps.length,
-        joints: joints,
-        angles: angles,
-        brokenAt: new Date(),
-      });
-    }
-    // Rule 2:  If phase=1 and shin_angle<175 and OAH_angle<195 then display: "stay on heels"
-    if (phase === 1 && shin[visibility] < 175 && OAH[visibility] < 195) {
-      brokenRules[0].rule2.push({
-        rule_no: 2,
-        message: "Stay on heels",
-        phase: currentPhase,
-        rep_no: reps.length,
-        joints: joints,
-        angles: angles,
-        brokenAt: new Date(),
-      });
-    }
-    //  Rule 3:  If phase=1 and  shin_angle<150 and OAH_angle>=185 then display: "do not let knees pass the toes"
-    if (phase === 1 && shin[visibility] < 150 && OAH[visibility] >= 185) {
-      brokenRules[0].rule3.push({
-        rule_no: 3,
-        message: "Do not let knees pass the toes",
-        phase: currentPhase,
-        rep_no: reps.length,
-        joints: joints,
-        angles: angles,
-        brokenAt: new Date(),
-      });
-    }
-    // Rule 4:  If phase=2 and hip_angle < 85, display: "sit hips lower"
-    if (phase === 2 && hip[visibility] < 85) {
-      brokenRules[0].rule4.push({
-        rule_no: 4,
-        message: "Sit hips lower",
-        phase: currentPhase,
-        rep_no: reps.length,
-        joints: joints,
-        angles: angles,
-        brokenAt: new Date(),
-      });
-    }
-    // Rule 5:  If phase=2 and spine_angle < 125, display: "keep chest up"
-    if (phase === 2 && spine[visibility] < 125) {
-      brokenRules[0].rule5.push({
-        rule_no: 5,
-        message: "Keep chest up",
-        phase: currentPhase,
-        rep_no: reps.length,
-        joints: joints,
-        angles: angles,
-        brokenAt: new Date(),
+    if (Object.keys(angles).length != 0) {
+      let mediapipe_angles_dict = {
+        shoulder: shoulder[visibility],
+        hip: hip[visibility],
+        shin: shin[visibility],
+        OAH: OAH[visibility],
+        spine: spine[visibility],
+      };
+      let feedback = checkDynamicRules(
+        rules["Overhead_Squat"],
+        mediapipe_angles_dict,
+        phase
+      );
+      Object.entries(feedback).map(([key, value]) => {
+        if (!brokenRules[key]) {
+          brokenRules[key] = [];
+        }
+        let broken = {
+          rule_no: key,
+          message: value.message,
+          phase: currentPhase,
+          rep_no: reps.length,
+          joints: joints,
+          angles: angles,
+          brokenAt: new Date(),
+        };
+        brokenRules[key].push(broken);
       });
     }
   };
@@ -582,17 +632,18 @@ export default function Camera(props) {
     if (session === "end") {
       props.setEndTime(new Date());
       setSessionStarted(false);
+      checkSession = "end";
       props.setBrokenRules(brokenRules);
       props.setFinalReps(reps);
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
+      checkSession = "start";
     }
   };
 
   return (
     <center>
-      {/* {props.handleSession === "start" && handleSession()} */}
       <div className="webcam">
         <div className="webcam-container">
           {/* React Webcam component */}
@@ -616,7 +667,7 @@ export default function Camera(props) {
               className="output_canvas"
               style={{
                 objectFit: window.innerWidth > 600 ? "cover" : "",
-                display: props.handleSession === "end" ? "none" : "",
+                display: session === "end" ? "none" : "",
                 width: 390,
                 height: 660,
               }}
@@ -655,8 +706,7 @@ export default function Camera(props) {
           </Button>
         </div> */}
       </div>
-
-      {image && (
+      {/* {image && (
         <img
           style={{
             position: "absolute",
@@ -668,7 +718,7 @@ export default function Camera(props) {
           }}
           src={image}
         />
-      )}
+      )} */}
     </center>
   );
 }
