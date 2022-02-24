@@ -72,7 +72,9 @@ const PerformMotionCapture = () => {
                     className={`Exercise_details ${
                       item.status == "nonActive" ? "non_ActiveClas" : ""
                     }`}
-                    sx={{ marginBottom: "25px !important" }}
+                    sx={{
+                      margin: "0 10px 25px 10px !important",
+                    }}
                     onClick={() =>
                       item.status === "requested" &&
                       navToPerformMotionCapture(item)
