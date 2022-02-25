@@ -63,7 +63,7 @@ export default function Camera(props) {
   let [phase, setPhase] = useState(0); // We will update this state only to track in useEffect, Cz useEffect cannot track a variable, And we are not gonna use this in rules validation, We will use currentPhase variable there.
 
   const [session, setSession] = useState("");
-  const [mainRules, setMainRules] = useState();
+  const [checkWebcam, setCheckWebcam] = useState(true);
 
   // Initializing the pose component and camera
   useEffect(() => {
@@ -96,15 +96,24 @@ export default function Camera(props) {
 
           // When loop counter is even then we will call mediapipe to process the frame, That's how we are skipping every second frame
           if (loopCounter % 2 === 0) {
-            await pose.send({ image: webcamRef.current.video });
+            if (webcamRef.current) {
+              await pose.send({ image: webcamRef.current.video });
+            }
           }
         },
-        width: window.camWidth,
-        height: window.camHeight,
+        width: webcamRef.current && window.camWidth,
+        height: webcamRef.current && window.camHeight,
       });
-      camera.start();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (checkSession === "" || checkSession === "start") {
+      camera.start();
+    } else {
+      camera.stop();
+    }
+  }, [checkWebcam]);
 
   // Getting frames per second
 
@@ -144,7 +153,9 @@ export default function Camera(props) {
   // If loop counter is odd then we will call onResult function by our own to draw previous frame's landmark
   useEffect(() => {
     if (landmarks && loopCounter % 2 !== 0) {
-      onResults(landmarks);
+      if (checkWebcam) {
+        onResults(landmarks);
+      }
     }
   }, [loopCounter]); // This code should run on every increment of loopCounter
 
@@ -158,82 +169,6 @@ export default function Camera(props) {
       props.setReps(reps.length);
     }
   }, [phase]); // This code runs each time when phase update
-
-  const checkDynamicRules = (rules_dict, angles_dict, phase) => {
-    // rules_dict: 	dictionary of screnr rules from python server
-    // angles_dict: dictionary of angles calculated by mediapipe in screnr app
-    // phase: 		phase of the exercise calculated by mediapipe in screnr app
-
-    let feedback_dict = {};
-
-    // get all rule numbers
-    let rule_num_list = Object.keys(rules_dict);
-
-    // for each rule, get phase the rule applies to, background color for the message and the feedback message that should be displayed.
-    for (let i = 0; i < rule_num_list.length; i++) {
-      let rule_num = rule_num_list[i];
-      let phase_rule = rules_dict[rule_num_list[i]]["phase"];
-      let color_rule = rules_dict[rule_num_list[i]]["color"];
-      let message_rule = rules_dict[rule_num_list[i]]["message"];
-      let angles_rule = rules_dict[rule_num_list[i]]["angles"];
-
-      // rule only applies if mediapipe phase is the same as rule phase
-      if (phase_rule === phase) {
-        // get all angle names in the rule
-        let angle_rule = Object.keys(angles_rule);
-        let n = angle_rule.length;
-
-        // some rules have to check for two angles. this will help to check both angles when applying the rule
-        let rule_set_flag_list = new Array(n).fill(false);
-        let i = 0;
-
-        // this will iterate over each angle, its sign and the value that should be checked against the angle calculated by mediapipe
-        for (let j = 0; j < angle_rule.length; j++) {
-          let angle_name = angle_rule[j];
-          let sign_rule = angles_rule[angle_rule[j]]["sign"];
-          let angle_value_rule = angles_rule[angle_rule[j]]["value"];
-
-          if (sign_rule == "<") {
-            if (angles_dict[angle_name] < angle_value_rule) {
-              rule_set_flag_list[i] = true;
-            }
-          } else if (sign_rule == "<=") {
-            if (angles_dict[angle_name] <= angle_value_rule) {
-              rule_set_flag_list[i] = true;
-            }
-          } else if (sign_rule == ">") {
-            if (angles_dict[angle_name] > angle_value_rule) {
-              rule_set_flag_list[i] = true;
-            }
-          } else if (sign_rule == ">=") {
-            if (angles_dict[angle_name] >= angle_value_rule) {
-              rule_set_flag_list[i] = true;
-            }
-          } else if (sign_rule == "==") {
-            if (angles_dict[angle_name] == angle_value_rule) {
-              rule_set_flag_list[i] = true;
-            }
-          } else {
-            rule_set_flag_list[i] = false;
-          }
-
-          i = i + 1;
-
-          if (i == n) {
-            // if rule_set_flag_list only contains true, it means the rule was violated by the patient. Return the rule message.
-            if (!rule_set_flag_list.includes(false)) {
-              feedback_dict[rule_num] = {
-                message: message_rule,
-                color: color_rule,
-              };
-            }
-          }
-        }
-      }
-    }
-
-    return feedback_dict;
-  };
 
   const onResults = (results) => {
     // FPS --> Incrementing frames variable to calculate the frames after one second, because this onResult function runs on every frame to draw landmarks
@@ -568,11 +503,11 @@ export default function Camera(props) {
       spine: spine[visibility],
     };
 
-    let feedback = checkDynamicRules(
-      rules["Overhead_Squat"],
-      mediapipe_angles_dict,
-      phase
-    );
+    let newRules = {};
+    Object.entries(rules).map(([key, value]) => {
+      newRules = value;
+    });
+    let feedback = checkDynamicRules(newRules, mediapipe_angles_dict, phase);
 
     let feedbackEntries = Object.entries(feedback);
 
@@ -608,11 +543,13 @@ export default function Camera(props) {
         OAH: OAH[visibility],
         spine: spine[visibility],
       };
-      let feedback = checkDynamicRules(
-        rules["Overhead_Squat"],
-        mediapipe_angles_dict,
-        phase
-      );
+      let newRules = {};
+      Object.entries(rules).map(([key, value]) => {
+        newRules = value;
+      });
+
+      let feedback = checkDynamicRules(newRules, mediapipe_angles_dict, phase);
+
       Object.entries(feedback).map(([key, value]) => {
         if (!brokenRules[key]) {
           brokenRules[key] = [];
@@ -622,13 +559,89 @@ export default function Camera(props) {
           message: value.message,
           phase: currentPhase,
           rep_no: reps.length,
-          joints: joints,
-          angles: angles,
+          // joints: joints,
+          // angles: angles,
           brokenAt: new Date(),
         };
         brokenRules[key].push(broken);
       });
     }
+  };
+
+  const checkDynamicRules = (rules_dict, angles_dict, phase) => {
+    // rules_dict: 	dictionary of screnr rules from python server
+    // angles_dict: dictionary of angles calculated by mediapipe in screnr app
+    // phase: 		phase of the exercise calculated by mediapipe in screnr app
+
+    let feedback_dict = {};
+
+    // get all rule numbers
+    let rule_num_list = Object.keys(rules_dict);
+
+    // for each rule, get phase the rule applies to, background color for the message and the feedback message that should be displayed.
+    for (let i = 0; i < rule_num_list.length; i++) {
+      let rule_num = rule_num_list[i];
+      let phase_rule = rules_dict[rule_num_list[i]]["phase"];
+      let color_rule = rules_dict[rule_num_list[i]]["color"];
+      let message_rule = rules_dict[rule_num_list[i]]["message"];
+      let angles_rule = rules_dict[rule_num_list[i]]["angles"];
+
+      // rule only applies if mediapipe phase is the same as rule phase
+      if (phase_rule === phase) {
+        // get all angle names in the rule
+        let angle_rule = Object.keys(angles_rule);
+        let n = angle_rule.length;
+
+        // some rules have to check for two angles. this will help to check both angles when applying the rule
+        let rule_set_flag_list = new Array(n).fill(false);
+        let i = 0;
+
+        // this will iterate over each angle, its sign and the value that should be checked against the angle calculated by mediapipe
+        for (let j = 0; j < angle_rule.length; j++) {
+          let angle_name = angle_rule[j];
+          let sign_rule = angles_rule[angle_rule[j]]["sign"];
+          let angle_value_rule = angles_rule[angle_rule[j]]["value"];
+
+          if (sign_rule == "<") {
+            if (angles_dict[angle_name] < angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == "<=") {
+            if (angles_dict[angle_name] <= angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == ">") {
+            if (angles_dict[angle_name] > angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == ">=") {
+            if (angles_dict[angle_name] >= angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else if (sign_rule == "==") {
+            if (angles_dict[angle_name] == angle_value_rule) {
+              rule_set_flag_list[i] = true;
+            }
+          } else {
+            rule_set_flag_list[i] = false;
+          }
+
+          i = i + 1;
+
+          if (i == n) {
+            // if rule_set_flag_list only contains true, it means the rule was violated by the patient. Return the rule message.
+            if (!rule_set_flag_list.includes(false)) {
+              feedback_dict[rule_num] = {
+                message: message_rule,
+                color: color_rule,
+              };
+            }
+          }
+        }
+      }
+    }
+
+    return feedback_dict;
   };
 
   //  handleSession
@@ -639,6 +652,7 @@ export default function Camera(props) {
       checkSession = "end";
       props.setBrokenRules(brokenRules);
       props.setFinalReps(reps);
+      setCheckWebcam(false);
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
@@ -648,81 +662,51 @@ export default function Camera(props) {
 
   return (
     <center>
-      <div className="webcam">
-        <div className="webcam-container">
-          {/* React Webcam component */}
-          <Webcam
-            className="webcam_main"
-            ref={webcamRef}
-            videoConstraints={{
-              height: window.camHeight,
-              width: window.camWidth,
-              frameRate: { ideal: 30, max: 60 },
-            }}
-          />
-
-          {/* Canvas to display th output */}
-          {loopCounter === 0 ? (
-            <Loader />
-          ) : (
-            <canvas
-              id="webCan"
-              ref={canvasRef}
-              className="output_canvas"
-              style={{
-                objectFit: window.innerWidth > 600 ? "cover" : "",
-                display: session === "end" ? "none" : "",
-                width: 390,
-                height: 660,
+      {checkWebcam && (
+        <div className="webcam">
+          <div className="webcam-container">
+            {/* React Webcam component */}
+            <Webcam
+              className="webcam_main"
+              ref={webcamRef}
+              videoConstraints={{
+                height: window.camHeight,
+                width: window.camWidth,
+                frameRate: { ideal: 30, max: 60 },
               }}
-            ></canvas>
+            />
+
+            {/* Canvas to display th output */}
+            {loopCounter === 0 ? (
+              <Loader />
+            ) : (
+              <canvas
+                id="webCan"
+                ref={canvasRef}
+                className="output_canvas"
+                style={{
+                  objectFit: window.innerWidth > 600 ? "cover" : "",
+                  display: session === "end" ? "none" : "",
+                  width: 390,
+                  height: 660,
+                }}
+              ></canvas>
+            )}
+          </div>
+          {/* Feedback msg */}
+          {message && (
+            <div
+              className="feedback_msg"
+              style={{
+                display: props.display === "none" ? "none" : "",
+                width: 390,
+              }}
+            >
+              <p>{message}</p>
+            </div>
           )}
         </div>
-        {/* Feedback msg */}
-        {message && (
-          <div
-            className="feedback_msg"
-            style={{
-              display: props.display === "none" ? "none" : "",
-              width: 390,
-            }}
-          >
-            <p>{message}</p>
-          </div>
-        )}
-
-        {/* Control Buttons */}
-        {/* <div className="btn-container">
-          <Button
-            className="show_pose_btn"
-            onClick={(e) => (showPoseLandmarks = !showPoseLandmarks)}
-            variant="contained"
-          >
-            Show Pose
-          </Button>
-
-          <Button
-            className="toggle_smooth_btn"
-            onClick={handleSession}
-            variant="contained"
-          >
-            {sessionStarted ? "Session end" : "Session start"}
-          </Button>
-        </div> */}
-      </div>
-      {/* {image && (
-        <img
-          style={{
-            position: "absolute",
-            zIndex: 20,
-            left: 260,
-            top: 100,
-            width: "300px",
-            height: "300px",
-          }}
-          src={image}
-        />
-      )} */}
+      )}
     </center>
   );
 }

@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { baseUrl } from "../../config";
 
 const Motion_captureCam = (props) => {
-  const [counter, setCounter] = React.useState(9);
+  const [counter, setCounter] = React.useState(1);
   const [step, setStep] = useState(1);
   const [session, setSession] = useState("start");
   const [item, setItem] = useState();
@@ -23,7 +23,7 @@ const Motion_captureCam = (props) => {
   const [finalReps, setFinalReps] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [rules, setRules] = useState();
+  // const [rules, setRules] = useState();
 
   const [isPaused, setIsPaused] = useState(true);
   const [disable, setDisable] = useState(false);
@@ -35,9 +35,9 @@ const Motion_captureCam = (props) => {
     navigate("/patient/motion_capture_assessments");
   };
 
-  useEffect(() => {
-    getRules();
-  }, [rules]);
+  // useEffect(() => {
+  //   getRules();
+  // }, [rules]);
 
   useEffect(() => {
     setItem(state.item);
@@ -45,24 +45,23 @@ const Motion_captureCam = (props) => {
       setTimeout(() => setCounter(counter - 1), 1000);
   }, [counter, isPaused]);
 
-  const getRules = async () => {
-    var config = {
-      method: "get",
-      url: "https://arqchicago.pythonanywhere.com/?input=Overhead%20Squat",
-    };
-    await axios(config)
-      .then(function (response) {
-        setRules(response.data);
+  // const getRules = async () => {
+  //   var config = {
+  //     method: "get",
+  //     url: "https://arqchicago.pythonanywhere.com/?input=Overhead%20Squat",
+  //   };
+  //   await axios(config)
+  //     .then(function (response) {
+  //       setRules(response.data);
 
-        return response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  //       return response.data;
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   const init = () => {
-    getRules();
     setStep(2);
     setIsPaused(false);
     setCounter(counter - 1);
@@ -176,7 +175,7 @@ const Motion_captureCam = (props) => {
               marginRight: "auto",
             }}
             display={counter > 0 || step === 3 ? "none" : ""}
-            rules={rules}
+            // rules={rules}
             handleSession={(e) => handleSession()}
             item={item}
             setReps={setReps}
