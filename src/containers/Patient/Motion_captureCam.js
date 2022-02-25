@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { baseUrl } from "../../config";
 
 const Motion_captureCam = (props) => {
-  const [counter, setCounter] = React.useState(1);
+  const [counter, setCounter] = React.useState(9);
   const [step, setStep] = useState(1);
   const [session, setSession] = useState("start");
   const [item, setItem] = useState();
