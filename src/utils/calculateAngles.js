@@ -117,8 +117,8 @@ class calculateAngles {
   shoulder(landmarks, small, round) {
     return {
       left: calculateDegrees(
-        landmarks.wrist.left[0],
-        landmarks.wrist.left[1],
+        landmarks.elbow.left[0],
+        landmarks.elbow.left[1],
         landmarks.shoulder.left[0],
         landmarks.shoulder.left[1],
         landmarks.shoulder.left[0],
@@ -127,8 +127,8 @@ class calculateAngles {
         round
       ),
       right: calculateDegrees(
-        landmarks.wrist.right[0],
-        landmarks.wrist.right[1],
+        landmarks.elbow.right[0],
+        landmarks.elbow.right[1],
         landmarks.shoulder.right[0],
         landmarks.shoulder.right[1],
         landmarks.shoulder.right[0],
