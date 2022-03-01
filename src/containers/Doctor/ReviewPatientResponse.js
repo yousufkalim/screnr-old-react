@@ -69,6 +69,7 @@ const ReviewPatientResponse = () => {
       const assessmentData = response.data.assessment;
       setAssessment(assessmentData);
       fillQuestionFeedbacks(assessmentData);
+
       return assessmentData.patient._id;
     } catch (e) {
       console.trace(e);
@@ -291,26 +292,48 @@ const ReviewPatientResponse = () => {
                                       width: "100%",
                                     }}
                                   >
-                                    <Typography>Rule {key}</Typography>
-                                    <Typography style={{ color: "red" }}>
-                                      {value[0].message +
-                                        " (" +
-                                        value.length +
-                                        " times)"}
-                                    </Typography>
+                                    <Typography>Repitition {key}</Typography>
+                                    {/*  +
+                                     */}
                                   </div>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                   {value.map((rule, index) => {
                                     return (
-                                      <Typography>
-                                        {index +
-                                          1 +
-                                          ". Rule broken at: " +
-                                          moment(rule.brokenAt).format(
-                                            "MM-DD-YYYY HH:mm:ss"
-                                          )}
-                                      </Typography>
+                                      <div
+                                        style={{
+                                          marginBottom: "4%",
+                                        }}
+                                      >
+                                        <div
+                                          style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                          }}
+                                        >
+                                          <Typography>
+                                            {"Rule # " + rule.rule_no}
+                                          </Typography>
+                                          <Typography
+                                            style={{
+                                              color: "red",
+                                              marginLeft: "2%",
+                                            }}
+                                          >
+                                            {"(" + rule.message + ")"}
+                                          </Typography>
+                                        </div>
+                                        <Typography>
+                                          {"Date: " +
+                                            moment(rule.brokenAt).format(
+                                              "MM-DD-YYYY"
+                                            ) +
+                                            " Time: " +
+                                            moment(rule.brokenAt).format(
+                                              "HH:mm:ss"
+                                            )}
+                                        </Typography>
+                                      </div>
                                     );
                                   })}
                                 </AccordionDetails>

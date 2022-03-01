@@ -46,3 +46,22 @@
   letter-spacing: 3px;
   font-family: "Ubuntu", sans-serif;
 }
+
+.rep_count {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 5;
+}
+
+.rep_count p {
+  width: 12%;
+  background-color: #25c8b4 !important;
+  padding: 5px 0;
+  color: #f6fafb !important;
+  font-size: 34px;
+  letter-spacing: 3px;
+  border-radius: 20px !important;
+}
