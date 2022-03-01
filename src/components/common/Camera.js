@@ -551,19 +551,27 @@ export default function Camera(props) {
       let feedback = checkDynamicRules(newRules, mediapipe_angles_dict, phase);
 
       Object.entries(feedback).map(([key, value]) => {
-        if (!brokenRules[key]) {
-          brokenRules[key] = [];
+        if (!brokenRules[reps.length + 1]) {
+          brokenRules[reps.length + 1] = [];
         }
-        let broken = {
-          rule_no: key,
-          message: value.message,
-          phase: currentPhase,
-          rep_no: reps.length,
-          // joints: joints,
-          // angles: angles,
-          brokenAt: new Date(),
-        };
-        brokenRules[key].push(broken);
+        let found = brokenRules[reps.length + 1].find((e) => {
+          if (e.rule_no === key) {
+            return e;
+          }
+        });
+        if (!found) {
+          let broken = {
+            rule_no: key,
+            message: value.message,
+            phase: currentPhase,
+            rep_no: reps.length,
+            // joints: joints,
+            // angles: angles,
+            brokenAt: new Date(),
+          };
+          brokenRules[reps.length + 1].push(broken);
+          found = [];
+        }
       });
     }
   };
@@ -653,6 +661,8 @@ export default function Camera(props) {
       props.setBrokenRules(brokenRules);
       props.setFinalReps(reps);
       setCheckWebcam(false);
+      brokenRules = [];
+      reps = [];
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
@@ -693,7 +703,20 @@ export default function Camera(props) {
               ></canvas>
             )}
           </div>
+
+          {reps.length > 0 && (
+            <div
+              className="rep_count"
+              style={{
+                display: props.display === "none" ? "none" : "",
+                width: 390,
+              }}
+            >
+              <p>{reps.length}</p>
+            </div>
+          )}
           {/* Feedback msg */}
+
           {message && (
             <div
               className="feedback_msg"
