@@ -688,6 +688,7 @@ export default function Camera(props) {
                 width: 390,
                 height: 660,
                 objectFit: window.innerWidth > 600 ? "cover" : "",
+                display: session === "end" ? "none" : "",
               }}
             />
 
