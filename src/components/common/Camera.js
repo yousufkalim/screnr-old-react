@@ -29,6 +29,7 @@ var currentPhase = 0;
 var minAngle = 100;
 var maxAngle = 100;
 var reps = new Array();
+var maxHipAngle = 0;
 
 // Setting default cam width
 window.camWidth = 1280;
@@ -57,6 +58,7 @@ export default function Camera(props) {
   const [poseSide, setPoseSide] = useState("BACK");
   const [sessionStarted, setSessionStarted] = useState(false);
   let [message, setMessage] = useState("");
+  let [message2, setMessage2] = useState("");
   let [loopCounter, setLoopCounter] = useState(0);
   let [takeScreenshot, setTakeScreenshot] = useState(false);
   let [image, setImage] = useState();
@@ -161,6 +163,25 @@ export default function Camera(props) {
 
   // Creating reps with rep details
   useEffect(() => {
+    let newRules = {};
+    Object.entries(rules).map(([key, value]) => {
+      Object.entries(value).map(([k, val]) => {
+        if (val.message === "sit hips lower") {
+          newRules = val;
+        }
+      });
+    });
+
+    if (
+      phase === 1 &&
+      maxHipAngle > newRules.angles.hip.value &&
+      sessionStarted
+    ) {
+      setMessage2(newRules.message);
+      maxHipAngle = 0;
+    } else {
+      setMessage2("");
+    }
     if (phase === 1 && minAngle < 100 && sessionStarted) {
       let repsCount = reps.length + 1;
       reps.push({ minAngle, maxAngle, repsCount });
@@ -289,6 +310,7 @@ export default function Camera(props) {
 
       // Checking phase and counting the reps
       checkPhase(calculateAngles.knee(joints));
+      checkHipMaxAngle(calculateAngles.hip(joints));
 
       let angles = {
         shoulder: calculateAngles.shoulder(joints),
@@ -459,6 +481,18 @@ export default function Camera(props) {
     canvasCtx.restore();
   }
 
+  const checkHipMaxAngle = (hipAngle) => {
+    let { left, right } = hipAngle;
+    let { leftSide, rightSide } = stats;
+    let visibility = leftSide < rightSide ? "right" : "left";
+
+    if (visibility === "right" && right > maxHipAngle) {
+      maxHipAngle = right;
+    } else if (visibility === "left" && left > maxHipAngle) {
+      maxHipAngle = left;
+    }
+  };
+
   // Function to check phase by checking knee angle for over head squat
   const checkPhase = (kneeAngle) => {
     let { left, right } = kneeAngle;
@@ -515,7 +549,9 @@ export default function Camera(props) {
       setMessage("");
     } else {
       feedbackEntries.reverse().map(([key, value]) => {
-        setMessage(value.message);
+        if (value.message != "sit hips lower") {
+          setMessage(value.message);
+        }
       });
     }
   };
@@ -731,7 +767,7 @@ export default function Camera(props) {
                 width: 390,
               }}
             >
-              <p>{message}</p>
+              <p>{message2 === "" ? message : message2}</p>
             </div>
           )}
         </div>
