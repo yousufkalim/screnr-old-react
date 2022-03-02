@@ -684,6 +684,11 @@ export default function Camera(props) {
                 width: window.camWidth,
                 frameRate: { ideal: 30, max: 60 },
               }}
+              style={{
+                width: 390,
+                height: 660,
+                objectFit: window.innerWidth > 600 ? "cover" : "",
+              }}
             />
 
             {/* Canvas to display th output */}
