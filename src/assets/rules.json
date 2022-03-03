@@ -13,7 +13,7 @@
       "phase": 2,
       "condition": "2",
       "color": "red",
-      "angles": { "hip": { "name": "hip_angle", "sign": ">", "value": 115 } },
+      "angles": { "hip": { "name": "hip_angle", "sign": "<", "value": 115 } },
       "message": "sit hips lower"
     },
     "3": {
