@@ -12,7 +12,7 @@ import Loader from "../../components/common/Loader";
 // Connections
 import left_connections from "../../assets/connections/left_connections.json";
 import right_connections from "../../assets/connections/right_connections.json";
-import rules from "../../assets/rules.json";
+import rulesFile from "../../assets/rules.json";
 import axios from "axios";
 
 var camera = null;
@@ -40,6 +40,8 @@ var checkSession = "";
 
 // Rules Data
 var brokenRules = {};
+
+var rules = {};
 
 var stats = {
   joints: {},
@@ -126,11 +128,15 @@ export default function Camera(props) {
       frames = 0;
     }, 1000);
 
-    // axios
-    //   .get("https://arqchicago.pythonanywhere.com/?input=Overhead%20Squat")
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
+    axios
+      .get("https://arqchicago.pythonanywhere.com/?input=Overhead%20Squat")
+      .then((res) => {
+        if (res.data["Overhead Squat"]) {
+          rules = res.data;
+        } else {
+          rules = rulesFile;
+        }
+      });
   }, []);
 
   // Check rules
