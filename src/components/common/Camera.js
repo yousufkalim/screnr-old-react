@@ -57,7 +57,7 @@ export default function Camera(props) {
   const [fps, setFps] = useState(0);
   const [poseSide, setPoseSide] = useState("BACK");
   const [sessionStarted, setSessionStarted] = useState(false);
-  let [message, setMessage] = useState("");
+  let [message, setMessage] = useState({ msg: "", time: 0 });
   let [message2, setMessage2] = useState("");
   let [loopCounter, setLoopCounter] = useState(0);
   let [takeScreenshot, setTakeScreenshot] = useState(false);
@@ -178,10 +178,14 @@ export default function Camera(props) {
       sessionStarted
     ) {
       setMessage2(newRules.message);
-      maxHipAngle = 0;
+      setTimeout(() => {
+        setMessage2("");
+      }, 500);
     } else {
       setMessage2("");
     }
+
+    maxHipAngle = 0;
     if (phase === 1 && minAngle < 100 && sessionStarted) {
       let repsCount = reps.length + 1;
       reps.push({ minAngle, maxAngle, repsCount });
@@ -491,6 +495,8 @@ export default function Camera(props) {
     } else if (visibility === "left" && left > maxHipAngle) {
       maxHipAngle = left;
     }
+
+    return maxHipAngle;
   };
 
   // Function to check phase by checking knee angle for over head squat
@@ -546,11 +552,14 @@ export default function Camera(props) {
     let feedbackEntries = Object.entries(feedback);
 
     if (feedbackEntries.length === 0) {
-      setMessage("");
+      let msgTime = message.time + 1000;
+      if (msgTime < Date.now()) {
+        setMessage({ msg: "", time: 0 });
+      }
     } else {
       feedbackEntries.reverse().map(([key, value]) => {
         if (value.message != "sit hips lower") {
-          setMessage(value.message);
+          setMessage({ msg: value.message, time: Date.now() });
         }
       });
     }
@@ -699,6 +708,18 @@ export default function Camera(props) {
       setCheckWebcam(false);
       brokenRules = [];
       reps = [];
+    } else if (session === "auto_end") {
+      setTimeout(() => {
+        props.setEndTime(new Date());
+        setSessionStarted(false);
+        checkSession = "end";
+        props.setBrokenRules(brokenRules);
+        props.setFinalReps(reps);
+        setCheckWebcam(false);
+        brokenRules = [];
+        reps = [];
+        props.setStep(3);
+      }, 500);
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
@@ -759,7 +780,7 @@ export default function Camera(props) {
           )}
           {/* Feedback msg */}
 
-          {message && (
+          {(message.msg || message2) && (
             <div
               className="feedback_msg"
               style={{
@@ -767,9 +788,19 @@ export default function Camera(props) {
                 width: 390,
               }}
             >
-              <p>{message2 === "" ? message : message2}</p>
+              <p>{message2 === "" ? message.msg : message2}</p>
             </div>
           )}
+
+          {/* <div
+            className="feedback_msg"
+            style={{
+              display: props.display === "none" ? "none" : "",
+              width: 390,
+            }}
+          >
+            <p>{message2}</p>
+          </div> */}
         </div>
       )}
     </center>

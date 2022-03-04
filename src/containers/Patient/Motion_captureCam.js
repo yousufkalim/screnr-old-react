@@ -68,8 +68,7 @@ const Motion_captureCam = (props) => {
   };
   const handleSession = () => {
     if (item && item.reps === reps) {
-      setStep(3);
-      return "end";
+      return "auto_end";
     } else if (step === 3) {
       return "end";
     } else if (counter === 0) {
@@ -183,6 +182,7 @@ const Motion_captureCam = (props) => {
             setFinalReps={setFinalReps}
             setStartTime={setStartTime}
             setEndTime={setEndTime}
+            setStep={setStep}
           ></Camera>
         </div>
         {step === 3 ? (
