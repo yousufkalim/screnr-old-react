@@ -719,7 +719,7 @@ export default function Camera(props) {
         brokenRules = [];
         reps = [];
         props.setStep(3);
-      }, 500);
+      }, 250);
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
