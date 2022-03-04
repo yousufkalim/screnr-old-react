@@ -13,6 +13,7 @@ import Loader from "../../components/common/Loader";
 import left_connections from "../../assets/connections/left_connections.json";
 import right_connections from "../../assets/connections/right_connections.json";
 import rules from "../../assets/rules.json";
+import axios from "axios";
 
 var camera = null;
 var showPoseLandmarks = true;
@@ -124,6 +125,12 @@ export default function Camera(props) {
       setFps(frames);
       frames = 0;
     }, 1000);
+
+    // axios
+    //   .get("https://arqchicago.pythonanywhere.com/?input=Overhead%20Squat")
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
   }, []);
 
   // Check rules
@@ -167,7 +174,7 @@ export default function Camera(props) {
     Object.entries(rules).map(([key, value]) => {
       Object.entries(value).map(([k, val]) => {
         if (val.message === "sit hips lower") {
-          newRules = val;
+          newRules = { ...val, key: k };
         }
       });
     });
@@ -177,6 +184,17 @@ export default function Camera(props) {
       maxHipAngle < newRules.angles.hip.value &&
       sessionStarted
     ) {
+      let broken = {
+        rule_no: newRules.key,
+        message: newRules.message,
+        phase: currentPhase,
+        rep_no: reps.length,
+        // joints: joints,
+        // angles: angles,
+        brokenAt: new Date(),
+      };
+      brokenRules[reps.length + 1].push(broken);
+
       setMessage2(newRules.message);
       setTimeout(() => {
         setMessage2("");
@@ -614,7 +632,9 @@ export default function Camera(props) {
             // angles: angles,
             brokenAt: new Date(),
           };
-          brokenRules[reps.length + 1].push(broken);
+          if (broken.message !== "sit hips lower") {
+            brokenRules[reps.length + 1].push(broken);
+          }
           found = [];
         }
       });
