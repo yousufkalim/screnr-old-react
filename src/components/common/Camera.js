@@ -734,18 +734,6 @@ export default function Camera(props) {
       setCheckWebcam(false);
       brokenRules = [];
       reps = [];
-    } else if (session === "auto_end") {
-      setTimeout(() => {
-        props.setEndTime(new Date());
-        setSessionStarted(false);
-        checkSession = "end";
-        props.setBrokenRules(brokenRules);
-        props.setFinalReps(reps);
-        setCheckWebcam(false);
-        brokenRules = [];
-        reps = [];
-        props.setStep(3);
-      }, 250);
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
