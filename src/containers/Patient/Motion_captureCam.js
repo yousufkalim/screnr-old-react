@@ -106,12 +106,12 @@ const Motion_captureCam = (props) => {
           className="Bottom_header_mobile"
           sx={{ backgroundColor: "#454238 !important" }}
         >
-          <Typography
+          {/* <Typography
             className="Patient_heading"
             sx={{ color: "#25C8B4", marginTop: "2%" }}
           >
             Motion Capture
-          </Typography>
+          </Typography> */}
         </Grid>
         <Typography className="recording_div"></Typography>
 
