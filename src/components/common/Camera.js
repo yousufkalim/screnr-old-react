@@ -195,13 +195,14 @@ export default function Camera(props) {
       let broken = {
         rule_no: newRules.key,
         message: newRules.message,
+        angle: maxHipAngle,
         phase: currentPhase,
         rep_no: reps.length,
         // joints: joints,
         // angles: angles,
         brokenAt: new Date(),
       };
-      brokenRules[reps.length + 1].push(broken);
+      brokenRules[reps.length + 1]?.push(broken);
 
       setMessage2(newRules.message);
       setTimeout(() => {
@@ -637,6 +638,7 @@ export default function Camera(props) {
           let broken = {
             rule_no: key,
             message: value.message,
+            angle: value.angle,
             phase: currentPhase,
             rep_no: reps.length,
             // joints: joints,
@@ -718,6 +720,7 @@ export default function Camera(props) {
               feedback_dict[rule_num] = {
                 message: message_rule,
                 color: color_rule,
+                angle: angles_dict[angle_name],
               };
             }
           }

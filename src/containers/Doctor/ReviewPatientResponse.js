@@ -323,6 +323,11 @@ const ReviewPatientResponse = () => {
                                             {"(" + rule.message + ")"}
                                           </Typography>
                                         </div>
+                                        <div>
+                                          <Typography>
+                                            {"Angle: " + rule.angle}
+                                          </Typography>
+                                        </div>
                                         <Typography>
                                           {"Date: " +
                                             moment(rule.brokenAt).format(
