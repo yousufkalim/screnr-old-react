@@ -533,7 +533,7 @@ export default function Camera(props) {
     let { left, right } = kneeAngle;
 
     // If knee angle is above 110 then it's phase one otherwise it's phase 2
-    if (left > 115 || right > 115) {
+    if (left > 130 || right > 130) {
       // Getting max angle
       if (right > maxAngle && left > maxAngle) {
         maxAngle = right;
@@ -750,7 +750,7 @@ export default function Camera(props) {
         brokenRules = [];
         reps = [];
         props.setStep(3);
-      }, 300);
+      }, 800);
     } else if (session === "start") {
       props.setStartTime(new Date());
       setSessionStarted(true);
