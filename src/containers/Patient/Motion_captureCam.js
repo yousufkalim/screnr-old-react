@@ -79,6 +79,11 @@ const Motion_captureCam = (props) => {
   };
 
   const handleSave = async () => {
+    if (Object.keys(brokenRules).length > item.reps) {
+      let keys = Object.keys(brokenRules);
+      delete brokenRules[keys[keys.length - 1]];
+    }
+
     setDisable(true);
     const res = await axios
       .put(`${baseUrl}/assessments/update/${item._id}`, {
