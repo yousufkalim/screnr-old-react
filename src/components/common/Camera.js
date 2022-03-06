@@ -234,10 +234,11 @@ export default function Camera(props) {
         i < 11 ? { ...a, visibility: 0.0 } : a
       );
 
-      frameSets.push(results.poseLandmarks);
+      // frameSets.push(results.poseLandmarks);
     }
 
-    if (frameSets.length === 8) {
+    // Disabled this function temporarily
+    if (frameSets.length === 8 && false) {
       // This loop will run 33 time to make average of each joint
       for (let i = 0; i < 33; i++) {
         // Making an array of each joints coordinates
