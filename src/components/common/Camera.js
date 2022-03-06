@@ -388,111 +388,113 @@ export default function Camera(props) {
 
       // If both sides are facing screen, we need to draw
 
-      if (
-        leftSideProbability.toFixed(2) >= 0.57 &&
-        rightSideProbability.toFixed(2) <= 0.52
-      ) {
-        setPoseSide(
-          "LEFT - " +
-            "L: " +
-            leftSideProbability.toFixed(2) +
-            " - R: " +
-            rightSideProbability.toFixed(2)
-        );
+      if (true) {
+        if (
+          leftSideProbability.toFixed(2) >= 0.57 &&
+          rightSideProbability.toFixed(2) <= 0.52
+        ) {
+          setPoseSide(
+            "LEFT - " +
+              "L: " +
+              leftSideProbability.toFixed(2) +
+              " - R: " +
+              rightSideProbability.toFixed(2)
+          );
 
-        // Draw Landmarks
-        drawConnectors(canvasCtx, results.poseLandmarks, right_connections, {
-          color: "white",
-          lineWidth: 4,
-        });
-        drawLandmarks(
-          canvasCtx,
-          Object.values(POSE.POSE_LANDMARKS_LEFT).map(
-            (index) => results.poseLandmarks[index]
-          ),
-          {
-            visibilityMin: 0.65,
-            color: "white",
-            fillColor: "orange",
-            lineWidth: 3,
-          }
-        );
-      }
-      // If right side is ahead
-      else if (
-        rightSideProbability.toFixed(2) >= 0.57 &&
-        leftSideProbability.toFixed(2) <= 0.52
-      ) {
-        setPoseSide(
-          "RIGHT - " +
-            "L: " +
-            leftSideProbability.toFixed(2) +
-            " - R: " +
-            rightSideProbability.toFixed(2)
-        );
-
-        // Draw Landmarks
-        drawConnectors(canvasCtx, results.poseLandmarks, left_connections, {
-          color: "white",
-          lineWidth: 4,
-        });
-        // FACE INLINE POSE POSITIONS
-        drawLandmarks(
-          canvasCtx,
-          Object.values(POSE.POSE_LANDMARKS_RIGHT).map(
-            (index) => results.poseLandmarks[index]
-          ),
-          {
-            visibilityMin: 0.65,
-            color: "white",
-            fillColor: "lightblue",
-            lineWidth: 3,
-          }
-        );
-      } else {
-        setPoseSide(
-          "CENTER - " +
-            "L: " +
-            leftSideProbability.toFixed(2) +
-            " - R: " +
-            rightSideProbability.toFixed(2)
-        );
-
-        // Draw Landmarks
-        drawConnectors(
-          canvasCtx,
-          results.poseLandmarks,
-          POSE.POSE_CONNECTIONS,
-          {
+          // Draw Landmarks
+          drawConnectors(canvasCtx, results.poseLandmarks, right_connections, {
             color: "white",
             lineWidth: 4,
-          }
-        );
-        drawLandmarks(
-          canvasCtx,
-          Object.values(POSE.POSE_LANDMARKS_LEFT).map(
-            (index) => results.poseLandmarks[index]
-          ),
-          {
-            visibilityMin: 0.65,
+          });
+          drawLandmarks(
+            canvasCtx,
+            Object.values(POSE.POSE_LANDMARKS_LEFT).map(
+              (index) => results.poseLandmarks[index]
+            ),
+            {
+              visibilityMin: 0.65,
+              color: "white",
+              fillColor: "orange",
+              lineWidth: 3,
+            }
+          );
+        }
+        // If right side is ahead
+        else if (
+          rightSideProbability.toFixed(2) >= 0.57 &&
+          leftSideProbability.toFixed(2) <= 0.52
+        ) {
+          setPoseSide(
+            "RIGHT - " +
+              "L: " +
+              leftSideProbability.toFixed(2) +
+              " - R: " +
+              rightSideProbability.toFixed(2)
+          );
+
+          // Draw Landmarks
+          drawConnectors(canvasCtx, results.poseLandmarks, left_connections, {
             color: "white",
-            fillColor: "orange",
-            lineWidth: 3,
-          }
-        );
-        // FACE INLINE POSE POSITIONS
-        drawLandmarks(
-          canvasCtx,
-          Object.values(POSE.POSE_LANDMARKS_RIGHT).map(
-            (index) => results.poseLandmarks[index]
-          ),
-          {
-            visibilityMin: 0.65,
-            color: "white",
-            fillColor: "lightblue",
-            lineWidth: 3,
-          }
-        );
+            lineWidth: 4,
+          });
+          // FACE INLINE POSE POSITIONS
+          drawLandmarks(
+            canvasCtx,
+            Object.values(POSE.POSE_LANDMARKS_RIGHT).map(
+              (index) => results.poseLandmarks[index]
+            ),
+            {
+              visibilityMin: 0.65,
+              color: "white",
+              fillColor: "lightblue",
+              lineWidth: 3,
+            }
+          );
+        } else {
+          setPoseSide(
+            "CENTER - " +
+              "L: " +
+              leftSideProbability.toFixed(2) +
+              " - R: " +
+              rightSideProbability.toFixed(2)
+          );
+
+          // Draw Landmarks
+          drawConnectors(
+            canvasCtx,
+            results.poseLandmarks,
+            POSE.POSE_CONNECTIONS,
+            {
+              color: "white",
+              lineWidth: 4,
+            }
+          );
+          drawLandmarks(
+            canvasCtx,
+            Object.values(POSE.POSE_LANDMARKS_LEFT).map(
+              (index) => results.poseLandmarks[index]
+            ),
+            {
+              visibilityMin: 0.65,
+              color: "white",
+              fillColor: "orange",
+              lineWidth: 3,
+            }
+          );
+          // FACE INLINE POSE POSITIONS
+          drawLandmarks(
+            canvasCtx,
+            Object.values(POSE.POSE_LANDMARKS_RIGHT).map(
+              (index) => results.poseLandmarks[index]
+            ),
+            {
+              visibilityMin: 0.65,
+              color: "white",
+              fillColor: "lightblue",
+              lineWidth: 3,
+            }
+          );
+        }
       }
 
       // taking screenshot when hand is above nose
@@ -750,16 +752,7 @@ export default function Camera(props) {
         <div className="webcam">
           <div className="webcam-container">
             {/* React Webcam component */}
-            <Webcam
-              className="webcam_main"
-              ref={webcamRef}
-              style={{
-                width: 390,
-                height: 660,
-                objectFit: window.innerWidth > 600 ? "cover" : "",
-                display: session === "end" ? "none" : "",
-              }}
-            />
+            <Webcam className="webcam_main" ref={webcamRef} />
 
             {/* Canvas to display th output */}
             {loopCounter === 0 ? (
@@ -774,6 +767,7 @@ export default function Camera(props) {
                   display: session === "end" ? "none" : "",
                   width: 390,
                   height: 660,
+                  display: session === "end" ? "none" : "",
                 }}
               ></canvas>
             )}

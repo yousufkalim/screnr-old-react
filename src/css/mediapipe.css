@@ -6,10 +6,11 @@
   margin: auto;
   height: 660 !important;
   width: 390 !important;
-  display: none;
+  /* display: none; */
 }
 
 .webcam_main {
+  display: none;
 }
 
 .btn-container {

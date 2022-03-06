@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AppBar from "../../components/common/AppBar";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import Button from "@mui/material/Button";
 import MobileBottomBar from "../../components/common/MobileBottomBar";
 import Timer from "../../utils/Timer";
@@ -23,6 +24,7 @@ const Motion_captureCam = (props) => {
   const [finalReps, setFinalReps] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [skeleton, setSkeleton] = useState(true);
   // const [rules, setRules] = useState();
 
   const [isPaused, setIsPaused] = useState(true);
@@ -97,6 +99,10 @@ const Motion_captureCam = (props) => {
         setDisable(false);
         toast.error(e);
       });
+  };
+
+  const onSkeletonChange = (e) => {
+    setSkeleton(!skeleton);
   };
 
   return (
@@ -183,6 +189,7 @@ const Motion_captureCam = (props) => {
             setFinalReps={setFinalReps}
             setStartTime={setStartTime}
             setEndTime={setEndTime}
+            skeleton={skeleton}
           ></Camera>
         </div>
         {step === 3 ? (
@@ -261,6 +268,18 @@ const Motion_captureCam = (props) => {
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
                   Repitition:{" " + state.item.reps}
                 </Typography>
+              </div>
+              <div style={{ color: "white" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      style={{ color: "white" }}
+                      onChange={onSkeletonChange}
+                      checked={skeleton}
+                    />
+                  }
+                  label="Skeleton"
+                />
               </div>
               {step === 1 ? (
                 <Typography onClick={(e) => init()} className="motionStatus">
