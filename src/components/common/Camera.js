@@ -803,10 +803,23 @@ export default function Camera(props) {
               className="feedback_msg"
               style={{
                 display: props.display === "none" ? "none" : "",
+                textAlign: "center",
                 width: 390,
               }}
             >
               <p>{message2 === "" ? message.msg : message2}</p>
+              <p>
+                Shoulder: L - {stats.angles?.shoulder?.left} R -{" "}
+                {stats.angles?.shoulder?.right}
+              </p>
+              <p>
+                Hip: L - {stats.angles?.hip?.left} R -{" "}
+                {stats.angles?.hip?.right}
+              </p>
+              <p>
+                Spine: L - {stats.angles?.spine?.left} R -{" "}
+                {stats.angles?.spine?.right}
+              </p>
             </div>
           )}
 
