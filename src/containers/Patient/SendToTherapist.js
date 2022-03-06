@@ -45,7 +45,7 @@
 //                 }}
 //               >
 //                 <Typography className="sets">Sets:3</Typography>
-//                 <Typography className="sets">Repitition:12</Typography>
+//                 <Typography className="sets">Repetition:12</Typography>
 //               </div>
 //             </>
 //             <Typography

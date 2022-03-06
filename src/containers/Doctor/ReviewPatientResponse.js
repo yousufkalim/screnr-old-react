@@ -292,7 +292,7 @@ const ReviewPatientResponse = () => {
                                       width: "100%",
                                     }}
                                   >
-                                    <Typography>Repitition {key}</Typography>
+                                    <Typography>Repetition {key}</Typography>
                                     {/*  +
                                      */}
                                   </div>

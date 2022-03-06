@@ -62,7 +62,7 @@ const Recording_ended = () => {
                 Sets:3
               </Typography>
               <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                Repitition:12
+                Repetition:12
               </Typography>
             </div>
             <Typography onClick={(e) => setStep(1)} className="motionStatus">

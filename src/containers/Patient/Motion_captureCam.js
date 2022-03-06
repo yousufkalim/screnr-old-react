@@ -266,7 +266,7 @@ const Motion_captureCam = (props) => {
                   Sets{" " + state.item.sets}
                 </Typography>
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                  Repitition:{" " + state.item.reps}
+                  Repetition:{" " + state.item.reps}
                 </Typography>
               </div>
               {/* <div style={{ color: "white" }}>
