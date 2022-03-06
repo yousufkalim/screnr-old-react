@@ -189,7 +189,7 @@ export default function Camera(props) {
 
     if (
       phase === 1 &&
-      maxHipAngle < newRules.angles.hip.value &&
+      maxHipAngle < newRules.angles?.hip?.value &&
       sessionStarted
     ) {
       let broken = {

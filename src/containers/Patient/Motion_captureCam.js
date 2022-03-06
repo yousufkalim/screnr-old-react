@@ -269,7 +269,7 @@ const Motion_captureCam = (props) => {
                   Repitition:{" " + state.item.reps}
                 </Typography>
               </div>
-              <div style={{ color: "white" }}>
+              {/* <div style={{ color: "white" }}>
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -280,7 +280,7 @@ const Motion_captureCam = (props) => {
                   }
                   label="Skeleton"
                 />
-              </div>
+              </div> */}
               {step === 1 ? (
                 <Typography onClick={(e) => init()} className="motionStatus">
                   Start Recording

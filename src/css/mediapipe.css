@@ -4,8 +4,9 @@
 
 .output_canvas {
   margin: auto;
-  height: 660 !important;
-  width: 390 !important;
+  /* height: 100% !important; */
+  width: 100% !important;
+  object-fit: cover;
   /* display: none; */
 }
 
