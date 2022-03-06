@@ -99,6 +99,10 @@ export default function Camera(props) {
         onFrame: async () => {
           setLoopCounter(loopCounter++); // Incrementing the loop counter on every frame that we are getting from webcam
 
+          // Setting the current frame width to the window object in order to use this to normalized coordinates
+          window.camWidth = webcamRef.current.video.videoWidth;
+          window.camHeight = webcamRef.current.video.videoHeight;
+
           // When loop counter is even then we will call mediapipe to process the frame, That's how we are skipping every second frame
           if (loopCounter % 2 === 0) {
             if (webcamRef.current) {
@@ -106,8 +110,6 @@ export default function Camera(props) {
             }
           }
         },
-        width: webcamRef.current && window.camWidth,
-        height: webcamRef.current && window.camHeight,
       });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -750,11 +752,6 @@ export default function Camera(props) {
             <Webcam
               className="webcam_main"
               ref={webcamRef}
-              videoConstraints={{
-                height: window.camHeight,
-                width: window.camWidth,
-                frameRate: { ideal: 30, max: 60 },
-              }}
               style={{
                 width: 390,
                 height: 660,
