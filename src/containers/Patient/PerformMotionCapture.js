@@ -132,7 +132,7 @@ const PerformMotionCapture = () => {
                           Sets: {" " + item.sets}
                         </Typography>
                         <Typography className="sets">
-                          Repitition: {" " + item.reps}
+                          Repetition: {" " + item.reps}
                         </Typography>
                       </div>
                     </>

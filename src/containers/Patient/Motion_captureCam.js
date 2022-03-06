@@ -34,7 +34,7 @@ const Motion_captureCam = (props) => {
   const { state } = useLocation();
 
   const navToRecordingEnded = () => {
-    navigate("/patient/motion_capture_assessments");
+    window.location = "/patient/motion_capture_assessments";
   };
 
   // useEffect(() => {
@@ -220,7 +220,7 @@ const Motion_captureCam = (props) => {
                   Sets:{" " + state.item.sets}
                 </Typography>
                 <Typography className="sets" sx={{ color: "#F6FAFB" }}>
-                  Repitition:{" " + state.item.reps}
+                  Repetition:{" " + state.item.reps}
                 </Typography>
               </div>
               <Button
