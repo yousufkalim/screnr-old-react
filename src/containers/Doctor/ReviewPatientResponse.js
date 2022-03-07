@@ -325,7 +325,10 @@ const ReviewPatientResponse = () => {
                                         </div>
                                         <div>
                                           <Typography>
-                                            {"Angle: " + rule.angle}
+                                            Angle:&nbsp;
+                                            <span style={{ color: "red" }}>
+                                              {rule.angle}
+                                            </span>
                                           </Typography>
                                         </div>
                                         <Typography>
