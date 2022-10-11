@@ -1,6 +1,6 @@
 let baseUrl = "";
 let url = "";
-if (window.location.host === "screnrhealth.com") {
+if (window.location.host === "portal.screnrhealth.com") {
   baseUrl = "https://api.screnrhealth.com/api";
   url = "https://api.screnrhealth.com/";
 } else if (window.location.host === "screnr-ui.web.app") {
