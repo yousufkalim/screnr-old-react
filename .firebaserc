@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "screnr-ui"
+    "default": "screnr-demo"
   },
   "targets": {
     "screnr-demo": {
